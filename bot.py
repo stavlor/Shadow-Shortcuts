@@ -269,17 +269,23 @@ async def password(ctx, user: discord.Member = None):
 
 
 @bot.command(description="microphone fix")
-async def micfix(ctx, *, user: discord.Member = ''):
+async def micfix(ctx, *, user: discord.Member = None):
     role_names = [role.name for role in ctx.message.author.roles]
     if await can_run_command(role_names):
         logger.info(
             "Mic Fix command received from {author.name} with argument of {user}".format(author=ctx.message.author,
                                                                                          user=user))
-        await ctx.send("From: {author.name}\n{user.mention} To get your microphone working in Shadow please follow this guide: "
-                      "https://wiki.shadow.pink/index.php/Using_a_Microphone".format(author=ctx.message.author,
+        if user is not None:
+            await ctx.send("From: {author.name}\n{user.mention} To get your microphone working in Shadow please follow this guide: "
+                      "https://wiki.shadow.pink/index.php/Using_a_Microphone".format(author=ctx.author,
                                                                                      user=user))
+        else:
+            await ctx.send(
+                "From: {author.name}\nTo get your microphone working in Shadow please follow this guide: "
+                "https://wiki.shadow.pink/index.php/Using_a_Microphone".format(author=ctx.author,
+                                                                               user=user))
     else:
-        logger.info("Mic Fix command received from unauthorized user {author.name}, replied via PM. ".format(author=ctx.message.author,
+        logger.info("Mic Fix command received from unauthorized user {author.name}, replied via PM. ".format(author=ctx.author,
                                                                                              user=user))
         await ctx.author.send(content="""{user} To get your microphone working in Shadow please follow this guide: "
                       "https://wiki.shadow.pink/index.php/Using_a_Microphone""".format(user=ctx.author.mention))
