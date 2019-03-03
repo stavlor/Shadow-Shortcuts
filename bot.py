@@ -136,6 +136,14 @@ async def on_message(message):
         await auto_response_message(ctx=message,
                                     message="{ctx.author.mention} Please see the following tips for solving input lag issues http://core.stavlor.net/inputlag.png",
                                     trigger="input lag")
+    elif "password expired" in message.content.lower() and not await can_run_command(role_names):
+        await auto_response_message(ctx=message,
+                                    message="{ctx.author.mention} Please see the following for expired password messages http://core.stavlor.net/password.png",
+                                    trigger="password expired")
+    elif "expired password" in message.content.lower() and not await can_run_command(role_names):
+        await auto_response_message(ctx=message,
+                                    message="{ctx.author.mention} Please see the following for expired password messages http://core.stavlor.net/password.png",
+                                    trigger="password expired")
     elif "waiting for video" in message.content.lower() and not await can_run_command(role_names):
         await auto_response_message(ctx=message, message="{ctx.author.mention} Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png", trigger="waiting for video")
     elif "video error" in message.content.lower() and not await can_run_command(role_names):
@@ -257,18 +265,15 @@ async def password(ctx, user: discord.Member = None):
             "Password command received from {author.name} with argument of {user}".format(author=ctx.message.author,
                                                                                           user=user))
         if user is not None:
-            await ctx.send("From: {author.name}\n{user} The default password for your shadow is \"\" meaning blank, "
-                      "nothing in the password box, Change it to what ever you would like.".format(
+            await ctx.send("From: {author.name}\n{user} Please see the following for expired password messages http://core.stavlor.net/password.png".format(
             author=ctx.message.author, user=user.mention))
         else:
-            await ctx.send("From: {author.name}\nThe default password for your shadow is \"\" meaning blank, "
-                      "nothing in the password box, Change it to what ever you would like.".format(
+            await ctx.send("From: {author.name}\nPlease see the following for expired password messages http://core.stavlor.net/password.png".format(
             author=ctx.message.author))
     else:
         logger.info("Password command received from unauthorized user {author.name}, replied via PM. ".format(author=ctx.message.author))
         await ctx.author.send(
-                               content="{user} The default password for your shadow is \"\" meaning blank, "
-                                       "nothing in the password box, Change it to what ever you would like.".format(user=ctx.message.author.mention))
+                               content="{user} Please see the following for expired password messages http://core.stavlor.net/password.png".format(user=ctx.message.author.mention))
     await ctx.message.delete()
 
 
@@ -312,7 +317,7 @@ async def ghostmanual(ctx, *, user: discord.Member = None):
     else:
         logger.info("Ghost Manual command received from unauthorized user {author.name}, replied via PM. ".format(author=ctx.author,
                                                                                              user=user))
-        await ctx.author.send("""<@{user}> Shadow Ghost Manual http://core.stavlor.net/Ghost_Manual.pdf""".format(user=ctx.author.mention))
+        await ctx.author.send("""{user} Shadow Ghost Manual http://core.stavlor.net/Ghost_Manual.pdf""".format(user=ctx.author.mention))
     await ctx.message.delete(ctx.message)
 
 
@@ -385,7 +390,6 @@ https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow"""
             https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow""".format(author=ctx.author))
     await ctx.message.delete()
 
-
 @bot.command(description="Nvidia Drivers")
 async def nvidiadrivers(ctx, *, user: discord.Member = None):
     role_names = [role.name for role in ctx.author.roles]
@@ -395,14 +399,10 @@ async def nvidiadrivers(ctx, *, user: discord.Member = None):
                 author=ctx.author,
                 user=user))
         if user is not None:
-            await ctx.send("""From: {author.name}\n{user} Current recommended Drivers for P5000 can be found here 
-        https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended 
-        drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
+            await ctx.send("""From: {author.name}\n{user} Current recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
             author=ctx.author, user=user.mention))
         else:
-            await ctx.send("""From: {author.name}\nCurrent recommended Drivers for P5000 can be found here 
-            https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended 
-            drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
+            await ctx.send("""From: {author.name}\nCurrent recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
                 author=ctx.author))
     else:
         logger.info("NVidia Drivers command received from un-privileged user {ctx.author.name} Responding Via PM".format(ctx=ctx))
@@ -411,7 +411,7 @@ async def nvidiadrivers(ctx, *, user: discord.Member = None):
     await ctx.message.delete()
 
 
-@bot.command(description="Nvidia Drivers", pass_context=True)
+@bot.command(description="Nvidia Drivers")
 async def drivers(ctx, *, user: discord.Member = None):
     role_names = [role.name for role in ctx.author.roles]
     if await can_run_command(role_names):
@@ -420,14 +420,10 @@ async def drivers(ctx, *, user: discord.Member = None):
                 author=ctx.author,
                 user=user))
         if user is not None:
-            await ctx.send("""From: {author.name}\n{user} Current recommended Drivers for P5000 can be found here 
-        https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended 
-        drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
+            await ctx.send("""From: {author.name}\n{user} Current recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
             author=ctx.author, user=user.mention))
         else:
-            await ctx.send("""From: {author.name}\nCurrent recommended Drivers for P5000 can be found here 
-            https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended 
-            drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
+            await ctx.send("""From: {author.name}\nCurrent recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
                 author=ctx.author))
     else:
         logger.info("NVidia Drivers command received from un-privileged user {ctx.author.name} Responding Via PM".format(ctx=ctx))
