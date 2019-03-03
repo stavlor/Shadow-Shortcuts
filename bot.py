@@ -128,6 +128,10 @@ async def on_message(message):
         await auto_response_message(ctx=message, message="{ctx.author.mention} Please follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png", trigger="error 102")
     elif "102 error" in message.content.lower() and not await can_run_command(role_names):
         await auto_response_message(ctx=message, message="{ctx.author.mention} Please follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png", trigger="102 error")
+    elif "800x600" in message.content.lower() and not await can_run_command(role_names):
+        await auto_response_message(ctx=message,
+                                    message="{ctx.author.mention} Please see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png",
+                                    trigger="800x600")
     elif "waiting for video" in message.content.lower() and not await can_run_command(role_names):
         await auto_response_message(ctx=message, message="{ctx.author.mention} Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png", trigger="waiting for video")
     elif "video error" in message.content.lower() and not await can_run_command(role_names):
