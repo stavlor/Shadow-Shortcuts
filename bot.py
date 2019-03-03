@@ -132,6 +132,10 @@ async def on_message(message):
         await auto_response_message(ctx=message,
                                     message="{ctx.author.mention} Please see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png",
                                     trigger="800x600")
+    elif "input lag" in message.content.lower() and not await can_run_command(role_names):
+        await auto_response_message(ctx=message,
+                                    message="{ctx.author.mention} Please see the following tips for solving input lag issues http://core.stavlor.net/inputlag.png",
+                                    trigger="input lag")
     elif "waiting for video" in message.content.lower() and not await can_run_command(role_names):
         await auto_response_message(ctx=message, message="{ctx.author.mention} Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png", trigger="waiting for video")
     elif "video error" in message.content.lower() and not await can_run_command(role_names):
@@ -319,42 +323,12 @@ async def latency(ctx, *, user: discord.Member = None):
         logger.info("Latency command received from {author.name} with argument of {user}".format(author=ctx.message.author,
                                                                                              user=user))
         if user is not None:
-            await ctx.send("""From {author.name}\n{user} Common steps for fixing input latency
-
-Hardwire (even a USB adaptor is better than wifi)
-Turn down your bandwidth and turn off auto bandwidth
-If those two steps don’t fix it:
-Reboot your router
-Reboot your modem
-Reboot Shadow
-Reboot your local PC/Ghost
-It is very unlikely that your lag is caused by an issue at the DC 
-If your issues persist contact support by visiting the support tab on your shadow account page""".format(author=ctx.author, user=user.mention))
+            await ctx.send("""From {author.name}\n{user} Common steps for fixing input latency http://core.stavlor.net/inputlag.png""".format(author=ctx.author, user=user.mention))
         else:
-            await ctx.send("""From {author.name}\nCommon steps for fixing input latency
-
-            Hardwire (even a USB adaptor is better than wifi)
-            Turn down your bandwidth and turn off auto bandwidth
-            If those two steps don’t fix it:
-            Reboot your router
-            Reboot your modem
-            Reboot Shadow
-            Reboot your local PC/Ghost
-            It is very unlikely that your lag is caused by an issue at the DC 
-            If your issues persist contact support by visiting the support tab on your shadow account page""".format(
+            await ctx.send("""From {author.name}\nCommon steps for fixing input latency http://core.stavlor.net/inputlag.png""".format(
                 author=ctx.author))
     else:
-        await ctx.author.send("""{user} Common steps for fixing input latency
-
-Hardwire (even a USB adaptor is better than wifi)
-Turn down your bandwidth and turn off auto bandwidth
-If those two steps don’t fix it:
-Reboot your router
-Reboot your modem
-Reboot Shadow
-Reboot your local PC/Ghost
-It is very unlikely that your lag is caused by an issue at the DC 
-If your issues persist contact support by visiting the support tab on your shadow account page""".format(user=ctx.author.mention))
+        await ctx.author.send("""{user} Common steps for fixing input latency http://core.stavlor.net/inputlag.png""".format(user=ctx.author.mention))
         logger.info("Latency command received from unauthorized user {author.name}, replied via PM. ".format(author=ctx.author,
                                                                                              user=user))
     await ctx.message.delete()
