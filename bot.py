@@ -58,7 +58,7 @@ async def can_run_command(role_check, allowed=None):
     if allowed is None:
         allowed = ['Shadow Guru', 'Moderators', 'Shadow Staff', 'Clay\'s Lieutenants', 'Admin', 'Silent Admin',
                    'Administrator', 'Bot User']
-    for item in allowed
+    for item in allowed:
         if item in role_check:
             return True
     return False
