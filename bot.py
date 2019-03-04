@@ -41,7 +41,9 @@ async def check_last_message(message):
 
 
 async def auto_response_message(ctx, message: str=None, trigger: str=None):
-    if await check_last_message(message=ctx):
+    if isinstance(ctx, discord.DMChannel):
+        await ctx.author.send(content=message.format(ctx=ctx))
+    elif await check_last_message(message=ctx):
         logger.info("Auto-Response Triggered, Trigger: {trigger} sending to channel {ctx.channel.name} Triggering-Message: {ctx.content}".format(trigger=trigger, ctx=ctx))
         await ctx.channel.send(content=message.format(ctx=ctx))
     else:
@@ -52,25 +54,14 @@ async def auto_response_message(ctx, message: str=None, trigger: str=None):
         await ctx.add_reaction("📬")
 
 
-async def can_run_command(role_check):
-    if 'Shadow Guru' in role_check:
-        return True
-    elif 'Moderators' in role_check:
-        return True
-    elif 'Shadow Staff' in role_check:
-        return True
-    elif 'Clay\'s Lieutenants' in role_check:
-        return True
-    elif 'Admin' in role_check:
-        return True
-    elif 'Silent Admin' in role_check:
-        return True
-    elif 'Administrator' in role_check:
-        return True
-    elif 'Bot User' in role_check:
-        return True
-    else:
-        return False
+async def can_run_command(role_check, allowed=None):
+    if allowed is None:
+        allowed = ['Shadow Guru', 'Moderators', 'Shadow Staff', 'Clay\'s Lieutenants', 'Admin', 'Silent Admin',
+                   'Administrator', 'Bot User']
+    for item in allowed
+        if item in role_check:
+            return True
+    return False
 
 
 async def tail(filename, lines):
@@ -218,7 +209,7 @@ async def add_role_bot(ctx, *, user: discord.Member = None):
         await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
 
-@bot.command(description="Grant a user bot access", name='revokebot')
+@bot.command(description="Revoke a user bot access", name='revokebot')
 async def revoke_role_bot(ctx, *, user: discord.Member = None):
     if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
         if user is None:
@@ -244,6 +235,28 @@ async def _roletest(ctx):
     else:
         await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
+
+@bot.command(description="Waiting for video instructions", name="800x600")
+async def _800x600(ctx, *, user: discord.Member = None):
+    role_names = [role.name for role in ctx.message.author.roles]
+    if await can_run_command(role_names):
+        logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
+            author=ctx.message.author, user=user))
+        if user is not None:
+            await ctx.send(
+            "From {author.name}\n{user} Please see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png".format(
+                author=ctx.message.author, user=user.mention))
+        else:
+            await ctx.send(
+            "From {author.name}\nPlease see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png".format(
+                author=ctx.message.author))
+    else:
+        logger.info("Waiting for video command received from unauthorized user {author.name}, replied via PM. ".format(
+            author=ctx.message.author,
+            user=user))
+        await ctx.author.send(content="""{user} Please see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png""".format(
+            user=ctx.author.mention))
+    await ctx.message.delete()
 
 @bot.command(description="Waiting for video instructions")
 async def waitingvideo(ctx, *, user: discord.Member = None):
