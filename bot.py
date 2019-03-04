@@ -202,6 +202,22 @@ async def add_role(ctx, *, user: discord.Member = None):
         await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
 
+@bot.command(description="Grant a user bot access", name='grantbot')
+async def add_role_bot(ctx, *, user: discord.Member = None):
+    if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
+        if user is None:
+            await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
+        else:
+            if "Bot User" not in [role.name for role in user.roles]:
+                shadowers = ctx.guild.get_role(551917324949651477)
+                await user.add_roles(shadowers)
+                await ctx.message.add_reaction('✅')
+            else:
+                await ctx.send("{author} User {user.mention} appears to already have this role.".format(author=ctx.author.mention, user=user))
+    else:
+        await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
+
+
 @bot.command(description="Roles test", name='roletest')
 async def _roletest(ctx):
     if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
@@ -390,6 +406,7 @@ https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow"""
             https://shadow.tech/usen/terms
             https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow""".format(author=ctx.author))
     await ctx.message.delete()
+
 
 @bot.command(description="Nvidia Drivers")
 async def nvidiadrivers(ctx, *, user: discord.Member = None):
