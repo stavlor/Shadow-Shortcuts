@@ -218,6 +218,22 @@ async def add_role_bot(ctx, *, user: discord.Member = None):
         await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
 
+@bot.command(description="Grant a user bot access", name='revokebot')
+async def revoke_role_bot(ctx, *, user: discord.Member = None):
+    if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
+        if user is None:
+            await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
+        else:
+            if "Bot User" in [role.name for role in user.roles]:
+                shadowers = ctx.guild.get_role(551917324949651477)
+                await user.remove_roles(shadowers)
+                await ctx.message.add_reaction('✅')
+            else:
+                await ctx.send("{author} User {user.mention} appears to not have this role.".format(author=ctx.author.mention, user=user))
+    else:
+        await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
+
+
 @bot.command(description="Roles test", name='roletest')
 async def _roletest(ctx):
     if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
