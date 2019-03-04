@@ -2,7 +2,6 @@ import sys
 import logging
 import discord
 import aiohttp
-import aiodns
 from discord.ext import commands
 
 description = "Shadow US Discord helper bot.\nFor issues with this bot please contact <@151891678511235072>.\n"
@@ -23,7 +22,7 @@ bot.last_message = dict()
 async def can_send_message(last_message):
     import datetime
     difference = last_message - datetime.datetime.now()
-    if difference.total_seconds() < 180:
+    if difference.total_seconds() < 120:
         return False
     else:
         return True
@@ -67,6 +66,8 @@ async def can_run_command(role_check):
     elif 'Silent Admin' in role_check:
         return True
     elif 'Administrator' in role_check:
+        return True
+    elif 'Bot User' in role_check:
         return True
     else:
         return False
@@ -159,7 +160,7 @@ async def on_message(message):
 @bot.command(description="Auto-Responders debug", name="timertest")
 async def _timertest(ctx):
     if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
-        timers = str()
+        timers = " "
         for item in bot.last_message.keys():
             timers += "{:10s} - {:10s}\n".format(item, bot.last_message[item].isoformat())
         await ctx.send("Timer debug:\n```{timers}```".format(timers=timers))
@@ -500,8 +501,7 @@ async def status(ctx, *, user: discord.Member = None):
 
 @bot.command(description="Bot Logs")
 async def logs(ctx):
-    role_names = [role.name for role in ctx.author.roles]
-    if await can_run_command(role_names):
+    if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
         fname = 'discord.log'
         if "gurus-lab" not in ctx.message.channel.name:
             lines = await tail(filename=fname, lines=10)
@@ -520,8 +520,13 @@ async def logs(ctx):
 
 @bot.command(description="PM test")
 async def pmtest(ctx):
-    await ctx.author.send("Test")
-    await ctx.message.delete()
+    if ("Shadow Guru" in [role.name for role in ctx.author.roles]) or ("Moderators" in [role.name for role in ctx.author.roles]):
+        await ctx.author.send("Test")
+        await ctx.message.delete()
+    else:
+        await ctx.send("Sorry {ctx.author.mention} your not authorized to do this.".format(ctx=ctx))
+        await ctx.message.delete()
+        logger.info("Unauthorized pmtest request from {ctx.author}".format(ctx=ctx))
 
 
 bot.run(TOKEN)
