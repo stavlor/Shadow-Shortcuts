@@ -81,7 +81,7 @@ class Admin(commands.Cog):
     async def _timertest(self, ctx):
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             timers = " "
-            for item in self.last_message.keys():
+            for item in self.bot.last_message.keys():
                 timers += "{:10s} - {:10s}\n".format(item, bot.last_message[item].isoformat())
             await ctx.send("Timer debug:\n```{timers}```".format(timers=timers))
         else:
