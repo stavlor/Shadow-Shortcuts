@@ -1,5 +1,6 @@
 from discord.ext import commands
 import discord
+import traceback
 
 
 class Events(commands.Cog):
@@ -13,8 +14,8 @@ class Events(commands.Cog):
             await ctx.send("{author.mention} {exception}".format(author=ctx.author, exception=exception))
         await ctx.message.add_reaction("😢")
         self.bot.logger.info(
-            "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}".format(
-                ctx=ctx, exception=exception))
+            "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
+                ctx=ctx, exception=exception, traceback=traceback.format_exc()))
 
     @commands.Cog.listener()
     async def on_ready(self):
