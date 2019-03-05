@@ -89,7 +89,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Add Shadower role to a user", name='ar')
     async def add_role(self, ctx, *, user: discord.Member = None):
-        if self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -121,7 +121,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
     async def revoke_role_bot(self, ctx, *, user: discord.Member = None):
-        if  await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:

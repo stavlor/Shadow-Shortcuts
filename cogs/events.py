@@ -28,8 +28,6 @@ class Events(commands.Cog):
             role_names = author.roles
         if message.author.id == self.bot.user.id:
             pass
-        elif str(message.content).startswith('.'):
-            await self.bot.process_commands(message)
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
