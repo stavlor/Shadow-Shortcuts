@@ -5,7 +5,8 @@ import discord
 class Autoresponse(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
-        self.bot.autoresponse = self
+        bot.autorespone = self
+        bot.logger.info("Initialised Autoresponse")
 
     async def can_send_message(self, last_message):
         import datetime

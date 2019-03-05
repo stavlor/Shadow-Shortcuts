@@ -5,6 +5,7 @@ import discord
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        bot.logger.info("Initialized General Cog")
 
     @commands.command(description="Send instructions on how to get Verified")
     async def verify(self, ctx, *, user: discord.Member = None):
@@ -36,7 +37,7 @@ class General(commands.Cog):
                     "From {author.name}\nPlease see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png".format(
                         author=ctx.message.author))
         else:
-            logger.info(
+            self.bot.logger.info(
                 "Waiting for video command received from unauthorized user {author.name}, replied via PM. ".format(
                     author=ctx.message.author,
                     user=user))

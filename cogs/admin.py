@@ -11,6 +11,7 @@ class Admin(commands.Cog):
         self.bot = bot
         self.bot.admin = self
         self._last_member = None
+        bot.logger.info("Initialized Admin Cog")
 
     @commands.command(hidden=True)
     async def load(self, ctx, *, module):
@@ -18,7 +19,7 @@ class Admin(commands.Cog):
         try:
             self.bot.load_extension(module)
         except Exception as e:
-            await ctx.send('```py\n{traceback.format_exc()}\n```'.format(traceback=traceback))
+            await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
@@ -28,7 +29,7 @@ class Admin(commands.Cog):
         try:
             self.bot.unload_extension(module)
         except Exception as e:
-            await ctx.send('```py\n{traceback.format_exc()}\n```'.format(traceback=traceback))
+            await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
@@ -39,7 +40,7 @@ class Admin(commands.Cog):
             self.bot.unload_extension(module)
             self.bot.load_extension(module)
         except Exception as e:
-            await ctx.send('```py\n{traceback.format_exc()}\n```'.format(traceback=traceback))
+            await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
@@ -78,7 +79,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Auto-Responders debug", name="timertest")
     async def _timertest(self, ctx):
-        if self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             timers = " "
             for item in self.last_message.keys():
                 timers += "{:10s} - {:10s}\n".format(item, bot.last_message[item].isoformat())
@@ -104,7 +105,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Grant a user bot access", name='grantbot')
     async def add_role_bot(self, ctx, *, user: discord.Member = None):
-        if self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -120,7 +121,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
     async def revoke_role_bot(self, ctx, *, user: discord.Member = None):
-        if self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if  await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -135,7 +136,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Roles test", name='roletest')
     async def _roletest(self, ctx):
-        if self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             guild = ctx.guild
             await ctx.send("Beginning role debug")
             for role in guild.roles:

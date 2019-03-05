@@ -5,6 +5,7 @@ import discord
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        bot.logger.info("Initialized Events Cog")
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
