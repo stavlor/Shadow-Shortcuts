@@ -9,6 +9,8 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
+        if isinstance(exception, discord.ext.commands.errors.CommandNotFound):
+            ctx.send("{author.mention} {exception}".format(author=ctx.author, exception=exception))
         await ctx.message.add_reaction("😢")
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}".format(
