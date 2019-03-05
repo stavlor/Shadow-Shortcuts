@@ -40,3 +40,7 @@ class Autoresponse(commands.Cog):
                     trigger=trigger, ctx=ctx, last=bot.last_message[ctx.channel.name]))
             await ctx.author.send(content=message.format(ctx=ctx))
             await ctx.add_reaction("📬")
+
+
+def setup(bot):
+    bot.add_cog(Autoresponse(bot))
