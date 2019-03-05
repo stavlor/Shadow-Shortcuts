@@ -6,15 +6,18 @@ class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
         await ctx.message.add_reaction("😢")
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}".format(
                 ctx=ctx, exception=exception))
 
+    @commands.Cog.listener()
     async def on_ready(self):
         self.bot.logger.info("Bot Starting up.. Logged in as:" + str(self.bot.user.name) + " ID: " + str(self.bot.user.id))
 
+    @commands.Cog.listener()
     async def on_message(self, message):
         self.bot.logger.debug("Recieved message from {message.author} Content {message.content}".format(message=message))
         author = message.author
