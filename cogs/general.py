@@ -353,7 +353,7 @@ class General(commands.Cog):
             paginator = commands.Paginator(prefix="```python")
             for line in lines:
                 paginator.add_line(line)
-            if ('gurus-lab' not in ctx.channel.name) or ('bot-talk' not in ctx.channel.name):
+            if ('gurus-lab' != ctx.channel.name) or ('bot-talk' != ctx.channel.name):
                 await ctx.author.send("Here is the last few lines of the log:")
                 for page in paginator.pages:
                     await ctx.author.send(page)
