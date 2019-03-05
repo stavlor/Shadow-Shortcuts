@@ -16,6 +16,9 @@ class Admin(commands.Cog):
     @commands.command(hidden=True)
     async def load(self, ctx, *, module):
         """Loads a module."""
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+            await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
+            return
         try:
             self.bot.load_extension(module)
         except Exception as e:
@@ -26,6 +29,9 @@ class Admin(commands.Cog):
     @commands.command(hidden=True)
     async def unload(self, ctx, *, module):
         """Unloads a module."""
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+            await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
+            return
         try:
             self.bot.unload_extension(module)
         except Exception as e:
@@ -36,6 +42,9 @@ class Admin(commands.Cog):
     @commands.command(name='reload', hidden=True)
     async def _reload(self, ctx, *, module):
         """Reloads a module."""
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+            await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
+            return
         try:
             self.bot.unload_extension(module)
             self.bot.load_extension(module)
