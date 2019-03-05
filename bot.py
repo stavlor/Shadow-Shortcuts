@@ -27,7 +27,7 @@ if __name__ == '__main__':
         try:
             bot.load_extension(extension)
         except Exception as e:
-            logger.info(f'Failed to load extension {extension}.')
+            logger.info('Failed to load extension {extension}.'.format(extension=extension))
             traceback.print_exc()
 
 bot.run(TOKEN)
