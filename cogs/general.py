@@ -358,7 +358,7 @@ class General(commands.Cog):
                 for page in paginator.pages:
                     await ctx.author.send(page)
                 self.bot.logger.info(
-                    "Sending last few log entries to {ctx.author.name} via PM as its not in gurus-lab".format(ctx=ctx))
+                    "Sending last few log entries to {ctx.author.name} via PM as its not in gurus-lab channel was {ctx.channel.name}".format(ctx=ctx))
             else:
                 await ctx.send("Here is the last few lines of the log:")
                 for page in paginator.pages:
