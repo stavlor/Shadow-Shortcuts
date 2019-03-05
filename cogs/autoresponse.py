@@ -1,7 +1,8 @@
 from discord.ext import commands
 import discord
 
-class Autoresponse(commands.cog):
+
+class Autoresponse(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.bot.autoresponse = self

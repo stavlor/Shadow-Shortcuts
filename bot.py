@@ -1,6 +1,5 @@
 import sys
 import logging
-import traceback
 from discord.ext import commands
 
 description = "Shadow US Discord helper bot.\nFor issues with this bot please contact <@151891678511235072>.\n"
@@ -24,10 +23,6 @@ initial_extensions = ['cogs.admin',
 
 if __name__ == '__main__':
     for extension in initial_extensions:
-        try:
             bot.load_extension(extension)
-        except Exception as e:
-            logger.info('Failed to load extension {extension}.'.format(extension=extension))
-            traceback.print_exc()
 
 bot.run(TOKEN)

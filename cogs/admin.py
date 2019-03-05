@@ -4,7 +4,7 @@ import aiohttp
 import traceback
 
 
-class Admin(commands.cog):
+class Admin(commands.Cog):
     """Admin level bot commands cog"""
 
     def __init__(self, bot):
