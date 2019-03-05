@@ -107,7 +107,7 @@ class General(commands.Cog):
                     "From: {author.name}\nPlease see the following for expired password messages http://core.stavlor.net/password.png".format(
                         author=ctx.message.author))
         else:
-            self.logger.info("Password command received from unauthorized user {author.name}, replied via PM. ".format(
+            self.bot.logger.info("Password command received from unauthorized user {author.name}, replied via PM. ".format(
                 author=ctx.message.author))
             await ctx.author.send(
                 content="{user} Please see the following for expired password messages http://core.stavlor.net/password.png".format(
