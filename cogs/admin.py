@@ -18,7 +18,7 @@ class Admin(commands.Cog):
         try:
             self.bot.load_extension(module)
         except Exception as e:
-            await ctx.send(f'```py\n{traceback.format_exc()}\n```')
+            await ctx.send('```py\n{traceback.format_exc()}\n```'.format(traceback=traceback))
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
@@ -28,7 +28,7 @@ class Admin(commands.Cog):
         try:
             self.bot.unload_extension(module)
         except Exception as e:
-            await ctx.send(f'```py\n{traceback.format_exc()}\n```')
+            await ctx.send('```py\n{traceback.format_exc()}\n```'.format(traceback=traceback))
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
@@ -39,7 +39,7 @@ class Admin(commands.Cog):
             self.bot.unload_extension(module)
             self.bot.load_extension(module)
         except Exception as e:
-            await ctx.send(f'```py\n{traceback.format_exc()}\n```')
+            await ctx.send('```py\n{traceback.format_exc()}\n```'.format(traceback=traceback))
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
