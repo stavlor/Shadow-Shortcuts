@@ -346,16 +346,24 @@ class General(commands.Cog):
 
     @commands.command(description="Bot Logs")
     async def logs(self, ctx):
-        if self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             fname = 'discord.log'
+            lines = await self.bot.admin.tail(filename=fname, lines=20)
+            lines = lines.split("\n")
+            paginator = commands.Paginator(prefix="```python")
+            for line in lines:
+                paginator.add_line(line)
             if "gurus-lab" not in ctx.message.channel.name:
-                lines = await self.bot.admin.tail(filename=fname, lines=10)
-                await ctx.author.send("Here is the last few lines of the log\n{log}\n".format(log=lines))
+                await ctx.author.send("Here is the last few lines of the log:")
+                for page in paginator.pages:
+                    await ctx.author.send(page)
                 self.bot.logger.info(
                     "Sending last few log entries to {ctx.author.name} via PM as its not in gurus-lab".format(ctx=ctx))
             else:
-                lines = await self.bot.admin.tail(filename=fname, lines=10)
-                await ctx.send("Here is the last few lines of the log\n{log}\n".format(log=lines))
+
+                await ctx.send("Here is the last few lines of the log:")
+                for page in paginator.pages:
+                    await ctx.send(page)
                 await ctx.message.delete()
                 self.bot.logger.info("Sending last few log entries to Channel Requestor:{ctx.author}.".format(ctx=ctx))
         else:
