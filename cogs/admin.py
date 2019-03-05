@@ -82,7 +82,7 @@ class Admin(commands.Cog):
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             timers = " "
             for item in self.bot.last_message.keys():
-                timers += "{:10s} - {:10s}\n".format(item, bot.last_message[item].isoformat())
+                timers += "{:10s} - {:10s}\n".format(item, self.bot.last_message[item].isoformat())
             await ctx.send("Timer debug:\n```{timers}```".format(timers=timers))
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
