@@ -353,14 +353,13 @@ class General(commands.Cog):
             paginator = commands.Paginator(prefix="```python")
             for line in lines:
                 paginator.add_line(line)
-            if ("gurus-lab" not in ctx.message.channel.name) or ("bot-talk" not in ctx.message.channel.name):
+            if ('gurus-lab' not in ctx.channel.name) or ('bot-talk' not in ctx.channel.name):
                 await ctx.author.send("Here is the last few lines of the log:")
                 for page in paginator.pages:
                     await ctx.author.send(page)
                 self.bot.logger.info(
                     "Sending last few log entries to {ctx.author.name} via PM as its not in gurus-lab".format(ctx=ctx))
             else:
-
                 await ctx.send("Here is the last few lines of the log:")
                 for page in paginator.pages:
                     await ctx.send(page)
