@@ -26,7 +26,7 @@ class General(commands.Cog):
     @commands.command(description="800x600 instructions", name="800x600")
     async def _800x600(self, ctx, *, user: discord.Member = None):
         if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.botlogger.info("Waiting for video command received from {author.name} with argument of {user}".format(
+            self.bot.logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
                 author=ctx.message.author, user=user))
             if user is not None:
                 await ctx.send(
