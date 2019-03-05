@@ -16,7 +16,7 @@ class Admin(commands.Cog):
     @commands.command(hidden=True)
     async def load(self, ctx, *, module):
         """Loads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -29,7 +29,7 @@ class Admin(commands.Cog):
     @commands.command(hidden=True)
     async def unload(self, ctx, *, module):
         """Unloads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -42,7 +42,7 @@ class Admin(commands.Cog):
     @commands.command(name='reload', hidden=True)
     async def _reload(self, ctx, *, module):
         """Reloads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -98,7 +98,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Add Shadower role to a user", name='ar')
     async def add_role(self, ctx, *, user: discord.Member = None):
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -114,7 +114,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Grant a user bot access", name='grantbot')
     async def add_role_bot(self, ctx, *, user: discord.Member = None):
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -130,7 +130,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
     async def revoke_role_bot(self, ctx, *, user: discord.Member = None):
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -145,7 +145,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Roles test", name='roletest')
     async def _roletest(self, ctx):
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             guild = ctx.guild
             await ctx.send("Beginning role debug")
             for role in guild.roles:

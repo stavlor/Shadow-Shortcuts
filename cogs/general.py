@@ -346,14 +346,14 @@ class General(commands.Cog):
 
     @commands.command(description="Bot Logs")
     async def logs(self, ctx):
-        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             fname = 'discord.log'
             lines = await self.bot.admin.tail(filename=fname, lines=20)
             lines = lines.split("\n")
             paginator = commands.Paginator(prefix="```python")
             for line in lines:
                 paginator.add_line(line)
-            if "gurus-lab" not in ctx.message.channel.name or "bot-talk" not in ctx.message.channel.name:
+            if ("gurus-lab" not in ctx.message.channel.name) or ("bot-talk" not in ctx.message.channel.name):
                 await ctx.author.send("Here is the last few lines of the log:")
                 for page in paginator.pages:
                     await ctx.author.send(page)
@@ -373,7 +373,7 @@ class General(commands.Cog):
 
     @commands.command(description="PM test")
     async def pmtest(self, ctx):
-        if self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.author.send("Test")
             await ctx.message.delete()
         else:
