@@ -348,7 +348,7 @@ class General(commands.Cog):
     async def logs(self, ctx):
         if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             fname = 'discord.log'
-            lines = await self.bot.admin.tail(filename=fname, lines=20)
+            lines = await self.bot.admin.tail(filename=fname, lines=50)
             lines = lines.split("\n")
             paginator = commands.Paginator(prefix="```python")
             for line in lines:
