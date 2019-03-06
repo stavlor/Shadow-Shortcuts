@@ -384,7 +384,7 @@ class General(commands.Cog):
     @commands.command()
     async def helptest(self, ctx, *, arguments=None):
         paginator = discord.ext.commands.Paginator(prefix='', suffix='')
-        cogs = [self.bot.admin, self.bot.general, self.bot.autoresponse, self.bot.events]
+        cogs = [self.bot.admin, self.bot.general, self.bot.autorespone, self.bot.events]
         for cog in cogs:
             for command in cog.commands():
                 if not command.hidden:
