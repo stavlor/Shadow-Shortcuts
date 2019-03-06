@@ -382,7 +382,7 @@ class General(commands.Cog):
             self.bot.logger.info("Unauthorized pmtest request from {ctx.author}".format(ctx=ctx))
 
     @commands.command()
-    async def helptest(self, ctx, *, arguments):
+    async def helptest(self, ctx, *, arguments=None):
         paginator = discord.ext.commands.Paginator(prefix='', suffix='')
         cogs = [self.bot.admin, self.bot.general, self.bot.autoresponse, self.bot.events]
         for cog in cogs:
