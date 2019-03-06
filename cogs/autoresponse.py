@@ -38,7 +38,7 @@ class Autoresponse(commands.Cog):
         else:
             self.bot.logger.info(
                 "Auto-Response Triggered, Trigger: {trigger} sending via PM to {ctx.author.name} Triggering-Message: {ctx.content} Last Message: {last}".format(
-                    trigger=trigger, ctx=ctx, last=bot.last_message[ctx.channel.name]))
+                    trigger=trigger, ctx=ctx, last=self.bot.last_message[ctx.channel.name]))
             await ctx.author.send(content=message.format(ctx=ctx))
             await ctx.add_reaction("📬")
 
