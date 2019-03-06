@@ -386,7 +386,7 @@ class General(commands.Cog):
         paginator = discord.ext.commands.Paginator(prefix='', suffix='')
         cogs = [self.bot.admin, self.bot.general, self.bot.autorespone, self.bot.events]
         for cog in cogs:
-            for command in cog.commands():
+            for command in cog.get_commands():
                 if not command.hidden:
                     str = "{command.name} - {command.description}".format(command=command)
                     paginator.add_line(str)
