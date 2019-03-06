@@ -21,7 +21,7 @@ class Autoresponse(commands.Cog):
         if message.channel.name not in self.bot.last_message.keys():
             self.bot.last_message[message.channel.name] = datetime.datetime.now()
             return True
-        elif await self.can_send_message(bot.last_message[message.channel.name]):
+        elif await self.can_send_message(self.bot.last_message[message.channel.name]):
             self.bot.last_message[message.channel.name] = datetime.datetime.now()
             return True
         else:
