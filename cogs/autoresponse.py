@@ -39,8 +39,12 @@ class Autoresponse(commands.Cog):
             self.bot.logger.info(
                 "Auto-Response Triggered, Trigger: {trigger} sending via PM to {ctx.author.name} Triggering-Message: {ctx.content} Last Message: {last}".format(
                     trigger=trigger, ctx=ctx, last=self.bot.last_message[ctx.channel.name]))
-            await ctx.author.send(content=message.format(ctx=ctx))
-            await ctx.add_reaction("📬")
+            try:
+                await ctx.author.send(content=message.format(ctx=ctx))
+                await ctx.add_reaction("📬")
+            except discord.errors.Forbidden:
+                await ctx.add_reaction('⛔')
+                self.bot.logger.info("Auto-Response Could not DM User {ctx.author} received Forbidden".format(ctx=ctx))
 
 
 def setup(bot):
