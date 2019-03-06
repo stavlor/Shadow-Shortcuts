@@ -5,6 +5,7 @@ import discord
 class General(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        bot.general = self
         bot.logger.info("Initialized General Cog")
 
     @commands.command(description="Send instructions on how to get Verified")
@@ -380,6 +381,15 @@ class General(commands.Cog):
             await ctx.message.delete()
             self.bot.logger.info("Unauthorized pmtest request from {ctx.author}".format(ctx=ctx))
 
+    @commands.command()
+    async def helptest(self, ctx, *, arguments):
+        paginator = discord.ext.commands.Paginator(prefix='', suffix='')
+        cogs = [self.bot.admin, self.bot.general, self.bot.autoresponse, self.bot.events]
+        for cog in cogs:
+            for command in cog.commands():
+                if not command.hidden:
+                    str = f"{command.name} - {command.description}"
+                    paginator.add_line(str)
 
 def setup(bot):
     bot.add_cog(General(bot))

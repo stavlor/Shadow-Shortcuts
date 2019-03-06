@@ -6,6 +6,7 @@ import traceback
 class Events(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+        bot.events = self
         bot.logger.info("Initialized Events Cog")
 
     @commands.Cog.listener()
