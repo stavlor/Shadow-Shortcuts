@@ -158,7 +158,7 @@ class General(commands.Cog):
                 user=user))
             await ctx.author.send("""{user} Shadow Ghost Manual http://core.stavlor.net/Ghost_Manual.pdf""".format(
                 user=ctx.author.mention))
-        await ctx.message.delete(ctx.message)
+        await ctx.message.delete()
 
     @commands.command(description="Latency command")
     async def latency(self, ctx, *, user: discord.Member = None):
