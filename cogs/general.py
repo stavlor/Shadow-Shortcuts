@@ -390,6 +390,9 @@ class General(commands.Cog):
                 if not command.hidden:
                     str = "{command.name} - {command.description}".format(command=command)
                     paginator.add_line(str)
+        for page in paginator.pages:
+            ctx.send(page)
+
 
 def setup(bot):
     bot.add_cog(General(bot))
