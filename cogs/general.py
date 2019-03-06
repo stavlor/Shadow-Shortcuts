@@ -388,7 +388,7 @@ class General(commands.Cog):
         for cog in cogs:
             for command in cog.commands():
                 if not command.hidden:
-                    str = f"{command.name} - {command.description}"
+                    str = "{command.name} - {command.description}".format(command=command)
                     paginator.add_line(str)
 
 def setup(bot):
