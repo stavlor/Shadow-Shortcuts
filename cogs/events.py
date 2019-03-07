@@ -9,15 +9,20 @@ class Events(commands.Cog):
         bot.events = self
         bot.logger.info("Initialized Events Cog")
 
+    async def log_direct_messages(self, message):
+        pass
+
     @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
+        import sys
+        exception_info = sys.exc_info()
         if isinstance(exception, discord.ext.commands.errors.CommandNotFound):
             await ctx.author.send("{author.mention} {exception}".format(author=ctx.author, exception=exception))
             await ctx.message.add_reaction('✋')
         await ctx.message.add_reaction("😢")
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
-                ctx=ctx, exception=exception, traceback=traceback.format_exc()))
+                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception_info[3])))
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -26,11 +31,12 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         self.bot.logger.debug("Recieved message from {message.author} Content {message.content}".format(message=message))
-        author = message.author
-        if not hasattr(author, 'roles'):
+        if isinstance(message.channel, discord.DMChannel):
+            await self.log_direct_messages(message)
+        if not hasattr(message.author, 'roles'):
             role_names = []
         else:
-            role_names = author.roles
+            role_names = message.author.roles
         if message.author.id == self.bot.user.id:
             pass
         elif "good bot" in message.content.lower():
