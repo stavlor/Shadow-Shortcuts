@@ -12,7 +12,7 @@ class Database(commands.Cog):
     async def log_direct_messages(self, message):
         conn = await asyncpg.connect(dsn="postgres://stavlorkaralain_gmail_com@localhost/bot", password="1234")
         attach_url = None
-        if hasattr(message.attachments):
+        if hasattr(message, 'attachments'):
             attach_url = list()
             for attach in message.attachments:
                 attach_url.append(attach.url)
