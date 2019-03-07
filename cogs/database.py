@@ -13,10 +13,10 @@ class Database(commands.Cog):
         conn = await asyncpg.connect(dsn="postgres://stavlorkaralain_gmail_com@localhost/bot", password="1234")
         attach_url = None
         if hasattr(message, 'attachments'):
-            attach_url = list()
+            attach_url = str()
             for attach in message.attachments:
-                attach_url.append(attach.url)
-        sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user_name}{user_discriminator}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user_name=message.author.name, message=message.content, user_discriminator=message.author.discriminator, attachment_url=attach_url[0]);
+                attach_url += " "+str(attach.url)
+        sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user_name}{user_discriminator}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user_name=message.author.name, message=message.content, user_discriminator=message.author.discriminator, attachment_url=attach_url);
         await conn.execute(sqlstatement)
         await conn.close()
 
