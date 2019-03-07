@@ -106,6 +106,7 @@ class Admin(commands.Cog):
                     shadowers = ctx.guild.get_role(461298541978058769)
                     await user.add_roles(shadowers)
                     await ctx.message.add_reaction('✅')
+                    await user.send("{user.mention} You have been granted the role {role} by {ctx.author}".format(user=user, role="Shadowers", ctx=ctx))
                 else:
                     await ctx.send("{author} User {user.mention} appears to already have this role.".format(
                         author=ctx.author.mention, user=user))
