@@ -386,7 +386,7 @@ class General(commands.Cog):
         paginator = discord.ext.commands.Paginator(prefix='```', suffix='```')
         cogs = [self.bot.admin, self.bot.general, self.bot.autorespone, self.bot.events]
         if arguments is not None:
-            paginator.add_line(self.bot.get_command(arguments).help)
+            paginator.add_line(self.bot.get_command(arguments).general)
             paginator.add_line(self.bot.get_command(arguments).short_doc)
             for page in paginator.pages:
                 await ctx.send(page)
