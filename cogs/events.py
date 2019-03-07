@@ -22,7 +22,7 @@ class Events(commands.Cog):
         await ctx.message.add_reaction("😢")
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
-                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception_info[3])))
+                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception_info[2])))
 
     @commands.Cog.listener()
     async def on_ready(self):
