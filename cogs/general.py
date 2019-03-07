@@ -290,7 +290,7 @@ class General(commands.Cog):
             self.bot.logger.info("Ghost purchase info command processed for {author.name}".format(author=ctx.message.author))
             await ctx.send(
                 "{author.mention} you can purchase ghost from your account page, https://account.shadow.tech/subscription".format(
-                    author=ctx.mention))
+                    author=ctx.author))
             await ctx.message.delete()
         else:
             if await self.bot.admin.can_run_command(ctx.author.roles):

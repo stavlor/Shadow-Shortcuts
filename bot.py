@@ -18,6 +18,7 @@ bot.last_message = dict()
 bot.logger = logger
 initial_extensions = ['cogs.admin',
                       'cogs.autoresponse',
+                      'cogs.database',
                       'cogs.events',
                       'cogs.general']
 

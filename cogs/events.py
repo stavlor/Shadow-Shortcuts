@@ -9,9 +9,6 @@ class Events(commands.Cog):
         bot.events = self
         bot.logger.info("Initialized Events Cog")
 
-    async def log_direct_messages(self, message):
-        pass
-
     @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
         import sys
@@ -32,7 +29,7 @@ class Events(commands.Cog):
     async def on_message(self, message):
         self.bot.logger.debug("Recieved message from {message.author} Content {message.content}".format(message=message))
         if isinstance(message.channel, discord.DMChannel):
-            await self.log_direct_messages(message)
+            await self.bot.database.log_direct_messages(message)
         if not hasattr(message.author, 'roles'):
             role_names = []
         else:
