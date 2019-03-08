@@ -411,7 +411,7 @@ class General(commands.Cog):
         paginator.add_line("Has roles: {roles}".format(roles=rolelist))
         paginator.add_line("Joined on: {user.joined_at}".format(user=user))
         paginator.add_line("Created at {user.created_at}".format(user=user))
-        paginator.add_line("Username+discriminator: {user.name}{user.discriminator}".format(user=user))
+        paginator.add_line("Username+discriminator: {user}".format(user=user))
         paginator.add_line("Display name: {user.display_name}".format(user=user))
         paginator.add_line("Status: {user.status}".format(user=user))
         for page in paginator.pages:
