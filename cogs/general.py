@@ -400,11 +400,14 @@ class General(commands.Cog):
     @commands.command()
     async def userinfo(self, ctx, *, user: discord.Member):
         """Look up general user info."""
+        rolelist = ""
         if not self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return
         paginator = discord.ext.commands.Paginator(prefix='```', suffix='```')
         paginator.add_line("User-ID: {user.id}".format(user=user))
+        for role in user.roles:
+            rolelist += "{role.name}({role.id}) ".format(role=role)
         paginator.add_line("Has roles: {user.roles}")
         paginator.add_line("Joined on: {user.joined_at}".format(user=user))
         for page in paginator.pages():
