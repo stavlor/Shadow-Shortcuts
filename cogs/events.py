@@ -10,7 +10,7 @@ class Events(commands.Cog):
         bot.logger.info("Initialized Events Cog")
 
     @commands.Cog.listener()
-    async def on_error(self, ctx, exception):
+    async def on_command_error(self, ctx, exception):
         import sys
         exception_info = sys.exc_info()
         if isinstance(exception, discord.ext.commands.errors.CommandNotFound):

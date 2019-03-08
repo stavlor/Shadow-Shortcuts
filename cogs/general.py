@@ -410,7 +410,7 @@ class General(commands.Cog):
             rolelist += "{role.name}({role.id}) ".format(role=role)
         paginator.add_line("Has roles: {roles}".format(roles=rolelist))
         paginator.add_line("Joined on: {user.joined_at}".format(user=user))
-        for page in paginator.pages():
+        for page in paginator.pages:
             await ctx.send(page)
 
 
