@@ -16,6 +16,12 @@ class Events(commands.Cog):
         if isinstance(exception, discord.ext.commands.errors.CommandNotFound):
             await ctx.author.send("{author.mention} {exception}".format(author=ctx.author, exception=exception))
             await ctx.message.add_reaction('✋')
+        elif isinstance(exception, discord.ext.commands.errors.BadArgument):
+            await ctx.author.send("{author.mention} Bad Argument exception: {exception}".format(author=ctx.author, exception=exception))
+        elif isinstance(exception, discord.ext.commands.errors.MissingRequiredArgument):
+            await ctx.send("{author.mention} Required argument missing: {exception}".format(author=ctx.author, exception=exception))
+        elif isinstance(exception, discord.NotFound):
+            await ctx.send("{author.mention} Got a discord.NotFound error: {exception}".format(author=ctx.author, exception=exception))
         await ctx.message.add_reaction("😢")
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(

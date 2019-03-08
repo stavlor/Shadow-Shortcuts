@@ -10,7 +10,7 @@ class Autoresponse(commands.Cog):
 
     async def can_send_message(self, last_message):
         import datetime
-        difference = last_message - datetime.datetime.now()
+        difference = datetime.datetime.now() - last_message
         self.bot.logger.info("Timer total seconds debug: {time}".format(time=difference.total_seconds()))
         if difference.total_seconds() < 120:
             return False
