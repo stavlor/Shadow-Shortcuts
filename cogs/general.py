@@ -386,8 +386,7 @@ class General(commands.Cog):
         paginator = discord.ext.commands.Paginator(prefix='```', suffix='```')
         cogs = [self.bot.admin, self.bot.general, self.bot.autorespone, self.bot.events]
         if arguments is not None:
-            paginator.add_line(self.bot.get_command(arguments))
-            paginator.add_line(self.bot.get_command(arguments))
+            paginator.add_line(self.bot.get_command(arguments).help)
             for page in paginator.pages:
                 await ctx.send(page)
         for cog in cogs:
@@ -397,6 +396,20 @@ class General(commands.Cog):
                     paginator.add_line(str)
         for page in paginator.pages:
             await ctx.send(page)
+
+    @commands.command()
+    async def userinfo(self, ctx, *, user: discord.Member):
+        """Look up general user info."""
+        if not self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
+            return
+        paginator = discord.ext.commands.Paginator(prefix='```', suffix='```')
+        paginator.add_line("User-ID: {user.id}".format(user=user))
+        paginator.add_line("Has roles: {user.roles}")
+        paginator.add_line("Joined on: {user.joined_at}".format(user=user))
+        for page in paginator.pages():
+            await ctx.send(page)
+
 
 
 def setup(bot):
