@@ -14,7 +14,7 @@ class Database(commands.Cog):
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return
-        self.bot.logger.info("SQL: {sql}".format(sql=sqlstatement))
+        self.bot.logger.info("SQL: {sql}".format(sql=str(arguments)))
         conn = await asyncpg.connect(dsn="postgres://stavlorkaralain_gmail_com@localhost/bot", password="1234")
         sql = str(arguments)
         await conn.execute(sql)
