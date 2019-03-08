@@ -17,7 +17,7 @@ class Events(commands.Cog):
             await ctx.author.send("{author.mention} {exception}".format(author=ctx.author, exception=exception))
             await ctx.message.add_reaction('✋')
         elif isinstance(exception, discord.ext.commands.errors.BadArgument):
-            await ctx.author.send("{author.mention} Bad Argument exception: {exception}".format(author=ctx.author, exception=exception))
+            await ctx.send("{author.mention} Bad Argument exception: {exception}".format(author=ctx.author, exception=exception))
         elif isinstance(exception, discord.ext.commands.errors.MissingRequiredArgument):
             await ctx.send("{author.mention} Required argument missing: {exception}".format(author=ctx.author, exception=exception))
         elif isinstance(exception, discord.NotFound):
