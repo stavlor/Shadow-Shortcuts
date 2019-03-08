@@ -18,7 +18,7 @@ class Database(commands.Cog):
                 attach_url += "<a href=\""+str(attach.url)+"\">Attachment</a> "
         rmessage = message.content
         rmessage.replace("'", "\'")
-        sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user_name}{user_discriminator}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user_name=message.author.name, message=rmessage, user_discriminator=message.author.discriminator, attachment_url=attach_url);
+        sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user=str(message.author), message=rmessage, attachment_url=attach_url);
         self.bot.logger.info("SQL: {sql}".format(sql=sqlstatement))
         await conn.execute(sqlstatement)
         await conn.close()
