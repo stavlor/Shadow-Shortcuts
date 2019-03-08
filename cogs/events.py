@@ -36,12 +36,13 @@ class Events(commands.Cog):
         self.bot.logger.debug("Recieved message from {message.author} Content {message.content}".format(message=message))
         if isinstance(message.channel, discord.DMChannel):
             await self.bot.database.log_direct_messages(message)
+            await message.author.send("{message.author.mention} your message has been logged, This is an automated bot.".format(message=message))
         if not hasattr(message.author, 'roles'):
             role_names = []
         else:
             role_names = message.author.roles
         if message.author.id == self.bot.user.id:
-            pass
+            return
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
