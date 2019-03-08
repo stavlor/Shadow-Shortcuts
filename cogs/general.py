@@ -404,7 +404,7 @@ class General(commands.Cog):
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return
-        paginator = discord.ext.commands.Paginator(prefix='```', suffix='```')
+        paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
         paginator.add_line("User-ID: {user.id}".format(user=user))
         for role in user.roles:
             rolelist += "{role.name}({role.id}) ".format(role=role)
