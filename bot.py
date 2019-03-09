@@ -1,9 +1,10 @@
 import sys
 import logging
 from discord.ext import commands
+import botconfig as cfg
 
 description = "Shadow US Discord helper bot.\nFor issues with this bot please contact <@151891678511235072>.\n"
-TOKEN = "NTUwMDMxMzU0MDEyNzYyMTc3.D1chbg.GDk9sZ6CxAPJ7Auy8N_Cmtrya-U"
+TOKEN = cfg.TOKEN
 logger = logging.getLogger('discord')
 logger.setLevel(logging.INFO)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
