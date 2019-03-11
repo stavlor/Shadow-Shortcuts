@@ -76,9 +76,6 @@ class Admin(commands.Cog):
             html = await self.bot.admin.fetch(session, 'https://status.shadow.tech')
             doc = lxml.html.fromstring(html)
             status_text = doc.xpath('//strong[@id="statusbar_text"]')[0].text_content()
-        if "All Systems Operational" == status_text:
-            return "Normal"
-        else:
             return status_text
 
     @staticmethod
@@ -147,10 +144,13 @@ class Admin(commands.Cog):
     @commands.command(description="Roles test", name='roletest')
     async def _roletest(self, ctx):
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            paginator = discord.ext.commands.Paginator()
             guild = ctx.guild
-            await ctx.send("Beginning role debug")
+            paginator.add_line("Beginning role debug")
             for role in guild.roles:
-                await ctx.send("``{role.id}: {role.name}``".format(role=role))
+                paginator.add_line("{role.id}: {role.name}".format(role=role))
+            for page in paginator.pages:
+                await ctx.send(page)
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
