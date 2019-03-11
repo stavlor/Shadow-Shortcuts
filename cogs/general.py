@@ -419,6 +419,29 @@ class General(commands.Cog):
         for page in paginator.pages:
             await ctx.send(page)
 
+    @commands.command()
+    async def minreq(self, ctx, *, user):
+        """Give Shadow Minimum requirements"""
+        self.bot.logger.info(
+            "Minreq received from {author.name} with argument of {user}".format(
+                author=ctx.author,
+                user=user))
+        text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
+        - Windows 7 - 32 bits or above
+        - Processor from 2011-2012 or more recent
+        - Integrated GPU recommended
+        - AMD GPU from 2013 or more recent (to disable if older)
+        - Nvidia GPU from 2011 and more recent (to disable if older)"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            text = "From {ctx.author.name}\n{user.mention} " + text
+            await ctx.send(text.format(ctx=ctx, user=user))
+        elif user is None and await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            text = "From {ctx.author.name}\n"+ text
+            await ctx.send(text.format(ctx=ctx))
+        else:
+            ctx.author.send(text)
+
+            
 def setup(bot):
     bot.add_cog(General(bot))
