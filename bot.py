@@ -14,9 +14,11 @@ handler = logging.StreamHandler(sys.stdout)
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 handler.setLevel(logging.INFO)
 logger.addHandler(handler)
-bot = commands.AutoShardedBot(command_prefix='.', description=description)
+bot = commands.AutoShardedBot(command_prefix='=', description=description)
 bot.last_message = dict()
 bot.logger = logger
+bot.logging_root = logging
+bot.config = cfg
 initial_extensions = ['cogs.admin',
                       'cogs.autoresponse',
                       'cogs.database',
