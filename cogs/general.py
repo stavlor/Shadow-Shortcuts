@@ -392,7 +392,7 @@ class General(commands.Cog):
         for cog in cogs:
             for command in cog.get_commands():
                 if not command.hidden:
-                    str = ".{command.name:14s} - {command.description:20s}".format(command=command)
+                    str = "\{command.name:14s} - {command.description:20s}".format(command=command)
                     paginator.add_line(str)
         for page in paginator.pages:
             await ctx.send(page)
