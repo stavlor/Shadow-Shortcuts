@@ -436,11 +436,14 @@ class General(commands.Cog):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             text = "From {ctx.author.name}\n{user.mention} " + text
             await ctx.send(text.format(ctx=ctx, user=user))
+            await ctx.message.delete()
         elif user is None and await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             text = "From {ctx.author.name}\n"+ text
             await ctx.send(text.format(ctx=ctx))
+            await ctx.message.delete()
         else:
             ctx.author.send(text)
+            await ctx.message.delete()
 
 
 def setup(bot):
