@@ -420,7 +420,7 @@ class General(commands.Cog):
             await ctx.send(page)
 
     @commands.command()
-    async def minreq(self, ctx, *, user):
+    async def minreq(self, ctx, *, user=None):
         """Give Shadow Minimum requirements"""
         self.bot.logger.info(
             "Minreq received from {author.name} with argument of {user}".format(
@@ -442,6 +442,6 @@ class General(commands.Cog):
         else:
             ctx.author.send(text)
 
-            
+
 def setup(bot):
     bot.add_cog(General(bot))
