@@ -450,7 +450,7 @@ class General(commands.Cog):
         import datetime
         now = datetime.datetime.utcnow()
         delta = now - ctx.message.created_at
-        await ctx.send('Pong! {}ms'.format(delta)
+        await ctx.send('Pong! {}ms'.format(delta))
 
 def setup(bot):
     bot.add_cog(General(bot))
