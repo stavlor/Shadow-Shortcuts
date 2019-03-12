@@ -445,6 +445,10 @@ class General(commands.Cog):
             ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command()
+    async def ping(self, ctx):
+        await ctx.send('Pong! {0}'.format(round(self.bot.latency, 1)))
+
 
 def setup(bot):
     bot.add_cog(General(bot))
