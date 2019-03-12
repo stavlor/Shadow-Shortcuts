@@ -449,8 +449,8 @@ class General(commands.Cog):
     async def ping(self, ctx):
         import datetime
         now = datetime.datetime.utcnow()
-        delta = now - ctx.message.created_at
-        await ctx.send('Pong! {}ms'.format(delta))
+        delta = (now - ctx.message.created_at).microseconds * 1000
+        await ctx.send('Pong! Server ping {}ms API ping: {}ms'.format(delta, self.bot.latency))
 
 def setup(bot):
     bot.add_cog(General(bot))
