@@ -447,7 +447,11 @@ class General(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        await ctx.send('Pong! {0}'.format(round(self.bot.latency, 1)))
+        import datetime
+        now = datetime.datetime.utcnow()
+        delta = now - ctx.message.timestamp
+        await ctx.send('Pong! {}ms'.format(delta(microseconds=1)))
+
 
 
 def setup(bot):
