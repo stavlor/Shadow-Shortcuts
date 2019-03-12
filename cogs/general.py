@@ -452,5 +452,6 @@ class General(commands.Cog):
         delta = (now - ctx.message.created_at).total_seconds()*1000
         await ctx.send('Pong! Server ping {}ms API ping: {}ms'.format(delta, self.bot.latency))
 
+
 def setup(bot):
     bot.add_cog(General(bot))
