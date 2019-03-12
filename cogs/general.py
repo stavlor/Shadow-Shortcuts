@@ -449,7 +449,7 @@ class General(commands.Cog):
     async def ping(self, ctx):
         import datetime
         now = datetime.datetime.utcnow()
-        delta = now - ctx.message.timestamp
+        delta = now - ctx.message.created_at
         await ctx.send('Pong! {}ms'.format(delta(microseconds=1)))
 
 
