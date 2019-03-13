@@ -73,12 +73,8 @@ class General(commands.Cog):
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command()
-    async def error102(self, ctx, *, user: discord.Member = None):
-        """Error 102 Information"""
-        await self.fix102(ctx, user)
-
     @commands.command(description="Error 102 Fix.")
+    @commands.command(name='error102')
     async def fix102(self, ctx, *, user: discord.Member = None):
         """Error 102 Information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
@@ -252,6 +248,7 @@ class General(commands.Cog):
         await ctx.message.delete()
 
     @commands.command()
+    @commands.command(name='drivers')
     async def nvidiadrivers(self, ctx, *, user: discord.Member = None):
         """Send current NVidia Drivers Info."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
