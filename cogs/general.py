@@ -74,8 +74,8 @@ class General(commands.Cog):
         await ctx.message.delete()
 
     @commands.command(description="Error 102 Fix.")
-    """Error 102 Information"""
     async def fix102(self, ctx, *, user: discord.Member = None):
+        """Error 102 Information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "102 command received from {author.name} with argument of {user}".format(author=ctx.message.author,
