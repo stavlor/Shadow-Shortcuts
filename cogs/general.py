@@ -249,25 +249,34 @@ class General(commands.Cog):
     @commands.command(aliases=['drivers'])
     async def nvidiadrivers(self, ctx, *, user: discord.Member = None):
         """Send current NVidia Drivers Info."""
+        text = """**Current Nvidia Drivers for P5000** -- [__*US Only has P5000s*__] {__*Non-US Users May have GTX1080*__}
+  - Stable Drivers [*recommended*]:  <https://www.nvidia.com/Download/driverResults.aspx/143118/en-us>
+  - Vulkan Drivers [*optional*]: <https://developer.nvidia.com/vulkan-beta-41934-windows-10>
+
+**Notes:**
+  - Vulkans will generally have the best performance but may have issues.
+  - Driver installation tends to glitch the Streamer, __***Prior***__ to installation ensure you have a alternate way to access shadow.
+  - Chrome Remote destop is recommended for this <https://remotedesktop.google.com/access/>"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Nvidia Drivers command received from {author.name} with argument of {user}".format(
                     author=ctx.author,
                     user=user))
             if user is not None:
+                text = """From: {author.name}\n{user}\n""" + text
                 await ctx.send(
-                    """From: {author.name}\n{user} Current recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
+                    text.format(
                         author=ctx.author, user=user.mention))
             else:
-                await ctx.send(
-                    """From: {author.name}\nCurrent recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
-                        author=ctx.author))
+                text = """From: {author.name}\n""" + text
+                await ctx.send(text.format(author=ctx.author))
         else:
             self.bot.logger.info(
                 "NVidia Drivers command received from un-privileged user {ctx.author.name} Responding Via PM".format(
                     ctx=ctx))
+            text = """{user}\n""" + text
             await ctx.author.send(
-                "{user} Current recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10".format(
+                text.format(
                     user=ctx.author.mention))
         await ctx.message.delete()
 
