@@ -255,8 +255,9 @@ class General(commands.Cog):
 
 **Notes:**
   - Vulkans will generally have the best performance but may have issues.
+  - Chrome Remote desktop is recommended for this <https://remotedesktop.google.com/access/>
   - Driver installation tends to glitch the Streamer, __***Prior***__ to installation ensure you have a alternate way to access shadow.
-  - Chrome Remote destop is recommended for this <https://remotedesktop.google.com/access/>"""
+  - If the stream cuts out your first attempt to fix the issue should be restart streaming from the launcher."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Nvidia Drivers command received from {author.name} with argument of {user}".format(
