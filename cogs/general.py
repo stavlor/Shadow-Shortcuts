@@ -423,11 +423,11 @@ class General(commands.Cog):
         **Mac**
         - Mac OS 10.10 Yosemite or above
         - Mac device from 2012 or more recent"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = "From {ctx.author.name}\n{user.mention} " + text
             await ctx.send(text.format(ctx=ctx, user=user))
             await ctx.message.delete()
-        elif user is None and await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        elif user is None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = "From {ctx.author.name}\n"+ text
             await ctx.send(text.format(ctx=ctx))
             await ctx.message.delete()
@@ -442,6 +442,22 @@ class General(commands.Cog):
         now = datetime.datetime.now()
         delta = (now - ctx.message.created_at).total_seconds()*1000
         await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
+
+    @commands.command(aliases=['apps', 'beta'])
+    async def applications(self, ctx, *, user: discord.Member = None):
+        text = """You can find the Shadow Applications, both stable and beta versions in your account page: https://account.shadow.tech/apps"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = """From {ctx.author.name}\n{user.mention} """ + text
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = """From {ctx.author.name}\n""" +text
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = """{ctx.author.mention} """ + text
+            await ctx.author.send(text)
+            await ctx.message.delete()
 
 
 def setup(bot):
