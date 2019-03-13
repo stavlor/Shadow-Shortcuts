@@ -249,7 +249,7 @@ class General(commands.Cog):
     @commands.command(aliases=['drivers'])
     async def nvidiadrivers(self, ctx, *, user: discord.Member = None):
         """Send current NVidia Drivers Info."""
-        text = """**Current Nvidia Drivers for P5000** -- [__*US Only has P5000s*__] {__*Non-US Users May have GTX1080*__}
+        text = """**Current Nvidia Drivers for P5000** -- [__*US Only has P5000s*__] [[__*Non-US Users May have GTX1080*__]]
   - Stable Drivers [*recommended*]:  <https://www.nvidia.com/Download/driverResults.aspx/143118/en-us>
   - Vulkan Drivers [*optional*]: <https://developer.nvidia.com/vulkan-beta-41934-windows-10>
 
