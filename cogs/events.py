@@ -23,7 +23,7 @@ class Events(commands.Cog):
             await ctx.send("{author.mention} Got a discord.NotFound error: {exception}".format(author=ctx.author, exception=exception))
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
-                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.original.__traceback__))
+                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.original.__traceback__)))
 
     @commands.Cog.listener()
     async def on_ready(self):
