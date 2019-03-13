@@ -13,6 +13,7 @@ class Database(commands.Cog):
 
     @commands.command()
     async def sql(self, ctx, *, arguments):
+        """Admin SQL Tool"""
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return

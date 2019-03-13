@@ -85,6 +85,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Auto-Responders debug", name="timertest")
     async def _timertest(self, ctx):
+        """Auto-responder timer debug tool"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
             timers = " "
             for item in self.bot.last_message.keys():
@@ -112,6 +113,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Grant a user bot access", name='grantbot')
     async def add_role_bot(self, ctx, *, user: discord.Member = None):
+        """Grant Bot User Role to a user - Admin"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
@@ -128,6 +130,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
     async def revoke_role_bot(self, ctx, *, user: discord.Member = None):
+        """Revoke Bot User Role from a user - Admin"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
@@ -143,6 +146,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Roles test", name='roletest')
     async def _roletest(self, ctx):
+        """Admin - Role ID Listing tool"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             paginator = discord.ext.commands.Paginator()
             guild = ctx.guild
