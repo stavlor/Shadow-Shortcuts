@@ -73,6 +73,11 @@ class General(commands.Cog):
                     user=ctx.author.mention))
         await ctx.message.delete()
 
+    @commands.command()
+    async def error102(self, ctx, *, user: discord.Member = None):
+        """Error 102 Information"""
+        await self.fix102(ctx, user)
+
     @commands.command(description="Error 102 Fix.")
     async def fix102(self, ctx, *, user: discord.Member = None):
         """Error 102 Information"""
@@ -274,27 +279,7 @@ class General(commands.Cog):
     @commands.command()
     async def drivers(self, ctx, *, user: discord.Member = None):
         """Send current NVidia Drivers Info."""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "Nvidia Drivers command received from {author.name} with argument of {user}".format(
-                    author=ctx.author,
-                    user=user))
-            if user is not None:
-                await ctx.send(
-                    """From: {author.name}\n{user} Current recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
-                        author=ctx.author, user=user.mention))
-            else:
-                await ctx.send(
-                    """From: {author.name}\nCurrent recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10""".format(
-                        author=ctx.author))
-        else:
-            self.bot.logger.info(
-                "NVidia Drivers command received from un-privileged user {ctx.author.name} Responding Via PM".format(
-                    ctx=ctx))
-            await ctx.author.send(
-                "{user} Current recommended Drivers for P5000 can be found here https://www.nvidia.com/Download/driverResults.aspx/143117/en-us please note these are the current recommended drivers others are not advised.\nVulkan Drivers are another option, if you want bleeding edge use these https://developer.nvidia.com/vulkan-beta-41909-windows-10".format(
-                    user=ctx.author.mention))
-        await ctx.message.delete()
+        await self.nvidiadrivers(ctx, user)
 
     @commands.command()
     async def buyghost(self, ctx, *, user: discord.Member = None):
