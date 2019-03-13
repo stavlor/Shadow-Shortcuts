@@ -279,7 +279,7 @@ class General(commands.Cog):
     @commands.command()
     async def drivers(self, ctx, *, user: discord.Member = None):
         """Send current NVidia Drivers Info."""
-        await self.nvidiadrivers(ctx, user)
+        await self.nvidiadrivers(self, ctx,  user)
 
     @commands.command()
     async def buyghost(self, ctx, *, user: discord.Member = None):
