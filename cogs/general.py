@@ -10,6 +10,7 @@ class General(commands.Cog):
 
     @commands.command(description="Send instructions on how to get Verified")
     async def verify(self, ctx, *, user: discord.Member = None):
+        """How to get verified command."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Verify command received from {author.name} with argument of {user}".format(author=ctx.author,
@@ -26,6 +27,7 @@ class General(commands.Cog):
 
     @commands.command(description="800x600 instructions", name="800x600")
     async def _800x600(self, ctx, *, user: discord.Member = None):
+        """800x600 Information (red square)"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
                 author=ctx.message.author, user=user))
@@ -49,6 +51,7 @@ class General(commands.Cog):
 
     @commands.command(description="Waiting for video instructions")
     async def waitingvideo(self, ctx, *, user: discord.Member = None):
+        """Waiting for Video information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
                 author=ctx.message.author, user=user))
@@ -71,6 +74,7 @@ class General(commands.Cog):
         await ctx.message.delete()
 
     @commands.command(description="Error 102 Fix.")
+    """Error 102 Information"""
     async def fix102(self, ctx, *, user: discord.Member = None):
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
@@ -95,6 +99,7 @@ class General(commands.Cog):
 
     @commands.command(description="Default pass")
     async def password(self, ctx, user: discord.Member = None):
+        """Default Password help for Ready-to-Go Shadow Images"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Password command received from {author.name} with argument of {user}".format(author=ctx.message.author,
@@ -117,6 +122,7 @@ class General(commands.Cog):
 
     @commands.command(description="microphone fix")
     async def micfix(self, ctx, *, user: discord.Member = None):
+        """Microphone fix information."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Mic Fix command received from {author.name} with argument of {user}".format(author=ctx.message.author,
@@ -139,8 +145,9 @@ class General(commands.Cog):
                           "https://wiki.shadow.pink/index.php/Using_a_Microphone""".format(user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="ghost manual")
+    @commands.command()
     async def ghostmanual(self, ctx, *, user: discord.Member = None):
+        """Send Link to Ghost Manual"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Ghost manual command received from {author.name} with argument of {user}".format(
@@ -163,6 +170,7 @@ class General(commands.Cog):
 
     @commands.command(description="Latency command")
     async def latency(self, ctx, *, user: discord.Member = None):
+        """Input lag/Latency Information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Latency command received from {author.name} with argument of {user}".format(author=ctx.message.author,
@@ -186,6 +194,7 @@ class General(commands.Cog):
 
     @commands.command(description="Speedtest-Links")
     async def speedtest(self, ctx, *, user: discord.Member = None):
+        """Speedtest Links"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Speedtest command received from {author.name} with argument of {user}".format(
                 author=ctx.message.author,
@@ -216,8 +225,9 @@ class General(commands.Cog):
                 user=user))
         await ctx.message.delete()
 
-    @commands.command(description="Send the Terms of Service info")
+    @commands.command()
     async def tos(self, ctx, *, user: discord.Member = None):
+        """Send Terms of Service information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "TOS command received from {author.name} with argument of {user}".format(author=ctx.message.author,
@@ -236,8 +246,9 @@ class General(commands.Cog):
                     author=ctx.author))
         await ctx.message.delete()
 
-    @commands.command(description="Nvidia Drivers")
+    @commands.command()
     async def nvidiadrivers(self, ctx, *, user: discord.Member = None):
+        """Send current NVidia Drivers Info."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Nvidia Drivers command received from {author.name} with argument of {user}".format(
@@ -260,8 +271,9 @@ class General(commands.Cog):
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="Nvidia Drivers")
+    @commands.command()
     async def drivers(self, ctx, *, user: discord.Member = None):
+        """Send current NVidia Drivers Info."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Nvidia Drivers command received from {author.name} with argument of {user}".format(
@@ -284,8 +296,9 @@ class General(commands.Cog):
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="Send Ghost Purchase info")
+    @commands.command()
     async def buyghost(self, ctx, *, user: discord.Member = None):
+        """Ghost Purchase information."""
         if user is None:
             self.bot.logger.info("Ghost purchase info command processed for {author.name}".format(author=ctx.message.author))
             await ctx.send(
@@ -303,6 +316,7 @@ class General(commands.Cog):
 
     @commands.command(description="Send ghost informational link")
     async def ghostinfo(self, ctx, *, user: discord.Member = None):
+        """Give Ghost information link."""
         if user is None:
             self.bot.logger.info("Ghost info command processed for {author.name}.".format(author=ctx.author))
             await ctx.send(
@@ -321,6 +335,7 @@ class General(commands.Cog):
 
     @commands.command(description="Status command")
     async def status(self, ctx, *, user: discord.Member = None):
+        """Reports current shadow status"""
         if user is None:
             self.bot.logger.info("Status command processed for {author.name}.".format(author=ctx.message.author))
             if await self.bot.admin.get_status() == "All Systems Operational":
@@ -347,6 +362,7 @@ class General(commands.Cog):
 
     @commands.command(description="Bot Logs")
     async def logs(self, ctx):
+        """Logs Command"""
         if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             fname = 'discord.log'
             lines = await self.bot.admin.tail(filename=fname, lines=50)
@@ -373,6 +389,7 @@ class General(commands.Cog):
 
     @commands.command(description="PM test")
     async def pmtest(self, ctx):
+        """PM Debug command"""
         if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.author.send("Test")
             await ctx.message.delete()
@@ -380,22 +397,6 @@ class General(commands.Cog):
             await ctx.send("Sorry {ctx.author.mention} your not authorized to do this.".format(ctx=ctx))
             await ctx.message.delete()
             self.bot.logger.info("Unauthorized pmtest request from {ctx.author}".format(ctx=ctx))
-
-    @commands.command()
-    async def helptest(self, ctx, *, arguments=None):
-        paginator = discord.ext.commands.Paginator(prefix='```', suffix='```')
-        cogs = [self.bot.admin, self.bot.general, self.bot.autorespone, self.bot.events]
-        if arguments is not None:
-            paginator.add_line(self.bot.get_command(arguments).help)
-            for page in paginator.pages:
-                await ctx.send(page)
-        for cog in cogs:
-            for command in cog.get_commands():
-                if not command.hidden:
-                    str = "\{command.name:14s} - {command.description:20s}".format(command=command)
-                    paginator.add_line(str)
-        for page in paginator.pages:
-            await ctx.send(page)
 
     @commands.command()
     async def userinfo(self, ctx, *, user: discord.Member):
@@ -428,11 +429,16 @@ class General(commands.Cog):
                 user=user))
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
+        **Windows**
         - Windows 7 - 32 bits or above
         - Processor from 2011-2012 or more recent
         - Integrated GPU recommended
         - AMD GPU from 2013 or more recent (to disable if older)
-        - Nvidia GPU from 2011 and more recent (to disable if older)"""
+        - Nvidia GPU from 2011 and more recent (to disable if older)
+        
+        **Mac**
+        - Mac OS 10.10 Yosemite or above
+        - Mac device from 2012 or more recent"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             text = "From {ctx.author.name}\n{user.mention} " + text
             await ctx.send(text.format(ctx=ctx, user=user))
@@ -447,6 +453,7 @@ class General(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
+        """Ping command"""
         import datetime
         now = datetime.datetime.now()
         delta = (now - ctx.message.created_at).total_seconds()*1000
