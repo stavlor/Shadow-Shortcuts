@@ -272,11 +272,6 @@ class General(commands.Cog):
         await ctx.message.delete()
 
     @commands.command()
-    async def drivers(self, ctx, *, user: discord.Member = None):
-        """Send current NVidia Drivers Info."""
-        await self.nvidiadrivers(self, ctx,  user)
-
-    @commands.command()
     async def buyghost(self, ctx, *, user: discord.Member = None):
         """Ghost Purchase information."""
         if user is None:
