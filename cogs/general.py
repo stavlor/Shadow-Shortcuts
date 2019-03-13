@@ -49,7 +49,7 @@ class General(commands.Cog):
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="Waiting for video instructions", aliases=['waitingforvideo'])
+    @commands.command(description="Waiting for video instructions", aliases=['waitingforvideo', 'wfv'])
     async def waitingvideo(self, ctx, *, user: discord.Member = None):
         """Waiting for Video information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
