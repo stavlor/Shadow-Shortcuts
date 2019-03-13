@@ -445,6 +445,7 @@ class General(commands.Cog):
 
     @commands.command(aliases=['apps', 'beta'])
     async def applications(self, ctx, *, user: discord.Member = None):
+        """Link to Shadow Applications download."""
         text = """You can find the Shadow Applications, both stable and beta versions in your account page: https://account.shadow.tech/apps"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = """From {ctx.author.name}\n{user.mention} """ + text
