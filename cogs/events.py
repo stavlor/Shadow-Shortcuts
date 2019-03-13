@@ -11,8 +11,7 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
-        import sys
-        exception_info = sys.exc_info()
+        await ctx.message.add_reaction("😢")
         if isinstance(exception, discord.ext.commands.errors.CommandNotFound):
             await ctx.author.send("{author.mention} {exception}".format(author=ctx.author, exception=exception))
             await ctx.message.add_reaction('✋')
@@ -22,10 +21,9 @@ class Events(commands.Cog):
             await ctx.send("{author.mention} Required argument missing: {exception}".format(author=ctx.author, exception=exception))
         elif isinstance(exception, discord.NotFound):
             await ctx.send("{author.mention} Got a discord.NotFound error: {exception}".format(author=ctx.author, exception=exception))
-        await ctx.message.add_reaction("😢")
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
-                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception_info[2])))
+                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.original.__traceback__))
 
     @commands.Cog.listener()
     async def on_ready(self):
