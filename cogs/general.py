@@ -449,15 +449,15 @@ class General(commands.Cog):
         text = """You can find the Shadow Applications, both stable and beta versions in your account page: https://account.shadow.tech/apps"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = """From {ctx.author.name}\n{user.mention} """ + text
-            await ctx.send(text)
+            await ctx.send(text.format(ctx=ctx, user=user))
             await ctx.message.delete()
         elif await self.bot.admin.can_run_command(ctx.author.roles):
             text = """From {ctx.author.name}\n""" +text
-            await ctx.send(text)
+            await ctx.send(text.format(ctx=ctx, user=user))
             await ctx.message.delete()
         else:
             text = """{ctx.author.mention} """ + text
-            await ctx.author.send(text)
+            await ctx.author.send(text.format(ctx=ctx))
             await ctx.message.delete()
 
 
