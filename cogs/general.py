@@ -249,15 +249,14 @@ class General(commands.Cog):
     @commands.command(aliases=['drivers'])
     async def nvidiadrivers(self, ctx, *, user: discord.Member = None):
         """Send current NVidia Drivers Info."""
-        text = """**Current Nvidia Drivers for P5000** -- [__*US Only has P5000s*__] [[__*Non-US Users May have GTX1080*__]]
-  - Stable Drivers [*recommended*]:  <https://www.nvidia.com/Download/driverResults.aspx/143118/en-us>
-  - Vulkan Drivers [*optional*]: <https://developer.nvidia.com/vulkan-beta-41934-windows-10>
+        text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [[__*Non-US Users May have GTX1080*__]]
+          - Stable Drivers [*recommended*]:  <https://www.nvidia.com/Download/driverResults.aspx/143118/en-us>
+          - Vulkan Drivers [*optional*]: <https://developer.nvidia.com/vulkan-beta-41934-windows-10>
 
-**Notes:**
-  - Vulkans will generally have the best performance but may have issues.
-  - Driver installation tends to glitch the Streamer, __***Prior***__ to installation ensure you have a alternate way to access shadow.
-  - Chrome Remote desktop is recommended for this <https://remotedesktop.google.com/access/>
-  - If the stream cuts out your first attempt to fix the issue should be restart streaming from the launcher."""
+        **Notes:**
+          - Vulkan drivers will generally have the best performance but may have issues.
+          - Driver installation tends to glitch the Streamer, so __***prior to installation***__ ensure you have an alternate way to access shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
+          - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Nvidia Drivers command received from {author.name} with argument of {user}".format(
