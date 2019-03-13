@@ -49,7 +49,7 @@ class General(commands.Cog):
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="Waiting for video instructions")
+    @commands.command(description="Waiting for video instructions", aliases=['waitingforvideo'])
     async def waitingvideo(self, ctx, *, user: discord.Member = None):
         """Waiting for Video information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
@@ -249,13 +249,13 @@ class General(commands.Cog):
     @commands.command(aliases=['drivers'])
     async def nvidiadrivers(self, ctx, *, user: discord.Member = None):
         """Send current NVidia Drivers Info."""
-        text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [[__*Non-US Users May have GTX1080*__]]
-          - Stable Drivers [*recommended*]:  <https://www.nvidia.com/Download/driverResults.aspx/143118/en-us>
-          - Vulkan Drivers [*optional*]: <https://developer.nvidia.com/vulkan-beta-41934-windows-10>
+        text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [[__*Non-US users may have GTX1080*__]]
+          - Stable Drivers [*Recommended*]:  <https://www.nvidia.com/Download/driverResults.aspx/143118/en-us>
+          - Vulkan Drivers [*Optional*]: <https://developer.nvidia.com/vulkan-beta-41934-windows-10>
 
         **Notes:**
           - Vulkan drivers will generally have the best performance but may have issues.
-          - Driver installation tends to glitch the Streamer, so __***prior to installation***__ ensure you have an alternate way to access shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
+          - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
@@ -280,7 +280,7 @@ class General(commands.Cog):
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(aliases=['purchaseghost'])
     async def buyghost(self, ctx, *, user: discord.Member = None):
         """Ghost Purchase information."""
         if user is None:
