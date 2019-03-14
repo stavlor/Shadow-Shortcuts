@@ -469,8 +469,8 @@ class General(commands.Cog):
         - <:windows:230468466564530176>/**⌘** + **Ctrl** + **G** = Toggle Mouse lock/Gamer Mode
         - <:windows:230468466564530176>/**⌘** + **Ctrl** + **Q** = Quit Application
 
-        :keyboard: Beta Hotkeys
-        - <:windows:230468466564530176>/**⌘** + **Alt** + **M** = Change mouse mode
+\:keyboard: Beta Hotkeys
+        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode
         - <:windows:230468466564530176>/**⌘** + **Alt** + **Q** = Quit Application
         - <:windows:230468466564530176>/**⌘** + **Alt** + **F** = Toggle fullscreen"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
