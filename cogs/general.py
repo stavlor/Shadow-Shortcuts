@@ -460,6 +460,32 @@ class General(commands.Cog):
             await ctx.author.send(text.format(ctx=ctx))
             await ctx.message.delete()
 
+    @commands.command(aliases=['hotkeys', 'keys'])
+    async def keybinds(self, ctx, *, user: discord.Member = None):
+        """Send Keybinding information"""
+        text = """:key: **Stable Hotkeys** :key:
+- [Ctrl/Cmd] + [Alt] + [S] = Restart Streaming
+- [Ctrl/Cmd] + [Alt] + [F] = Toggle Fullscreen
+- [Ctrl/Cmd] + [Alt ]+ [M] = Toggle Mouse lock/Gamer Mode
+- [Ctrl/Cmd] + [Alt] + [Q] = Quit Application
+
+:key: ** Beta Hotkeys** :key:
+- [Win/Cmd] + [Alt] + [M] = Change mouse mode
+- [Win/Cmd] + [Alt] + [Q] = Quit Application
+- [Win/Cmd] + [Alt] + [F] = Toggle fullscreen"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = """From {ctx.author.name}\n{user.mention} """ + text
+            await ctx.send(text.format(ctx=ctx, user=user))
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = """From {ctx.author.name}\n""" +text
+            await ctx.send(text.format(ctx=ctx, user=user))
+            await ctx.message.delete()
+        else:
+            text = """{ctx.author.mention} """ + text
+            await ctx.author.send(text.format(ctx=ctx))
+            await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
