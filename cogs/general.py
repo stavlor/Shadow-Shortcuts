@@ -463,16 +463,16 @@ class General(commands.Cog):
     @commands.command(aliases=['hotkeys', 'keys'])
     async def keybinds(self, ctx, *, user: discord.Member = None):
         """Send Keybinding information"""
-        text = """:key: **Stable Hotkeys** :key:
-- [Ctrl/Cmd] + [Alt] + [S] = Restart Streaming
-- [Ctrl/Cmd] + [Alt] + [F] = Toggle Fullscreen
-- [Ctrl/Cmd] + [Alt ]+ [M] = Toggle Mouse lock/Gamer Mode
-- [Ctrl/Cmd] + [Alt] + [Q] = Quit Application
+        text = """:keyboard: Stable Hotkeys
+        - **:windows~1:230468466564530176/⌘** + **Ctrl** + **S** = Restart Streaming
+        - **:windows~1:230468466564530176/⌘** + **Ctrl** + **F** = Toggle Fullscreen
+        - **:windows~1:230468466564530176/⌘** + **Ctrl** + **G** = Toggle Mouse lock/Gamer Mode
+        - **:windows~1:230468466564530176/⌘** + **Ctrl** + **Q** = Quit Application
 
-:key: ** Beta Hotkeys** :key:
-- [Win/Cmd] + [Alt] + [M] = Change mouse mode
-- [Win/Cmd] + [Alt] + [Q] = Quit Application
-- [Win/Cmd] + [Alt] + [F] = Toggle fullscreen"""
+        :keyboard: Beta Hotkeys
+        - **:windows~1:230468466564530176/⌘** + **Alt** + **M** = Change mouse mode
+        - **:windows~1:230468466564530176/⌘** + **Alt** + **Q** = Quit Application
+        - **:windows~1:230468466564530176/⌘** + **Alt** + **F** = Toggle fullscreen"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = """From {ctx.author.name}\n{user.mention} """ + text
             await ctx.send(text.format(ctx=ctx, user=user))
