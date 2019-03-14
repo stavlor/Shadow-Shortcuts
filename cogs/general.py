@@ -469,7 +469,7 @@ class General(commands.Cog):
         - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **G** = Toggle Mouse lock/Gamer Mode
         - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **Q** = Quit Application
 
-\:keyboard: Beta Hotkeys
+:keyboard: Beta Hotkeys
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen"""
