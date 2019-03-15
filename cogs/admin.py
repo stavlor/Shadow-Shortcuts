@@ -161,6 +161,7 @@ class Admin(commands.Cog):
 
     @commands.command()
     async def gitref(self, ctx):
+        """Refresh git repo content."""
         if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send(f"{ctx.author.mention} You aren't authorized to do that.")
         else:
