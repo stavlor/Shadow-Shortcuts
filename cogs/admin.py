@@ -182,7 +182,9 @@ class Admin(commands.Cog):
     @commands.command()
     async def help(self, ctx, *, args=None):
         if await self.can_run_command(ctx.author.roles):
-            self.bot.help_command(ctx, args)
+            help_command = self.bot.help_command
+            ctx.invoke(help_command(args))
+
 
 
 def setup(bot):
