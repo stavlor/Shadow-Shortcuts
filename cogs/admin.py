@@ -172,7 +172,7 @@ class Admin(commands.Cog):
                 stdout=asyncio.subprocess.PIPE,
                 stderr=asyncio.subprocess.PIPE)
             stdout, stderr = await proc.communicate()
-            await ctx.send(f'[{cmd!r} exited with {proc.returncode}]')
+            await ctx.send(f'{ctx.author.mention} [{cmd!r} exited with {proc.returncode}]')
             if stdout:
                 ctx.send(f'[stdout]\n{stdout.decode()}')
             if stderr:

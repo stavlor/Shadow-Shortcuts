@@ -35,6 +35,8 @@ class Events(commands.Cog):
         if isinstance(message.channel, discord.DMChannel):
             if message.author.id == self.bot.user.id:
                 return
+            elif message.author.bot:
+                return
             await self.bot.database.log_direct_messages(message)
             await message.author.send("{message.author.mention} your message has been logged, This is an automated bot.".format(message=message))
         if not hasattr(message.author, 'roles'):
