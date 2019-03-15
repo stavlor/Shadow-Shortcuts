@@ -424,12 +424,12 @@ class General(commands.Cog):
         - Mac OS 10.10 Yosemite or above
         - Mac device from 2012 or more recent"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = "From {ctx.author.name}\n{user.mention} " + text
-            await ctx.send(text.format(ctx=ctx, user=user))
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
             await ctx.message.delete()
         elif user is None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = "From {ctx.author.name}\n"+ text
-            await ctx.send(text.format(ctx=ctx))
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
             await ctx.message.delete()
         else:
             ctx.author.send(text)
@@ -448,21 +448,22 @@ class General(commands.Cog):
         """Link to Shadow Applications download."""
         text = """You can find the Shadow Applications, both stable and beta versions in your account page: https://account.shadow.tech/apps"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = """From {ctx.author.name}\n{user.mention} """ + text
-            await ctx.send(text.format(ctx=ctx, user=user))
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
             await ctx.message.delete()
         elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = """From {ctx.author.name}\n""" +text
-            await ctx.send(text.format(ctx=ctx, user=user))
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
             await ctx.message.delete()
         else:
-            text = """{ctx.author.mention} """ + text
-            await ctx.author.send(text.format(ctx=ctx))
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
             await ctx.message.delete()
 
     @commands.command(aliases=['hotkeys', 'keys'])
     async def keybinds(self, ctx, *, user: discord.Member = None):
         """Send Keybinding information"""
+        self.bot.logger.info(f"Processed keybinds command for {ctx.author.name} with parameter {user}.")
         text = """:keyboard: Stable Hotkeys
         - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **S** = Restart Streaming
         - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **F** = Toggle Fullscreen
@@ -474,16 +475,16 @@ class General(commands.Cog):
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = """From {ctx.author.name}\n{user.mention} """ + text
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text.format(ctx=ctx, user=user))
             await ctx.message.delete()
         elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = """From {ctx.author.name}\n""" +text
+            text = f"From {ctx.author.name}\n{text}"
             await ctx.send(text.format(ctx=ctx, user=user))
             await ctx.message.delete()
         else:
-            text = """{ctx.author.mention} """ + text
-            await ctx.author.send(text.format(ctx=ctx))
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
             await ctx.message.delete()
 
 
