@@ -387,20 +387,17 @@ class General(commands.Cog):
         """Look up general user info."""
         rolelist = ""
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
-            await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
+            await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
         paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
-        paginator.add_line("User-ID: {user.id}".format(user=user))
+        paginator.add_line(f"User-ID: {user.id}\tUsername+discriminator: {user}\tDisplay name: {user.display_name}")
         for role in user.roles:
-            rolelist += "{role.name}({role.id}) ".format(role=role)
-        paginator.add_line("Has roles: {roles}".format(roles=rolelist))
+            rolelist += f"{role.name}({role.id}) "
+        paginator.add_line(f"Has roles: {rolelist}")
         joinedat = user.joined_at.strftime('%Y-%m-%d %H:%M:%S')
         createdat = user.created_at.strftime('%Y-%m-%d %H:%M:%S')
-        paginator.add_line("Joined on: {joinedat}".format(joinedat=joinedat))
-        paginator.add_line("Created at {createdat}".format(createdat=createdat))
-        paginator.add_line("Username+discriminator: {user}".format(user=user))
-        paginator.add_line("Display name: {user.display_name}".format(user=user))
-        paginator.add_line("Status: {user.status}".format(user=user))
+        paginator.add_line(f"Joined on: {joinedat}\tCreated at: {createdat}")
+        paginator.add_line(f"Status: {user.status}\tActivity: {user.activity}")
         for page in paginator.pages:
             await ctx.send(page)
 
