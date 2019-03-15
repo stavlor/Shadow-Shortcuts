@@ -97,6 +97,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Add Shadower role to a user", name='ar')
     async def add_role(self, ctx, *, user: discord.Member = None):
+        """Adds the Shadower Role to a user."""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
