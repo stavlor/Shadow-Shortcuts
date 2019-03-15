@@ -2,6 +2,7 @@ from discord.ext import commands
 import discord
 import aiohttp
 import traceback
+import asyncio
 
 
 class Admin(commands.Cog):
@@ -157,6 +158,23 @@ class Admin(commands.Cog):
                 await ctx.send(page)
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
+
+    @commands.command()
+    async def gitref(self, ctx):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            await ctx.send(f"{ctx.author.mention} You aren't authorized to do that.")
+        else:
+            cmd = "cd ~/Shadow-Shortcuts/; git pull"
+            proc = await asyncio.create_subprocess_shell(
+                cmd,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE)
+            stdout, stderr = await proc.communicate()
+            await ctx.send(f'[{cmd!r} exited with {proc.returncode}]')
+            if stdout:
+                ctx.send(f'[stdout]\n{stdout.decode()}')
+            if stderr:
+                ctx.send(f'[stderr]\n{stderr.decode()}')
 
 
 def setup(bot):
