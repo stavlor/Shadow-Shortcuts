@@ -12,6 +12,7 @@ class Admin(commands.Cog):
         self.bot = bot
         self.bot.admin = self
         self._last_member = None
+        self.bot.remove_command('help')
         bot.logger.info("Initialized Admin Cog")
 
     @commands.command(hidden=True)
@@ -181,7 +182,7 @@ class Admin(commands.Cog):
     @commands.command()
     async def help(self, ctx, *, args):
         if await self.can_run_command(ctx.author.roles):
-            self.bot.DefaultHelpCommand(ctx, args)
+            self.bot.help_command(ctx, args)
 
 
 def setup(bot):
