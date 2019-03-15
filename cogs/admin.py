@@ -174,9 +174,9 @@ class Admin(commands.Cog):
             stdout, stderr = await proc.communicate()
             await ctx.send(f'{ctx.author.mention} [{cmd!r} exited with {proc.returncode}]')
             if stdout:
-                ctx.send(f'[stdout]\n{stdout.decode()}')
+                await ctx.send(f'[stdout]\n{stdout.decode()}')
             if stderr:
-                ctx.send(f'[stderr]\n{stderr.decode()}')
+                await ctx.send(f'[stderr]\n{stderr.decode()}')
 
 
 def setup(bot):
