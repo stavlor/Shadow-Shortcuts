@@ -180,7 +180,7 @@ class Admin(commands.Cog):
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
     @commands.command()
-    async def help(self, ctx, *, args):
+    async def help(self, ctx, *, args=None):
         if await self.can_run_command(ctx.author.roles):
             self.bot.help_command(ctx, args)
 
