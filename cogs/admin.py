@@ -4,6 +4,10 @@ import aiohttp
 import traceback
 import asyncio
 
+class MyHelpCommand(commands.MinimalHelpCommand):
+    def get_command_signature(self, command):
+        return '{0.context.clean_prefix}{1.qualified_name} {1.signature}'.format(self, command)
+
 
 class Admin(commands.Cog):
     """Admin level bot commands cog"""
@@ -12,8 +16,13 @@ class Admin(commands.Cog):
         self.bot = bot
         self.bot.admin = self
         self._last_member = None
-        self.bot.remove_command('help')
+        self._original_help_command = bot.help_command
+        bot.help_command = MyHelpCommand()
+        bot.help_command.cog = self
         bot.logger.info("Initialized Admin Cog")
+
+    def cog_unload(self):
+        self.bot.help_command = self._original_help_command
 
     @commands.command(hidden=True)
     async def load(self, ctx, *, module):
@@ -181,9 +190,9 @@ class Admin(commands.Cog):
 
     @commands.command()
     async def help(self, ctx, *, args=None):
-        if await self.can_run_command(ctx.author.roles):
-            help_command = self.bot.help_command
-            ctx.invoke(help(args))
+        self.bot.help_command      if await self.can_run_command(ctx.author.roles):
+            help_command =
+
 
 
 
