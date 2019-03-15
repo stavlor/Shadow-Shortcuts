@@ -183,7 +183,7 @@ class Admin(commands.Cog):
     async def help(self, ctx, *, args=None):
         if await self.can_run_command(ctx.author.roles):
             help_command = self.bot.help_command
-            ctx.invoke(help_command(args))
+            ctx.invoke(help(args))
 
 
 
