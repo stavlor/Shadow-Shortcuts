@@ -358,18 +358,17 @@ class General(commands.Cog):
                 await ctx.author.send("Here is the last few lines of the log:")
                 for page in paginator.pages:
                     await ctx.author.send(page)
-                self.bot.logger.info(
-                    "Sending last few log entries to {ctx.author.name} via PM as its not in gurus-lab channel was {ctx.channel.name}".format(ctx=ctx))
+                self.bot.logger.info(f"Sending last few log entries to {ctx.author.name} via PM as its not in gurus-lab channel was {ctx.channel.name}")
             else:
                 await ctx.send("Here is the last few lines of the log:")
                 for page in paginator.pages:
                     await ctx.send(page)
                 await ctx.message.delete()
-                self.bot.logger.info("Sending last few log entries to Channel Requestor:{ctx.author}.".format(ctx=ctx))
+                self.bot.logger.info(f"Sending last few log entries to Channel Requestor:{ctx.author}.")
         else:
-            await ctx.send("Sorry {ctx.author.mention} your not authorized to do this.".format(ctx=ctx))
+            await ctx.send(f"Sorry {ctx.author.mention} your not authorized to do this.")
             await ctx.message.delete()
-            self.bot.logger.info("Unauthorized log request from {ctx.author}".format(ctx=ctx))
+            self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
 
     @commands.command(description="PM test")
     async def pmtest(self, ctx):
