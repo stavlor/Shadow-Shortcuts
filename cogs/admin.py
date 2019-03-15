@@ -178,6 +178,11 @@ class Admin(commands.Cog):
             if stderr:
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
+    @commands.command()
+    async def help(self, ctx, *, args):
+        if await self.can_run_command(ctx.author.roles):
+            self.bot.DefaultHelpCommand(ctx, args)
+
 
 def setup(bot):
     bot.add_cog(Admin(bot))
