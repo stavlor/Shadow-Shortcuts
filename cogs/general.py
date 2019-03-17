@@ -233,10 +233,11 @@ class General(commands.Cog):
                 "TOS command received from {author.name} with argument of {user}".format(author=ctx.message.author,
                                                                                          user=user))
             if user is not None:
-                await ctx.send("""From: {author.name}\n{user}  **__whether it's in the ToS or not__**, **we ask that you respect other's intellectual properties while using Shadow, and that covers piracy and cheating.**
+                await ctx.send("""From: {author.name}\n{user}  
     __READ THE TOS__
     https://shadow.tech/usen/terms
-    https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow""".format(author=ctx.author,
+    https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow
+    **__whether it's in the ToS or not__**, **we ask that you respect other's intellectual properties while using Shadow, and that covers piracy and cheating.**""".format(author=ctx.author,
                                                                                             user=user.mention))
             else:
                 await ctx.send("""From: {author.name}\n**__whether it's in the ToS or not__**, **we ask that you respect other's intellectual properties while using Shadow, and that covers piracy and cheating.**
