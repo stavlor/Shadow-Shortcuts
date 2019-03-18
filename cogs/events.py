@@ -92,5 +92,6 @@ class Events(commands.Cog):
                                         message="{ctx.author.mention} Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png",
                                         trigger="3/3")
 
+
 def setup(bot):
     bot.add_cog(Events(bot))
