@@ -23,7 +23,8 @@ initial_extensions = ['cogs.admin',
                       'cogs.autoresponse',
                       'cogs.database',
                       'cogs.events',
-                      'cogs.general']
+                      'cogs.general',
+                      'jishaku']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
