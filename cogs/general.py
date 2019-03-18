@@ -11,18 +11,19 @@ class General(commands.Cog):
     @commands.command(description="Send instructions on how to get Verified")
     async def verify(self, ctx, *, user: discord.Member = None):
         """How to get verified command."""
+        text = """Certain channels like #community-help require the Shadower role to allow you to view or chat in them, which is only given to people who verify that they are a current Shadow subscriber. To get verified, please DM any Shadow Guru or a Moderator a screenshot of https://account.shadow.tech/subscription to get your Shadower role.
+Note: Discord settings may prevent you from sending messages to those not on your friends list. Adjust this to allow messages to those you share a server with in order to be able to send the DM
+- For help with Discord Privacy settings see these images:
+    - <https://cdn.discordapp.com/attachments/461203231339577356/557257216436994078/unknown.png>
+    - <https://cdn.discordapp.com/attachments/461203231339577356/557257104184836106/unknown.png>"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Verify command received from {author.name} with argument of {user}".format(author=ctx.author,
                                                                                             user=user))
             if user is not None:
-                await ctx.send(
-                    "From: {author.name}\n{user} To get verified Please DM a Shadow Guru or a Moderator a screenshot of https://account.shadow.tech/subscription to get your Shadower role".format(
-                        author=ctx.message.author, user=user.mention))
+                await ctx.send(f"From {ctx.author.name}\n{user.mention} {text}")
             else:
-                await ctx.send(
-                    "From: {author.name}\nTo get verified Please DM a Shadow Guru or a Moderator a screenshot of https://account.shadow.tech/subscription to get your Shadower role".format(
-                        author=ctx.message.author))
+                await ctx.send(f"From {ctx.author.name}\n{text}")
         await ctx.message.delete()
 
     @commands.command(description="800x600 instructions", name="800x600")
