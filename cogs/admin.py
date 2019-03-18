@@ -188,5 +188,6 @@ class Admin(commands.Cog):
             if stderr:
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
+
 def setup(bot):
     bot.add_cog(Admin(bot))
