@@ -258,7 +258,8 @@ class General(commands.Cog):
           - Vulkan drivers will generally have the best performance but may have issues.
           - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
-          - Under no circumstances should Gamestream be enabled or installed, Geforce Experience is not recommended."""
+          - Under no circumstances should GameStream be enabled as it will break your streamer and prevent connection to your Shadow.
+          - GeForce Experience other than providing the latest recommended drivers, is not needed just use the provided links."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Nvidia Drivers command received from {author.name} with argument of {user}".format(
