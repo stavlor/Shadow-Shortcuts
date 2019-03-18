@@ -441,7 +441,7 @@ class General(commands.Cog):
         delta = (now - ctx.message.created_at).total_seconds()*1000
         await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
 
-    @commands.command(aliases=['apps', 'beta'])
+    @commands.command(aliases=['apps', 'beta', 'update'])
     async def applications(self, ctx, *, user: discord.Member = None):
         """Link to Shadow Applications download."""
         text = """You can find the Shadow Applications, both stable and beta versions in your account page: https://account.shadow.tech/apps"""
