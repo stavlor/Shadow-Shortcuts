@@ -261,21 +261,12 @@ class General(commands.Cog):
                     author=ctx.author,
                     user=user))
             if user is not None:
-                text = """From: {author.name}\n{user}\n""" + text
-                await ctx.send(
-                    text.format(
-                        author=ctx.author, user=user.mention))
+                await ctx.send(f"""From {ctx.author.name}\n{user.mention} {text}""")
             else:
-                text = """From: {author.name}\n""" + text
-                await ctx.send(text.format(author=ctx.author))
+                await ctx.send(f"""From {ctx.author.name}\n{text}""")
         else:
-            self.bot.logger.info(
-                "NVidia Drivers command received from un-privileged user {ctx.author.name} Responding Via PM".format(
-                    ctx=ctx))
-            text = """{user}\n""" + text
-            await ctx.author.send(
-                text.format(
-                    user=ctx.author.mention))
+            self.bot.logger.info(f"NVidia Drivers command received from un-privileged user {ctx.author.name} Responding Via PM")
+            await ctx.author.send(f"{ctx.author.mention} {text}")
         await ctx.message.delete()
 
     @commands.command(aliases=['purchaseghost'])
