@@ -32,6 +32,7 @@ class Database(commands.Cog):
                 attach_url += "<a href=\""+str(attach.url)+"\">Attachment</a> "
         rmessage = message.content
         rmessage = rmessage.replace("'", "\'")
+        rmessage = rmessage.replace('"', '\"')
         sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user=str(message.author), message=rmessage, attachment_url=attach_url);
         self.logger.info("SQL: {sql}".format(sql=sqlstatement))
         await conn.execute(sqlstatement)
