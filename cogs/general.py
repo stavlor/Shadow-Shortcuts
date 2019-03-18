@@ -228,23 +228,18 @@ class General(commands.Cog):
     @commands.command()
     async def tos(self, ctx, *, user: discord.Member = None):
         """Send Terms of Service information"""
+        text = """__READ THE TOS__
+    https://shadow.tech/usen/terms
+    https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow
+    **__whether it's in the ToS or not__**, **we ask that you respect other's intellectual properties while using Shadow, and that covers piracy and cheating.**"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "TOS command received from {author.name} with argument of {user}".format(author=ctx.message.author,
                                                                                          user=user))
             if user is not None:
-                await ctx.send("""From: {author.name}\n{user}  
-    __READ THE TOS__
-    https://shadow.tech/usen/terms
-    https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow
-    **__whether it's in the ToS or not__**, **we ask that you respect other's intellectual properties while using Shadow, and that covers piracy and cheating.**""".format(author=ctx.author,
-                                                                                            user=user.mention))
+                await ctx.send(f"""From: {ctx.author.name}\n{user.mention} {text}""")
             else:
-                await ctx.send("""From: {author.name}\n**__whether it's in the ToS or not__**, **we ask that you respect other's intellectual properties while using Shadow, and that covers piracy and cheating.**
-                __READ THE TOS__
-                https://shadow.tech/usen/terms
-                https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow""".format(
-                    author=ctx.author))
+                await ctx.send(f"""From {ctx.author.name}\n{text}""")
         await ctx.message.delete()
 
     @commands.command(aliases=['drivers'])
