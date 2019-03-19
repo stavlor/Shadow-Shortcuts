@@ -473,6 +473,7 @@ Note: Discord settings may prevent you from sending messages to those not on you
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command()
     async def geoip(self, ctx, *, user: discord.Member = None):
         """GeoIP information"""
         text = """Geo-IP and anything that looks up IP location on Shadow can and will likely be wrong, Blade moves IP
@@ -492,6 +493,7 @@ Note: Discord settings may prevent you from sending messages to those not on you
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command()
     async def geoipdetailed(self, ctx, *, user: discord.Member = None):
         text = """Detailed information if you for some reason think you are not on the correct datacenter:
         Check your IP from your Shadow using <http://bot.whatismyipaddress.com/>:
