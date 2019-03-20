@@ -518,6 +518,28 @@ Note: Discord settings may prevent you from sending messages to those not on you
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command()
+    async def support(self, ctx, *, user: discord.Member = None):
+        text = """Note while this is a community Discord and the community may be able to assist in <#463782843898658846>, 
+        Most folks here aren't Blade Employees and though they do occasionally interact here this isn't an official support channel. 
+            - How to contact support:
+
+            - Support Page: https://account.shadow.tech/support
+
+            - Help Desk: https://help.shadow.tech/hc/en-gb/requests/new"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.meessage.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
