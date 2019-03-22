@@ -530,7 +530,7 @@ Note: Discord settings may prevent you from sending messages to those not on you
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
-            await ctx.meessage.delete()
+            await ctx.message.delete()
         elif await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{text}"
             await ctx.send(text)
