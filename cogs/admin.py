@@ -188,6 +188,51 @@ class Admin(commands.Cog):
             if stderr:
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
+    @commands.command()
+    async def userinfo(self, ctx, *, user: discord.Member):
+        """Look up general user info."""
+        rolelist = ""
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
+            return
+        paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
+        paginator.add_line(f"User-ID: {user.id}\tUsername+discriminator: {user}\tDisplay name: {user.display_name}")
+        for role in user.roles:
+            rolelist += f"{role.name}({role.id}) "
+        paginator.add_line(f"Has roles: {rolelist}")
+        joinedat = user.joined_at.strftime('%Y-%m-%d %H:%M:%S')
+        createdat = user.created_at.strftime('%Y-%m-%d %H:%M:%S')
+        paginator.add_line(f"Joined on: {joinedat}\tCreated at: {createdat}")
+        paginator.add_line(f"Status: {user.status}\tActivity: {user.activity}")
+        for page in paginator.pages:
+            await ctx.send(page)
+
+    @commands.command(description="Bot Logs")
+    async def logs(self, ctx):
+        """Logs Command"""
+        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            fname = 'discord.log'
+            lines = await self.bot.admin.tail(filename=fname, lines=50)
+            lines = lines.split("\n")
+            paginator = commands.Paginator(prefix="```python")
+            for line in lines:
+                paginator.add_line(line)
+            if not (ctx.channel.name == 'gurus-lab') and not (ctx.channel.name == 'bot-talk'):
+                await ctx.author.send("Here is the last few lines of the log:")
+                for page in paginator.pages:
+                    await ctx.author.send(page)
+                self.bot.logger.info(f"Sending last few log entries to {ctx.author.name} via PM as its not in gurus-lab channel was {ctx.channel.name}")
+            else:
+                await ctx.send("Here is the last few lines of the log:")
+                for page in paginator.pages:
+                    await ctx.send(page)
+                await ctx.message.delete()
+                self.bot.logger.info(f"Sending last few log entries to Channel Requestor:{ctx.author}.")
+        else:
+            await ctx.send(f"Sorry {ctx.author.mention} your not authorized to do this.")
+            await ctx.message.delete()
+            self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
+
 
 def setup(bot):
     bot.add_cog(Admin(bot))
