@@ -459,8 +459,8 @@ Note: Discord settings may prevent you from sending messages to those not on you
             await ctx.message.delete()
 
 
-    @commands.command(aliases=['ip','geoip'])
-    async def geoipdetailed(self, ctx, *, user: discord.Member = None):
+    @commands.command(aliases=['ips','geoip'])
+    async def ip(self, ctx, *, user: discord.Member = None):
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Blade occasionally moves IP addresses around between its datacenters.
  If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://bot.whatismyipaddress.com/:
             - **Europe**
