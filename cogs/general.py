@@ -411,8 +411,8 @@ Note: Discord settings may prevent you from sending messages to those not on you
         delta = (now - ctx.message.created_at).total_seconds()*1000
         await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
 
-    @commands.command(aliases=['apps', 'beta', 'update'])
-    async def applications(self, ctx, *, user: discord.Member = None):
+    @commands.command(aliases=['applications', 'beta', 'update', 'app'])
+    async def apps(self, ctx, *, user: discord.Member = None):
         """Link to Shadow Applications download."""
         text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/apps
  Stable versions include: Windows 32/64 bit, macOS, Android, iOS
