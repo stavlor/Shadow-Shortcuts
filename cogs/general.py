@@ -449,6 +449,22 @@ Note: Discord settings may prevent you from sending messages to those not on you
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command(aliases=['appletv', 'appletvbeta'])
+    async def atv(self, ctx, *, user: discord.Member = None):
+        text = """You can join the Apple TV Testflight via this link: <https://testflight.apple.com/join/h9H54DqA>"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
