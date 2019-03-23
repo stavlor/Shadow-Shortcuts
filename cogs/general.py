@@ -476,42 +476,23 @@ Note: Discord settings may prevent you from sending messages to those not on you
             await ctx.author.send(text)
             await ctx.message.delete()
 
-    @commands.command()
-    async def geoip(self, ctx, *, user: discord.Member = None):
-        """GeoIP information"""
-        text = """Geo-IP and anything that looks up IP location on Shadow can and will likely be wrong, Blade moves IP
-        Addresses around occasionally and GeoIP/Location for these IP addresses are generally wrong and will likely
-         report wrong information.
-         - If you for somereson expect you are on the wrong Datacenter see the geoipdetailed command."""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.meessage.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(aliases=['ip','geoip'])
     async def geoipdetailed(self, ctx, *, user: discord.Member = None):
-        text = """Detailed information if you for some reason think you are not on the correct datacenter:
-        Check your IP from your Shadow using <http://bot.whatismyipaddress.com/>:
+        text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Blade occasionally moves IP addresses around between its datacenters.
+ If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://bot.whatismyipaddress.com/:
             - **Europe**
-                - If your IP begins with 185.161. you are on the Amsterdam Datacenter
-                - If your IP begins with 85.190. you are on the France Datacenter
+                - If your IP begins with **185.161.** you are on the **Amsterdam** datacenter
+                - If your IP begins with **85.190.** you are on the **France** datacenter
             - **North America**
-                - If your IP begins with 185.231. you are on the California Datacenter
-                - If your IP begins with 162.213. you are on the New York Datacenter
-                - If your IP begins with 216.180.[128-135] you are on the Texas Datacenter
-                - If your IP begins with 216.180.[136-143] you are on the Illnois Datacenter"""
+                - If your IP begins with **185.231.** you are on the **California** datacenter
+                - If your IP begins with **162.213.** you are on the **New York** datacenter
+                - If your IP begins with **216.180.[128-135]** you are on the **Texas** datacenter
+                - If your IP begins with **216.180.[136-143]** you are on the **Chicago** datacenter"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
-            await ctx.meessage.delete()
+            await ctx.message.delete()
         elif await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{text}"
             await ctx.send(text)
