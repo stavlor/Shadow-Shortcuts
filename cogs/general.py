@@ -451,7 +451,7 @@ Note: Discord settings may prevent you from sending messages to those not on you
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
     async def atv(self, ctx, *, user: discord.Member = None):
-        text = """You can join the Apple TV Testflight via this link: <https://testflight.apple.com/join/h9H54DqA>"""
+        text = """You can join the Apple TV Testflight via this link from any iOS Device once Testflight is installed: <https://testflight.apple.com/join/h9H54DqA>"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
