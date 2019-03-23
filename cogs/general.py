@@ -430,7 +430,7 @@ Note: Discord settings may prevent you from sending messages to those not on you
     @commands.command()
     async def support(self, ctx, *, user: discord.Member = None):
         text = """This is a community-based Discord where other members of the community may be able to assist with your issues in #community-help, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
-  Therefore if you the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
+  Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/support
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
