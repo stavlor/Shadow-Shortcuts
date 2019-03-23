@@ -98,7 +98,7 @@ Note: Discord settings may prevent you from sending messages to those not on you
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="Default pass")
+    @commands.command(aliases=['expired', 'pass'])
     async def password(self, ctx, user: discord.Member = None):
         """Default Password help for Ready-to-Go Shadow Images"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
