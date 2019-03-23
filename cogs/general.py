@@ -432,7 +432,10 @@ Note: Discord settings may prevent you from sending messages to those not on you
     @commands.command(aliases=['apps', 'beta', 'update'])
     async def applications(self, ctx, *, user: discord.Member = None):
         """Link to Shadow Applications download."""
-        text = """You can find the Shadow Applications, both stable and beta versions in your account page: https://account.shadow.tech/apps"""
+        text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/apps
+ Stable versions include: Windows 32/64 bit, macOS, Android, iOS
+ Beta versions include: Windows 64 bit, macOS, Ubuntu
+ Each version has a designated channel in Discord. To view these channels, you will need the Shadower role. Feedback on the beta versions should be left in the proper channels."""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
