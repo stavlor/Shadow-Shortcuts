@@ -431,8 +431,8 @@ Note: Discord settings may prevent you from sending messages to those not on you
             await ctx.author.send(text)
             await ctx.message.delete()
 
-    @commands.command(aliases=['hotkeys', 'keys'])
-    async def keybinds(self, ctx, *, user: discord.Member = None):
+    @commands.command(aliases=['hotkeys', 'keybinds'])
+    async def keys(self, ctx, *, user: discord.Member = None):
         """Send Keybinding information"""
         self.bot.logger.info(f"Processed keybinds command for {ctx.author.name} with parameter {user}.")
         text = """:keyboard: Stable Hotkeys
