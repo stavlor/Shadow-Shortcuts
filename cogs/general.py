@@ -288,24 +288,6 @@ Note: Discord settings may prevent you from sending messages to those not on you
                         author=ctx.author, user=user.mention))
                 await ctx.message.delete()
 
-    @commands.command(description="Send ghost informational link")
-    async def ghostinfo(self, ctx, *, user: discord.Member = None):
-        """Give Ghost information link."""
-        if user is None:
-            self.bot.logger.info("Ghost info command processed for {author.name}.".format(author=ctx.author))
-            await ctx.send(
-                "{author.mention} Ghost information can be found here, https://shadow.tech/usen/discover/shadow-ghost".format(
-                    author=ctx.author))
-            await ctx.message.delete()
-        else:
-            if await self.bot.admin.can_run_command(ctx.author.roles):
-                self.bot.logger.info(
-                    "Ghost info command processed for {author.name} with args {user}".format(author=ctx.author,
-                                                                                             user=user))
-                await ctx.send(
-                    """From: {author.name}\n{user.mention} Ghost information can be found here, https://shadow.tech/usen/discover/shadow-ghost""".format(
-                        author=ctx.author, user=user))
-                await ctx.message.delete()
 
     @commands.command(description="Status command")
     async def status(self, ctx, *, user: discord.Member = None):
