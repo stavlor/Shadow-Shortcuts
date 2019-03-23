@@ -169,8 +169,8 @@ Note: Discord settings may prevent you from sending messages to those not on you
                 user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="Latency command")
-    async def latency(self, ctx, *, user: discord.Member = None):
+    @commands.command(aliases=['latency', 'inputlag'])
+    async def lag(self, ctx, *, user: discord.Member = None):
         """Input lag/Latency Information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
