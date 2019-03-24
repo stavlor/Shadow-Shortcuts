@@ -335,7 +335,7 @@ class General(commands.Cog):
         - Mac OS 10.10 Yosemite or above
         - Mac device from 2012 or more recent
         
-        *** CPU Family support diagram: http://core.stavlor.net/cpu_decode_support.png ***"""
+        *** CPU Family support diagram: *** http://core.stavlor.net/cpu_decode_support.png"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
