@@ -462,6 +462,21 @@ class General(commands.Cog):
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command(aliases=['map', 'coveragemap', 'locations'])
+    async def coverage(self, ctx, *, user: discord.Member = None):
+        text = """Shadow Coverage map: <https://www.google.com/maps/d/u/0/edit?mid=1F65uzzfo5GicmBg4h-UJ9lB7rHCUnQFe&ll=15.811693684367462%2C-55.29886565000004&z=2> """
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
 
 def setup(bot):
     bot.add_cog(General(bot))
