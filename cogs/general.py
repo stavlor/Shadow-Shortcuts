@@ -146,29 +146,6 @@ class General(commands.Cog):
                           "https://wiki.shadow.pink/index.php/Using_a_Microphone""".format(user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command()
-    async def ghostmanual(self, ctx, *, user: discord.Member = None):
-        """Send Link to Ghost Manual"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "Ghost manual command received from {author.name} with argument of {user}".format(
-                    author=ctx.message.author,
-                    user=user))
-            if user is not None:
-                await ctx.send(
-                    "From: {author.name}\n{user} Ghost Manual: http://core.stavlor.net/Ghost_Manual.pdf".format(
-                        author=ctx.message.author, user=user))
-            else:
-                await ctx.send("From: {author.name}\nGhost Manual: http://core.stavlor.net/Ghost_Manual.pdf".format(
-                    author=ctx.message.author))
-        else:
-            self.bot.logger.info("Ghost Manual command received from unauthorized user {author.name}, replied via PM. ".format(
-                author=ctx.author,
-                user=user))
-            await ctx.author.send("""{user} Shadow Ghost Manual http://core.stavlor.net/Ghost_Manual.pdf""".format(
-                user=ctx.author.mention))
-        await ctx.message.delete()
-
     @commands.command(aliases=['latency', 'inputlag'])
     async def lag(self, ctx, *, user: discord.Member = None):
         """Input lag/Latency Information"""
@@ -269,23 +246,24 @@ class General(commands.Cog):
             await ctx.author.send(f"{ctx.author.mention} {text}")
         await ctx.message.delete()
 
-    @commands.command(aliases=['purchaseghost'])
-    async def buyghost(self, ctx, *, user: discord.Member = None):
+    @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
+    async def ghost(self, ctx, *, user: discord.Member = None):
         """Ghost Purchase information."""
-        if user is None:
-            self.bot.logger.info("Ghost purchase info command processed for {author.name}".format(author=ctx.message.author))
-            await ctx.send(
-                "{author.mention} you can purchase ghost from your account page, https://account.shadow.tech/subscription".format(
-                    author=ctx.author))
+        text = """Ghosts can be purchased from your account page under Subscription: https://account.shadow.tech/subscription
+
+For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
             await ctx.message.delete()
         else:
-            if await self.bot.admin.can_run_command(ctx.author.roles):
-                self.bot.logger.info("Ghost purchase info command processed for {author.name} and args {user}".format(
-                    author=ctx.author, user=user))
-                await ctx.send(
-                    """From: {author.name}\n{user} you can purchase Shadow Ghost from your account page,  https://account.shadow.tech/subscription""".format(
-                        author=ctx.author, user=user.mention))
-                await ctx.message.delete()
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
 
 
     @commands.command(description="Status command")
@@ -433,7 +411,7 @@ class General(commands.Cog):
     @commands.command()
     async def support(self, ctx, *, user: discord.Member = None):
         """Send details for how to reach support."""
-        text = """This is a community-based Discord where other members of the community may be able to assist with your issues in #community-help, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
+        text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/support
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new"""
