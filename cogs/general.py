@@ -248,7 +248,7 @@ class General(commands.Cog):
         """Send current NVidia Drivers Info."""
         text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [__*Non-US users may have GTX1080*__]
           - Stable Drivers *(**Recommended**)*:  <https://www.nvidia.com/Download/driverResults.aspx/145259/en-us>
-          - Vulkan Drivers *(**Optional**)*: <https://developer.nvidia.com/vulkan-beta-41962-windows-78>
+          - Vulkan Drivers *(**Optional**)*: <https://developer.nvidia.com/vulkan-beta-41962-windows-10>
 
         **Notes:**
           - Vulkan drivers will generally have the best performance but may have issues.
