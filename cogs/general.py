@@ -385,6 +385,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @commands.command(aliases=['ips','geoip'])
     async def ip(self, ctx, *, user: discord.Member = None):
         """IP/Geoip Information"""
+        self.bot.logger.info(f"Processed ips command for {ctx.author.name} with parameter {user}.")
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Blade occasionally moves IP addresses around between its datacenters.
  If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://bot.whatismyipaddress.com/:
             - **Europe**
@@ -411,6 +412,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @commands.command()
     async def support(self, ctx, *, user: discord.Member = None):
         """Send details for how to reach support."""
+        self.bot.logger.info(f"Processed support command for {ctx.author.name} with parameter {user}.")
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/support
@@ -431,6 +433,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @commands.command(aliases=['appletv', 'appletvbeta'])
     async def atv(self, ctx, *, user: discord.Member = None):
         """Apple TV Testflight invite link"""
+        self.bot.logger.info(f"Processed atv command for {ctx.author.name} with parameter {user}.")
         text = """You can join the Apple TV Testflight via this link from any iOS Device once Testflight is installed: <https://testflight.apple.com/join/h9H54DqA>"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
@@ -448,6 +451,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @commands.command(aliases=['map', 'coveragemap', 'locations'])
     async def coverage(self, ctx, *, user: discord.Member = None):
         """Coverage Maps"""
+        self.bot.logger.info(f"Processed coverage command for {ctx.author.name} with parameter {user}.")
         text = """Shadow Coverage map: https://www.google.com/maps/d/u/0/edit?mid=1F65uzzfo5GicmBg4h-UJ9lB7rHCUnQFe&ll=15.811693684367462%2C-55.29886565000004&z=2"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
@@ -465,6 +469,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @commands.command(aliases=['stats', 'statspage', 'sscp', 'scps'])
     async def hstats(self, ctx, *, user: discord.Member = None):
         """How to access Shadow Control panel stats pane."""
+        self.bot.logger.info(f"Processed hstats command for {ctx.author.name} with parameter {user}.")
         text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, Bitrate, Ping and Packet Loss) to access it please this http://core.stavlor.net/how_to_access_stats.png"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
@@ -478,6 +483,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             text = f"{ctx.author.mention} {text}"
             await ctx.author.send(text)
             await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
