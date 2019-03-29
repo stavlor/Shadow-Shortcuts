@@ -25,6 +25,9 @@ class Database(commands.Cog):
 
     @commands.command(aliases=['cleanpms'])
     async def clean_pm_tracking(self, ctx, *, arguments = None):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
+            return
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = 'TRUNCATE pm_tracking;'
         self.logger.info(f"PM Tracking cleared by {ctx.author.name} --")
