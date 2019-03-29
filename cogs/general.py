@@ -8,7 +8,7 @@ class General(commands.Cog):
         bot.general = self
         bot.logger.info("Initialized General Cog")
 
-    @commands.command(description="Send instructions on how to get Verified")
+    @commands.command(description="Send instructions on how to get Verified", aliases=['v'])
     async def verify(self, ctx, *, user: discord.Member = None):
         """How to get verified command."""
         text = """The <#463782843898658846> channel requires the Shadower role in order to chat there, which is only given to people who verify that they are a current Shadow subscriber. There are also other hidden channels available to subscribers as well. To get verified, please DM any Shadow Guru or a Moderator a screenshot of https://account.shadow.tech/subscription to get your Shadower role. (After logging in, click Subscription or the link here again for the correct page.)
@@ -26,7 +26,7 @@ class General(commands.Cog):
                 await ctx.send(f"From {ctx.author.name}\n{text}")
         await ctx.message.delete()
 
-    @commands.command(description="800x600 instructions", name="800x600")
+    @commands.command(description="800x600 instructions", name="800x600", aliases=['8x6', 'nogpu'])
     async def _800x600(self, ctx, *, user: discord.Member = None):
         """800x600 Information (red square)"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
@@ -121,7 +121,7 @@ class General(commands.Cog):
                     user=ctx.message.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="microphone fix")
+    @commands.command(description="microphone fix", aliases=['mic', 'micguide'])
     async def micfix(self, ctx, *, user: discord.Member = None):
         """Microphone fix information."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
@@ -293,7 +293,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
                         author=ctx.author, user=user, status=await self.bot.admin.get_status()))
                 await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(aliases=['minimums', 'minimalreq', 'requirements', 'reqs'])
     async def minreq(self, ctx, *, user=None):
         """Give Shadow Minimum requirements"""
         self.bot.logger.info(
@@ -357,7 +357,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @commands.command(aliases=['hotkeys', 'keybinds'])
     async def keys(self, ctx, *, user: discord.Member = None):
         """Send Keybinding information"""
-        self.bot.logger.info(f"Processed keybinds command for {ctx.author.name} with parameter {user}.")
+        self.bot.logger.info(f"Processed keys command for {ctx.author.name} with parameter {user}.")
         text = """:keyboard: Stable Hotkeys
         - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **S** = Restart Streaming
         - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **F** = Toggle Fullscreen
@@ -385,7 +385,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @commands.command(aliases=['ips','geoip'])
     async def ip(self, ctx, *, user: discord.Member = None):
         """IP/Geoip Information"""
-        self.bot.logger.info(f"Processed ips command for {ctx.author.name} with parameter {user}.")
+        self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Blade occasionally moves IP addresses around between its datacenters.
  If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://bot.whatismyipaddress.com/:
             - **Europe**
@@ -466,11 +466,57 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
             await ctx.message.delete()
 
-    @commands.command(aliases=['stats', 'statspage', 'sscp', 'scps'])
-    async def hstats(self, ctx, *, user: discord.Member = None):
+    @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps'])
+    async def stats(self, ctx, *, user: discord.Member = None):
         """How to access Shadow Control panel stats pane."""
         self.bot.logger.info(f"Processed hstats command for {ctx.author.name} with parameter {user}.")
         text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, Bitrate, Ping and Packet Loss) to access it please this http://core.stavlor.net/how_to_access_stats.png"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
+    @commands.command(aliases=['language'])
+    async def changelang(self, ctx, *, user: discord.Member = None):
+        """How to Change language from FR to EN."""
+        self.bot.logger.info(f"Processed changelang command for {ctx.author.name} with parameter {user}.")
+        text = """How to change the language of your Shadow: https://docs.google.com/document/d/10P6MqbIYqi_ITDczfi_DUeTkmsuBWlTsi-PFY_fqbBw/edit"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
+    @commands.command()
+    async def vh(self, ctx, *, user: discord.Member = None):
+        """Virtual Here Information"""
+        text = """**Get VirtualHere** -- **VirtualHere** works to share ***a single USB device*** (without paying, get a license for more than one) over *your local network*. 
+
+**VirtualHere** *server* on your local machine (you'll have to run it every time you get on Shadow).
+
+**VirtualHere** *client* on the Shadow (again, you'll have to run it each time to get on Shadow, running it as an automatic Windows service is a paid feature).
+
+When prompted, VirtualHere will ask you to install **Bonjour**; do this. It makes life easier by making the VH client find the VH server hub automagically. Do this on both client and server installations when prompted.
+
+Next step is getting Shadow on your local area network (LAN).
+
+You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation/EN/pdf/Hamachi/LogMeIn_Hamachi_UserGuide.pdf> or **ZeroTier** (Guide) <https://docs.google.com/document/d/1NcVK11lcS8m2G_0fsqMcXvkcdLWdaU2O4Vc_qyJrnng/edit?usp=sharing>"""
+        self.bot.logger.info(f"Processed vh command for {ctx.author.name} with parameter {user}.")
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
