@@ -409,7 +409,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
             await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(aliases=['sup'])
     async def support(self, ctx, *, user: discord.Member = None):
         """Send details for how to reach support."""
         self.bot.logger.info(f"Processed support command for {ctx.author.name} with parameter {user}.")
@@ -502,7 +502,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
             await ctx.message.delete()
 
-    @commands.command()
+    @commands.command(aliases=['virtualhere', 'vhere'])
     async def vh(self, ctx, *, user: discord.Member = None):
         """Virtual Here Information"""
         text = """**Get VirtualHere** -- **VirtualHere** works to share ***a single USB device*** (without paying, get a license for more than one) over *your local network*. 
