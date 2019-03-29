@@ -30,6 +30,8 @@ class Database(commands.Cog):
         self.logger.info(f"PM Tracking cleared by {ctx.author.name} --")
         await conn.execute(sql)
         await conn.close()
+        await ctx.send(f"{ctx.author.mention} PMs have been cleared.")
+        await ctx.message.delete()
 
     async def log_direct_messages(self, message):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
