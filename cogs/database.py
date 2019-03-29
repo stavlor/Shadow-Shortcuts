@@ -23,6 +23,14 @@ class Database(commands.Cog):
         await conn.execute(sql)
         await conn.close()
 
+    @commands.command(aliases=['cleanpms'])
+    async def clean_pm_tracking(self, ctx, *, arguments):
+        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
+        sql = 'TRUNCATE pm_tracking;'
+        self.logger.info(f"PM Tracking cleared by {ctx.author.name} --")
+        await conn.execute(sql)
+        await conn.close()
+
     async def log_direct_messages(self, message):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         attach_url = None
