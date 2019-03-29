@@ -24,7 +24,7 @@ class Database(commands.Cog):
         await conn.close()
 
     @commands.command(aliases=['cleanpms'])
-    async def clean_pm_tracking(self, ctx, *, arguments):
+    async def clean_pm_tracking(self, ctx, *, arguments = None):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = 'TRUNCATE pm_tracking;'
         self.logger.info(f"PM Tracking cleared by {ctx.author.name} --")
