@@ -76,8 +76,11 @@ class Database(commands.Cog):
             roles = roles.split(',')
             for item in roles:
                 if item is not None:
+                    self.bot.logger.info(f"Finding role:{item}")
                     role = member.guild.get_role(item)
-                    await member.add_roles(role, reason="Re-Applying leaver's roles.")
+                    self.bot.logger.info(f"Found: {role}")
+                    if role is not None:
+                        await member.add_roles(role, reason="Re-Applying leaver's roles.")
 
 
 def setup(bot):
