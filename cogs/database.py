@@ -72,6 +72,7 @@ class Database(commands.Cog):
         res = await conn.fetch(SQL)
         await conn.close()
         if res is not None:
+            self.logger.info(f"Roles Debug: {res}")
             roles = res.split(',')
             for item in roles:
                 role = member.guild.get_role(item)
