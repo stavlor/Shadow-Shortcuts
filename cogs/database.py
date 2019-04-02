@@ -82,6 +82,8 @@ class Database(commands.Cog):
             roles = roles.split(',')
             for item in roles:
                 if item is not None:
+                    if item == '':
+                        continue
                     self.bot.logger.info(f"Finding role:{item}")
                     role = member.guild.get_role(int(item))
                     if role.name == "@everyone":
