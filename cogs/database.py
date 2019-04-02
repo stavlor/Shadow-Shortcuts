@@ -68,6 +68,7 @@ class Database(commands.Cog):
     async def re_apply_roles(self, member):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         roles = list()
+        applied_roles = list()
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
         res = await conn.fetch(SQL)
         if len(res) != 0:
@@ -78,20 +79,19 @@ class Database(commands.Cog):
         await conn.close()
         if res is not None:
             roles = res['roles']
-            self.bot.logger.info(f"Found roles {roles}")
+            self.bot.logger.info(f"User {member.id} Has prior roles, reapplying.Found roles: {roles}")
             roles = roles.split(',')
             for item in roles:
                 if item is not None:
                     if item == '':
                         continue
-                    self.bot.logger.info(f"Finding role:{item}")
                     role = member.guild.get_role(int(item))
                     if role.name == "@everyone":
-                        self.bot.logger.info("Skipping @everyone.")
                         continue
-                    self.bot.logger.info(f"Found: {role}")
                     if role is not None:
+                        applied_roles.append(role)
                         await member.add_roles(role, reason="Re-Applying leaver's roles.")
+        self.bot.logger.info(f"Leaver roles applied, for ({member.id}){member.name} Roles-applied: {applied_roles}")
 
 
 def setup(bot):
