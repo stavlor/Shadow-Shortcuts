@@ -60,7 +60,7 @@ class Database(commands.Cog):
                 role_list.append(role.id)
         for item in role_list:
             role_str += f"{item},"
-        SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{member.id}', '{role_str}') ON CONFLICT UPDATE role_tracking SET roles='{role_str}' WHERE discord_id='{member.id}';"
+        SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{member.id}', '{role_str}') ON CONFLICT DO UPDATE role_tracking SET roles='{role_str}' WHERE discord_id='{member.id}';"
         self.logger.info(f"SQL: {SQL}")
         await conn.execute(SQL)
         await conn.close()
