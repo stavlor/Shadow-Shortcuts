@@ -54,6 +54,9 @@ class Database(commands.Cog):
     async def update_leaver_roles(self, member):
         role_list = list()
         role_str = str()
+        if member.guild.id != 460948857304383488:
+            self.bot.logger.info(f"Ignoring leaver not in our guild of interest {member.id} left guild {member.guild.id}.")
+            return
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         if hasattr(member, 'roles'):
             for role in member.roles:
