@@ -82,10 +82,11 @@ class Database(commands.Cog):
             roles = roles.split(',')
             for item in roles:
                 if item is not None:
-                    if item == member.guild.default_role.id:
-                        continue
                     self.bot.logger.info(f"Finding role:{item}")
                     role = member.guild.get_role(int(item))
+                    if role.name == "@everyone":
+                        self.bot.logger.info("Skipping @everyone.")
+                        continue
                     self.bot.logger.info(f"Found: {role}")
                     if role is not None:
                         await member.add_roles(role, reason="Re-Applying leaver's roles.")
