@@ -72,6 +72,9 @@ class Database(commands.Cog):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         roles = list()
         applied_roles = list()
+        if member.guild.id != 460948857304383488:
+            self.bot.logger.info(f"Ignoring leaver not in our guild of interest {member.id} left guild {member.guild.id}.")
+            return
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
         res = await conn.fetch(SQL)
         if len(res) != 0:
