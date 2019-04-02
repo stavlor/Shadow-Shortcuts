@@ -69,7 +69,8 @@ class Database(commands.Cog):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         roles = list()
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
-        res = await conn.fetch(SQL)[0]
+        res = await conn.fetch(SQL)
+        res = res.pop()
         res = dict(res)
         await conn.close()
         if res is not None:
