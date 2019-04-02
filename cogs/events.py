@@ -31,11 +31,11 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        self.bot.database.update_leaver_roles(member)
+        self.bot.database.update_leaver_roles(member=member)
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        self.bot.database.re_apply_roles(member)
+        self.bot.database.re_apply_roles(member=member)
 
     @commands.Cog.listener()
     async def on_message(self, message):
