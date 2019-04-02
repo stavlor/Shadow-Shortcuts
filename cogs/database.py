@@ -72,7 +72,7 @@ class Database(commands.Cog):
         res = await conn.fetch(SQL)
         await conn.close()
         if res is not None:
-            self.bot.logger.info(f"Roles Debug: {res}")
+            roles = res['roles'].split(',')
             for item in roles:
                 role = member.guild.get_role(item)
                 await member.add_roles(role, reason="Re-Applying leaver's roles.")
