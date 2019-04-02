@@ -58,7 +58,8 @@ class Database(commands.Cog):
         if hasattr(member, 'roles'):
             for role in member.roles:
                 role_list.append(role.id)
-        role_str = ','.join(role_list)
+        for item in role_list:
+            role_str += f"{item},"
         SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{member.id}', '{role_str}') ON CONFLICT UPDATE role_tracking SET roles='{role_str}' WHERE discord_id='{member.id}';"
         self.logger.info(f"SQL: {SQL}")
         await conn.execute(SQL)
