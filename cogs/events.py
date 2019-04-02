@@ -30,6 +30,14 @@ class Events(commands.Cog):
         self.bot.logger.info("Bot Starting up.. Logged in as:" + str(self.bot.user.name) + " ID: " + str(self.bot.user.id))
 
     @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        self.bot.database.update_leaver_roles(member)
+
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        self.bot.database.re_apply_roles(member)
+
+    @commands.Cog.listener()
     async def on_message(self, message):
         self.bot.logger.debug("Recieved message from {message.author} Content {message.content}".format(message=message))
         if isinstance(message.channel, discord.DMChannel):

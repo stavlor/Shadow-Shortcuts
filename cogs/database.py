@@ -51,5 +51,33 @@ class Database(commands.Cog):
         await conn.execute(sqlstatement)
         await conn.close()
 
+    @staticmethod
+    async def update_leaver_roles(self, member):
+        role_list = list()
+        role_str = str()
+        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
+        if hasattr(member, 'roles'):
+            for role in member.roles:
+                role_list.append(role.id)
+        role_str = ','.join(role_list)
+        SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{member.id}', '{role_str}') ON CONFLICT UPDATE role_tracking SET roles='{role_str}' WHERE discord_id='{member.id}';"
+        self.logger.info(f"SQL: {SQL}")
+        await conn.execute(SQL)
+        await conn.close()
+
+    @staticmethod
+    async def re_apply_roles(self, member):
+        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
+        roles = list()
+        SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
+        res = await conn.fetchval(SQL)
+        await conn.close()
+        if res is not None:
+            roles = res.split(',')
+            for item in roles:
+                role = member.guild.get_role(item)
+                await member.add_roles(role, reason="Re-Applying leaver's roles.")
+
+
 def setup(bot):
     bot.add_cog(Database(bot))
