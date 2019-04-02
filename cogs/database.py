@@ -72,7 +72,7 @@ class Database(commands.Cog):
         res = await conn.fetch(SQL)
         await conn.close()
         if res is not None:
-            roles = str(res[0])
+            roles = res.get('roles')
             self.bot.logger.info(f"Found roles {roles}")
             roles = roles.split(',')
             for item in roles:
