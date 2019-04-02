@@ -70,6 +70,7 @@ class Database(commands.Cog):
         roles = list()
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
         res = await conn.fetch(SQL)
+        res = dict(res)
         await conn.close()
         if res is not None:
             roles = res['roles']
