@@ -70,7 +70,10 @@ class Database(commands.Cog):
         roles = list()
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
         res = await conn.fetch(SQL)
-        res = res.pop()
+        if len(res) != 0:
+            res = res.pop()
+        else:
+            return
         res = dict(res)
         await conn.close()
         if res is not None:
@@ -79,8 +82,10 @@ class Database(commands.Cog):
             roles = roles.split(',')
             for item in roles:
                 if item is not None:
+                    if item == member.guild.default_role.id:
+                        continue
                     self.bot.logger.info(f"Finding role:{item}")
-                    role = member.guild.get_role(item)
+                    role = member.guild.get_role(int(item))
                     self.bot.logger.info(f"Found: {role}")
                     if role is not None:
                         await member.add_roles(role, reason="Re-Applying leaver's roles.")
