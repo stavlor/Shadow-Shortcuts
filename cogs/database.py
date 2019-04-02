@@ -73,7 +73,6 @@ class Database(commands.Cog):
         await conn.close()
         if res is not None:
             self.logger.info(f"Roles Debug: {res}")
-            roles = res.split(',')
             for item in roles:
                 role = member.guild.get_role(item)
                 await member.add_roles(role, reason="Re-Applying leaver's roles.")
