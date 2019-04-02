@@ -52,7 +52,7 @@ class Database(commands.Cog):
         await conn.close()
 
     @staticmethod
-    async def update_leaver_roles(self, member):
+    async def update_leaver_roles(member):
         role_list = list()
         role_str = str()
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
@@ -66,7 +66,7 @@ class Database(commands.Cog):
         await conn.close()
 
     @staticmethod
-    async def re_apply_roles(self, member):
+    async def re_apply_roles(member):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         roles = list()
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
