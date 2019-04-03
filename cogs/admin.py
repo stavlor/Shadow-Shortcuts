@@ -225,7 +225,8 @@ class Admin(commands.Cog):
     async def rr(self, ctx, user: discord.Member = None, all_roles: bool = False):
         if all_roles:
             for role in user.roles:
-                await user.remove_roles(role, reason=f"Requested removal by {ctx.author.name}")
+                if role.name != "@everyone":
+                    await user.remove_roles(role, reason=f"Requested removal by {ctx.author.name}")
         else:
             shadowers = ctx.guild.get_role(461298541978058769)
             await user.remove_roles(shadowers, reason=f"Requested removal by {ctx.author.name}")
