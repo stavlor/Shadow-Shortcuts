@@ -222,7 +222,7 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Moderators')
-    async def rr(self, ctx, user: discord.Member = None, all_roles: bool = False):
+    async def rr(self, ctx, user: discord.Member, all_roles: bool = False):
         if all_roles:
             for role in user.roles:
                 if role.name != "@everyone":
