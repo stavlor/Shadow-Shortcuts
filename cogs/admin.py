@@ -57,6 +57,8 @@ class Admin(commands.Cog):
     @commands.has_any_role('Shadow Guru', 'Moderator')
     async def _reload(self, ctx, *, module):
         """Reloads a module."""
+        if not module.startswith('cogs.'):
+            module = f'cogs.{module}'
         if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
@@ -65,15 +67,6 @@ class Admin(commands.Cog):
             self.bot.load_extension(module)
         except Exception as e:
             await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
-        except discord.ext.commands.errors.ExtensionNotLoaded as e:
-            module = f"cogs.{module}"
-            try:
-                self.bot.unload_extension(module)
-                self.bot.load_extension(module)
-            except Exception as e:
-                await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
-            else:
-                await ctx.send('\N{OK HAND SIGN}')
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
