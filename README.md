@@ -1,2 +1,3 @@
 # Shadow-Shortcuts
-Shadow Shortcuts Bot for US Discord
+Note this bot was designed for and and around the Shadow US Discord Community with
+with input and suggestions from various Users.
