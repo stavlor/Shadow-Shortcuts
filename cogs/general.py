@@ -294,7 +294,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
                 await ctx.message.delete()
 
     @commands.command(aliases=['minimums', 'minimalreq', 'requirements', 'reqs'])
-    async def minreq(self, ctx, *, user=None):
+    async def minreq(self, ctx, *, user:discord.Member = None):
         """Give Shadow Minimum requirements"""
         self.bot.logger.info(
             "Minreq received from {author.name} with argument of {user}".format(
