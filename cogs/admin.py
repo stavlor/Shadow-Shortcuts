@@ -220,6 +220,17 @@ class Admin(commands.Cog):
         for page in paginator.pages:
             await ctx.send(page)
 
+    @commands.command()
+    @commands.has_any_role('Shadow Guru', 'Moderators')
+    async def rr(self, ctx, *,user: discord.Member = None, all_roles: bool = False):
+        if all_roles:
+            for role in user.roles:
+                user.remove_roles(role, reason=f"Requested removal by {ctx.author.name}")
+        else:
+            shadowers = ctx.guild.get_role(461298541978058769)
+            user.remove_roles(role, reason=f"Requested removal by {ctx.author.name}")
+        await ctx.message.add_reaction('✅')
+
     @commands.command(description="Bot Logs")
     @commands.has_any_role('Shadow Guru', 'Moderators')
     async def logs(self, ctx):
