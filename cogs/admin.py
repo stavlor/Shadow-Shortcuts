@@ -226,6 +226,7 @@ class Admin(commands.Cog):
         if all_roles:
             for role in user.roles:
                 if role.name != "@everyone":
+                    role = ctx.guild.get_role(int(role.id))
                     await user.remove_roles(role, reason=f"Requested removal by {ctx.author.name}")
         else:
             shadowers = ctx.guild.get_role(461298541978058769)
