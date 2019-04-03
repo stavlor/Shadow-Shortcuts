@@ -65,6 +65,15 @@ class Admin(commands.Cog):
             self.bot.load_extension(module)
         except Exception as e:
             await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
+        except discord.ext.commands.errors.ExtensionNotLoaded as e:
+            module = f"cogs.{module}"
+            try:
+                self.bot.unload_extension(module)
+                self.bot.load_extension(module)
+            except Exception as e:
+                await ctx.send('```py\n{traceback}\n```'.format(traceback=traceback.format_exc()))
+            else:
+                await ctx.send('\N{OK HAND SIGN}')
         else:
             await ctx.send('\N{OK HAND SIGN}')
 
