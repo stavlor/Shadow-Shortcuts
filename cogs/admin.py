@@ -26,7 +26,7 @@ class Admin(commands.Cog):
         self.bot.help_command = self._original_help_command
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def load(self, ctx, *, module):
         """Loads a module."""
         if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
@@ -40,7 +40,7 @@ class Admin(commands.Cog):
             await ctx.send('\N{OK HAND SIGN}')
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def unload(self, ctx, *, module):
         """Unloads a module."""
         if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
@@ -54,7 +54,7 @@ class Admin(commands.Cog):
             await ctx.send('\N{OK HAND SIGN}')
 
     @commands.command(name='reload', hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def _reload(self, ctx, *, module):
         """Reloads a module."""
         if not module.startswith('cogs.'):
@@ -101,7 +101,7 @@ class Admin(commands.Cog):
             return await response.text()
 
     @commands.command(description="Auto-Responders debug", name="timertest")
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def _timertest(self, ctx):
         """Auto-responder timer debug tool"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
@@ -113,7 +113,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Add Shadower role to a user", name='ar')
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def add_role(self, ctx, *, user: discord.Member = None):
         """Adds the Shadower Role to a user."""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
@@ -132,7 +132,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Grant a user bot access", name='grantbot')
-    @commands.has_any_role('Shadow Guru', 'Moderator')
+    @commands.has_any_role('Shadow Guru', 'Moderator', 'Admin')
     async def add_role_bot(self, ctx, *, user: discord.Member = None):
         """Grant Bot User Role to a user - Admin"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
@@ -150,7 +150,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def revoke_role_bot(self, ctx, *, user: discord.Member = None):
         """Revoke Bot User Role from a user - Admin"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
@@ -167,7 +167,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Roles test", name='roletest')
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def _roletest(self, ctx):
         """Admin - Role ID Listing tool"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
@@ -182,7 +182,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def gitref(self, ctx):
         """Refresh git repo content."""
         if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
@@ -201,7 +201,7 @@ class Admin(commands.Cog):
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def userinfo(self, ctx, *, user: discord.Member):
         """Look up general user info."""
         rolelist = ""
@@ -221,7 +221,7 @@ class Admin(commands.Cog):
             await ctx.send(page)
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def rr(self, ctx, user: discord.Member, all_roles: bool = False):
         """Remove Roles - remove Shadower role from a user - Optional True/False for all_roles will remove all roles from a user."""
         if all_roles:
