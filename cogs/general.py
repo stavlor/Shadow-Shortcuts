@@ -11,11 +11,11 @@ class General(commands.Cog):
     @commands.command(description="Send instructions on how to get Verified", aliases=['v'])
     async def verify(self, ctx, *, user: discord.Member = None):
         """How to get verified command."""
-        text = """TThe <:shadow1:495254769288609802> Shadower Role (green name) grants access to #community-help and many other channels that are not visible to unverified users (white name).
+        text = """The <:shadow1:495254769288609802> Shadower role (green name) grants access to <#463782843898658846> and many other channels that are not visible to unverified users (white name).
 
-Send a clear screenshot of <https://account.shadow.tech/subscription> (click the Subscription link or this link again after you log in) to a Moderator or Shadow Guru to verify you are a subscriber.
+Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click the Subscription link or this link again after you log in) to a Moderator or Shadow Guru to verify you are a subscriber.
 
-Note: Do not send a friend request. If you are unable to send a DM, adjust your Privacy Settings for this server (you can change it back after). See here for more info: <https://support.discordapp.com/hc/en-us/articles/217916488-Blocking-Privacy-Settings>"""
+**Note:** Do not send a friend request. If you are unable to send a DM, adjust your Privacy Settings for this server (you can change it back after). See here for more info: <https://support.discordapp.com/hc/en-us/articles/217916488-Blocking-Privacy-Settings>"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Verify command received from {author.name} with argument of {user}".format(author=ctx.author,
