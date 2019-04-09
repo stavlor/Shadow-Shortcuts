@@ -1,5 +1,6 @@
 from discord.ext import commands
 import discord
+import typing
 
 
 class General(commands.Cog):
@@ -516,6 +517,22 @@ When prompted, VirtualHere will ask you to install **Bonjour**; do this. It make
 Next step is getting Shadow on your local area network (LAN).
 
 You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation/EN/pdf/Hamachi/LogMeIn_Hamachi_UserGuide.pdf> or **ZeroTier** (Guide) <https://docs.google.com/document/d/1NcVK11lcS8m2G_0fsqMcXvkcdLWdaU2O4Vc_qyJrnng/edit?usp=sharing>"""
+        self.bot.logger.info(f"Processed vh command for {ctx.author.name} with parameter {user}.")
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
+    async def ghc(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """We saw significantly more demand for Shadow Ghost units in Europe than in the US, so we are addressing that need first. We are working towards getting more units to all markets soon. Some US customer received an email with a Ghost countdown on Tuesday. This email was sent in error and was only meant for European customers."""
         self.bot.logger.info(f"Processed vh command for {ctx.author.name} with parameter {user}.")
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
