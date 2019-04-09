@@ -11,11 +11,11 @@ class General(commands.Cog):
     @commands.command(description="Send instructions on how to get Verified", aliases=['v'])
     async def verify(self, ctx, *, user: discord.Member = None):
         """How to get verified command."""
-        text = """The <#463782843898658846> channel requires the Shadower role in order to chat there, which is only given to people who verify that they are a current Shadow subscriber. There are also other hidden channels available to subscribers as well. To get verified, please DM any Shadow Guru or a Moderator a screenshot of https://account.shadow.tech/subscription to get your Shadower role. (After logging in, click Subscription or the link here again for the correct page.)
-**Note:** Discord settings may prevent you from sending messages to those not on your friends list. However, the Gurus and Mods ask that you not send us friend requests. Instead, adjust Discord to allow messages to those you share a server with in order to be able to send the DM. You can change it back after.
-- For help with Discord Privacy settings see these images:
-    - <http://core.stavlor.net/verify1.png>
-    - <http://core.stavlor.net/verify2.png>"""
+        text = """TThe :shadow1: Shadower Role (green name) grants access to #community-help and many other channels that are not visible to unverified users (white name).
+
+Send a clear screenshot of https://account.shadow.tech/subscription (click the Subscription link or this link again after you log in) to a Moderator or Shadow Guru to verify you are a subscriber.
+
+Note: Do not send a friend request. If you are unable to send a DM, adjust your Privacy Settings for this server (you can change it back after). See here for more info: https://support.discordapp.com/hc/en-us/articles/217916488-Blocking-Privacy-Settings"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Verify command received from {author.name} with argument of {user}".format(author=ctx.author,
