@@ -11,7 +11,7 @@ class General(commands.Cog):
     @commands.command(description="Send instructions on how to get Verified", aliases=['v'])
     async def verify(self, ctx, *, user: discord.Member = None):
         """How to get verified command."""
-        text = """TThe :shadow1: Shadower Role (green name) grants access to #community-help and many other channels that are not visible to unverified users (white name).
+        text = """TThe <:shadow1:495254769288609802> Shadower Role (green name) grants access to #community-help and many other channels that are not visible to unverified users (white name).
 
 Send a clear screenshot of https://account.shadow.tech/subscription (click the Subscription link or this link again after you log in) to a Moderator or Shadow Guru to verify you are a subscriber.
 
