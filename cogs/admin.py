@@ -223,16 +223,17 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
-    async def rr(self, ctx, user: discord.Member, all_roles: bool = False):
+    async def rr(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None, all_roles: bool = False):
         """Remove Roles - remove Shadower role from a user - Optional True/False for all_roles will remove all roles from a user."""
+        if role is None:
+            role = ctx.guild.get_role(461298541978058769)
         if all_roles:
             for role in user.roles:
                 if role.name != "@everyone":
                     role = ctx.guild.get_role(int(role.id))
                     await user.remove_roles(role, reason=f"Requested removal by {ctx.author.name}")
         else:
-            shadowers = ctx.guild.get_role(461298541978058769)
-            await user.remove_roles(shadowers, reason=f"Requested removal by {ctx.author.name}")
+            await user.remove_roles(role, reason=f"Requested removal by {ctx.author.name}")
         await ctx.message.add_reaction('✅')
 
     @commands.command(description="Bot Logs")
