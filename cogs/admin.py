@@ -205,13 +205,13 @@ class Admin(commands.Cog):
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member]):
         """Look up general user info."""
-        rolelist = ""
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
         for users in user:
             paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
             paginator.add_line(f"User-ID: {users.id}\tUsername+discriminator: {users}\tDisplay name: {users.display_name}")
+            rolelist = ""
             for role in users.roles:
                 rolelist += f"{role.name}({role.id}) "
             paginator.add_line(f"Has roles: {rolelist}")
