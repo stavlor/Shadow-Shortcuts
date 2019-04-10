@@ -10,7 +10,7 @@ class General(commands.Cog):
         bot.logger.info("Initialized General Cog")
 
     @commands.command(description="Send instructions on how to get Verified", aliases=['v'])
-    async def verify(self, ctx, *, user: discord.Member = None):
+    async def verify(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to get verified command."""
         text = """The <:shadow1:495254769288609802> Shadower role (green name) grants access to <#463782843898658846> and many other channels that are not visible to unverified users (white name).
 
@@ -28,7 +28,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(description="800x600 instructions", name="800x600", aliases=['8x6', 'nogpu'])
-    async def _800x600(self, ctx, *, user: discord.Member = None):
+    async def _800x600(self, ctx, user: typing.Optional[discord.Member] = None):
         """800x600 Information (red square)"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
@@ -52,7 +52,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(description="Waiting for video instructions", aliases=['waitingforvideo', 'wfv'])
-    async def waitingvideo(self, ctx, *, user: discord.Member = None):
+    async def waitingvideo(self, ctx, user: typing.Optional[discord.Member] = None):
         """Waiting for Video information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
@@ -76,7 +76,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(description="Error 102 Fix.", aliases=['error102'])
-    async def fix102(self, ctx, *, user: discord.Member = None):
+    async def fix102(self, ctx, user: typing.Optional[discord.Member] = None):
         """Error 102 Information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
@@ -123,7 +123,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(description="microphone fix", aliases=['mic', 'micguide'])
-    async def micfix(self, ctx, *, user: discord.Member = None):
+    async def micfix(self, ctx, user: typing.Optional[discord.Member] = None):
         """Microphone fix information."""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
@@ -148,7 +148,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(aliases=['latency', 'inputlag'])
-    async def lag(self, ctx, *, user: discord.Member = None):
+    async def lag(self, ctx, user: typing.Optional[discord.Member] = None):
         """Input lag/Latency Information"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
@@ -172,7 +172,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(description="Speedtest-Links")
-    async def speedtest(self, ctx, *, user: discord.Member = None):
+    async def speedtest(self, ctx, user: typing.Optional[discord.Member] = None):
         """Speedtest Links"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Speedtest command received from {author.name} with argument of {user}".format(
@@ -205,7 +205,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(aliases=['terms', 'tou'])
-    async def tos(self, ctx, *, user: discord.Member = None):
+    async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Terms of Service information"""
         text = """__Terms of Use__
     - See the official Terms of Use here: https://shadow.tech/usen/terms
@@ -222,7 +222,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(aliases=['nvidiadrivers'])
-    async def drivers(self, ctx, *, user: discord.Member = None):
+    async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send current NVidia Drivers Info."""
         text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [__*Non-US users may have GTX1080*__]
           - Stable Drivers *(**Recommended**)*:  <https://www.nvidia.com/Download/driverResults.aspx/145259/en-us>
@@ -248,7 +248,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await ctx.message.delete()
 
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
-    async def ghost(self, ctx, *, user: discord.Member = None):
+    async def ghost(self, ctx, user: typing.Optional[discord.Member] = None):
         """Ghost Purchase information."""
         text = """Ghosts can be purchased from your account page under Subscription: https://account.shadow.tech/subscription
 
@@ -268,7 +268,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
 
 
     @commands.command(description="Status command")
-    async def status(self, ctx, *, user: discord.Member = None):
+    async def status(self, ctx, user: typing.Optional[discord.Member] = None):
         """Reports current shadow status"""
         if user is None:
             self.bot.logger.info("Status command processed for {author.name}.".format(author=ctx.message.author))
@@ -295,7 +295,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
                 await ctx.message.delete()
 
     @commands.command(aliases=['minimums', 'minimalreq', 'requirements', 'reqs'])
-    async def minreq(self, ctx, *, user: discord.Member = None):
+    async def minreq(self, ctx, user: typing.Optional[discord.Member] = None):
         """Give Shadow Minimum requirements"""
         self.bot.logger.info(
             "Minreq received from {author.name} with argument of {user}".format(
@@ -336,7 +336,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
         await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
 
     @commands.command(aliases=['applications', 'beta', 'update', 'app'])
-    async def apps(self, ctx, *, user: discord.Member = None):
+    async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
         """Link to Shadow Applications download."""
         text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/apps
  Stable versions include: Windows 32/64 bit, macOS, Android, iOS
@@ -356,7 +356,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['hotkeys', 'keybinds'])
-    async def keys(self, ctx, *, user: discord.Member = None):
+    async def keys(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Keybinding information"""
         self.bot.logger.info(f"Processed keys command for {ctx.author.name} with parameter {user}.")
         text = """:keyboard: Stable Hotkeys
@@ -384,7 +384,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
 
 
     @commands.command(aliases=['ips','geoip'])
-    async def ip(self, ctx, *, user: discord.Member = None):
+    async def ip(self, ctx, user: typing.Optional[discord.Member] = None):
         """IP/Geoip Information"""
         self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Blade occasionally moves IP addresses around between its datacenters.
@@ -411,7 +411,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['sup'])
-    async def support(self, ctx, *, user: discord.Member = None):
+    async def support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
         self.bot.logger.info(f"Processed support command for {ctx.author.name} with parameter {user}.")
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
@@ -432,7 +432,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
-    async def atv(self, ctx, *, user: discord.Member = None):
+    async def atv(self, ctx, user: typing.Optional[discord.Member] = None):
         """Apple TV Testflight invite link"""
         self.bot.logger.info(f"Processed atv command for {ctx.author.name} with parameter {user}.")
         text = """You can join the Apple TV Testflight via this link from any iOS Device once Testflight is installed: <https://testflight.apple.com/join/h9H54DqA>"""
@@ -450,7 +450,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['map', 'coveragemap', 'locations'])
-    async def coverage(self, ctx, *, user: discord.Member = None):
+    async def coverage(self, ctx, user: typing.Optional[discord.Member] = None):
         """Coverage Maps"""
         self.bot.logger.info(f"Processed coverage command for {ctx.author.name} with parameter {user}.")
         text = """Shadow Coverage map: https://www.google.com/maps/d/u/0/edit?mid=1F65uzzfo5GicmBg4h-UJ9lB7rHCUnQFe&ll=15.811693684367462%2C-55.29886565000004&z=2"""
@@ -468,7 +468,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps'])
-    async def stats(self, ctx, *, user: discord.Member = None):
+    async def stats(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to access Shadow Control panel stats pane."""
         self.bot.logger.info(f"Processed hstats command for {ctx.author.name} with parameter {user}.")
         text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, Bitrate, Ping and Packet Loss) to access it please this http://core.stavlor.net/how_to_access_stats.png"""
@@ -486,7 +486,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['language'])
-    async def changelang(self, ctx, *, user: discord.Member = None):
+    async def changelang(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to Change language from FR to EN."""
         self.bot.logger.info(f"Processed changelang command for {ctx.author.name} with parameter {user}.")
         text = """How to change the language of your Shadow: https://docs.google.com/document/d/10P6MqbIYqi_ITDczfi_DUeTkmsuBWlTsi-PFY_fqbBw/edit"""
@@ -504,7 +504,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['virtualhere', 'vhere'])
-    async def vh(self, ctx, *, user: discord.Member = None):
+    async def vh(self, ctx, user: typing.Optional[discord.Member] = None):
         """Virtual Here Information"""
         text = """**Get VirtualHere** -- **VirtualHere** works to share ***a single USB device*** (without paying, get a license for more than one) over *your local network*. 
 

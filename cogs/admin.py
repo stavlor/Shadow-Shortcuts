@@ -3,6 +3,7 @@ import discord
 import aiohttp
 import traceback
 import asyncio
+import typing
 
 
 class MyHelpCommand(commands.MinimalHelpCommand):
@@ -112,28 +113,28 @@ class Admin(commands.Cog):
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
-    @commands.command(description="Add Shadower role to a user", name='ar')
+    @commands.command(name='ar')
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
-    async def add_role(self, ctx, *, user: discord.Member = None):
-        """Adds the Shadower Role to a user."""
+    async def add_role(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None):
+        """Adds a role to a User default is Shadowers."""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+            if role is None:
+                role = ctx.guild.get_role(461298541978058769)
             if user is None:
-                await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
+                await ctx.send(f"{ctx.author.mention} User is a required parameter.")
             else:
-                if "Shadowers" not in [role.name for role in user.roles]:
-                    shadowers = ctx.guild.get_role(461298541978058769)
-                    await user.add_roles(shadowers)
+                if role not in user.roles:
+                    await user.add_roles(role)
                     await ctx.message.add_reaction('✅')
-                    await user.send("{user.mention} You have been granted the role {role} by {ctx.author}".format(user=user, role="Shadowers", ctx=ctx))
+                    await user.send(f"{user.mention} You have been granted the role {role.name} by {ctx.author}")
                 else:
-                    await ctx.send("{author} User {user.mention} appears to already have this role.".format(
-                        author=ctx.author.mention, user=user))
+                    await ctx.send(f"{ctx.author.mention} User {user.mention} appears to already have the {role.name} role.")
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Grant a user bot access", name='grantbot')
     @commands.has_any_role('Shadow Guru', 'Moderator', 'Admin')
-    async def add_role_bot(self, ctx, *, user: discord.Member = None):
+    async def add_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Grant Bot User Role to a user - Admin"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
@@ -151,7 +152,7 @@ class Admin(commands.Cog):
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
-    async def revoke_role_bot(self, ctx, *, user: discord.Member = None):
+    async def revoke_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Revoke Bot User Role from a user - Admin"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if user is None:
@@ -202,7 +203,7 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
-    async def userinfo(self, ctx, *, user: discord.Member):
+    async def userinfo(self, ctx, ):
         """Look up general user info."""
         rolelist = ""
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
