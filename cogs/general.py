@@ -535,7 +535,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
     async def ghc(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Ghost CS Message for AMA."""
         text = """We saw significantly more demand for Shadow Ghost units in Europe than in the US, so we are addressing that need first. We are working towards getting more units to all markets soon. Some US customer received an email with a Ghost countdown on Tuesday. This email was sent in error and was only meant for European customers."""
-        self.bot.logger.info(f"Processed vh command for {ctx.author.name} with parameter {user}.")
+        self.bot.logger.info(f"Processed ghc command for {ctx.author.name} with parameter {user}.")
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
