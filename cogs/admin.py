@@ -209,7 +209,7 @@ class Admin(commands.Cog):
             await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
         elif user is None:
-            ctx.send(
+            await ctx.send(
                 f"{ctx.author.mention}Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
         for users in user:
             paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
