@@ -203,11 +203,14 @@ class Admin(commands.Cog):
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
-    async def userinfo(self, ctx, user: commands.Greedy[discord.Member]):
+    async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
+        elif user is None:
+            ctx.send(
+                f"{ctx.author.mention}Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
         for users in user:
             paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
             paginator.add_line(f"User-ID: {users.id}\tUsername+discriminator: {users}\tDisplay name: {users.display_name}")
