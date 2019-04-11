@@ -210,7 +210,7 @@ class Admin(commands.Cog):
             return
         elif user is None:
             await ctx.send(
-                f"{ctx.author.mention}Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
+                f"{ctx.author.mention} Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
         for users in user:
             paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
             paginator.add_line(f"User-ID: {users.id}\tUsername+discriminator: {users}\tDisplay name: {users.display_name}")
