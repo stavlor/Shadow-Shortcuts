@@ -115,7 +115,7 @@ class Admin(commands.Cog):
 
     @commands.command(name='ar')
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
-    async def add_role(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None):
+    async def add_role(self, ctx, user: discord.Member, *,  role: typing.Optional[discord.Role] = None):
         """Adds a role to a User default is Shadowers."""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             if role is None:
