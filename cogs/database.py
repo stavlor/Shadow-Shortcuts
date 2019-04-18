@@ -73,6 +73,7 @@ class Database(commands.Cog):
 
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         if before.activity != after.activity:
+            return 
             if after.activity is None:
                 if before.activity.type is not "ActivityType.playing":
                     pass
