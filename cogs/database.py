@@ -80,13 +80,19 @@ class Database(commands.Cog):
             if before.activity is None:
                 prior = None
                 current = after.activity
-                self.bot.logger.info(f"DBG: M:{after.id} has started playing {current.name}, H: {hash(current)} Start {current.start}")
+                if current.type == "ActivityType.streaming":
+                    self.bot.logger.info(f"DBG: M:{after.id} has started streaming URL: {current.url}")
+                else:
+                    self.bot.logger.info(f"DBG: M:{after.id} has started playing {current.name}, H: {hash(current)} Start {current.start}")
             elif after.activity is None:
                 current = None
                 prior = before.activity
-                self.bot.logger.info(f"DBG: M:{after.id} has stopped playing {prior.name}, H: {hash(prior)} Start:{prior.start} End: {prior.end}")
+                if prior.type == "ActivityType.streaming":
+                    self.bot.logger.info(f"DBG: M:{after.id} has stopped streaming.")
+                else:
+                    self.bot.logger.info(f"DBG: M:{after.id} has stopped playing {prior.name}, H: {hash(prior)} Start:{prior.start} End: {prior.end}")
             elif before.name == after.name:
-                self.bot.logger.info(f"DBG IGS: M:{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end} PH: {hash(prior)} AH: {hash(current)}")
+                self.bot.logger.info(f"DBG IGS: M:{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end} PH: {prior.application_id} AH: {current.application_id}")
             else:
                 self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{prior.name} A:{current.name} PH:{hash(prior)} AH: {hash(current)}")
 
