@@ -74,9 +74,11 @@ class Database(commands.Cog):
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         if before.activity != after.activity:
             if after.activity is None:
+                if before.activity.type is not "ActivityType.playing":
+                    pass
                 self.bot.logger.info(f"Member {after.name} is no longer playing: {before.activity.name} Start: {before.activity.start} End: {before.activity.end}")
             elif before.activity is None:
-                self.bot.logger.info(f"Member {after.name} Game Change, Prior none new {after.activity.name}")
+                self.bot.logger.info(f"Member {after.name} has started playing {after.activity.name}")
             elif (after.activity.type is "ActivityType.playing") and (before.activity.type is not "ActivityType.playing"):
                 self.bot.logger.info(f"Member: {after.name} is now playing {after.activity.name}")
             elif before.activity.name == after.activity.name:
