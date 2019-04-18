@@ -73,13 +73,10 @@ class Database(commands.Cog):
 
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         if before.activity != after.activity:
-            if before.activity is None:
-                self.bot.logger.info(f"Activity Change: Prior: None New:{after.activity.type}")
-            elif after.activity is None:
-                self.bot.logger.info(f"Activity Change: Prior {before.activity.type} New: None")
-            else:
-                self.bot.logger.info(f"Activity Change: Prior: {before.activity.type} New:{after.activity.type}")
-            self.bot.logger.info(f"Activity_Detail P: {before.activity} A:{after.activity}")
+            if (after.activity.type is "ActivityType.playing") and (before.activity.type is not "ActivityType.playing"):
+                self.bot.logger.info(f"Member: {after.name} is now playing {after.activity.name}")
+            else
+                self.bot.logger.info(f"Member {after.name} possible game change B:{before.activity.name} A:{after.activity.name}")
 
 
     async def re_apply_roles(self, member):
