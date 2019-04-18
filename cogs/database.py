@@ -72,20 +72,25 @@ class Database(commands.Cog):
         await conn.close()
 
     async def process_member_update(self, before: discord.Member, after: discord.Member):
+        prior = None
+        current = None
         if before.activity != after.activity:
-            return 
-            if after.activity is None:
-                if before.activity.type is not "ActivityType.playing":
-                    pass
-                self.bot.logger.info(f"Member {after.name} is no longer playing: {before.activity.name} Start: {before.activity.start} End: {before.activity.end}")
-            elif before.activity is None:
-                self.bot.logger.info(f"Member {after.name} has started playing {after.activity.name}")
-            elif (after.activity.type is "ActivityType.playing") and (before.activity.type is not "ActivityType.playing"):
-                self.bot.logger.info(f"Member: {after.name} is now playing {after.activity.name}")
-            elif before.activity.name == after.activity.name:
-                pass
+            prior = before.activity
+            current = after.activity
+            if before.activity is None:
+                prior = None
+                current = after.activity
+                self.bot.logger.info(f"DBG: M: {after.id} has started playing {current.name}, H: {hash(current)} Start {current.start}")
+            elif after.activity is None:
+                current = None
+                prior = before.activity
+                self.bot.logger.info(f"DBG: M {after.id} has stopped playing {prior.name}, H: {hash(prior)} Start:{prior.start} End: {prior.end}")
+            elif before.name == after.name:
+                self.bot.logger.info(f"DBG IGS: M{after.id} Intra-game event G: {after.name} S:{after.start} E: {after.end}")
             else:
-                self.bot.logger.info(f"Member {after.name} possible game change B:{before.activity.name} A:{after.activity.name}")
+                self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{before.name} A:{after.name} PH:{hash(prior)} AH: {hash(current)}")
+
+
 
     async def re_apply_roles(self, member):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
