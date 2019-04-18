@@ -96,7 +96,7 @@ class Database(commands.Cog):
                 else:
                     self.bot.logger.info(f"DBG: M:{after.id} has stopped playing {prior.name}, H: {prior.application_id} Start:{prior.start} End: {prior.end}")
             elif before.name == after.name:
-                if after.type == "ActivityType.listening":
+                if current.type == "ActivityType.listening":
                     self.bot.logger.info(f"DBG SSW: M:{after.id} Spotify Song change: S:{current.title} Ar:{current.artist} Al: {current.album} TID:{current.track_id}")
                 else:
                     self.bot.logger.info(f"DBG IGS: M:{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end} PH: {prior.application_id} AH: {current.application_id}")
