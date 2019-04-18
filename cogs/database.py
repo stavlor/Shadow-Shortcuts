@@ -75,7 +75,7 @@ class Database(commands.Cog):
         if before.activity != after.activity:
             if (after.activity.type is "ActivityType.playing") and (before.activity.type is not "ActivityType.playing"):
                 self.bot.logger.info(f"Member: {after.name} is now playing {after.activity.name}")
-            else
+            else:
                 self.bot.logger.info(f"Member {after.name} possible game change B:{before.activity.name} A:{after.activity.name}")
 
 
