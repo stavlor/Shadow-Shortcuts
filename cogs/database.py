@@ -73,7 +73,10 @@ class Database(commands.Cog):
 
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         if before.activities != after.activities:
-            self.bot.logger.info(f"Activity Change: Prior: {before.activities[0].type} New:{after.activities[0].type}")
+            if before.activities is None:
+                self.bot.logger.info("Activity Change: Prior: None New:{after.activities[0].type}")
+            else::
+                self.bot.logger.info(f"Activity Change: Prior: {before.activities[0].type} New:{after.activities[0].type}")
             self.bot.logger.info(f"Activity_Detail P: {before.activities} A:{after.activities}")
 
 
