@@ -119,7 +119,7 @@ class Database(commands.Cog):
                 if current.type == "ActivityType.listening":
                     self.bot.logger.info(f"DBG SSW: M:{after.id} Spotify Song change: S:{current.title} Ar:{current.artist} Al: {current.album} TID:{current.track_id}")
                 elif current.type == "ActivityType.streaming":
-                    self.bot.logger.info(f"DBG StrIG: M:{after.id}")
+                    self.bot.logger.info(f"DBG StrIG: M:{after.id} U:{current.url}")
                 else:
                     self.bot.logger.info(f"DBG IGS: M:{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end} PH: {papp_id} AH: {capp_id}")
             else:
