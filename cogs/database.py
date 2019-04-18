@@ -72,7 +72,7 @@ class Database(commands.Cog):
         await conn.close()
 
     async def process_member_update(self, before: discord.Member, after: discord.Member):
-        if before.actifities != after.activities:
+        if before.activities != after.activities:
             self.bot.logger.info(f"DB debug: Activity change detected: Before:{before.activities} After: {after.activities}")
 
     async def re_apply_roles(self, member):
