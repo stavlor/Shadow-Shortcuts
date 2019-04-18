@@ -72,14 +72,14 @@ class Database(commands.Cog):
         await conn.close()
 
     async def process_member_update(self, before: discord.Member, after: discord.Member):
-        if before.activities != after.activities:
+        if before.activity != after.activity:
             if before.activities is None:
                 self.bot.logger.info("Activity Change: Prior: None New:{after.activities[0].type}")
             elif after.activities is None:
-                self.bot.logger.info(f"Activity Change: Prior {before.activities[0].type} New: None")
+                self.bot.logger.info(f"Activity Change: Prior {before.activity.type} New: None")
             else:
-                self.bot.logger.info(f"Activity Change: Prior: {before.activities[0].type} New:{after.activities[0].type}")
-            self.bot.logger.info(f"Activity_Detail P: {before.activities} A:{after.activities}")
+                self.bot.logger.info(f"Activity Change: Prior: {before.activity.type} New:{after.activity.type}")
+            self.bot.logger.info(f"Activity_Detail P: {before.activity} A:{after.activity}")
 
 
     async def re_apply_roles(self, member):
