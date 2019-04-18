@@ -86,9 +86,9 @@ class Database(commands.Cog):
                 prior = before.activity
                 self.bot.logger.info(f"DBG: M {after.id} has stopped playing {prior.name}, H: {hash(prior)} Start:{prior.start} End: {prior.end}")
             elif before.name == after.name:
-                self.bot.logger.info(f"DBG IGS: M{after.id} Intra-game event G: {after.name} S:{after.start} E: {after.end}")
+                self.bot.logger.info(f"DBG IGS: M{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end}")
             else:
-                self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{before.name} A:{after.name} PH:{hash(prior)} AH: {hash(current)}")
+                self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{prior.name} A:{current.name} PH:{hash(prior)} AH: {hash(current)}")
 
 
 
