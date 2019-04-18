@@ -94,17 +94,37 @@ class Database(commands.Cog):
                 elif prior.type == "ActivityType.listening":
                     self.bot.logger.info(f"DBG: M:{after.id} has stopped listening to Spotify.")
                 else:
-                    self.bot.logger.info(f"DBG: M:{after.id} has stopped playing {prior.name}, H: {prior.application_id} Start:{prior.start} End: {prior.end}")
+                    if hasattr(prior, 'application_id'):
+                        app_id = prior.application_id
+                    else:
+                        app_id = None
+                    self.bot.logger.info(f"DBG: M:{after.id} has stopped playing {prior.name}, H: {app_id} Start:{prior.start} End: {prior.end}")
             elif before.name == after.name:
+                if hasattr(prior, 'application_id'):
+                    papp_id = prior.application_id
+                else:
+                    papp_id = None
+                if hasattr(current, 'application_id'):
+                    capp_id = current.application_id
+                else:
+                    capp_id = None
                 if current.type == "ActivityType.listening":
                     self.bot.logger.info(f"DBG SSW: M:{after.id} Spotify Song change: S:{current.title} Ar:{current.artist} Al: {current.album} TID:{current.track_id}")
                 else:
-                    self.bot.logger.info(f"DBG IGS: M:{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end} PH: {prior.application_id} AH: {current.application_id}")
+                    self.bot.logger.info(f"DBG IGS: M:{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end} PH: {papp_id} AH: {capp_id}")
             else:
+                if hasattr(prior, 'application_id'):
+                    papp_id = prior.application_id
+                else:
+                    papp_id = None
+                if hasattr(current, 'application_id'):
+                    capp_id = current.application_id
+                else:
+                    capp_id = None
                 if prior.type is "ActivityType.listening":
                     self.bot.logger.info(f"DBG S2G: M:{after.id} G: {current.name} AH: {current.application_id}")
                 else:
-                    self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{prior.name} A:{current.name} PH:{prior.application_id} AH: {current.application_id}")
+                    self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{prior.name} A:{current.name} PH:{papp_id} AH: {capp_id}")
 
 
 
