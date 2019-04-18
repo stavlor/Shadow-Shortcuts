@@ -80,12 +80,20 @@ class Database(commands.Cog):
             if before.activity is None:
                 prior = None
                 current = after.activity
+                if hasattr(prior, 'application_id'):
+                    papp_id = prior.application_id
+                else:
+                    papp_id = None
+                if hasattr(current, 'application_id'):
+                    capp_id = current.application_id
+                else:
+                    capp_id = None
                 if current.type == "ActivityType.streaming":
                     self.bot.logger.info(f"DBG: M:{after.id} has started streaming URL: {current.url}")
                 elif current.type == "ActivityType.listening":
                     self.bot.logger.info(f"DBG: M:{after.id} has started listening to Spotify: S:{current.title} Ar:{current.artist} Al: {current.album} TID:{current.track_id}")
                 else:
-                    self.bot.logger.info(f"DBG: M:{after.id} has started playing {current.name}, H: {hash(current)} Start {current.start}")
+                    self.bot.logger.info(f"DBG: M:{after.id} has started playing {current.name}, H: {capp_id} Start {current.start}")
             elif after.activity is None:
                 current = None
                 prior = before.activity
