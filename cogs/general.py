@@ -221,7 +221,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                 await ctx.send(f"""From {ctx.author.name}\n{text}""")
         await ctx.message.delete()
 
-    @commands.command(aliases=['nvidiadrivers'])
+    @commands.command(aliases=['nvidiadrivers', 'drovers'])
     async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send current NVidia Drivers Info."""
         text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [__*Non-US users may have GTX1080*__]
