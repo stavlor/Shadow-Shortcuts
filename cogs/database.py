@@ -1,4 +1,5 @@
 from discord.ext import commands
+import discord
 import asyncpg
 
 
@@ -69,6 +70,10 @@ class Database(commands.Cog):
         self.logger.info(f"SQL: {SQL}")
         await conn.execute(SQL)
         await conn.close()
+
+    async def process_member_update(self, before: discord.Member, after: discord.Member):
+        if before.actifities != after.activities:
+            self.bot.logger.info(f"DB debug: Activity change detected: Before:{before.activities} After: {after.activities}")
 
     async def re_apply_roles(self, member):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
