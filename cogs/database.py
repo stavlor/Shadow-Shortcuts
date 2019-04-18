@@ -75,6 +75,8 @@ class Database(commands.Cog):
         if before.activities != after.activities:
             if before.activities is None:
                 self.bot.logger.info("Activity Change: Prior: None New:{after.activities[0].type}")
+            elif after.activities is None:
+                self.bot.logger.info(f"Activity Change: Prior {before.activities[0].type} New: None")
             else:
                 self.bot.logger.info(f"Activity Change: Prior: {before.activities[0].type} New:{after.activities[0].type}")
             self.bot.logger.info(f"Activity_Detail P: {before.activities} A:{after.activities}")
