@@ -74,14 +74,15 @@ class Database(commands.Cog):
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         if before.activity != after.activity:
             if after.activity is None:
-                self.bot.logger.info(f"Member is no longer playing: {before.activity.name}")
-            elif (after.activity.type is "ActivityType.playing") and (before.activity.type is not "ActivityType.playing"):
-                self.bot.logger.info(f"Member: {after.name} is now playing {after.activity.name}")
+                self.bot.logger.info(f"Member {after.name} is no longer playing: {before.activity.name}")
             elif before.activity is None:
                 self.bot.logger.info(f"Member {after.name} Game Change, Prior none new {after.activity.name}")
+            elif (after.activity.type is "ActivityType.playing") and (before.activity.type is not "ActivityType.playing"):
+                self.bot.logger.info(f"Member: {after.name} is now playing {after.activity.name}")
+            elif before.activity.name == after.activity.name:
+                pass
             else:
                 self.bot.logger.info(f"Member {after.name} possible game change B:{before.activity.name} A:{after.activity.name}")
-
 
     async def re_apply_roles(self, member):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
