@@ -165,7 +165,7 @@ class Database(commands.Cog):
                         app_id = prior.application_id
                     else:
                         app_id = 0
-                    rec = self.find_database_record(app_id)
+                    rec = await self.find_database_record(app_id)
                     if rec is None:
                         pass
                     else:
