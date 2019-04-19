@@ -15,7 +15,7 @@ class Database(commands.Cog):
 
     async def get_pool(self):
         async with asyncpg.create_pool(host='localhost',user='stavlorkaralain_gmail_com', database='bot', password=self.bot.config.SQLPASS, min_size=10, max_size=50) as pool:
-            self.bot.dbpool = pool
+            self.bot.dbpool = await pool
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
