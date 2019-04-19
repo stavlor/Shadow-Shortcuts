@@ -9,7 +9,9 @@ class Database(commands.Cog):
         self.bot = bot
         bot.database = self
         bot.dblogger = bot.logging_root.getLogger("database")
-        bot.dbpool = asyncpg.create_pool(host='localhost',user='stavlorkaralain_gmail_com', database='bot', password=self.bot.config.SQLPASS, min_size=10, max_size=50)
+        bot.dbpool = await asyncpg.create_pool(host='localhost',user='stavlorkaralain_gmail_com', database='bot', password=self.bot.config.SQLPASS, min_size=10, max_size=50)
+        async with self.bot.dbpool.acquire() as con:
+            await con.fetch('SELECT 1')
         self.logger = bot.dblogger
         bot.logger.info("Initialized Database cog")
 
