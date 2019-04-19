@@ -97,7 +97,8 @@ class Database(commands.Cog):
             async with self.bot.dbpool.acquire() as connection:
                 await connection.execute(sql)
         except:
-            self.bot.logger.info(f"error encountered SQL: {sql})
+            self.bot.logger.info(f"error encountered SQL: {sql}")
+
 
 
     async def update_database_record(self, dataset):
