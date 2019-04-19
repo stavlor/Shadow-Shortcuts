@@ -49,8 +49,8 @@ class Database(commands.Cog):
             for attach in message.attachments:
                 attach_url += "<a href=\""+str(attach.url)+"\">Attachment</a> "
         rmessage = message.content
-        rmessage = rmessage.replace("'", "\'")
-        rmessage = rmessage.replace('"', '\"')
+        rmessage = rmessage.replace("'", "\\'")
+        rmessage = rmessage.replace('"', '\\"')
         sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user=str(message.author), message=rmessage, attachment_url=attach_url);
         self.logger.info("SQL: {sql}".format(sql=sqlstatement))
         async with self.bot.dbpool.acquire() as connection:
@@ -90,8 +90,8 @@ class Database(commands.Cog):
         elif dataset['id'] == 0:
             return
         title = dataset['title']
-        title = title.replace("'", "\'")
-        title = title.replace('"', '\"')
+        title = title.replace("'", "\\'")
+        title = title.replace('"', '\\"')
         sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{title}', '{dataset['players']}');"
         try:
             async with self.bot.dbpool.acquire() as connection:
