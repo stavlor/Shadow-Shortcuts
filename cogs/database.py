@@ -172,11 +172,14 @@ class Database(commands.Cog):
                         import datetime
                         now = datetime.datetime.now()
                         before = prior.start
-                        delta = before - now
-                        playtime = rec['time_played']
-                        if playtime is None:
-                            playtime = delta
-                        playtime += datetime.datetime(playtime) + delta
+                        if before is None:
+                            playtime = datetime.timedelta()
+                        else:
+                            delta = before - now
+                            playtime = rec['time_played']
+                            if playtime is None:
+                                playtime = delta
+                            playtime += datetime.datetime(playtime) + delta
                         dataset = dict()
                         dataset['id'] = capp_id
                         if dataset['id'] is None:
