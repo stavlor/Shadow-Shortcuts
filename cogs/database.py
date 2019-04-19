@@ -155,11 +155,11 @@ class Database(commands.Cog):
                 if hasattr(prior, 'application_id'):
                     papp_id = prior.application_id
                 else:
-                    papp_id = None
+                    papp_id = 0
                 if hasattr(current, 'application_id'):
                     capp_id = current.application_id
                 else:
-                    capp_id = None
+                    capp_id = 0
                 if current.type == "ActivityType.listening":
                     self.bot.logger.info(f"DBG SSW: M:{after.id} Spotify Song change: S:{current.title} Ar:{current.artist} Al: {current.album} TID:{current.track_id}")
                 elif current.type == "ActivityType.streaming":
@@ -170,11 +170,11 @@ class Database(commands.Cog):
                 if hasattr(prior, 'application_id'):
                     papp_id = prior.application_id
                 else:
-                    papp_id = None
+                    papp_id = 0
                 if hasattr(current, 'application_id'):
                     capp_id = current.application_id
                 else:
-                    capp_id = None
+                    capp_id = 0
                 if prior.type is "ActivityType.listening":
                     self.bot.logger.info(f"DBG S2G: M:{after.id} G: {current.name} AH: {current.application_id}")
                 else:
