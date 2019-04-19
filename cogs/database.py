@@ -180,7 +180,7 @@ class Database(commands.Cog):
                             if playtime is None:
                                 playtime = delta
                             elif isinstance(playtime, datetime.time):
-                                playtime = datetime.datetime.combine(datetime.date.min, playtime) - playtime
+                                playtime = datetime.timedelta(hours=playtime.hour, minutes=playtime.minute, seconds=playtime.second, microseconds=playtime.microsecond)
                             else:
                                 playtime += playtime + delta
                         dataset = dict()
