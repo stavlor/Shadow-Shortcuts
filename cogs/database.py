@@ -71,9 +71,34 @@ class Database(commands.Cog):
         await conn.execute(SQL)
         await conn.close()
 
+    async def find_database_record(self, hash):
+        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
+        sql = f"SELECT * from game_tracking WHERE app_id='{hash}' LIMIT 1;"
+        res = await conn.fetch(sql)
+        if len(res) != 0:
+            res = res.pop()
+        else:
+            return None
+        res = dict(res)
+        return res
+
+    async def create_database_record(self, dataset):
+        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
+        sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{dataset['title']}'), '{dataset['players']}');"
+        await conn.execute(sql)
+        await conn.close()
+
+    async def update_database_record(self, dataset):
+        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
+        sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
+        await conn.execute(sql)
+        await conn.close()
+
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         prior = None
         current = None
+        if after.guild.id != 460948857304383488:
+            return
         if before.activity != after.activity:
             prior = before.activity
             current = after.activity
@@ -93,6 +118,25 @@ class Database(commands.Cog):
                 elif current.type == "ActivityType.listening":
                     self.bot.logger.info(f"DBG: M:{after.id} has started listening to Spotify: S:{current.title} Ar:{current.artist} Al: {current.album} TID:{current.track_id}")
                 else:
+                    rec = await self.find_database_record(capp_id)
+                    if rec is None:
+                        dataset = dict()
+                        dataset['id'] = capp_id
+                        dataset['title'] = current.name
+                        dataset['players'] = list()
+                        dataset['players'].append(after.id)
+                        await self.create_database_record(dataset)
+                    else:
+                        import json, datetime
+                        dataset = dict()
+                        dataset['id'] = capp_id
+                        dataset['title'] = current.name
+                        dataset['players'] = json.loads(rec['players'])
+                        dataset['time_played'] = datetime.timedelta()
+                        if after.id not in dataset['players']:
+                            dataset['players'].append(after.id)
+                        dataset['players'] = json.dumps(dataset['players'])
+                        await self.update_database_record(dataset)
                     self.bot.logger.info(f"DBG: M:{after.id} has started playing {current.name}, H: {capp_id} Start {current.start}")
             elif after.activity is None:
                 current = None
@@ -134,9 +178,26 @@ class Database(commands.Cog):
                 if prior.type is "ActivityType.listening":
                     self.bot.logger.info(f"DBG S2G: M:{after.id} G: {current.name} AH: {current.application_id}")
                 else:
+                    rec = await self.find_database_record(capp_id)
+                    if rec is None:
+                        dataset = dict()
+                        dataset['id'] = capp_id
+                        dataset['title'] = current.name
+                        dataset['players'] = list()
+                        dataset['players'].append(after.id)
+                        await self.create_database_record(dataset)
+                    else:
+                        import json, datetime
+                        dataset = dict()
+                        dataset['id'] = capp_id
+                        dataset['title'] = current.name
+                        dataset['players'] = json.loads(rec['players'])
+                        dataset['time_played'] = datetime.timedelta()
+                        if after.id not in dataset['players']:
+                            dataset['players'].append(after.id)
+                        dataset['players'] = json.dumps(dataset['players'])
+                        await self.update_database_record(dataset)
                     self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{prior.name} A:{current.name} PH:{papp_id} AH: {capp_id}")
-
-
 
     async def re_apply_roles(self, member):
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
