@@ -93,8 +93,12 @@ class Database(commands.Cog):
         title = title.replace("'", "\'")
         title = title.replace('"', '\"')
         sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{title}', '{dataset['players']}');"
-        async with self.bot.dbpool.acquire() as connection:
-            await connection.execute(sql)
+        try:
+            async with self.bot.dbpool.acquire() as connection:
+                await connection.execute(sql)
+        except:
+            self.bot.logger.info(f"error encountered SQL: {sql})
+
 
     async def update_database_record(self, dataset):
         sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
@@ -176,7 +180,7 @@ class Database(commands.Cog):
                 elif current.type == "ActivityType.streaming":
                     self.bot.logger.info(f"DBG StrIG: M:{after.id} U:{current.url}")
                 else:
-                    self.bot.logger.info(f"DBG IGS: M:{after.id} Intra-game event G: {current.name} S:{current.start} E: {current.end} PH: {papp_id} AH: {capp_id}")
+                    pass
             else:
                 if hasattr(prior, 'application_id'):
                     papp_id = prior.application_id
