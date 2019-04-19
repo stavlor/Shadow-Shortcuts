@@ -9,6 +9,7 @@ class Database(commands.Cog):
         self.bot = bot
         bot.database = self
         bot.dblogger = bot.logging_root.getLogger("database")
+        bot.dbpool = asyncpg.create_pool(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS, min_size=10, max_size=50)
         self.logger = bot.dblogger
         bot.logger.info("Initialized Database cog")
 
@@ -40,7 +41,6 @@ class Database(commands.Cog):
         await ctx.message.delete()
 
     async def log_direct_messages(self, message):
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         attach_url = None
         if hasattr(message, 'attachments'):
             attach_url = str()
@@ -51,8 +51,8 @@ class Database(commands.Cog):
         rmessage = rmessage.replace('"', '\"')
         sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user=str(message.author), message=rmessage, attachment_url=attach_url);
         self.logger.info("SQL: {sql}".format(sql=sqlstatement))
-        await conn.execute(sqlstatement)
-        await conn.close()
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(sqlstatement)
 
     async def update_leaver_roles(self, member):
         role_list = list()
@@ -60,23 +60,21 @@ class Database(commands.Cog):
         if member.guild.id != 460948857304383488:
             self.bot.logger.info(f"Ignoring leaver not in our guild of interest {member.id} left guild {member.guild.id}.")
             return
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         if hasattr(member, 'roles'):
             for role in member.roles:
                 role_list.append(role.id)
         for item in role_list:
             role_str += f"{item},"
         SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{member.id}', '{role_str}') ON CONFLICT (discord_id) DO UPDATE SET roles='{role_str}';"
-        self.logger.info(f"SQL: {SQL}")
-        await conn.execute(SQL)
-        await conn.close()
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(SQL)
 
     async def find_database_record(self, hash):
         if hash is None:
             return None
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = f"SELECT * from game_tracking WHERE app_id='{hash}' LIMIT 1;"
-        res = await conn.fetch(sql)
+        async with self.bot.dbpool.acquire() as connection:
+            res = await connection.fetch(sql)
         if len(res) != 0:
             res = res.pop()
         else:
@@ -92,16 +90,14 @@ class Database(commands.Cog):
         title = dataset['title']
         title = title.replace("'", "\'")
         title = title.replace('"', '\"')
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{title}', '{dataset['players']}');"
-        await conn.execute(sql)
-        await conn.close()
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(sql)
 
     async def update_database_record(self, dataset):
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
-        await conn.execute(sql)
-        await conn.close()
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(sql)
 
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         prior = None
@@ -217,20 +213,19 @@ class Database(commands.Cog):
                     self.bot.logger.info(f"DBG G2G Swap M: {after.id} P:{prior.name} A:{current.name} PH:{papp_id} AH: {capp_id}")
 
     async def re_apply_roles(self, member):
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         roles = list()
         applied_roles = list()
         if member.guild.id != 460948857304383488:
             self.bot.logger.info(f"Ignoring leaver not in our guild of interest {member.id} left guild {member.guild.id}.")
             return
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
-        res = await conn.fetch(SQL)
+        async with self.bot.dbpool.acquire() as connection:
+            res = await connection.fetch(SQL)
         if len(res) != 0:
             res = res.pop()
         else:
             return
         res = dict(res)
-        await conn.close()
         if res is not None:
             roles = res['roles']
             self.bot.logger.info(f"User {member.id} Has prior roles, reapplying.Found roles: {roles}")
