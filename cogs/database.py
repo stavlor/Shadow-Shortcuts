@@ -179,7 +179,10 @@ class Database(commands.Cog):
                             playtime = rec['time_played']
                             if playtime is None:
                                 playtime = delta
-                            playtime += datetime.datetime(playtime) + delta
+                            elif isinstance(playtime, datetime.time):
+                                playtime = datetime.combine(datetime.date.min, playtime) - playtime
+                            else:
+                                playtime += playtime + delta
                         dataset = dict()
                         dataset['id'] = capp_id
                         if dataset['id'] is None:
