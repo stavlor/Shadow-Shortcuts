@@ -169,7 +169,7 @@ class Database(commands.Cog):
                     if rec is None:
                         pass
                     else:
-                        import datetime
+                        import datetime, json
                         now = datetime.datetime.now()
                         before = prior.start
                         if before is None:
@@ -187,7 +187,7 @@ class Database(commands.Cog):
                         dataset['id'] = app_id
                         if dataset['id'] is None:
                             dataset['id'] = 0
-                        dataset['title'] = current.name
+                        dataset['title'] = prior.name
                         dataset['players'] = json.loads(rec['players'])
                         dataset['time_played'] = datetime.timedelta()
                         if after.id not in dataset['players']:
