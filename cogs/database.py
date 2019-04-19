@@ -184,7 +184,7 @@ class Database(commands.Cog):
                             else:
                                 playtime += playtime + delta
                         dataset = dict()
-                        dataset['id'] = capp_id
+                        dataset['id'] = app_id
                         if dataset['id'] is None:
                             dataset['id'] = 0
                         dataset['title'] = current.name
