@@ -174,7 +174,9 @@ class Database(commands.Cog):
                         before = prior.start
                         delta = before - now
                         playtime = rec['time_played']
-                        playtime += playtime + delta
+                        if playtime is None:
+                            playtime = delta
+                        playtime += datetime.datetime(playtime) + delta
                         dataset = dict()
                         dataset['id'] = capp_id
                         if dataset['id'] is None:
