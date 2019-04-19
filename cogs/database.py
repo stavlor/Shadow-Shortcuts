@@ -1,6 +1,7 @@
 from discord.ext import commands
 import discord
 import asyncpg
+import asyncio
 
 
 class Database(commands.Cog):
@@ -9,7 +10,8 @@ class Database(commands.Cog):
         self.bot = bot
         bot.database = self
         bot.dblogger = bot.logging_root.getLogger("database")
-        bot.dbpool = asyncpg.create_pool(dsn=self.bot.config.SQLDSN, min_size=5, max_size=50, password=self.bot.config.SQLPASS)
+        loop = asyncio.get_event_loop()
+        bot.dbpool = loop.run_until_complete(asyncpg.create_pool(dsn=self.bot.config.SQLDSN, min_size=5, max_size=50, password=self.bot.config.SQLPASS))
         self.logger = bot.dblogger
         bot.logger.info("Initialized Database cog")
 
