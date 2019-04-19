@@ -122,6 +122,8 @@ class Database(commands.Cog):
                     if rec is None:
                         dataset = dict()
                         dataset['id'] = capp_id
+                        if dataset['id'] is None:
+                            dataset['id'] = 0
                         dataset['title'] = current.name
                         dataset['players'] = list()
                         dataset['players'].append(after.id)
@@ -130,6 +132,8 @@ class Database(commands.Cog):
                         import json, datetime
                         dataset = dict()
                         dataset['id'] = capp_id
+                        if dataset['id'] is None:
+                            dataset['id'] = 0
                         dataset['title'] = current.name
                         dataset['players'] = json.loads(rec['players'])
                         dataset['time_played'] = datetime.timedelta()
@@ -149,7 +153,7 @@ class Database(commands.Cog):
                     if hasattr(prior, 'application_id'):
                         app_id = prior.application_id
                     else:
-                        app_id = None
+                        app_id = 0
                     self.bot.logger.info(f"DBG: M:{after.id} has stopped playing {prior.name}, H: {app_id} Start:{prior.start} End: {prior.end}")
             elif before.name == after.name:
                 if hasattr(prior, 'application_id'):
@@ -182,6 +186,8 @@ class Database(commands.Cog):
                     if rec is None:
                         dataset = dict()
                         dataset['id'] = capp_id
+                        if dataset['id'] is None:
+                            dataset['id'] = 0
                         dataset['title'] = current.name
                         dataset['players'] = list()
                         dataset['players'].append(after.id)
@@ -190,6 +196,8 @@ class Database(commands.Cog):
                         import json, datetime
                         dataset = dict()
                         dataset['id'] = capp_id
+                        if dataset['id'] is None:
+                            dataset['id'] = 0
                         dataset['title'] = current.name
                         dataset['players'] = json.loads(rec['players'])
                         dataset['time_played'] = datetime.timedelta()
