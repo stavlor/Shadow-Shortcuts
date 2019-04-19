@@ -72,6 +72,8 @@ class Database(commands.Cog):
         await conn.close()
 
     async def find_database_record(self, hash):
+        if hash is None:
+            return None
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = f"SELECT * from game_tracking WHERE app_id='{hash}' LIMIT 1;"
         res = await conn.fetch(sql)
