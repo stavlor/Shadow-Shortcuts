@@ -89,8 +89,11 @@ class Database(commands.Cog):
             return
         elif dataset['id'] == 0:
             return
+        title = dataset['title']
+        title = title.replace("'", "\'")
+        title = title.replace('"', '\"')
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
-        sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{dataset['title']}', '{dataset['players']}');"
+        sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{title}', '{dataset['players']}');"
         await conn.execute(sql)
         await conn.close()
 
