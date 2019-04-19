@@ -87,7 +87,7 @@ class Database(commands.Cog):
     async def create_database_record(self, dataset):
         if dataset['id'] is None:
             return
-        elif dataset['id'] == '0':
+        elif dataset['id'] == 0:
             return
         conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{dataset['title']}', '{dataset['players']}');"
