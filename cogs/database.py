@@ -153,7 +153,6 @@ class Database(commands.Cog):
                             dataset['players'].append(after.id)
                         dataset['players'] = json.dumps(dataset['players'])
                         await self.update_database_record(dataset)
-                    self.bot.logger.info(f"DBG: M:{after.id} has started playing {current.name}, H: {capp_id} Start {current.start}")
             elif after.activity is None:
                 current = None
                 prior = before.activity
@@ -166,7 +165,27 @@ class Database(commands.Cog):
                         app_id = prior.application_id
                     else:
                         app_id = 0
-                    self.bot.logger.info(f"DBG: M:{after.id} has stopped playing {prior.name}, H: {app_id} Start:{prior.start} End: {prior.end}")
+                    rec = self.find_database_record(app_id)
+                    if rec is None:
+                        pass
+                    else:
+                        import datetime
+                        now = datetime.datetime.now()
+                        before = prior.start
+                        delta = before - now
+                        playtime = rec['time_played']
+                        playtime += playtime + delta
+                        dataset = dict()
+                        dataset['id'] = capp_id
+                        if dataset['id'] is None:
+                            dataset['id'] = 0
+                        dataset['title'] = current.name
+                        dataset['players'] = json.loads(rec['players'])
+                        dataset['time_played'] = datetime.timedelta()
+                        if after.id not in dataset['players']:
+                            dataset['players'].append(after.id)
+                        dataset['players'] = json.dumps(dataset['players'])
+                        await self.update_database_record(dataset)
             elif before.name == after.name:
                 if hasattr(prior, 'application_id'):
                     papp_id = prior.application_id
