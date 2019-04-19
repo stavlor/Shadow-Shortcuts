@@ -9,7 +9,7 @@ class Database(commands.Cog):
         self.bot = bot
         bot.database = self
         bot.dblogger = bot.logging_root.getLogger("database")
-        bot.dbpool = get_pool()
+        bot.dbpool = self.get_pool()
         self.logger = bot.dblogger
         bot.logger.info("Initialized Database cog")
 
