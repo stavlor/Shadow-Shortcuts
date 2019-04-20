@@ -85,21 +85,16 @@ class Database(commands.Cog):
         return res
 
     async def create_database_record(self, dataset):
+        import json
         if dataset['id'] is None:
             return
         elif dataset['id'] == 0:
             return
         title = dataset['title']
-        title = title.replace("'", "\\'")
-        title = title.replace('"', '\\"')
+        title = json.dumps(title)
         sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{title}', '{dataset['players']}');"
-        try:
-            async with self.bot.dbpool.acquire() as connection:
-                await connection.execute(sql)
-        except:
-            self.bot.logger.info(f"error encountered SQL: {sql}")
-
-
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(sql)
 
     async def update_database_record(self, dataset):
         sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
