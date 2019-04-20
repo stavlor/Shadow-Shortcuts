@@ -92,9 +92,9 @@ class Database(commands.Cog):
             return
         title = dataset['title']
         title = json.dumps(title)
-        sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ('{dataset['id']}', '{title}', '{dataset['players']}');"
+        sql = f"INSERT INTO game_tracking (app_id, title, players) VALUES ($1, $2, $3);"
         async with self.bot.dbpool.acquire() as connection:
-            await connection.execute(sql)
+            await connection.execute(sql, dataset['id'], title, dataset['players'])
 
     async def update_database_record(self, dataset):
         sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
