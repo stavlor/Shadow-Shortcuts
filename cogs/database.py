@@ -95,7 +95,6 @@ class Database(commands.Cog):
 
     async def update_database_record(self, dataset):
         sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
-        self.bot.logger.info(f"DBG UPD: {sql}")
         async with self.bot.dbpool.acquire() as connection:
             await connection.execute(sql)
 
@@ -237,7 +236,7 @@ class Database(commands.Cog):
                             dataset['id'] = 0
                         dataset['title'] = current.name
                         dataset['players'] = json.loads(rec['players'])
-                        dataset['time_played'] = datetime.timedelta()
+                        dataset['time_played'] = rec['time_played']
                         if after.id not in dataset['players']:
                             dataset['players'].append(after.id)
                         dataset['players'] = json.dumps(dataset['players'])
