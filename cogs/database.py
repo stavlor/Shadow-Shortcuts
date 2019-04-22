@@ -173,9 +173,6 @@ class Database(commands.Cog):
                             if playtime is None:
                                 playtime = delta
                                 self.bot.logger.info(f"DBG: None Playtime {playtime} D:{delta}")
-                            elif playtime == "0:00:00":
-                                playtime = delta
-                                self.bot.logger.info(f"DBG: C2 Playtime {playtime} D:{delta}")
                             elif isinstance(playtime, datetime.time):
                                 playtime = datetime.timedelta(hours=playtime.hour, minutes=playtime.minute, seconds=playtime.second, microseconds=playtime.microsecond)
                                 playtime += delta
