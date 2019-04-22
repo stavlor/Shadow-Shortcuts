@@ -94,7 +94,7 @@ class Database(commands.Cog):
             await connection.execute(sql, dataset['id'], title, json.dumps(dataset['players']))
 
     async def update_database_record(self, dataset):
-        sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['timeplayed']}' WHERE app_id='{dataset['id']}';"
+        sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
         async with self.bot.dbpool.acquire() as connection:
             await connection.execute(sql)
 
