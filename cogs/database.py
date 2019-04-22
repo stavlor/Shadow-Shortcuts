@@ -101,6 +101,7 @@ class Database(commands.Cog):
     async def process_member_update(self, before: discord.Member, after: discord.Member):
         prior = None
         current = None
+        import inspect
         if after.guild.id != 460948857304383488:
             return
         if before.activity != after.activity:
@@ -178,6 +179,7 @@ class Database(commands.Cog):
                                 playtime += delta
                                 self.bot.logger.info(f"DBG: is datetime.time Playtime {playtime} D:{delta}")
                             else:
+                                self.bot.logger.info(f"DBG E2 Playtime: {inspect.isclass(playtime)} {playtime}")
                                 playtime += delta
                                 self.bot.logger.info(f"DBG: Playtime E2 {playtime} D:{delta}")
                         dataset = dict()
