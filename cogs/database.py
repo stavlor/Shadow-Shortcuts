@@ -178,10 +178,7 @@ class Database(commands.Cog):
                                 playtime += delta
                                 self.bot.logger.info(f"DBG: is datetime.time Playtime {playtime} D:{delta}")
                             else:
-                                self.bot.logger.info(f"DBG E2 Playtime: {inspect.isclass(playtime)} {playtime}")
                                 playtime += delta
-                                sig = inspect.signature(playtime)
-                                self.bot.logger.info(f"DBG: Playtime E2 {playtime} S: {sig} D:{delta}")
                         dataset = dict()
                         dataset['id'] = app_id
                         if dataset['id'] is None:
