@@ -189,7 +189,7 @@ class Database(commands.Cog):
                             dataset['id'] = 0
                         dataset['title'] = prior.name
                         dataset['players'] = json.loads(rec['players'])
-                        dataset['time_played'] = datetime.timedelta()
+                        dataset['time_played'] = playtime
                         if after.id not in dataset['players']:
                             dataset['players'].append(after.id)
                         dataset['players'] = json.dumps(dataset['players'])
