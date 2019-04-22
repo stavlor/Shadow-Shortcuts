@@ -273,8 +273,8 @@ class Admin(commands.Cog):
         overwrite = discord.PermissionOverwrite()
         overwrite.read_messages = True
         overwrite.send_messages = True
-        if ctx.guild is not 460948857304383488:
-            ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
+        if ctx.guild.id is not 460948857304383488:
+            await ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
             return
         shadowers = ctx.guild.get_role(461298541978058769)
         channel = ctx.guild.get_channel(543131120355770378)
@@ -289,8 +289,8 @@ class Admin(commands.Cog):
         overwrite = discord.PermissionOverwrite()
         overwrite.read_messages = True
         overwrite.send_messages = False
-        if ctx.guild is not 460948857304383488:
-            ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
+        if ctx.guild.id is not 460948857304383488:
+            await ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
             return
         shadowers = ctx.guild.get_role(461298541978058769)
         channel = ctx.guild.get_channel(543131120355770378)
