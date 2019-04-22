@@ -48,13 +48,10 @@ class Database(commands.Cog):
             attach_url = str()
             for attach in message.attachments:
                 attach_url += "<a href=\""+str(attach.url)+"\">Attachment</a> "
-        rmessage = message.content
-        rmessage = rmessage.replace("'", "\\'")
-        rmessage = rmessage.replace('"', '\\"')
-        sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ('{user_id}', '{user}', '{message}', '{attachment_url}')".format(user_id=message.author.id, user=str(message.author), message=rmessage, attachment_url=attach_url);
+        sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ($1, $2, $3, $4)"
         self.logger.info("SQL: {sql}".format(sql=sqlstatement))
         async with self.bot.dbpool.acquire() as connection:
-            await connection.execute(sqlstatement)
+            await connection.execute(sqlstatement, message.author.id, message.author, message,content, attach_url)
 
     async def update_leaver_roles(self, member):
         role_list = list()
