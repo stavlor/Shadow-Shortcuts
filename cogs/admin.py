@@ -267,6 +267,38 @@ class Admin(commands.Cog):
             await ctx.message.delete()
             self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
 
+    @commands.command(aliases=['openth', 'closeth'])
+    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Moderators')
+    async def begin_town_hall(self, ctx):
+        overwrite = discord.PermissionOverwrite()
+        overwrite.read_messages = True
+        overwrite.send_messages = True
+        if ctx.guild is not 460948857304383488:
+            ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
+            return
+        shadowers = ctx.guild.get_role(461298541978058769)
+        channel = ctx.guild.get_channel(543131120355770378)
+        everyone = ctx.guild.default_role
+        await channel.set_permissions(everyone, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
+        await channel.set_permissions(shadowers, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
+        await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
+
+    @commands.command(aliases=['endth', 'closeth'])
+    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Moderators')
+    async def end_town_hall(self, ctx):
+        overwrite = discord.PermissionOverwrite()
+        overwrite.read_messages = True
+        overwrite.send_messages = False
+        if ctx.guild is not 460948857304383488:
+            ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
+            return
+        shadowers = ctx.guild.get_role(461298541978058769)
+        channel = ctx.guild.get_channel(543131120355770378)
+        everyone = ctx.guild.default_role
+        await channel.set_permissions(everyone, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
+        await channel.set_permissions(shadowers, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
+        await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
+
 
 def setup(bot):
     bot.add_cog(Admin(bot))
