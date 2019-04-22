@@ -166,7 +166,7 @@ class Database(commands.Cog):
                         before = prior.start
                         if before is None:
                             playtime = datetime.timedelta()
-                            self.bot.logger.info(f"DBG: Playtime {playtime} D:{delta}")
+                            self.bot.logger.info(f"DBG: Playtime {playtime}")
                         else:
                             delta = now - before
                             playtime = rec['time_played']
