@@ -95,7 +95,7 @@ class Database(commands.Cog):
 
     async def update_database_record(self, dataset):
         import datetime
-        time_played = (datetime.time(second=int(dataset['time_played'].total_seconds()))
+        time_played = (datetime.time(second=int(dataset['time_played'].total_seconds())))
         sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{time_played}' WHERE app_id='{dataset['id']}';"
         async with self.bot.dbpool.acquire() as connection:
             await connection.execute(sql)
