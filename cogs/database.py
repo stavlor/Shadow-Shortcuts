@@ -94,9 +94,12 @@ class Database(commands.Cog):
             await connection.execute(sql, dataset['id'], title, json.dumps(dataset['players']))
 
     async def update_database_record(self, dataset):
-        import time
-        time.strftime('%H:%M:%S', time.gmtime(dataset['time_played'].total_seconds()))
-        sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{dataset['time_played']}' WHERE app_id='{dataset['id']}';"
+        import time, datetime
+        if isinstance(dataset['time_played'], datetime.timedelta):
+            playtime=time.strftime('%H:%M:%S', time.gmtime(dataset['time_played'].total_seconds()))
+        else:
+            playtime=dataset['time_played']
+        sql = f"UPDATE game_tracking SET players='{dataset['players']}', time_played='{playtime}' WHERE app_id='{dataset['id']}';"
         async with self.bot.dbpool.acquire() as connection:
             await connection.execute(sql)
 
