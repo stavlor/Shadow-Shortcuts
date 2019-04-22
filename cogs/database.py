@@ -180,7 +180,7 @@ class Database(commands.Cog):
                                 self.bot.logger.info(f"DBG: is datetime.time Playtime {playtime} D:{delta}")
                             else:
                                 self.bot.logger.info(f"DBG E2 Playtime: {inspect.isclass(playtime)} {playtime}")
-                                if playtime == "0:00:00":
+                                if playtime == "00:00:00":
                                     playtime = datetime.timedelta()
                                 playtime += delta
                                 self.bot.logger.info(f"DBG: Playtime E2 {playtime} D:{delta}")
