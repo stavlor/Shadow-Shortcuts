@@ -301,7 +301,7 @@ class Admin(commands.Cog):
 
     @commands.command(aliases=['sayin'])
     @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Moderators')
-    async def say_in_channel(self, ctx, channel: discord.TextChannel, message: commands.Greedy[str]):
+    async def say_in_channel(self, ctx, channel: discord.TextChannel, message: str):
         await channel.send(message)
         await ctx.send(f"{ctx.author.mention} Completed")
 
