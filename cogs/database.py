@@ -172,16 +172,16 @@ class Database(commands.Cog):
                             playtime = rec['time_played']
                             if playtime is None:
                                 playtime = delta
-                                self.bot.logger.info(f"DBG: Playtime {playtime} D:{delta}")
+                                self.bot.logger.info(f"DBG: None Playtime {playtime} D:{delta}")
                             elif playtime == "0:00:00":
                                 playtime = delta
                                 self.bot.logger.info(f"DBG: C2 Playtime {playtime} D:{delta}")
                             elif isinstance(playtime, datetime.time):
                                 playtime = datetime.timedelta(hours=playtime.hour, minutes=playtime.minute, seconds=playtime.second, microseconds=playtime.microsecond)
-                                self.bot.logger.info(f"DBG: Playtime {playtime} D:{delta}")
+                                self.bot.logger.info(f"DBG: is datetime.time Playtime {playtime} D:{delta}")
                             else:
                                 playtime += playtime + delta
-                                self.bot.logger.info(f"DBG: Playtime {playtime} D:{delta}")
+                                self.bot.logger.info(f"DBG: Playtime E2 {playtime} D:{delta}")
                         dataset = dict()
                         dataset['id'] = app_id
                         if dataset['id'] is None:
