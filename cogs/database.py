@@ -51,7 +51,7 @@ class Database(commands.Cog):
         sqlstatement = "INSERT INTO pm_tracking (user_id, user_name, message, attachment_url) VALUES ($1, $2, $3, $4)"
         self.logger.info("SQL: {sql}".format(sql=sqlstatement))
         async with self.bot.dbpool.acquire() as connection:
-            await connection.execute(sqlstatement, message.author.id, message.author, message.content, attach_url)
+            await connection.execute(sqlstatement, message.author.id, str(message.author), str(message.content), str(attach_url))
 
     async def update_leaver_roles(self, member):
         role_list = list()
