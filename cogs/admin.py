@@ -267,7 +267,7 @@ class Admin(commands.Cog):
             await ctx.message.delete()
             self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
 
-    @commands.command(aliases=['openth', 'closeth'])
+    @commands.command(aliases=['openth', 'startth'])
     @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Moderators')
     async def begin_town_hall(self, ctx):
         overwrite = discord.PermissionOverwrite()
