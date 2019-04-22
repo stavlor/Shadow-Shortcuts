@@ -71,7 +71,7 @@ class Database(commands.Cog):
     async def find_database_record(self, hash):
         if hash is None:
             return None
-        sql = f"SELECT app_id, title, players, time_played::time from game_tracking WHERE app_id='{hash}' LIMIT 1;"
+        sql = f"SELECT app_id, title, players, time_played from game_tracking WHERE app_id='{hash}' LIMIT 1;"
         async with self.bot.dbpool.acquire() as connection:
             res = await connection.fetch(sql)
         if len(res) != 0:
@@ -164,11 +164,11 @@ class Database(commands.Cog):
                     else:
                         import datetime, json
                         now = datetime.datetime.now()
-                        before = prior.start
-                        if before is None:
+                        starttime = prior.start
+                        if starttime is None:
                             playtime = rec['time_played']
                         else:
-                            delta = now - before
+                            delta = now - starttime
                             playtime = rec['time_played']
                             if playtime is None:
                                 playtime = delta
