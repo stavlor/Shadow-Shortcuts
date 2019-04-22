@@ -300,11 +300,11 @@ class Admin(commands.Cog):
         await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
 
     @commands.command(aliases=['sayin'])
-    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Moderators'):
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Moderators')
     async def say_in_channel(self, ctx, channel: discord.TextChannel, message: commands.Greedy[str]):
         await channel.send(message)
         await ctx.send(f"{ctx.author.mention} Completed")
-        
+
 
 def setup(bot):
     bot.add_cog(Admin(bot))
