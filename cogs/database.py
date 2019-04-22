@@ -178,9 +178,10 @@ class Database(commands.Cog):
                                 self.bot.logger.info(f"DBG: C2 Playtime {playtime} D:{delta}")
                             elif isinstance(playtime, datetime.time):
                                 playtime = datetime.timedelta(hours=playtime.hour, minutes=playtime.minute, seconds=playtime.second, microseconds=playtime.microsecond)
+                                playtime += delta
                                 self.bot.logger.info(f"DBG: is datetime.time Playtime {playtime} D:{delta}")
                             else:
-                                playtime += playtime + delta
+                                playtime += delta
                                 self.bot.logger.info(f"DBG: Playtime E2 {playtime} D:{delta}")
                         dataset = dict()
                         dataset['id'] = app_id
