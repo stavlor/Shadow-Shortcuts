@@ -59,6 +59,11 @@ class Events(commands.Cog):
             role_names = message.author.roles
         if message.author.id == self.bot.user.id:
             return
+        elif hasattr(message, 'role_mentions'):
+            if message.role_mentions == '':
+                pass
+            elif not self.bot.admin.can_run_command(message.author.roles):
+                await message.channel.send(f"{message.author.mention}, Please don't mass tag unless there is an emergency, it will simply result in annoying folks who are attempting to help.")
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
