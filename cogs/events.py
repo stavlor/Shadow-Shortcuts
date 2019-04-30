@@ -60,7 +60,7 @@ class Events(commands.Cog):
         if message.author.id == self.bot.user.id:
             return
         elif hasattr(message, 'role_mentions'):
-            if message.role_mentions == '':
+            if message.role_mentions == list():
                 pass
             elif not await self.bot.admin.can_run_command(role_names):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
