@@ -59,10 +59,8 @@ class Events(commands.Cog):
             role_names = message.author.roles
         if message.author.id == self.bot.user.id:
             return
-        elif hasattr(message, 'role_mentions'):
-            if message.role_mentions == list():
-                pass
-            elif not await self.bot.admin.can_run_command(role_names):
+        elif message.role_mentions != list()
+            if not await self.bot.admin.can_run_command(role_names):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
