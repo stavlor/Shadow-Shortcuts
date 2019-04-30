@@ -59,7 +59,7 @@ class Events(commands.Cog):
             role_names = message.author.roles
         if message.author.id == self.bot.user.id:
             return
-        elif message.role_mentions != list()
+        elif message.role_mentions != list():
             if not await self.bot.admin.can_run_command(role_names):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
         elif "good bot" in message.content.lower():
