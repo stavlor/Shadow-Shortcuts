@@ -183,7 +183,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     NORTH AMERICA
     Midwest DC(Chicago): <http://www.speedtest.net/server/14489>
     Central DC(Texas): <http://www.speedtest.net/server/12190>
-    East DC(NY): <http://www.speedtest.net/server/22774>
+    East DC(NY): <http://www.speedtest.net/server/14855>
     West DC(CA): <http://www.speedtest.net/server/11599>""".format(author=ctx.author, user=user.mention))
             else:
                 await ctx.send("""From {author.name}\nSpeedtest.net links
