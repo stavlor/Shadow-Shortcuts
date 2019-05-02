@@ -174,31 +174,23 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     @commands.command(description="Speedtest-Links")
     async def speedtest(self, ctx, user: typing.Optional[discord.Member] = None):
         """Speedtest Links"""
+        text = """Speedtest.net links
+    NORTH AMERICA
+    Midwest DC(Chicago): <http://www.speedtest.net/server/14489>
+    Central DC(Texas): <http://www.speedtest.net/server/12190>
+    East DC(NY): <http://www.speedtest.net/server/14855>
+    West DC(CA): <http://www.speedtest.net/server/11599>"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Speedtest command received from {author.name} with argument of {user}".format(
                 author=ctx.message.author,
                 user=user))
             if user is not None:
-                await ctx.send("""From {author.name}\n{user} Speedtest.net links
-    NORTH AMERICA
-    Midwest DC(Chicago): <http://www.speedtest.net/server/14489>
-    Central DC(Texas): <http://www.speedtest.net/server/12190>
-    East DC(NY): <http://www.speedtest.net/server/14855>
-    West DC(CA): <http://www.speedtest.net/server/11599>""".format(author=ctx.author, user=user.mention))
+                await ctx.send(f"From {ctx.author.name}\n{user.mention}\n{text}")
             else:
-                await ctx.send("""From {author.name}\nSpeedtest.net links
-                NORTH AMERICA
-                Midwest DC(Chicago): <http://www.speedtest.net/server/14489>
-                Central DC(Texas): <http://www.speedtest.net/server/12190>
-                East DC(NY): <http://www.speedtest.net/server/22774>
-                West DC(CA): <http://www.speedtest.net/server/11599>""".format(author=ctx.author))
+                await ctx.send(f"From {ctx.author.name}\n{text}")
+
         else:
-            await ctx.author.send("""{user} Speedtest.net links
-    NORTH AMERICA
-    Midwest DC(Chicago): <http://www.speedtest.net/server/14489>
-    Central DC(Texas): <http://www.speedtest.net/server/12190>
-    East DC(NY): <http://www.speedtest.net/server/22774>
-    West DC(CA): <http://www.speedtest.net/server/11599>""".format(user=ctx.author.mention))
+            await ctx.author.send(f"{ctx.author.mention}\n{text}")
             self.bot.logger.info("Speedtest command received from unauthorized user {author.name}, replied via PM. ".format(
                 author=ctx.message.author,
                 user=user))
