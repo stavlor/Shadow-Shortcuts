@@ -23,10 +23,9 @@ class Database(commands.Cog):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return
         self.logger.info("SQL: {sql}".format(sql=str(arguments)))
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = str(arguments)
-        await conn.execute(sql)
-        await conn.close()
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(sql)
 
     @commands.command(aliases=['cleanpms'])
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
@@ -34,11 +33,10 @@ class Database(commands.Cog):
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return
-        conn = await asyncpg.connect(dsn=self.bot.config.SQLDSN, password=self.bot.config.SQLPASS)
         sql = 'TRUNCATE pm_tracking;'
         self.logger.info(f"PM Tracking cleared by {ctx.author.name} --")
-        await conn.execute(sql)
-        await conn.close()
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(sql)
         await ctx.send(f"{ctx.author.mention} PMs have been cleared.")
         await ctx.message.delete()
 
