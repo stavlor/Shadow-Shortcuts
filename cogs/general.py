@@ -125,47 +125,34 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     @commands.command(description="microphone fix", aliases=['mic', 'micguide'])
     async def micfix(self, ctx, user: typing.Optional[discord.Member] = None):
         """Microphone fix information."""
+        text = """To get your microphone working in Shadow please follow this guide: https://wiki.shadow.pink/index.php/Using_a_Microphone"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Mic Fix command received from {author.name} with argument of {user}".format(author=ctx.message.author,
                                                                                              user=user))
             if user is not None:
-                await ctx.send(
-                    "From: {author.name}\n{user.mention} To get your microphone working in Shadow please follow this guide: "
-                    "https://wiki.shadow.pink/index.php/Using_a_Microphone".format(author=ctx.author,
-                                                                                   user=user))
+                await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
             else:
-                await ctx.send(
-                    "From: {author.name}\nTo get your microphone working in Shadow please follow this guide: "
-                    "https://wiki.shadow.pink/index.php/Using_a_Microphone".format(author=ctx.author,
-                                                                                   user=user))
+                await ctx.send(f"From: {ctx.author.name}\n{text}")
         else:
-            self.bot.logger.info("Mic Fix command received from unauthorized user {author.name}, replied via PM. ".format(
-                author=ctx.author,
-                user=user))
-            await ctx.author.send("""{user} To get your microphone working in Shadow please follow this guide: "
-                          "https://wiki.shadow.pink/index.php/Using_a_Microphone""".format(user=ctx.author.mention))
+            self.bot.logger.info(f"Mic Fix command received from unauthorized user {ctx.author.name}, replied via PM. ")
+            await ctx.author.send(f"""{ctx.author.mention} {text}""")
         await ctx.message.delete()
 
     @commands.command(aliases=['latency', 'inputlag'])
     async def lag(self, ctx, user: typing.Optional[discord.Member] = None):
         """Input lag/Latency Information"""
+        text = """Common steps for fixing input latency http://core.stavlor.net/inputlag.png"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Latency command received from {author.name} with argument of {user}".format(author=ctx.message.author,
                                                                                              user=user))
             if user is not None:
-                await ctx.send(
-                    """From {author.name}\n{user} Common steps for fixing input latency http://core.stavlor.net/inputlag.png""".format(
-                        author=ctx.author, user=user.mention))
+                await ctx.send(f"""From {ctx.author.name}\n{user.mention} {text}""")
             else:
-                await ctx.send(
-                    """From {author.name}\nCommon steps for fixing input latency http://core.stavlor.net/inputlag.png""".format(
-                        author=ctx.author))
+                await ctx.send(f"""From {ctx.author.name}\n{text}""")
         else:
-            await ctx.author.send(
-                """{user} Common steps for fixing input latency http://core.stavlor.net/inputlag.png""".format(
-                    user=ctx.author.mention))
+            await ctx.author.send(f"""{ctx.author.mention} {text}""")
             self.bot.logger.info("Latency command received from unauthorized user {author.name}, replied via PM. ".format(
                 author=ctx.author,
                 user=user))
