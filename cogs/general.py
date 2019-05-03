@@ -528,6 +528,9 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command()
+    async def cake(self, ctx):
+        await ctx.message.add_reaction("🍰")
 
 def setup(bot):
     bot.add_cog(General(bot))
