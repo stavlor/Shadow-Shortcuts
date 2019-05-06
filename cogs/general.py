@@ -204,10 +204,11 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send current NVidia Drivers Info."""
         text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [__*Non-US users may have GTX1080*__]
-          - Stable Drivers *(**Recommended**)*:  <https://www.nvidia.com/Download/driverResults.aspx/146249/en-us>
-          - Vulkan Drivers *(**Optional**)*: <https://developer.nvidia.com/vulkan-beta-42542-windows-10>
+          - Stable Drivers *(**Recommended**)*:  <https://www.nvidia.com/download/driverResults.aspx/145259/en-us>
+          - Vulkan Drivers *(**Optional**)*: <https://developer.nvidia.com/vulkan-beta-41962-windows-10>
 
         **Notes:**
+          - ** BUG ** Do not use Nvidia Drivers 430.xx or 425.xx(except 430.52) 
           - Vulkan drivers will generally have the best performance but may have issues.
           - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
