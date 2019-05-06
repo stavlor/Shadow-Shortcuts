@@ -42,6 +42,12 @@ class Admin(commands.Cog):
 
     @commands.command(hidden=True)
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    async def logout(self, ctx):
+        await ctx.send(f"{ctx.author.mention} begining bot shutdown..")
+        await self.bot.logout()
+
+    @commands.command(hidden=True)
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def unload(self, ctx, *, module):
         """Unloads a module."""
         if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
