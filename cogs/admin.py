@@ -211,6 +211,7 @@ class Admin(commands.Cog):
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
+        import datetime
         if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
             await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
@@ -224,9 +225,12 @@ class Admin(commands.Cog):
             for role in users.roles:
                 rolelist += f"{role.name}({role.id}) "
             paginator.add_line(f"Has roles: {rolelist}")
+            now = datetime.datetime.now()
+            joined_delta = now - users.joined_at
+            createdat_delta = now - users.created_at
             joinedat = users.joined_at.strftime('%Y-%m-%d %H:%M:%S')
             createdat = users.created_at.strftime('%Y-%m-%d %H:%M:%S')
-            paginator.add_line(f"Joined on: {joinedat}\tCreated at: {createdat}")
+            paginator.add_line(f"Joined on: {joinedat} {joined_delta}\tCreated at: {createdat} {createdat_delta}")
             paginator.add_line(f"Status: {users.status}\tActivity: {users.activity}")
             for page in paginator.pages:
                 await ctx.send(page)
