@@ -231,7 +231,7 @@ class Admin(commands.Cog):
             createdat_delta = now - users.created_at
             joinedat = users.joined_at.strftime('%Y-%m-%d %H:%M:%S')
             createdat = users.created_at.strftime('%Y-%m-%d %H:%M:%S')
-            mobile = await users.is_on_mobile()
+            mobile = users.is_on_mobile()
             paginator.add_line(f"Joined on: {joinedat} ({joined_delta})\nCreated at: {createdat} ({createdat_delta})")
             paginator.add_line(f"Status: {users.status}\tActivity: {users.activity}\tOn Mobile:{mobile}")
             profile = await users.profile()
