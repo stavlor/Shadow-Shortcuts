@@ -208,7 +208,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
           - Vulkan Drivers *(**Optional**)*: <https://developer.nvidia.com/vulkan-beta-41962-windows-10>
 
         **Notes:**
-          - ** BUG ** Do not use Nvidia Drivers 430.xx or 425.xx(Drivers prior to 430.52 have a critical CPU usage flaw 430.62 is recommended.) 
+          - ** BUG ** Do not use Nvidia Drivers 430.xx or 425.xx(Drivers prior to 430.52 have a critical CPU usage flaw 430.64 is recommended.) 
           - Vulkan drivers will generally have the best performance but may have issues.
           - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
