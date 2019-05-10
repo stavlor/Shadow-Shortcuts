@@ -219,19 +219,22 @@ class Admin(commands.Cog):
             await ctx.send(
                 f"{ctx.author.mention} Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
         for users in user:
-            paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
+            paginator = discord.ext.commands.Paginator(prefix='```', suffix='```')
             paginator.add_line(f"User-ID: {users.id}\tUsername+discriminator: {users}\tDisplay name: {users.display_name}")
             rolelist = ""
             for role in users.roles:
                 rolelist += f"{role.name}({role.id}) "
+            paginator.add_line(f"Top role: {users.top_role}")
             paginator.add_line(f"Has roles: {rolelist}")
             now = datetime.datetime.now()
             joined_delta = now - users.joined_at
             createdat_delta = now - users.created_at
             joinedat = users.joined_at.strftime('%Y-%m-%d %H:%M:%S')
             createdat = users.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            mobile = await users.is_on_mobile()
             paginator.add_line(f"Joined on: {joinedat} ({joined_delta})\nCreated at: {createdat} ({createdat_delta})")
-            paginator.add_line(f"Status: {users.status}\tActivity: {users.activity}")
+            paginator.add_line(f"Status: {users.status}\tActivity: {users.activity}\tOn Mobile:{mobile}")
+            profile = await users.profile()
             for page in paginator.pages:
                 await ctx.send(page)
 
