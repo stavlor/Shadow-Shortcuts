@@ -234,7 +234,6 @@ class Admin(commands.Cog):
             mobile = users.is_on_mobile()
             paginator.add_line(f"Joined on: {joinedat} ({joined_delta})\nCreated at: {createdat} ({createdat_delta})")
             paginator.add_line(f"Status: {users.status}\tActivity: {users.activity}\tOn Mobile:{mobile}")
-            profile = await users.profile()
             for page in paginator.pages:
                 await ctx.send(page)
 
