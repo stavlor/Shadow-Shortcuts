@@ -205,11 +205,9 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         """Send current NVidia Drivers Info."""
         text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [__*Non-US users may have GTX1080*__]
           - Stable Drivers *(**Recommended**)*:  <https://www.nvidia.com/Download/driverResults.aspx/147471/en-us>
-          - Vulkan Drivers *(**Optional**)*: <https://developer.nvidia.com/vulkan-beta-41962-windows-10>
 
         **Notes:**
-          - ** BUG ** Do not use Nvidia Drivers 430.xx or 425.xx(Drivers prior to 430.52 have a critical CPU usage flaw 430.64 is recommended.) 
-          - Vulkan drivers will generally have the best performance but may have issues.
+          - If running NVidia Drivers prior to 430.64 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
           - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
           - GeForce Experience is not recommended as all it can do is give you the latest stable driver which is already linked above. Game settings recommendations do not work, and GameStream and broadcast functions will break your streamer and prevent connection to your Shadow."""
@@ -292,9 +290,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
         
         **Mac**
         - Mac OS 10.10 Yosemite or above
-        - Mac device from 2012 or more recent
-        
-        *** CPU Family support diagram: *** http://core.stavlor.net/cpu_decode_support.png"""
+        - Mac device from 2012 or more recent"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
@@ -339,13 +335,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     async def keys(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Keybinding information"""
         self.bot.logger.info(f"Processed keys command for {ctx.author.name} with parameter {user}.")
-        text = """:keyboard: Stable Hotkeys
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **S** = Restart Streaming
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **F** = Toggle Fullscreen
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **G** = Toggle Mouse lock/Gamer Mode
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **Q** = Quit Application
-
-:keyboard: Beta Hotkeys
+        text = """:keyboard: Hotkeys
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen"""
