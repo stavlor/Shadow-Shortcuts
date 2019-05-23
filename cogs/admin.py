@@ -207,8 +207,8 @@ class Admin(commands.Cog):
             if stderr:
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
-    @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.command(aliases=['ui', 'uinfo'])
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin', 'Shadow Staff', 'Shdadow Customer Support')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
         import datetime
@@ -219,23 +219,41 @@ class Admin(commands.Cog):
             await ctx.send(
                 f"{ctx.author.mention} Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
         for users in user:
-            paginator = discord.ext.commands.Paginator(prefix='```css', suffix='```')
-            paginator.add_line(f"User-ID: {users.id}\tUsername+discriminator: {users}\tDisplay name: {users.display_name}")
+            if users.avatar_url_as(static_format='png')[54:].startswith('a_'):
+                avi = users.avatar_url.rsplit("?", 1)[0]
+            else:
+                avi = users.avatar_url_as(static_format='png')
+            em = discord.Embed(timestamp=ctx.message.created_at, colour=0x708DD0)
+            if isinstance(user, discord.Member):
+                role = user.top_role.name
+                if role == "@everyone":
+                    role = "N/A"
+            voice_state = None if not users.voice else users.voice.channel
+            em.add_field(name='Nick', value=users.nick, inline=True)
+            em.add_field(name='User ID', value=users.id, inline=True)
+            em.add_field(name='Status', value=users.status, inline=True)
+            em.add_field(name='In Voice', value=voice_state, inline=True)
+            em.add_field(name='Activity', value=users.activity, inline=True)
+            em.add_field(name='Highest Role', value=role, inline=True)
             rolelist = ""
             for role in users.roles:
-                rolelist += f"{role.name}({role.id}) "
-            paginator.add_line(f"Top role: {users.top_role}")
-            paginator.add_line(f"Has roles: {rolelist}")
+                rolelist += f"{role.name}"
+            em.add_field(name='Roles', value=rolelist, inline=True)
+
             now = datetime.datetime.now()
             joined_delta = now - users.joined_at
             createdat_delta = now - users.created_at
-            joinedat = users.joined_at.strftime('%Y-%m-%d %H:%M:%S')
-            createdat = users.created_at.strftime('%Y-%m-%d %H:%M:%S')
+            joinedat = users.joined_at.__format__('%A, %d. %B %Y @ %H:%M:%S')
+            createdat = users.created_at.__format__('%A, %d. %B %Y @ %H:%M:%S')
+            created_str = f"{createdat} {createdat_delta}"
+            joined_str = f"{joinedat} {joined_delta}"
             mobile = users.is_on_mobile()
-            paginator.add_line(f"Joined on: {joinedat} ({joined_delta})\nCreated at: {createdat} ({createdat_delta})")
-            paginator.add_line(f"Status: {users.status}\tActivity: {users.activity}\tOn Mobile:{mobile}")
-            for page in paginator.pages:
-                await ctx.send(page)
+            em.add_field(name='Joined at', value=joined_str, inline=True)
+            em.add_field(name='Created at', value=created_str, inline=True)
+            em.add_field(name='Mobile', value=mobile, inline=True)
+            em.set_thumbnail(url=avi)
+            em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
+            await ctx.send(embed=em)
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
