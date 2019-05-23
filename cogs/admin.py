@@ -228,11 +228,9 @@ class Admin(commands.Cog):
                 role = user.top_role.name
                 if role == "@everyone":
                     role = "N/A"
-            voice_state = None if not users.voice else users.voice.channel
             em.add_field(name='Nick', value=users.nick, inline=True)
             em.add_field(name='User ID', value=users.id, inline=True)
             em.add_field(name='Status', value=users.status, inline=True)
-            em.add_field(name='In Voice', value=voice_state, inline=True)
             em.add_field(name='Activity', value=users.activity, inline=True)
             em.add_field(name='Highest Role', value=role, inline=True)
             rolelist = ""
