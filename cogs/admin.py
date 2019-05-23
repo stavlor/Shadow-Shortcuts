@@ -243,8 +243,8 @@ class Admin(commands.Cog):
             now = datetime.datetime.now()
             joined_delta = now - users.joined_at
             createdat_delta = now - users.created_at
-            joinedat = users.joined_at.__format__('%A, %d. %B %Y @ %H:%M:%S')
-            createdat = users.created_at.__format__('%A, %d. %B %Y @ %H:%M:%S')
+            joinedat = users.joined_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
+            createdat = users.created_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
             created_str = f"{createdat} {createdat_delta}"
             joined_str = f"{joinedat} {joined_delta}"
             mobile = users.is_on_mobile()
