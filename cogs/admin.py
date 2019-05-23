@@ -221,8 +221,8 @@ class Admin(commands.Cog):
         for users in user:
             avi = users.avatar_url_as(static_format='png')
             em = discord.Embed(timestamp=ctx.message.created_at, colour=0x708DD0)
-            if isinstance(user, discord.Member):
-                role = user.top_role.name
+            if isinstance(users, discord.Member):
+                role = users.top_role.name
                 if role == "@everyone":
                     role = "N/A"
             em.add_field(name='Nick', value=users.nick, inline=True)
