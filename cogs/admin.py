@@ -219,10 +219,7 @@ class Admin(commands.Cog):
             await ctx.send(
                 f"{ctx.author.mention} Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
         for users in user:
-            if users.avatar_url_as(static_format='png')[54:].startswith('a_'):
-                avi = users.avatar_url.rsplit("?", 1)[0]
-            else:
-                avi = users.avatar_url_as(static_format='png')
+            avi = users.avatar_url_as(static_format='png')
             em = discord.Embed(timestamp=ctx.message.created_at, colour=0x708DD0)
             if isinstance(user, discord.Member):
                 role = user.top_role.name
