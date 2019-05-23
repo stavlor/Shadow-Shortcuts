@@ -230,9 +230,13 @@ class Admin(commands.Cog):
             em.add_field(name='Status', value=users.status, inline=True)
             em.add_field(name='Activity', value=users.activity, inline=True)
             em.add_field(name='Highest Role', value=role, inline=True)
+            voice_state = None if not users.voice else users.voice.channel
+            em.add_field(name='In Voice', value=voice_state, inline=True)
             rolelist = ""
             for role in users.roles:
-                rolelist += f"{role.name}"
+                if role == "@everyone":
+                    continue
+                rolelist += f"{role.name}, "
             em.add_field(name='Roles', value=rolelist, inline=True)
 
             now = datetime.datetime.now()
@@ -240,8 +244,8 @@ class Admin(commands.Cog):
             createdat_delta = now - users.created_at
             joinedat = users.joined_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
             createdat = users.created_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
-            created_str = f"{createdat} {createdat_delta}"
-            joined_str = f"{joinedat} {joined_delta}"
+            created_str = f"{createdat} ({createdat_delta})"
+            joined_str = f"{joinedat} ({joined_delta})"
             mobile = users.is_on_mobile()
             em.add_field(name='Joined at', value=joined_str, inline=True)
             em.add_field(name='Created at', value=created_str, inline=True)
