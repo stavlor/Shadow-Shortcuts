@@ -364,7 +364,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
                 - If your IP begins with **85.190.** you are on the **France** datacenter
             - **North America**
                 - If your IP begins with **170.249.[92-95]** you are on the **California** datacenter
-                - If your IP begins with **162.213.** you are on the **New York** datacenter
+                - If your IP begins with **162.213.[48-55].** you are on the **New York** datacenter
                 - If your IP begins with **216.180.[128-135]** you are on the **Texas** datacenter
                 - If your IP begins with **216.180.[136-143]** you are on the **Chicago** datacenter"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
