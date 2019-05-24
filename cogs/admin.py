@@ -230,6 +230,7 @@ class Admin(commands.Cog):
             em.add_field(name='Status', value=users.status, inline=True)
             em.add_field(name='Activity', value=users.activity, inline=True)
             em.add_field(name='Highest Role', value=role, inline=True)
+            voice_state = None
             voice_state = None if not users.voice else users.voice.channel
             em.add_field(name='In Voice', value=voice_state, inline=True)
             rolelist = ""
@@ -257,7 +258,6 @@ class Admin(commands.Cog):
             em.add_field(name='Joined at', value=joined_str, inline=True)
             em.add_field(name='Created at', value=created_str, inline=True)
             em.add_field(name='Mobile', value=mobile, inline=True)
-            em.add_field(name="Last 5 Messages", value=message_history, inline=True)
             em.set_thumbnail(url=avi)
             em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
             await ctx.send(embed=em)
