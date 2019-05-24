@@ -241,7 +241,7 @@ class Admin(commands.Cog):
                 else:
                     rolelist += f"{role.name}"
             message_history = ""
-            last_5 = await users.history(limit=5).flatten()
+            last_5 = await users.history(limit=5, oldest_first=False).flatten()
             for item in last_5:
                 created_time = item.created_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
                 message_history += f"{item.content} in {item.channel} at {created_time}"
