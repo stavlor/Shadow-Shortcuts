@@ -234,9 +234,12 @@ class Admin(commands.Cog):
             em.add_field(name='In Voice', value=voice_state, inline=True)
             rolelist = ""
             for role in users.roles:
-                if role == "@everyone":
+                if role.name == "@everyone":
                     continue
-                rolelist += f"{role.name}, "
+                if rolelist is not "":
+                    rolelist += f", {role.name}"
+                else:
+                    rolelist += f"{role.name}"
             em.add_field(name='Roles', value=rolelist, inline=True)
 
             now = datetime.datetime.now()
