@@ -240,8 +240,12 @@ class Admin(commands.Cog):
                     rolelist += f", {role.name}"
                 else:
                     rolelist += f"{role.name}"
+            message_history = ""
+            last_5 = await users.history(limit=5).flatten()
+            for item in last_5:
+                created_time = item.created_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
+                message_history += f"{item.content} in {item.channel} at {created_time}"
             em.add_field(name='Roles', value=rolelist, inline=True)
-
             now = datetime.datetime.now()
             joined_delta = now - users.joined_at
             createdat_delta = now - users.created_at
@@ -253,6 +257,7 @@ class Admin(commands.Cog):
             em.add_field(name='Joined at', value=joined_str, inline=True)
             em.add_field(name='Created at', value=created_str, inline=True)
             em.add_field(name='Mobile', value=mobile, inline=True)
+            em.add_field(name="Last 5 Messages", value=message_history, inline=True)
             em.set_thumbnail(url=avi)
             em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
             await ctx.send(embed=em)
