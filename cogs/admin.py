@@ -234,8 +234,6 @@ class Admin(commands.Cog):
             em.add_field(name='In Voice', value=str(voice_state), inline=True)
             rolelist = ""
             for role in users.roles:
-                if role.name == "@everyone":
-                    continue
                 if rolelist is not "":
                     rolelist += f", {role.name}"
                 else:
