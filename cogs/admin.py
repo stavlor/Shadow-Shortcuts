@@ -223,6 +223,8 @@ class Admin(commands.Cog):
             em = discord.Embed(timestamp=ctx.message.created_at, colour=0x708DD0)
             if isinstance(users, discord.Member):
                 role = users.top_role.name
+            if role == '@everyone':
+                role = "N/A"
             em.add_field(name='Nick', value=users.nick, inline=True)
             em.add_field(name='User ID', value=users.id, inline=True)
             em.add_field(name='Status', value=users.status, inline=True)
