@@ -268,7 +268,6 @@ class Admin(commands.Cog):
             em.add_field(name='Joined at', value=joined_str, inline=True)
             em.add_field(name='Created at', value=created_str, inline=True)
             em.add_field(name='Mobile', value=mobile, inline=True)
-            em.add_field(name='Recent Message history:', value=, inline=True)
             message_history = await self.find_message_history(users, ctx.guild, 10)
             em.add_field(name='Recent message history:', value=message_history, inline=True)
             em.set_thumbnail(url=avi)
