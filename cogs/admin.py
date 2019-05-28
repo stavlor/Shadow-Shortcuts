@@ -211,10 +211,13 @@ class Admin(commands.Cog):
         import queue
         messages = queue.Queue(maxsize=message_count)
         for channel in guild.text_channels:
-            async for message in channel.history(limit=300):
-                if message.author == user:
-                    if not messages.full():
-                        messages.put(message)
+            try:
+                async for message in channel.history(limit=300):
+                    if message.author == user:
+                        if not messages.full():
+                            messages.put(message)
+            except:
+                continue
         return messages
 
 
@@ -261,8 +264,9 @@ class Admin(commands.Cog):
             em.add_field(name='Joined at', value=joined_str, inline=True)
             em.add_field(name='Created at', value=created_str, inline=True)
             em.add_field(name='Mobile', value=mobile, inline=True)
+            em.add_field(name='Recent Message history:', value=, inline=True)
             message_history = await self.find_message_history(users, ctx.guild, 10)
-            em.add_field(name='Recent Message history:', value=message_history, inline=True)
+            em.add_field(name='Recent message history:', value=message_history, inline=True)
             em.set_thumbnail(url=avi)
             em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
             await ctx.send(embed=em)
