@@ -207,8 +207,19 @@ class Admin(commands.Cog):
             if stderr:
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
+    async def find_message_history(self, user: discord.Member, guild: discord.Guild, message_count: int = 10):
+        import queue
+        messages = queue.Queue(maxsize=message_count)
+        for channel in guild.text_channels:
+            async for message in channel.history(limit=300):
+                if message.author == user:
+                    if not messages.full():
+                        messages.put(message)
+        return messages
+
+
     @commands.command(aliases=['ui', 'uinfo'])
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin', 'Shadow Staff', 'Shdadow Customer Support')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin', 'Shadow Staff')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
         import datetime
@@ -238,11 +249,6 @@ class Admin(commands.Cog):
                     rolelist += f", {role.name}"
                 else:
                     rolelist += f"{role.name}"
-            message_history = ""
-            last_5 = await users.history(limit=5, oldest_first=False).flatten()
-            for item in last_5:
-                created_time = item.created_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
-                message_history += f"{item.content} in {item.channel} at {created_time}"
             em.add_field(name='Roles', value=rolelist, inline=True)
             now = datetime.datetime.now()
             joined_delta = now - users.joined_at
@@ -255,6 +261,8 @@ class Admin(commands.Cog):
             em.add_field(name='Joined at', value=joined_str, inline=True)
             em.add_field(name='Created at', value=created_str, inline=True)
             em.add_field(name='Mobile', value=mobile, inline=True)
+            message_history = await self.find_message_history(users, ctx.guild, 10)
+            em.add_field(name='Recent Message history:', value=message_history, inline=True)
             em.set_thumbnail(url=avi)
             em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
             await ctx.send(embed=em)
