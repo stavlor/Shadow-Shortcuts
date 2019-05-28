@@ -273,7 +273,7 @@ class Admin(commands.Cog):
             await ctx.send(embed=em)
             paginator = commands.Paginator()
             for item in await self.find_message_history(users, ctx.guild, 10):
-                paginator.add_line(item)
+                paginator.add_line(f"{item.content} in {item.channel} at {item.created_at}")
             for page in paginator.pages:
                 await ctx.send(page)
 
