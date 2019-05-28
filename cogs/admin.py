@@ -271,7 +271,7 @@ class Admin(commands.Cog):
             em.set_thumbnail(url=avi)
             em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
             await ctx.send(embed=em)
-            await ctx.send(f"Recent message history for {users.mention}":)
+            await ctx.send(f"Recent message history for {users.mention}")
             paginator = commands.Paginator()
             for item in await self.find_message_history(users, ctx.guild, 10):
                 paginator.add_line(f"{item.content} in channel #{item.channel} at {item.created_at}")
