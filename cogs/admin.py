@@ -209,16 +209,20 @@ class Admin(commands.Cog):
 
     async def find_message_history(self, user: discord.Member, guild: discord.Guild, message_count: int = 10):
         import queue
+        final_messages = list()
         messages = queue.Queue(maxsize=message_count)
         for channel in guild.text_channels:
             try:
-                async for message in channel.history(limit=300):
+                async for message in channel.history(limit=100):
                     if message.author == user:
                         if not messages.full():
                             messages.put(message)
             except:
                 continue
-        return messages
+        while not messages.empty():
+            rec = messages.get()
+            final_messages.append(rec)
+        return final_messages
 
 
     @commands.command(aliases=['ui', 'uinfo'])
