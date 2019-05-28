@@ -268,11 +268,14 @@ class Admin(commands.Cog):
             em.add_field(name='Joined at', value=joined_str, inline=True)
             em.add_field(name='Created at', value=created_str, inline=True)
             em.add_field(name='Mobile', value=mobile, inline=True)
-            message_history = await self.find_message_history(users, ctx.guild, 10)
-            em.add_field(name='Recent message history:', value=message_history, inline=True)
             em.set_thumbnail(url=avi)
             em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
             await ctx.send(embed=em)
+            paginator = commands.Paginator()
+            for item in await self.find_message_history(users, ctx.guild, 10):
+                paginator.add_line(item)
+            for page in paginator.pages:
+                await ctx.send(page)
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
