@@ -63,12 +63,18 @@ class Events(commands.Cog):
             if not await self.bot.admin.can_run_command(role_names):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
                 await message.channel.send(f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
-        elif "good bot" in message.content.lower():
-            await message.add_reaction("🍪")
-            await message.add_reaction("👍")
-        elif "bad bot" in message.content.lower():
-            await message.add_reaction("😢")
-            await message.add_reaction("🖕🏼")
+        elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autorespone.auto_response_message(ctx=message,
+                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client",
+                                        trigger="L:104")
+        elif ("L 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autorespone.auto_response_message(ctx=message,
+                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client",
+                                        trigger="L 104")
+        elif ("104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autorespone.auto_response_message(ctx=message,
+                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client",
+                                        trigger="104")
         elif ("error 102" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message="{ctx.author.mention} Please follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png",
@@ -109,6 +115,12 @@ class Events(commands.Cog):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message="{ctx.author.mention} Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png",
                                         trigger="3/3")
+        elif "good bot" in message.content.lower():
+            await message.add_reaction("🍪")
+            await message.add_reaction("👍")
+        elif "bad bot" in message.content.lower():
+            await message.add_reaction("😢")
+            await message.add_reaction("🖕🏼")
 
 
 def setup(bot):
