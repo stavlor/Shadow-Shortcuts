@@ -77,7 +77,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
 
     @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104'])
     async def errorl104(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve error L:104."""
+        text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://core.stavlor.net/reboot.gif"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "104 command received from {author.name} with argument of {user}".format(author=ctx.message.author,
