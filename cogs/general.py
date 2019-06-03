@@ -75,7 +75,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                     user=ctx.author.mention))
         await ctx.message.delete()
 
-    @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104'])
+    @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'rebootshadow', 'restartshadow'])
     async def errorl104(self, ctx, user: typing.Optional[discord.Member] = None):
         text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://core.stavlor.net/reboot.gif"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
