@@ -27,10 +27,10 @@ class Admin(commands.Cog):
         self.bot.help_command = self._original_help_command
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def load(self, ctx, *, module):
         """Loads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -41,16 +41,16 @@ class Admin(commands.Cog):
             await ctx.send('\N{OK HAND SIGN}')
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def logout(self, ctx):
         await ctx.send(f"{ctx.author.mention} begining bot shutdown..")
         await self.bot.logout()
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def unload(self, ctx, *, module):
         """Unloads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -61,12 +61,12 @@ class Admin(commands.Cog):
             await ctx.send('\N{OK HAND SIGN}')
 
     @commands.command(name='reload', hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def _reload(self, ctx, *, module):
         """Reloads a module."""
         if not module.startswith('cogs.'):
             module = f'cogs.{module}'
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -81,7 +81,7 @@ class Admin(commands.Cog):
     async def can_run_command(role_check, allowed=None):
         role_check = [role.name for role in role_check]
         if allowed is None:
-            allowed = ['Shadow Guru', 'Moderators', 'Shadow Staff', 'Clay\'s Lieutenants', 'Admin', 'Silent Admin',
+            allowed = ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff', 'Clay\'s Lieutenants', 'Admin', 'Silent Admin',
                        'Administrator', 'Bot User']
         for item in allowed:
             if item in role_check:
@@ -108,10 +108,10 @@ class Admin(commands.Cog):
             return await response.text()
 
     @commands.command(description="Auto-Responders debug", name="timertest")
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def _timertest(self, ctx):
         """Auto-responder timer debug tool"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderator']):
             timers = " "
             for item in self.bot.last_message.keys():
                 timers += "{:10s} - {:10s}\n".format(item, self.bot.last_message[item].isoformat())
@@ -120,10 +120,10 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(name='ar')
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def add_role(self, ctx, user: discord.Member, *,  role: typing.Optional[discord.Role] = None):
         """Adds a role to a User default is Shadowers."""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             if role is None:
                 role = ctx.guild.get_role(461298541978058769)
             if user is None:
@@ -139,10 +139,10 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Grant a user bot access", name='grantbot')
-    @commands.has_any_role('Shadow Guru', 'Moderator', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderator', 'Admin')
     async def add_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Grant Bot User Role to a user - Admin"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -157,10 +157,10 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def revoke_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Revoke Bot User Role from a user - Admin"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -174,10 +174,10 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Roles test", name='roletest')
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def _roletest(self, ctx):
         """Admin - Role ID Listing tool"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             paginator = discord.ext.commands.Paginator()
             guild = ctx.guild
             paginator.add_line("Beginning role debug")
@@ -189,10 +189,10 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def gitref(self, ctx):
         """Refresh git repo content."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             await ctx.send(f"{ctx.author.mention} You aren't authorized to do that.")
         else:
             cmd = "cd ~/Shadow-Shortcuts/; git pull"
@@ -226,11 +226,11 @@ class Admin(commands.Cog):
 
 
     @commands.command(aliases=['ui', 'uinfo'])
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
         import datetime
-        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
         elif user is None:
@@ -279,7 +279,7 @@ class Admin(commands.Cog):
                 await ctx.send(page)
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def rr(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None, all_roles: bool = False):
         """Remove Roles - remove role from a user  defa- Optional True/False for all_roles will remove all roles from a user."""
         if role is None:
@@ -294,10 +294,10 @@ class Admin(commands.Cog):
         await ctx.message.add_reaction('✅')
 
     @commands.command(description="Bot Logs")
-    @commands.has_any_role('Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def logs(self, ctx):
         """Logs Command"""
-        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             fname = 'discord.log'
             lines = await self.bot.admin.tail(filename=fname, lines=50)
             lines = lines.split("\n")
@@ -321,7 +321,7 @@ class Admin(commands.Cog):
             self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
 
     @commands.command(aliases=['openth', 'startth'])
-    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def begin_town_hall(self, ctx):
         overwrite = discord.PermissionOverwrite()
         overwrite.read_messages = True
@@ -337,7 +337,7 @@ class Admin(commands.Cog):
         await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
 
     @commands.command(aliases=['endth', 'closeth'])
-    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Moderators')
+    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def end_town_hall(self, ctx):
         overwrite = discord.PermissionOverwrite()
         overwrite.read_messages = True
@@ -353,7 +353,7 @@ class Admin(commands.Cog):
         await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
 
     @commands.command(aliases=['sayin'])
-    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Moderators')
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def say_in_channel(self, ctx, channel: discord.TextChannel, *,  message: str):
         await channel.send(message)
         await ctx.send(f"{ctx.author.mention} Completed")

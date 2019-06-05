@@ -90,32 +90,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
             await ctx.author.send(f"{ctx.author.mention} {text}")
         await ctx.message.delete()
 
-
-    @commands.command(description="Error 102 Fix.", aliases=['error102'])
-    async def fix102(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Error 102 Information"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "102 command received from {author.name} with argument of {user}".format(author=ctx.message.author,
-                                                                                         user=user))
-            if user is not None:
-                await ctx.send(
-                    "From: {author.name}\n{user} Please follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png".format(
-                        author=ctx.message.author, user=user.mention))
-            else:
-                await ctx.send(
-                    "From: {author.name}\nPlease follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png".format(
-                        author=ctx.message.author))
-        else:
-            self.bot.logger.info("Error 102 Fix command received from unauthorized user {author.name}, replied via PM. ".format(
-                author=ctx.message.author,
-                user=user))
-            await ctx.author.send(
-                content="""{user} Please follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png""".format(
-                    user=ctx.author.mention))
-        await ctx.message.delete()
-
-    @commands.command(aliases=['expired', 'pass'])
+    @commands.command(aliases=['expired', 'pass', 'pw'])
     async def password(self, ctx, user: discord.Member = None):
         """Default Password help for Ready-to-Go Shadow Images"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
@@ -260,6 +235,116 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.group(name="account")
+    async def account(self):
+        pass
+
+    @account.command
+    async def myaccount(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, You can access your account page via <https://account.shadow.tech/>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\nYou can access your account page via <https://account.shadow.tech/>."""
+            await ctx.send(text)
+        else:
+            text = f"""You can access your account page via <https://account.shadow.tech/>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
+
+    @account.myshadow
+    @account.reset
+    async def myshadow(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, You can reset your shadow via <https://account.shadow.tech/myshadow>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\nYou can reset your shadow via <https://account.shadow.tech/myshadow>."""
+            await ctx.send(text)
+        else:
+            text = f"""You can reset your shadow via <https://account.shadow.tech/myshadow>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
+
+    @account.security
+    async def security(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, You can access the security page via <https://account.shadow.tech/security>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\nYou can access the security page via <https://account.shadow.tech/security>."""
+            await ctx.send(text)
+        else:
+            text = f"""You can access the security page via <https://account.shadow.tech/myshadow>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
+
+    @account.billing
+    async def billing(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, You can access the billing page via <https://account.shadow.tech/financial>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\nYou can access the billing page via <https://account.shadow.tech/financial>."""
+            await ctx.send(text)
+        else:
+            text = f"""You can access the billing page via <https://account.shadow.tech/financial>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
+
+    @account.subscription
+    async def subscription(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://account.shadow.tech/subscription>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\nYou can access the subscription page via <https://account.shadow.tech/subscription>."""
+            await ctx.send(text)
+        else:
+            text = f"""You can access the subscription page via <https://account.shadow.tech/subscription>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
+
+    @account.applications
+    @account.apps
+    async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, You can get the current stable and beta applications from <https://account.shadow.tech/subscription>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\nYou can get the current stable and beta applications from <https://account.shadow.tech/subscription>."""
+            await ctx.send(text)
+        else:
+            text = f"""You can get the current stable and beta applications from <https://account.shadow.tech/subscription>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
+
+    @account.share
+    @account.refer
+    async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/share>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\n, Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/share>."""
+            await ctx.send(text)
+        else:
+            text = f"""Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/share>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
+
+    @account.support
+    async def support(self, ctx, user: typing.Optional[discord.Member] = None):
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From: {ctx.author.name}\n{user.mention}, Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/support>."""
+            await ctx.send(text)
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"""From {ctx.author.name}\n, Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/support>."""
+            await ctx.send(text)
+        else:
+            text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/support>."""
+            await ctx.author.send(text)
+        await ctx.message.delete()
 
     @commands.command(description="Status command")
     async def status(self, ctx, user: typing.Optional[discord.Member] = None):
