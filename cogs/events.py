@@ -75,14 +75,6 @@ class Events(commands.Cog):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://core.stavlor.net/reboot.gif",
                                         trigger="104")
-        elif ("error 102" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png",
-                                        trigger="error 102")
-        elif "102 error" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please follow the following instructions to resolve error 102: http://core.stavlor.net/fix_102.png",
-                                        trigger="102 error")
         elif "800x600" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message="{ctx.author.mention} Please see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png",
