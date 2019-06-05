@@ -236,7 +236,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.group(name="account")
-    async def account(self):
+    async def account(self, ctx):
         pass
 
     @account.command(aliases=['account'])
