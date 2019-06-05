@@ -265,7 +265,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
         await ctx.message.delete()
 
-    @account.command
+    @account.command()
     async def security(self, ctx, user: typing.Optional[discord.Member] = None):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"""From: {ctx.author.name}\n{user.mention}, You can access the security page via <https://account.shadow.tech/security>."""
@@ -278,7 +278,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
         await ctx.message.delete()
 
-    @account.command
+    @account.command()
     async def billing(self, ctx, user: typing.Optional[discord.Member] = None):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"""From: {ctx.author.name}\n{user.mention}, You can access the billing page via <https://account.shadow.tech/financial>."""
@@ -291,7 +291,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
         await ctx.message.delete()
 
-    @account.command
+    @account.command()
     async def subscription(self, ctx, user: typing.Optional[discord.Member] = None):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://account.shadow.tech/subscription>."""
@@ -304,7 +304,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
         await ctx.message.delete()
 
-    @account.command
+    @account.command()
     async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"""From: {ctx.author.name}\n{user.mention}, You can get the current stable and beta applications from <https://account.shadow.tech/subscription>."""
@@ -317,7 +317,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
         await ctx.message.delete()
 
-    @account.command
+    @account.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"""From: {ctx.author.name}\n{user.mention}, Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/share>."""
@@ -330,7 +330,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.author.send(text)
         await ctx.message.delete()
 
-    @account.command
+    @account.command(name='support')
     async def support(self, ctx, user: typing.Optional[discord.Member] = None):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"""From: {ctx.author.name}\n{user.mention}, Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/support>."""
