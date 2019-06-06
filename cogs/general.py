@@ -157,7 +157,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     Midwest DC(Chicago): <http://www.speedtest.net/server/14489>
     Central DC(Texas): <http://www.speedtest.net/server/12190>
     East DC(NY): <http://www.speedtest.net/server/14855>
-    West DC(CA): <http://www.speedtest.net/server/11599>"""
+    West DC(CA): <http://www.speedtest.net/server/11613>"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info("Speedtest command received from {author.name} with argument of {user}".format(
                 author=ctx.message.author,
