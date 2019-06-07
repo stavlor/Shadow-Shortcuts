@@ -101,7 +101,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update", value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)" , inline=True)
                 embed.add_field(name='Default Password', value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"", inline=True)
-                await ctx.send(f"From: {ctx.author.name}\n{user.mention} please see the following reguarding Ready to Go Shadow and Password expiring:\n", embed=embed)
+                await ctx.send(f"From: {ctx.author.name}\n{user.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n", embed=embed)
             else:
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update",
@@ -111,7 +111,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                                 value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
                                 inline=True)
                 await ctx.send(
-                    f"From: {ctx.author.name}\nPlease see the following reguarding Ready to Go Shadow and Password expiring:\n",
+                    f"From: {ctx.author.name}\nPlease see the following regarding Ready to Go Shadow and Password expiring:\n",
                     embed=embed)
         else:
             self.bot.logger.info("Password command received from unauthorized user {author.name}, replied via PM. ".format(
@@ -124,7 +124,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                             value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
                             inline=True)
             await ctx.author.send(
-                f"{ctx.author.mention} please see the following reguarding Ready to Go Shadow and Password expiring:\n",
+                f"{ctx.author.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n",
                 embed=embed)
         await ctx.message.delete()
 
