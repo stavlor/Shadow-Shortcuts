@@ -85,12 +85,18 @@ class Events(commands.Cog):
                                         trigger="input lag")
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following for expired password messages http://core.stavlor.net/password.png",
+                                        message="""{ctx.author.mention} Ready-To-Go Password Update
+If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903) - 
+
+If you have any issues updating the default password is blank “” if your password is expired.""",
                                         trigger="password expired")
         elif "expired password" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following for expired password messages http://core.stavlor.net/password.png",
-                                        trigger="password expired")
+                                                             message="""{ctx.author.mention} Ready-To-Go Password Update
+            If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903) - 
+
+            If you have any issues updating the default password is blank “” if your password is expired.""",
+                                                             trigger="password expired")
         elif "waiting for video" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message="{ctx.author.mention} Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png",
