@@ -100,14 +100,14 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
             if user is not None:
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update", value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)" , inline=True)
-                embed.add_field(name='', value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"", inline=True)
+                embed.add_field(name='Default Password', value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"", inline=True)
                 await ctx.send(f"From: {ctx.author.name}\n{user.mention} please see the following reguarding Ready to Go Shadow and Password expiring:\n", embed=embed)
             else:
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update",
                                 value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)",
                                 inline=True)
-                embed.add_field(name='',
+                embed.add_field(name='Default password',
                                 value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
                                 inline=True)
                 await ctx.send(
@@ -120,7 +120,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
             embed.add_field(name="Ready to go password Update",
                             value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)",
                             inline=True)
-            embed.add_field(name='',
+            embed.add_field(name='Default password',
                             value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
                             inline=True)
             await ctx.author.send(
