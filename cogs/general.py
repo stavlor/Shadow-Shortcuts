@@ -111,7 +111,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                                 value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
                                 inline=True)
                 await ctx.send(
-                    f"From: {ctx.author.name}\n please see the following reguarding Ready to Go Shadow and Password expiring:\n",
+                    f"From: {ctx.author.name}\nPlease see the following reguarding Ready to Go Shadow and Password expiring:\n",
                     embed=embed)
         else:
             self.bot.logger.info("Password command received from unauthorized user {author.name}, replied via PM. ".format(
@@ -124,7 +124,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                             value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
                             inline=True)
             await ctx.author.send(
-                f"{user.mention} please see the following reguarding Ready to Go Shadow and Password expiring:\n",
+                f"{ctx.author.mention} please see the following reguarding Ready to Go Shadow and Password expiring:\n",
                 embed=embed)
         await ctx.message.delete()
 
