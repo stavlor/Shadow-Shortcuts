@@ -500,7 +500,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
             await ctx.message.delete()
 
     @commands.command(aliases=['sup'])
-    async def support(self, ctx, user: typing.Optional[discord.Member] = None):
+    async def _support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
         self.bot.logger.info(f"Processed support command for {ctx.author.name} with parameter {user}.")
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
