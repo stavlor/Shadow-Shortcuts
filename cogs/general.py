@@ -322,13 +322,13 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     @account.command(aliases=['apps'])
     async def applications(self, ctx, user: typing.Optional[discord.Member] = None):
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, You can get the current stable and beta applications from <https://account.shadow.tech/subscription>."""
+            text = f"""From: {ctx.author.name}\n{user.mention}, You can get the current stable and beta applications from <https://account.shadow.tech/apps>."""
             await ctx.send(text)
         elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\nYou can get the current stable and beta applications from <https://account.shadow.tech/subscription>."""
+            text = f"""From {ctx.author.name}\nYou can get the current stable and beta applications from <https://account.shadow.tech/apps>."""
             await ctx.send(text)
         else:
-            text = f"""You can get the current stable and beta applications from <https://account.shadow.tech/subscription>."""
+            text = f"""You can get the current stable and beta applications from <https://account.shadow.tech/apps>."""
             await ctx.author.send(text)
         await ctx.message.delete()
 
