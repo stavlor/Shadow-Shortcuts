@@ -656,7 +656,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
             await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
         if args:
-            url = "http://lmgtfy.com/q?=" + "+".join(args)
+            url = "http://lmgtfy.com/?q=" + "+".join(args)
             await ctx.send(embed=discord.Embed(description="**[Look here!](%s)**" % url, color=discord.Color.gold()))
         await ctx.message.delete()
 
