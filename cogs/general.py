@@ -647,7 +647,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
-        result = eval(parameters, None, None)
+        result = eval(str(parameters), None, None)
         await ctx.send(f"Result: {result}")
 
     @commands.command(aliases=['google'])
