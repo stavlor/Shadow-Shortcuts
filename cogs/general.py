@@ -643,7 +643,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         await ctx.message.add_reaction("🍰")
 
     @commands.command()
-    async def math(self, ctx, parameters: commands.Greedy[str]):
+    async def math(self, ctx, *, parameters):
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
@@ -651,7 +651,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         await ctx.send(f"Result: {result}")
 
     @commands.command(aliases=['google'])
-    async def lmgtfy(self, ctx, args: commands.Greedy[str]):
+    async def lmgtfy(self, ctx, *, args):
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
