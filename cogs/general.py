@@ -642,6 +642,14 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
     async def cake(self, ctx):
         await ctx.message.add_reaction("🍰")
 
+    @commands.command()
+    async def math(self, ctx, *, parameters):
+        if not await self.bot.admin.can_run_command(ctx.author.roles):
+            await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
+            return
+        result = eval(parameters, None, None)
+        await ctx.send(f"Result: {result}")
+
 
 def setup(bot):
     bot.add_cog(General(bot))
