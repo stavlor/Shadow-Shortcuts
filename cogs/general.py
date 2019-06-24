@@ -657,7 +657,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
             return
             args = args.replace(' ', '+')
             url = f"https://lmgtfy.com/?q={args}"
-            await ctx.send(embed=discord.Embed(description="**[Look here!](%s)**" % url, color=discord.Color.gold()))
+            await ctx.send(url)
         await ctx.message.delete()
 
 
