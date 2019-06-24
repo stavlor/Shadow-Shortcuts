@@ -145,7 +145,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
             await ctx.author.send(f"""{ctx.author.mention} {text}""")
         await ctx.message.delete()
 
-    @commands.command(aliases=['latency', 'inputlag'])
+    @commands.command(aliases=['latency', 'inputlag', 'lagfix'])
     async def lag(self, ctx, user: typing.Optional[discord.Member] = None):
         """Input lag/Latency Information"""
         text = """Common steps for fixing input latency http://core.stavlor.net/inputlag.png"""
