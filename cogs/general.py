@@ -643,12 +643,22 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         await ctx.message.add_reaction("🍰")
 
     @commands.command()
-    async def math(self, ctx, *, parameters):
+    async def math(self, ctx, *parameters):
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
         result = eval(parameters, None, None)
         await ctx.send(f"Result: {result}")
+
+    @commands.command(aliases=['google'])
+    async def lmgtfy(self, ctx, *, args):
+        if not await self.bot.admin.can_run_command(ctx.author.roles):
+            await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
+            return
+        if args:
+            url = "http://lmgtfy.com/q?=" + "+".join(args)
+            await ctx.send(embed=discord.Embed(description="**[Look here!](%s)**" % url, color=discord.Color.gold()))
+        await ctx.message.delete()
 
 
 def setup(bot):
