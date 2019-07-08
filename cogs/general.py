@@ -448,15 +448,11 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     async def keys(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Keybinding information"""
         self.bot.logger.info(f"Processed keys command for {ctx.author.name} with parameter {user}.")
-        text = """:keyboard: Stable Hotkeys
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **S** = Restart Streaming
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **F** = Toggle Fullscreen
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **G** = Toggle Mouse lock/Gamer Mode
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Ctrl** + **Q** = Quit Application
-:keyboard: Beta Hotkeys
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode
+        text = """:keyboard: Keybinds
+        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode (Locked/Unlocked) (Locked is suggested for gaming)
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen"""
+        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen
+        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu"""
 
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
