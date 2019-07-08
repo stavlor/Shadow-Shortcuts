@@ -453,7 +453,7 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming (Not in beta)"""
+        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming"""
 
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
