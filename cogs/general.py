@@ -35,11 +35,11 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                 author=ctx.message.author, user=user))
             if user is not None:
                 await ctx.send(
-                    "From {author.name}\n{user} Please see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png".format(
+                    "From {author.name}\n{user} Please see the following to fix issues with 800x600 resolution http://botstatic.stavlor.net/800x600.png".format(
                         author=ctx.message.author, user=user.mention))
             else:
                 await ctx.send(
-                    "From {author.name}\nPlease see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png".format(
+                    "From {author.name}\nPlease see the following to fix issues with 800x600 resolution http://botstatic.stavlor.net/800x600.png".format(
                         author=ctx.message.author))
         else:
             self.bot.logger.info(
@@ -47,7 +47,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                     author=ctx.message.author,
                     user=user))
             await ctx.author.send(
-                content="""{user} Please see the following to fix issues with 800x600 resolution http://core.stavlor.net/800x600.png""".format(
+                content="""{user} Please see the following to fix issues with 800x600 resolution http://botstatic.stavlor.net/800x600.png""".format(
                     user=ctx.author.mention))
         await ctx.message.delete()
 
@@ -59,11 +59,11 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                 author=ctx.message.author, user=user))
             if user is not None:
                 await ctx.send(
-                    "From {author.name}\n{user} Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png".format(
+                    "From {author.name}\n{user} Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png".format(
                         author=ctx.message.author, user=user.mention))
             else:
                 await ctx.send(
-                    "From {author.name}\nPlease see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png".format(
+                    "From {author.name}\nPlease see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png".format(
                         author=ctx.message.author))
         else:
             self.bot.logger.info(
@@ -71,13 +71,13 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                     author=ctx.message.author,
                     user=user))
             await ctx.author.send(
-                content="""{user}  Please see the following to fix waiting for video http://core.stavlor.net/waiting_for_video.png""".format(
+                content="""{user}  Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png""".format(
                     user=ctx.author.mention))
         await ctx.message.delete()
 
     @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'rebootshadow', 'restartshadow', 'sd', 'shutdown'])
     async def errorl104(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://core.stavlor.net/reboot.gif"""
+        text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botstatic.stavlor.net/reboot.gif"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "104 command received from {author.name} with argument of {user}".format(author=ctx.message.author,
@@ -148,7 +148,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     @commands.command(aliases=['latency', 'inputlag', 'lagfix'])
     async def lag(self, ctx, user: typing.Optional[discord.Member] = None):
         """Input lag/Latency Information"""
-        text = """Common steps for fixing input latency http://core.stavlor.net/inputlag.png"""
+        text = """Common steps for fixing input latency http://botstatic.stavlor.net/inputlag.png"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "Latency command received from {author.name} with argument of {user}".format(author=ctx.message.author,
@@ -236,7 +236,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         """Ghost Purchase information."""
         text = """Ghosts can be purchased from your account page under Subscription: https://account.shadow.tech/subscription
 
-For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
+For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.pdf"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
@@ -556,7 +556,7 @@ For the Ghost user manual, see here: http://core.stavlor.net/Ghost_Manual.pdf"""
     async def stats(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to access Shadow Control panel stats pane."""
         self.bot.logger.info(f"Processed hstats command for {ctx.author.name} with parameter {user}.")
-        text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, Bitrate, Ping and Packet Loss) to access it please this http://core.stavlor.net/how_to_access_stats.png"""
+        text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, Bitrate, Ping and Packet Loss) to access it please this http://botstatic.stavlor.net/how_to_access_stats.png"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
