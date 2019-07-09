@@ -575,7 +575,7 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
     async def changelang(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to Change language from FR to EN."""
         self.bot.logger.info(f"Processed changelang command for {ctx.author.name} with parameter {user}.")
-        text = """How to change the language of your Shadow: https://docs.google.com/document/d/10P6MqbIYqi_ITDczfi_DUeTkmsuBWlTsi-PFY_fqbBw/edit"""
+        text = """How to change the language of your Shadow: http://wiki.stavlor.net/ChangeLanguage%20FR%20to%20EN"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
