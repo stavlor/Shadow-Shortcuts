@@ -113,6 +113,10 @@ If you have any issues updating the default password is blank “” if your pas
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message="{ctx.author.mention} Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png",
                                         trigger="3/3")
+        elif "shadow is off" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                              message="{ctx.author.mention} Please follow the following steps to resolve your issue, Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botstatic.stavlor.net/reboot.gif ",
+                                                              trigger="shadow is off")
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
