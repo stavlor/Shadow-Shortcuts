@@ -618,6 +618,27 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
             await ctx.message.delete()
 
     @commands.command()
+    async def usbdk(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Send USB Dev Kit Downloads/info"""
+        text = """USB Development Kit Drivers are needed for proper functioning of USB over IP on Windows
+        Normally the Shadow client will install these drivers however sometimes this install fails you can manually download and install them from here
+         - **Windows 32bit** - http://botstatic.stavlor.net/UsbDk_1.0.21_x86.msi
+         - **Windows 64bit** - http://botstatic.stavlor.net/UsbDk_1.0.21_x64.msi
+        Once installed reboot your local system and USB over IP should function normally, ***___Note Install these on your local PC not your shadow.___***"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
+    @commands.command()
     async def ghc(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Ghost CS Message for AMA."""
         text = """We saw significantly more demand for Shadow Ghost units in Europe than in the US, so we are addressing that need first. We are working towards getting more units to all markets soon. Some US customer received an email with a Ghost countdown on Tuesday. This email was sent in error and was only meant for European customers."""
