@@ -71,7 +71,7 @@ class Events(commands.Cog):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botstatic.stavlor.net/reboot.gif",
                                         trigger="L 104")
-        elif ("104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+        elif (" 104 " in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                         message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botstatic.stavlor.net/reboot.gif",
                                         trigger="104")
