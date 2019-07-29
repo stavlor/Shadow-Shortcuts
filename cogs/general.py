@@ -678,6 +678,19 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         await ctx.send(embed=discord.Embed(description="**[Look here!](%s)**" % url, color=discord.Color.gold()))
         await ctx.message.delete()
 
+    @commands.command(aliases=['rm', 'roadmap'])
+    async def _roadmap(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """Shadow roadmap: <https://shadow.tech/usen/features-roadmap>"""
+        if not await self.bot.admin.can_run_command(ctx.author.roles):
+            await ctx.author.send(text)
+            await ctx.message.delete()
+        if not user:
+            await ctx.send(f"From: {ctx.author.name}\n{text}")
+            await ctx.message.delete()
+        else:
+            await ctx.send(f"From: {ctx.author.name}\n{text}")
+            await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
