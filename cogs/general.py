@@ -688,7 +688,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
             await ctx.send(f"From: {ctx.author.name}\n{text}")
             await ctx.message.delete()
         else:
-            await ctx.send(f"From: {ctx.author.name}\n{text}")
+            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
             await ctx.message.delete()
 
 
