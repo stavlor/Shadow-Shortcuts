@@ -28,7 +28,7 @@ class Events(commands.Cog):
                 ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.__traceback__)))
         await ctx.send("Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
                 ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.__traceback__)))
-)
+
 
     @commands.Cog.listener()
     async def on_ready(self):
