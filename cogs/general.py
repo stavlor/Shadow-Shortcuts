@@ -642,7 +642,11 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
     @commands.command()
     async def ghc(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Ghost CS Message for AMA."""
-        text = """We saw significantly more demand for Shadow Ghost units in Europe than in the US, so we are addressing that need first. We are working towards getting more units to all markets soon. Some US customer received an email with a Ghost countdown on Tuesday. This email was sent in error and was only meant for European customers."""
+        text = """Today our European team announced limited availability of the Shadow Ghost for sale in their territories. Here in the US, we’re still finalizing our plans to make the Shadow Ghost available for our community, but until then, please sign up on the official waiting list to indicate your interest. If you’ve already signed up, no need to do so again. Just to be up front about things, the quantities we’re talking about, both in the US and Europe are pretty small, so it’s possible that not everyone on the waiting list will be able to get a Shadow Ghost in the next round.
+
+Thanks for your interest, and we’ll have more information as soon as we can lock down details.
+
+<https://shdw.me/NA-waiting-list-SGDC>"""
         self.bot.logger.info(f"Processed ghc command for {ctx.author.name} with parameter {user}.")
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
