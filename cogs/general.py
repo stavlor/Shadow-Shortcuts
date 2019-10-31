@@ -670,7 +670,14 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
-        result = eval(str(parameters), None, None)
+        env = {}
+        env["locals"] = None
+        env["globals"] = None
+        env["__name__"] = None
+        env["__file__"] = None
+        env["__builtins__"] = None
+
+        result = eval(str(parameters), env, None)
         await ctx.send(f"Result: {result}")
 
     @commands.command(aliases=['google'])
