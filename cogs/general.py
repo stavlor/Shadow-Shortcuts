@@ -708,7 +708,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         file = "/tmp/logging-test.txt"
         fp = open(file, 'w+')
         messages = await ctx.channel.history(limit=250).flatten()
-        async for item in messages:
+        for item in messages:
             fp.write(item)
         fp.close()
 
