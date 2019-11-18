@@ -709,7 +709,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         fp = open(file, 'w+')
         messages = await ctx.channel.history(limit=250).flatten()
         for item in messages:
-            fp.write(f"{item.content} - {item.created_at} - {item.mentions}\n")
+            fp.write(f"{item.clean_content} - {item.created_at} - {item.mentions}\n")
         fp.close()
 
 
