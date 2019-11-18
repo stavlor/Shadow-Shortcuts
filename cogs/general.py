@@ -703,6 +703,15 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
             await ctx.message.delete()
 
+    @commands.command()
+    async def _writelog(self, ctx):
+        file = "/tmp/logging-test.txt"
+        fp = open(file, 'w+')
+        messages = await ctx.channel.history(limit=250).flatten()
+        async for item in messages:
+            fp.write(item)
+        fp.close()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
