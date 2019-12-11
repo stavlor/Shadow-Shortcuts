@@ -540,7 +540,9 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
     async def coverage(self, ctx, user: typing.Optional[discord.Member] = None):
         """Coverage Maps"""
         self.bot.logger.info(f"Processed coverage command for {ctx.author.name} with parameter {user}.")
-        text = """Shadow Coverage map: https://www.google.com/maps/d/u/0/edit?mid=1F65uzzfo5GicmBg4h-UJ9lB7rHCUnQFe&ll=15.811693684367462%2C-55.29886565000004&z=2"""
+        text = """**Shadow Coverage maps:**
+            North America - <https://shdw.me/NACoverage>
+            Europe - <https://shdw.me/EUCoverage>"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
@@ -558,7 +560,8 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
     async def stats(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to access Shadow Control panel stats pane."""
         self.bot.logger.info(f"Processed hstats command for {ctx.author.name} with parameter {user}.")
-        text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, Bitrate, Ping and Packet Loss) to access it please this http://botstatic.stavlor.net/how_to_access_stats.png"""
+        text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, 
+        Bitrate, Ping and Packet Loss) to access it please this http://botstatic.stavlor.net/how_to_access_stats.png """
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
