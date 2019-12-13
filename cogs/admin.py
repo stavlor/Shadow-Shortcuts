@@ -358,6 +358,23 @@ class Admin(commands.Cog):
         await channel.send(message)
         await ctx.send(f"{ctx.author.mention} Completed")
 
+    @commands.command()
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
+    async def strings(self, ctx):
+        import json
+        paginator = discord.ext.commands.Paginator()
+        paginator.add_line("Current Database Strings:")
+        async with self.bot.dbpool.acquire() as connection:
+            async for record in connection.cursor(f"SELECT string_id, string_name, data from strings ORDER by string_id ASC;"):
+                 id = record['string_id']
+                 name = record['string_name']
+                 data = json.loads(record['data'])
+            paginator.add_line(f"{id}: {name}:: {data}")
+        for page in paginator.pages:
+            await ctx.send(page)
+        
+
+
 
 def setup(bot):
     bot.add_cog(Admin(bot))

@@ -43,10 +43,6 @@ class Events(commands.Cog):
         await self.bot.database.re_apply_roles(member)
 
     @commands.Cog.listener()
-    async def on_member_update(self, before: discord.Member, after: discord.Member):
-        await self.bot.database.process_member_update(before, after)
-
-    @commands.Cog.listener()
     async def on_message(self, message):
         self.bot.logger.debug("Recieved message from {message.author} Content {message.content}".format(message=message))
         if isinstance(message.channel, discord.DMChannel):
