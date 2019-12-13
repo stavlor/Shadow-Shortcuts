@@ -367,7 +367,7 @@ class Admin(commands.Cog):
         async with self.bot.dbpool.acquire() as connection:
             async with connection.transaction():
                 async for record in connection.cursor(f"SELECT string_id, string_name, data from strings ORDER by string_id ASC;"):
-                     id = record['string_id']
+                    id = record['string_id']
                     name = record['string_name']
                     data = json.loads(record['data'])
                     paginator.add_line(f"{id}: {name}:: {data}")
