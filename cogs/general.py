@@ -364,9 +364,9 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
         """Reports current shadow status"""
         if user is None:
             self.bot.logger.info("Status command processed for {author.name}.".format(author=ctx.message.author))
-            if await self.bot.admin.get_status() == "All Systems Operational":
+            if await self.bot.admin.get_status() == "All services operating normally":
                 embed = discord.Embed(title="Shadow Status", url="https://status.shadow.tech", color=0x00ff00)
-                embed.add_field(name="All Systems Normal",
+                embed.add_field(name="All services operating normally",
                                 value="For additional status information please see the status page", inline=True)
                 await ctx.send(embed=embed)
                 await ctx.message.delete()
