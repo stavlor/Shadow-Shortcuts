@@ -715,6 +715,19 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             fp.write(f"{item.system_content} - {item.created_at} - \"{item.author}\"\n")
         fp.close()
 
+    @commands.command(aliases=['s101', 'S101'])
+    async def _s101(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """To fix S:101 please see the following Shadow help article: https://help.shadow.tech/hc/en-gb/articles/360010559860-S-101-An-Issue-Happened-with-the-Streaming-Services"""
+        if not await self.bot.admin.can_run_command(ctx.author.roles):
+            await ctx.author.send(text)
+            await ctx.message.delete()
+        if not user:
+            await ctx.send(f"From: {ctx.author.name}\n{text}")
+            await ctx.message.delete()
+        else:
+            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
+            await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
