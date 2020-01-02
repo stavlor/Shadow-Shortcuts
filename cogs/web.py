@@ -2,7 +2,7 @@ from aiohttp import web
 from discord.ext import commands
 import discord
 import typing
-global botrefrence = None
+botrefrence = None
 
 class Web(commands.Cog):
     def __init__(self, bot):
