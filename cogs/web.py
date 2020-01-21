@@ -13,7 +13,7 @@ class Web(commands.Cog):
         bot.logger.info("Initializing Web Cog")
         self.bot.web.application = web.Application()
         self.bot.web.application.add_routes(routes)
-        web.run_app(self.bot.web.application)
+        await web.run_app(self.bot.web.application)
 
     @routes.get('/')
     async def hello(self, request):

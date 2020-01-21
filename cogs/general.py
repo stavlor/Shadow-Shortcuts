@@ -728,6 +728,16 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
             await ctx.message.delete()
 
+    @commands.command(aliases=['ask'])
+    async def _ask(self, ctx):
+        text = "https://www.dontasktoask.com/"
+        if not await self.bot.admin.can_run_command(ctx.author.roles):
+            await ctx.author.send(text)
+            await ctx.message.delete()
+        else:
+            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
+            await ctx.message.delete()
+
 
 def setup(bot):
     bot.add_cog(General(bot))
