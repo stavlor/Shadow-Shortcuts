@@ -681,7 +681,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 ***___Shadow Legacy/Shadow Boost___***
 **GPU:** Quadro P5000 (GeForce GTX 1080 Equiv.)
 **VRAM:** 16 GB
-**CPU:** Intel® Xeon® E5-2667v3 Processor
+**CPU:** Intel® Xeon E5-2667v3 Processor
 **CPU Clock Speed:** 2.5 GHz Turbo to 3.2 GHz
 **RAM:** 12 GB
 **Storage:** 256 GB
@@ -689,7 +689,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 ***___Shadow Ultra___***
 **GPU:** Quadro RTX 5000 (GeForce RTX 2080 SUPER Equiv.)
 **VRAM:** 16 GB
-**CPU:** Intel® Xeon® W-3235 Processor
+**CPU:** Intel® Xeon W-3235 Processor
 **CPU Clock Speed:** 3.3 GHz @ 4 cores - Turbo to 4 GHz
 **RAM:** 16 GB
 **Storage:** 512 GB
@@ -697,7 +697,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 ***___Shadow Infinite___***
 **GPU:** Quadro RTX 6000 (Nvidia TITAN RTX Equiv.)
 **VRAM:** 24 GB
-**CPU:** Intel® Xeon® W-3235 Processor
+**CPU:** Intel® Xeon W-3235 Processor
 **CPU Clock Speed:** 3.3 GHz @ 6 cores - Turbo to 4 GHz
 **RAM:** 32 GB
 **Storage:** 1024 GB"""
