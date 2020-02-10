@@ -678,19 +678,11 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """
-***___Shadow Legacy___***
+***___Shadow Legacy/Shadow Boost___***
 **GPU:** Quadro P5000 (GeForce GTX 1080 Equiv.)
 **VRAM:** 16 GB
 **CPU:** Intel® Xeon® E5-2667v3 Processor
 **CPU Clock Speed:** 2.5 GHz Turbo to 3.2 GHz
-**RAM:** 12 GB
-**Storage:** 256 GB
-
-***___Shadow Boost___***
-**GPU:** Quadro P5000 (GeForce GTX 1080 Equiv.)
-**VRAM:** 16 GB
-**CPU:** TBA
-**CPU Clock Speed:** 3.4 GHz - 4 cores
 **RAM:** 12 GB
 **Storage:** 256 GB
 
