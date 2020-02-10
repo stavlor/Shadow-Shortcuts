@@ -650,7 +650,8 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 
     @commands.command(aliases=['s101', 'S101'])
     async def _s101(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """To fix S:101 please see the following Shadow help article: https://help.shadow.tech/hc/en-gb/articles/360010559860-S-101-An-Issue-Happened-with-the-Streaming-Services"""
+        text = """To fix S:101 please see the following Shadow help article: 
+        https://help.shadow.tech/hc/en-gb/articles/360010559860-S-101-An-Issue-Happened-with-the-Streaming-Services """
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
@@ -673,6 +674,51 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         else:
             await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
             await ctx.message.delete()
+
+    @commands.command(aliases=['specs', 'tiers'])
+    async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """
+***___Shadow Legacy___***
+**GPU:** Quadro P5000 (GeForce GTX 1080 Equiv.)
+**VRAM:** 16 GB
+**CPU:** Intel® Xeon® E5-2667v3 Processor
+**CPU Clock Speed:** 2.5 GHz Turbo to 3.2 GHz
+**RAM:** 12 GB
+**Storage:** 256 GB
+
+***___Shadow Boost___***
+**GPU:** Quadro P5000 (GeForce GTX 1080 Equiv.)
+**VRAM:** 16 GB
+**CPU:** TBA
+**CPU Clock Speed:** 3.4 GHz - 4 cores
+**RAM:** 12 GB
+**Storage:** 256 GB
+
+***___Shadow Ultra___***
+**GPU:** Quadro RTX 5000 (GeForce RTX 2080 SUPER Equiv.)
+**VRAM:** 16 GB
+**CPU:** Intel® Xeon® W-3235 Processor
+**CPU Clock Speed:** 3.3 GHz @ 4 cores - Turbo to 4 GHz
+**RAM:** 16 GB
+**Storage:** 512 GB
+
+***___Shadow Infinite___***
+**GPU:** Quadro RTX 6000 (Nvidia TITAN RTX Equiv.)
+**VRAM:** 24 GB
+**CPU:** Intel® Xeon® W-3235 Processor
+**CPU Clock Speed:** 3.3 GHz @ 6 cores - Turbo to 4 GHz
+**RAM:** 32 GB
+**Storage:** 1024 GB"""
+        if not await self.bot.admin.can_run_command(ctx.author.roles):
+            await ctx.author.send(text)
+            await ctx.message.delete()
+        if not user:
+            await ctx.send(f"From: {ctx.author.name}\n{text}")
+            await ctx.message.delete()
+        else:
+            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
+            await ctx.message.delete()
+
 
 
 def setup(bot):
