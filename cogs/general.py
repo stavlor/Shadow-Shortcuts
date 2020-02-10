@@ -27,53 +27,6 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
                 await ctx.send(f"From {ctx.author.name}\n{text}")
         await ctx.message.delete()
 
-    @commands.command(description="800x600 instructions", name="800x600", aliases=['8x6', 'nogpu'])
-    async def _800x600(self, ctx, user: typing.Optional[discord.Member] = None):
-        """800x600 Information (red square)"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
-                author=ctx.message.author, user=user))
-            if user is not None:
-                await ctx.send(
-                    "From {author.name}\n{user} Please see the following to fix issues with 800x600 resolution http://botstatic.stavlor.net/800x600.png".format(
-                        author=ctx.message.author, user=user.mention))
-            else:
-                await ctx.send(
-                    "From {author.name}\nPlease see the following to fix issues with 800x600 resolution http://botstatic.stavlor.net/800x600.png".format(
-                        author=ctx.message.author))
-        else:
-            self.bot.logger.info(
-                "Waiting for video command received from unauthorized user {author.name}, replied via PM. ".format(
-                    author=ctx.message.author,
-                    user=user))
-            await ctx.author.send(
-                content="""{user} Please see the following to fix issues with 800x600 resolution http://botstatic.stavlor.net/800x600.png""".format(
-                    user=ctx.author.mention))
-        await ctx.message.delete()
-
-    @commands.command(description="Waiting for video instructions", aliases=['waitingforvideo', 'wfv'])
-    async def waitingvideo(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Waiting for Video information"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info("Waiting for video command received from {author.name} with argument of {user}".format(
-                author=ctx.message.author, user=user))
-            if user is not None:
-                await ctx.send(
-                    "From {author.name}\n{user} Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png".format(
-                        author=ctx.message.author, user=user.mention))
-            else:
-                await ctx.send(
-                    "From {author.name}\nPlease see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png".format(
-                        author=ctx.message.author))
-        else:
-            self.bot.logger.info(
-                "Waiting for video command received from unauthorized user {author.name}, replied via PM. ".format(
-                    author=ctx.message.author,
-                    user=user))
-            await ctx.author.send(
-                content="""{user}  Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png""".format(
-                    user=ctx.author.mention))
-        await ctx.message.delete()
 
     @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'rebootshadow', 'restartshadow', 'sd', 'shutdown'])
     async def errorl104(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -145,25 +98,6 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
             await ctx.author.send(f"""{ctx.author.mention} {text}""")
         await ctx.message.delete()
 
-    @commands.command(aliases=['latency', 'inputlag', 'lagfix'])
-    async def lag(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Input lag/Latency Information"""
-        text = """Common steps for fixing input latency http://botstatic.stavlor.net/inputlag.png"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "Latency command received from {author.name} with argument of {user}".format(author=ctx.message.author,
-                                                                                             user=user))
-            if user is not None:
-                await ctx.send(f"""From {ctx.author.name}\n{user.mention} {text}""")
-            else:
-                await ctx.send(f"""From {ctx.author.name}\n{text}""")
-        else:
-            await ctx.author.send(f"""{ctx.author.mention} {text}""")
-            self.bot.logger.info("Latency command received from unauthorized user {author.name}, replied via PM. ".format(
-                author=ctx.author,
-                user=user))
-        await ctx.message.delete()
-
     @commands.command(description="Speedtest-Links")
     async def speedtest(self, ctx, user: typing.Optional[discord.Member] = None):
         """Speedtest Links"""
@@ -210,8 +144,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send current NVidia Drivers Info."""
         text = """**Current Nvidia Drivers for P5000** -- [__*US has only P5000s*__] [__*Non-US users may have GTX1080*__]
-          - Stable Drivers (QNF) *(**Recommended**)*:  <https://www.nvidia.com/Download/driverResults.aspx/151280/en-us>
-          - Stable Drivers (ODE) -Generally behind the QNF-: <https://www.nvidia.com/Download/driverResults.aspx/151056/en-us>
+          - Stable Drivers (ODE)  *(**Recommended**)*: <https://www.nvidia.com/Download/driverResults.aspx/156767/en-us>
 
         **Notes:**
           - If running NVidia Drivers prior to 430.64 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
@@ -480,7 +413,7 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
                 - If your IP begins with **185.161.** you are on the **Amsterdam** datacenter
                 - If your IP begins with **85.190.** you are on the **France** datacenter
             - **North America**
-                - If your IP begins with **185.231.[8-11].** you are on the **California** datacenter
+                - If your IP begins with **170.249.[92-95].** you are on the **California** datacenter
                 - If your IP begins with **162.213.[48-55].** you are on the **New York** datacenter
                 - If your IP begins with **216.180.[128-135]** you are on the **Texas** datacenter
                 - If your IP begins with **216.180.[136-143]** you are on the **Chicago** datacenter"""
