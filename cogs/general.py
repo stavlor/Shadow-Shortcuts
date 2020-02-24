@@ -329,7 +329,7 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
         **Windows**
-        - Windows 7 - 32 bits or above
+        - Windows 8 (Windows 7 is no longer supported), Windows 10 Recommended - 32 bits or above
         - Processor from 2011-2012 or more recent
         - Integrated GPU recommended
         - AMD GPU from 2013 or more recent (to disable if older)
