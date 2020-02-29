@@ -711,6 +711,20 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
             await ctx.message.delete()
 
+            
+    @commands.command(aliases=['sendlogs', 'logs'])
+    async def _sendlogs(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """To Send client logs to Shadow Support please see the following: 
+        https://botstatic.stavlor.net/Send_Logs.png"""
+        if not await self.bot.admin.can_run_command(ctx.author.roles):
+            await ctx.author.send(text)
+            await ctx.message.delete()
+        if not user:
+            await ctx.send(f"From: {ctx.author.name}\n{text}")
+            await ctx.message.delete()
+        else:
+            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
+            await ctx.message.delete()
 
 
 def setup(bot):
