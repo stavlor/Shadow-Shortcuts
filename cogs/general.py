@@ -712,7 +712,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             await ctx.message.delete()
 
             
-    @commands.command(aliases=['sendlogs', 'logs'])
+    @commands.command(aliases=['sendlogs', 'slogs'])
     async def _sendlogs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """To Send client logs to Shadow Support please see the following: 
         https://botstatic.stavlor.net/Send_Logs.png"""
