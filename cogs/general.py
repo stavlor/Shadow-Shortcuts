@@ -437,7 +437,7 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/support
-  - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new"""
+  - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new optionally, e-mail support at **support-us@shadow.tech** note Tickets are generally quicker."""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
