@@ -22,7 +22,7 @@ class Events(commands.Cog):
         elif isinstance(exception, discord.NotFound):
             await ctx.send("{author.mention} Got a discord.NotFound error: {exception}".format(author=ctx.author, exception=exception))
         elif isinstance(exception, discord.ext.commands.CheckFailure):
-            await ctx.send(f"{ctx.author.mention} You are not authorized to perform this command. {exception}")
+            await ctx.send(f"{ctx.author.mention} You are not authorized to perform this command.")
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
                 ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.__traceback__)))
