@@ -26,9 +26,6 @@ class Events(commands.Cog):
         self.bot.logger.info(
             "Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
                 ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.__traceback__)))
-        await ctx.send("Error encountered processing command enacting message: {ctx.message} enacting user: {ctx.author.name} Exception: {exception}\nTraceback:{traceback}".format(
-                ctx=ctx, exception=exception, traceback=traceback.format_tb(exception.__traceback__)))
-
 
     @commands.Cog.listener()
     async def on_ready(self):
@@ -48,10 +45,12 @@ class Events(commands.Cog):
         if isinstance(message.channel, discord.DMChannel):
             if message.author.id == self.bot.user.id:
                 return
-            elif message.author.bot:
+            if message.author.bot:
                 return
             await self.bot.database.log_direct_messages(message)
             await message.author.send("{message.author.mention} your message has been logged, This is an automated bot.".format(message=message))
+        if message.author.bot:
+            return
         if not hasattr(message.author, 'roles'):
             role_names = []
         else:

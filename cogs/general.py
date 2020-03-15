@@ -517,6 +517,7 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
             await ctx.message.delete()
+            return
         elif await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{text}"
             await ctx.send(text)
@@ -554,6 +555,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
             await ctx.author.send(text)
             await ctx.message.delete()
 
+
     @commands.command()
     async def usbdk(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send USB Dev Kit Downloads/info"""
@@ -566,6 +568,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
             await ctx.message.delete()
+            return
         elif await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{text}"
             await ctx.send(text)
@@ -588,6 +591,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
             await ctx.message.delete()
+            return
         elif await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{text}"
             await ctx.send(text)
@@ -604,7 +608,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
     @commands.command()
     async def math(self, ctx, *, parameters):
         if not await self.bot.admin.can_run_command(ctx.author.roles):
-            await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
+            await ctx.author.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
         env = {}
         env["locals"] = None
@@ -619,7 +623,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
     @commands.command(aliases=['google'])
     async def lmgtfy(self, ctx, *, args):
         if not await self.bot.admin.can_run_command(ctx.author.roles):
-            await ctx.send(f"{ctx.author.mention} Your not authorized to do that...")
+            await ctx.author.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
         args2 = args.replace(' ', '+')
         url = "https://lmgtfy.com/?q=" + str(args2)
@@ -632,6 +636,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
+            return
         if not user:
             await ctx.send(f"From: {ctx.author.name}\n{text}")
             await ctx.message.delete()
@@ -655,6 +660,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
+            return
         if not user:
             await ctx.send(f"From: {ctx.author.name}\n{text}")
             await ctx.message.delete()
@@ -668,6 +674,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
+            return
         if not user:
                 await ctx.send(f"From: {ctx.author.name}\n{text}")
                 await ctx.message.delete()
@@ -704,6 +711,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
+            return
         if not user:
             await ctx.send(f"From: {ctx.author.name}\n{text}")
             await ctx.message.delete()
@@ -719,6 +727,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
+            return
         if not user:
             await ctx.send(f"From: {ctx.author.name}\n{text}")
             await ctx.message.delete()
