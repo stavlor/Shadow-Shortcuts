@@ -124,7 +124,7 @@ class Admin(commands.Cog):
         paginator = commands.Paginator()
         for line in out.split('\n'):
             paginator.add_line(line)
-        for page in p.pages:
+        for page in paginator.pages:
             await ctx.send(page, delete_after=ttl)
         await ctx.message.delete()
 
