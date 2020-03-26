@@ -103,9 +103,32 @@ class Admin(commands.Cog):
             return status_text
 
     @staticmethod
+    async def get_nvidia_drivers(self):
+        from lxml import etree
+
+        async with aiohttp.ClientSession as session:
+            html = await self.bot.admin.fetch(session, 'https://www.nvidia.com/Download/processFind.aspx?psid=73&pfid=823&osid=57&lid=1&whql=1&lang=en-us&ctk=0&qnfslb=10&dtcid=0')
+            etree_out = etree.HTML(html)
+            return etree.tostring(etree_out, pretty_print=True)
+
+    @staticmethod
     async def fetch(session, url):
         async with session.get(url) as response:
             return await response.text()
+
+
+    @commands.command(description="Nvidia testing", name="nvtest")
+    @commands.has_any_role('Shadow Guru', 'Moderator')
+    async def _nvtest(self, ctx):
+        ttl = None if ctx.message.content.endswith(' stay') else 35
+        out = await self.get_nvidia_drivers()
+        paginator = commands.Paginator()
+        for line in out.split('\n'):
+            paginator.add_line(line)
+        for page in p.pages:
+            await ctx.send(page, delete_after=ttl)
+        await ctx.message.delete()
+
 
     @commands.command(description="Auto-Responders debug", name="timertest")
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
