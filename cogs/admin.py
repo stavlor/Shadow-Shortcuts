@@ -102,7 +102,6 @@ class Admin(commands.Cog):
             status_text = doc.xpath('//strong[@id="statusbar_text"]')[0].text_content()
             return status_text
 
-    @staticmethod
     async def get_nvidia_drivers(self):
         from lxml import etree
 
