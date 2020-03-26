@@ -103,11 +103,12 @@ class Admin(commands.Cog):
             return status_text
 
     async def get_nvidia_drivers(self):
-        from lxml import etree
+        import lxml.html
         async with aiohttp.ClientSession as session:
             html = await self.bot.admin.fetch(session, 'https://www.nvidia.com/Download/processFind.aspx?psid=73&pfid=823&osid=57&lid=1&whql=1&lang=en-us&ctk=0&qnfslb=10&dtcid=0')
-            etree_out = etree.HTML(html)
-            return etree.tostring(etree_out, pretty_print=True)
+            doc = lxml.html.fromstring(html)
+            print(f"DBG: {doc}")
+            return doc
 
     @staticmethod
     async def fetch(session, url, timeout=10):
