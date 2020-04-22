@@ -404,6 +404,26 @@ For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.p
             await ctx.message.delete()
 
 
+    @commands.command(aliases=['val','valorant'])
+    async def _valorant(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Valorant Command"""
+        self.bot.logger.info(f"Processed valorant command for {ctx.author.name} with parameter {user}.")
+        text = """Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
+
+This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-games-new-anti-cheat-system-runs-at-system-boot-uses-kernel-driver>"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
     @commands.command(aliases=['ips','geoip'])
     async def ip(self, ctx, user: typing.Optional[discord.Member] = None):
         """IP/Geoip Information"""
