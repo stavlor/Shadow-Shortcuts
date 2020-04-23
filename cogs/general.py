@@ -424,6 +424,33 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
             await ctx.author.send(text)
             await ctx.message.delete()
 
+
+    @commands.command(aliases=['storage', 'stor', 'sto'])
+    async def _storage(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Storage tutorial command"""
+        self.bot.logger.info(f"Processed storage command for {ctx.author.name} with parameter {user}.")
+        text = """**How to add storage**:
+First Sign in to your account page via https://sso.shadow.tech/
+<https://botstatic.stavlor.net/sso.png>
+Then go to your Subscription/Billing Section:
+<https://botstatic.stavlor.net/sub-billing.png>
+Hit Add Storage:
+<https://botstatic.stavlor.net/storage-dialog.png>
+Choose how much you want and follow prompts, when adding storage ensure your ***Shadow is OFF***"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
+
     @commands.command(aliases=['ips','geoip'])
     async def ip(self, ctx, user: typing.Optional[discord.Member] = None):
         """IP/Geoip Information"""
@@ -653,7 +680,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 
     @commands.command(aliases=['rm', 'roadmap'])
     async def _roadmap(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """Shadow roadmap: <https://shadow.tech/usen/features-roadmap>"""
+        text = """Shadow roadmap: <https://shdw.me/roadmap>"""
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
