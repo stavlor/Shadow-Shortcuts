@@ -10,6 +10,7 @@ class SchedEvent(commands.Cog):
         self.bot.schedevent.day_mode = False
         self.bot.schedevent.night_mode_delay = 75
         self.bot.schedevent.day_mode_delay = 10
+        self.loop.start()
 
 
     @tasks.loop(seconds=60)
