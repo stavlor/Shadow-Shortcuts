@@ -116,6 +116,14 @@ class Admin(commands.Cog):
             return await response.text()
 
 
+    @commands.command(aliases=['slo', 'sm'])
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    async def slowmode(self, ctx, timer: int = 5):
+        """Change Channel Slowmode"""
+        await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author}")
+        await ctx.send(f"{ctx.author.mention} Slowmode timer updated to {timer} seconds.")
+
+
     @commands.command(description="Nvidia testing", name="nvtest")
     @commands.has_any_role('Shadow Guru', 'Moderator')
     async def _nvtest(self, ctx):
