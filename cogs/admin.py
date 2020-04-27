@@ -243,7 +243,7 @@ class Admin(commands.Cog):
         messages = queue.Queue(maxsize=message_count)
         for channel in guild.text_channels:
             try:
-                async for message in channel.history(limit=100):
+                async for message in channel.history(limit=15000):
                     if message.author == user:
                         if not messages.full():
                             messages.put(message)
