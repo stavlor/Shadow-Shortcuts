@@ -27,7 +27,7 @@ class SchedEvent(commands.Cog):
             self.bot.schedevent.night_mode = False
             self.bot.logger.info("Enacting Daymode")
             await self.bot.get_channel(687830602317168711).edit(slowmode_delay=10, reason="Daymode - Auto")
-        self.bot.logger.info(f"Loop time: {time}")
+        self.bot.logger.debug(f"Loop time: {time}")
 
 def setup(bot):
     bot.add_cog(SchedEvent(bot))
