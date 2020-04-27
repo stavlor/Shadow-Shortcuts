@@ -22,7 +22,7 @@ class SchedEvent(commands.Cog):
             self.bot.schedevent.night_mode = True
             self.bot.schedevent.day_mode = False
             await self.bot.get_channel(687830602317168711).edit(slowmode_delay=75, reason="Nightmode - Auto")
-        if (time.hour > 9) and self.bot.schedevent.night_mode:
+        if (time.hour > 8) and self.bot.schedevent.night_mode:
             self.bot.schedevent.day_mode = True
             self.bot.schedevent.night_mode = False
             self.bot.logger.info("Enacting Daymode")
