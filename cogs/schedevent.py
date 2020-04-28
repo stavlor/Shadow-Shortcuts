@@ -21,13 +21,13 @@ class SchedEvent(commands.Cog):
             self.bot.logger.info("Enacting Nightmode")
             self.bot.schedevent.night_mode = True
             self.bot.schedevent.day_mode = False
-            await self.bot.get_channel(687830602317168711).edit(slowmode_delay=75, reason="Nightmode - Auto")
+            await self.bot.get_channel(687830602317168711).edit(slowmode_delay=self.bot.schedevent.night_mode_delay, reason="Nightmode - Auto")
             await self.bot.get_channel(550519535606956032).send(f"Entering Night mode, Sleep well -- {time}")
         if (time.hour > 8) and self.bot.schedevent.night_mode:
             self.bot.schedevent.day_mode = True
             self.bot.schedevent.night_mode = False
             self.bot.logger.info("Enacting Daymode")
-            await self.bot.get_channel(687830602317168711).edit(slowmode_delay=10, reason="Daymode - Auto")
+            await self.bot.get_channel(687830602317168711).edit(slowmode_delay=self.bot.schedevent.day_mode_delay, reason="Daymode - Auto")
             await self.bot.get_channel(550519535606956032).send(f"Entering Day mode, Good morning -- {time}")
         self.bot.logger.debug(f"Loop time: {time}")
 
