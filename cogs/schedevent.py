@@ -17,7 +17,7 @@ class SchedEvent(commands.Cog):
     async def loop(self):
         from datetime import datetime
         time = datetime.now()
-        if (time.hour > 0) and (time.hour < 9) and not self.bot.schedevent.night_mode:
+        if (time.hour >= 0) and (time.hour < 9) and not self.bot.schedevent.night_mode:
             self.bot.logger.info("Enacting Nightmode")
             self.bot.schedevent.night_mode = True
             self.bot.schedevent.day_mode = False
