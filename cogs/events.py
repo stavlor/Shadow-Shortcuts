@@ -119,6 +119,10 @@ If you have any issues updating the default password is blank “” if your pas
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                               message="{ctx.author.mention} Please follow the following steps to resolve your issue, Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botstatic.stavlor.net/reboot.gif ",
                                                               trigger="shadow is off")
+        elif "valorant" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
+
+This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-games-new-anti-cheat-system-runs-at-system-boot-uses-kernel-driver>""")
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
