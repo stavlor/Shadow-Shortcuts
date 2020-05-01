@@ -24,7 +24,7 @@ initial_extensions = ['cogs.admin',
                       'cogs.database',
                       'cogs.events',
                       'cogs.general',
-                      'cogs.schedevent'
+                      'cogs.schedevent',
                       'jishaku']
 
 if __name__ == '__main__':
