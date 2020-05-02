@@ -456,7 +456,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """IP/Geoip Information"""
         self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Blade occasionally moves IP addresses around between its datacenters.
- If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://bot.whatismyipaddress.com/:
+ If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://ipv4bot.whatismyipaddress.com/:
             - **Europe**
                 - If your IP begins with **185.161.** you are on the **Amsterdam** datacenter
                 - If your IP begins with **85.190.** you are on the **France** datacenter
