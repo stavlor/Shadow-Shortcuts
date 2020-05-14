@@ -150,7 +150,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(name='ar')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def add_role(self, ctx, user: discord.Member, *,  role: typing.Optional[discord.Role] = None):
         """Adds a role to a User default is Shadowers."""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
@@ -169,7 +169,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Grant a user bot access", name='grantbot')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def add_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Grant Bot User Role to a user - Admin"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
@@ -187,10 +187,10 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def revoke_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Revoke Bot User Role from a user - Admin"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -204,7 +204,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Roles test", name='roletest')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _roletest(self, ctx):
         """Admin - Role ID Listing tool"""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
@@ -219,7 +219,7 @@ class Admin(commands.Cog):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def gitref(self, ctx):
         """Refresh git repo content."""
         if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
@@ -260,7 +260,7 @@ class Admin(commands.Cog):
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
         import datetime
-        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
             await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
         elif user is None:
@@ -309,7 +309,7 @@ class Admin(commands.Cog):
                 await ctx.send(page)
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def rr(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None, all_roles: bool = False):
         """Remove Roles - remove role from a user  defa- Optional True/False for all_roles will remove all roles from a user."""
         if role is None:
@@ -324,10 +324,10 @@ class Admin(commands.Cog):
         await ctx.message.add_reaction('✅')
 
     @commands.command(description="Bot Logs")
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff')
     async def logs(self, ctx):
         """Logs Command"""
-        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
             fname = 'discord.log'
             lines = await self.bot.admin.tail(filename=fname, lines=50)
             lines = lines.split("\n")
