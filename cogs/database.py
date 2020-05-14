@@ -16,10 +16,10 @@ class Database(commands.Cog):
         bot.logger.info("Initialized Database cog")
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin', 'Shadow Staff')
     async def sql(self, ctx, *, arguments):
         """Admin SQL Tool"""
-        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators', 'Shadow Staff']):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return
         self.logger.info("SQL: {sql}".format(sql=str(arguments)))
@@ -30,7 +30,7 @@ class Database(commands.Cog):
     @commands.command(aliases=['cleanpms'])
     @commands.has_any_role('Shadow Guru', 'Moderators', 'Admin')
     async def clean_pm_tracking(self, ctx, *, arguments = None):
-        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators']):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Moderators', 'Shadow Staff']):
             await ctx.send("{ctx.author.mention} your not authorized to do that.".format(ctx=ctx))
             return
         sql = 'TRUNCATE pm_tracking;'
