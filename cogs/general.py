@@ -537,6 +537,42 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
             await ctx.author.send(text)
             await ctx.message.delete()
 
+    @commands.command(aliases=['ltt', 'linus'])
+    async def linustechtips(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Linus Tech Tips"""
+        self.bot.logger.info(f"Processed linustechtips command for {ctx.author.name} with parameter {user}.")
+        text = """Check Out the Linus Tech Tips Video Found here: https://www.youtube.com/watch?v=0BQ4bXNdEQI"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
+    @commands.command(aliases=['dct', 'datacentertour'])
+    async def dctour(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Linus Tech Tips"""
+        self.bot.logger.info(f"Processed dctour command for {ctx.author.name} with parameter {user}.")
+        text = """Check Out a tour of one of our datacenters found here: https://youtube.com/watch?v=DD3WNXkc7F0"""
+        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{user.mention} {text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        elif await self.bot.admin.can_run_command(ctx.author.roles):
+            text = f"From {ctx.author.name}\n{text}"
+            await ctx.send(text)
+            await ctx.message.delete()
+        else:
+            text = f"{ctx.author.mention} {text}"
+            await ctx.author.send(text)
+            await ctx.message.delete()
+
     @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps'])
     async def stats(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to access Shadow Control panel stats pane."""
