@@ -117,7 +117,7 @@ class Admin(commands.Cog):
 
 
     @commands.command(aliases=['slo', 'sm'])
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def slowmode(self, ctx, timer: int = 5):
         """Change Channel Slowmode"""
         await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author}")
@@ -153,7 +153,7 @@ class Admin(commands.Cog):
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def add_role(self, ctx, user: discord.Member, *,  role: typing.Optional[discord.Role] = None):
         """Adds a role to a User default is Shadowers."""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff']):
             if role is None:
                 role = ctx.guild.get_role(461298541978058769)
             if user is None:
