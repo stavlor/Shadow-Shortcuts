@@ -63,27 +63,27 @@ class Events(commands.Cog):
                 await message.channel.send(f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botstatic.stavlor.net/reboot.gif",
+                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                         trigger="L:104")
         elif ("L 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botstatic.stavlor.net/reboot.gif",
+                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                         trigger="L 104")
         elif (" 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botstatic.stavlor.net/reboot.gif",
+                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                         trigger="104")
         elif ("shadow is off" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botstatic.stavlor.net/reboot.gif",
+                                        message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                         trigger="104")
         elif "800x600" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following to fix issues with 800x600 resolution http://botstatic.stavlor.net/800x600.png",
+                                        message="{ctx.author.mention} Please see the following to fix issues with 800x600 resolution http://botrexford.shdw.info/800x600.png",
                                         trigger="800x600")
         elif "input lag" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following tips for solving input lag issues http://botstatic.stavlor.net/inputlag.png",
+                                        message="{ctx.author.mention} Please see the following tips for solving input lag issues http://botrexford.shdw.info/inputlag.png",
                                         trigger="input lag")
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
@@ -101,23 +101,23 @@ If you have any issues updating the default password is blank “” if your pas
                                                              trigger="password expired")
         elif "waiting for video" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png",
+                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                         trigger="waiting for video")
         elif "video error" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png",
+                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                         trigger="waiting for video")
         elif "long to boot up" in message.content.lower() and not await bot.admin.can_run_command(role_names):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png",
+                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                         trigger="waiting for video")
         elif "3/3" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autorespone.auto_response_message(ctx=message,
-                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botstatic.stavlor.net/waiting_for_video.png",
+                                        message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                         trigger="3/3")
         elif "shadow is off" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                              message="{ctx.author.mention} Please follow the following steps to resolve your issue, Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botstatic.stavlor.net/reboot.gif ",
+                                                              message="{ctx.author.mention} Please follow the following steps to resolve your issue, Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botrexford.shdw.info/reboot.gif ",
                                                               trigger="shadow is off")
         elif "valorant" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 

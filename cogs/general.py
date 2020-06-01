@@ -30,7 +30,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
 
     @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'rebootshadow', 'restartshadow', 'sd', 'shutdown'])
     async def errorl104(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botstatic.stavlor.net/reboot.gif"""
+        text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botrexford.shdw.info/reboot.gif"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(
                 "104 command received from {author.name} with argument of {user}".format(author=ctx.message.author,
@@ -170,7 +170,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         """Ghost Purchase information."""
         text = """Ghosts can be purchased from your account page under Subscription: https://account.shadow.tech/subscription
 
-For the Ghost user manual, see here: http://botstatic.stavlor.net/Ghost_Manual.pdf"""
+For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
@@ -431,11 +431,11 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         self.bot.logger.info(f"Processed storage command for {ctx.author.name} with parameter {user}.")
         text = """**How to add storage**:
 First Sign in to your account page via https://sso.shadow.tech/
-<https://botstatic.stavlor.net/sso.png>
+<https://botrexford.shdw.info/sso.png>
 Then go to your Subscription/Billing Section:
-<https://botstatic.stavlor.net/sub-billing.png>
+<https://botrexford.shdw.info/sub-billing.png>
 Hit Add Storage:
-<https://botstatic.stavlor.net/storage-dialog.png>
+<https://botrexford.shdw.info/storage-dialog.png>
 Choose how much you want and follow prompts, when adding storage ensure your ***Shadow is OFF***"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
@@ -578,7 +578,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """How to access Shadow Control panel stats pane."""
         self.bot.logger.info(f"Processed hstats command for {ctx.author.name} with parameter {user}.")
         text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, 
-        Bitrate, Ping and Packet Loss) to access it please this http://botstatic.stavlor.net/how_to_access_stats.png """
+        Bitrate, Ping and Packet Loss) to access it please this http://botrexford.shdw.info/how_to_access_stats.png """
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
@@ -645,8 +645,8 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         """Send USB Dev Kit Downloads/info"""
         text = """USB Development Kit Drivers are needed for proper functioning of USB over IP on Windows
         Normally the Shadow client will install these drivers however sometimes this install fails you can manually download and install them from here
-         - **Windows 32bit** - http://botstatic.stavlor.net/UsbDk_1.0.21_x86.msi
-         - **Windows 64bit** - http://botstatic.stavlor.net/UsbDk_1.0.21_x64.msi
+         - **Windows 32bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x86.msi
+         - **Windows 64bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x64.msi
         Once installed reboot your local system and USB over IP should function normally, ***___Note Install these on your local PC not your shadow.___***"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
@@ -807,7 +807,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
     @commands.command(aliases=['sendlogs', 'slogs'])
     async def _sendlogs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """To Send client logs to Shadow Support please see the following: 
-        https://botstatic.stavlor.net/Send_Logs.png"""
+        https://botrexford.shdw.info/Send_Logs.png"""
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(text)
             await ctx.message.delete()
