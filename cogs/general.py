@@ -408,9 +408,12 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
     async def _valorant(self, ctx, user: typing.Optional[discord.Member] = None):
         """Valorant Command"""
         self.bot.logger.info(f"Processed valorant command for {ctx.author.name} with parameter {user}.")
-        text = """Like so many gamers around the world, we're excited for the official release of Valorant! 
-Due to Riot Games' anti-cheat system, Vanguard, it is currently not possible to play on virtual machines, like Shadow. We are currently looking into potential solutions so all of you at #TeamShadow can get in some sweet competitive MP action. 
+        text = """Like so many gamers around the world, we're excited for the official release of Valorant!
+         
+Due to Riot Games' anti-cheat system, Vanguard, it is currently not possible to play on virtual machines, like Shadow. We are currently looking into potential solutions so all of you at #TeamShadow can get in some sweet competitive MP action.
+ 
 As soon as we have more information, you will be the first to know. To stay up-to-date, you can also refer to our Help Center article.
+
 __Games with Issues Identified on Shadow__
 <https://help.shadow.tech/hc/en-gb/articles/360013641620-Games-with-Issues-Identified-on-Shadow>"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
