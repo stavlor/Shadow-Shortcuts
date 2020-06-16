@@ -429,6 +429,24 @@ __Games with Issues Identified on Shadow__
             await ctx.author.send(text)
             await ctx.message.delete()
 
+        @commands.command(aliases=['act', 'activation'])
+        async def activationupdates(self, ctx, user: typing.Optional[discord.Member] = None):
+            """Valorant Command"""
+            self.bot.logger.info(f"Processed activation  command for {ctx.author.name} with parameter {user}.")
+            text = """:boom: For the latest activation updates please see the Forum Activation Thread :boom:  
+https://shdw.me/activation_updates"""
+            if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
+                text = f"From {ctx.author.name}\n{user.mention} {text}"
+                await ctx.send(text)
+                await ctx.message.delete()
+            elif await self.bot.admin.can_run_command(ctx.author.roles):
+                text = f"From {ctx.author.name}\n{text}"
+                await ctx.send(text)
+                await ctx.message.delete()
+            else:
+                text = f"{ctx.author.mention} {text}"
+                await ctx.author.send(text)
+                await ctx.message.delete()
 
     @commands.command(aliases=['storage', 'stor', 'sto'])
     async def _storage(self, ctx, user: typing.Optional[discord.Member] = None):
