@@ -429,9 +429,9 @@ __Games with Issues Identified on Shadow__
             await ctx.author.send(text)
             await ctx.message.delete()
 
-        @commands.command(aliases=['act', 'activation'])
-        async def activationupdates(self, ctx, user: typing.Optional[discord.Member] = None):
-            """Valorant Command"""
+    @commands.command(aliases=['act', 'activation'])
+    async def activationupdates(self, ctx, user: typing.Optional[discord.Member] = None):
+            """Activation updates"""
             self.bot.logger.info(f"Processed activation  command for {ctx.author.name} with parameter {user}.")
             text = """:boom: For the latest activation updates please see the Forum Activation Thread :boom:  
 https://shdw.me/activation_updates"""
