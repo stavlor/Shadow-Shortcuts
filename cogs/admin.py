@@ -122,7 +122,7 @@ class Admin(commands.Cog):
         if user is None:
             await ctx.send(excuse['message'])
         else:
-            await ctx.send(f"Sent by: {ctx.user}\n{user.mention} {excuse['message']}")
+            await ctx.send(f"Sent by: {ctx.author.name}\n{user.mention} {excuse['message']}")
         await ctx.message.delete()
 
     @commands.command(aliases=['slo', 'sm'])
