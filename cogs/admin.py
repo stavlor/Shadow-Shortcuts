@@ -117,9 +117,12 @@ class Admin(commands.Cog):
 
     @commands.command(aliases=['excuse'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Bot User')
-    async def _excuse(self, ctx):
+    async def _excuse(self, ctx, user: typing.Optional[discord.Member] = None):
         excuse = await self.get_excuse()
-        await ctx.send(excuse['message'])
+        if user is None:
+            await ctx.send(excuse['message'])
+        else:
+            await ctx.send(f"{user.mention} {excuse['message']}")
         await ctx.message.delete()
 
     @commands.command(aliases=['slo', 'sm'])
