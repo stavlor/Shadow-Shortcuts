@@ -115,9 +115,9 @@ class Admin(commands.Cog):
             return await response.text()
 
 
-    @commands.command(aliases=exuse)
+    @commands.command(aliases=['excuse'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Bot User')
-    async def _exuse(self, ctx):
+    async def _excuse(self, ctx):
         excuse = await self.get_excuse()
         await ctx.send(excuse['message'])
         await ctx.message.delete()
