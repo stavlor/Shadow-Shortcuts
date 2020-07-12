@@ -104,7 +104,7 @@ class Admin(commands.Cog):
 
     async def get_excuse(self):
         import json
-        async with aiohttp.ClientSession as session:
+        async with aiohttp.ClientSession() as session:
             html = await self.bot.admin.fetch(session, 'https://pe-api.herokuapp.com')
             doc = json.loads(html)
             return doc
