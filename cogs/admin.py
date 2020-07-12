@@ -102,12 +102,11 @@ class Admin(commands.Cog):
             status_text = doc.xpath('//strong[@id="statusbar_text"]')[0].text_content()
             return status_text
 
-    async def get_nvidia_drivers(self):
-        import lxml.html
+    async def get_excuse(self):
+        import json
         async with aiohttp.ClientSession as session:
-            html = await self.bot.admin.fetch(session, 'https://www.nvidia.com/Download/processFind.aspx?psid=73&pfid=823&osid=57&lid=1&whql=1&lang=en-us&ctk=0&qnfslb=10&dtcid=0')
-            doc = lxml.html.fromstring(html)
-            print(f"DBG: {doc}")
+            html = await self.bot.admin.fetch(session, 'http://pe-api.herokuapp.com/')
+            doc = json.loads(html)
             return doc
 
     @staticmethod
@@ -116,25 +115,19 @@ class Admin(commands.Cog):
             return await response.text()
 
 
+    @commands.command(aliases=exuse)
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Bot User')
+    async def _exuse(self, ctx):
+        excuse = await self.get_excuse()
+        await ctx.send(excuse['message'])
+        await ctx.message.delete()
+
     @commands.command(aliases=['slo', 'sm'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def slowmode(self, ctx, timer: int = 5):
         """Change Channel Slowmode"""
         await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author}")
         await ctx.send(f"{ctx.author.mention} Slowmode timer updated to {timer} seconds.")
-
-
-    @commands.command(description="Nvidia testing", name="nvtest")
-    @commands.has_any_role('Shadow Guru', 'Moderator')
-    async def _nvtest(self, ctx):
-        ttl = None if ctx.message.content.endswith(' stay') else 35
-        out = await self.get_nvidia_drivers()
-        paginator = commands.Paginator()
-        for line in out.split('\n'):
-            paginator.add_line(line)
-        for page in paginator.pages:
-            await ctx.send(page, delete_after=ttl)
-        await ctx.message.delete()
 
 
     @commands.command(description="Auto-Responders debug", name="timertest")
