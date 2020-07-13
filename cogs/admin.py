@@ -125,6 +125,34 @@ class Admin(commands.Cog):
             await ctx.send(f"Sent by: {ctx.author.name}\n{user.mention} {excuse['message']}")
         await ctx.message.delete()
 
+    @commands.command(aliases=['latency'])
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    async def _latency(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = '''
+1. Traceroute from Shadow to your Local IP
+  a. On your local PC navigate to http://lg.shadow.guru/
+  b. Select your data center (for Router to Use)
+  c. Select traceroute (for Command to Issue)
+  d. Take a Screenshot of the results Windows + Shift + S or using your preferred screenshot tool
+  e. Send to a Shadow Guru or Moderator 
+2. Traceroute from your local IP to Shadow .
+  a. On your local PC Press Windows + R
+  b. Type cmd then click OK
+  c. Type in the following text without quotations "tracert [insert IP here]
+    * The ip list for the data centers (choose the right one):
+      * IP TX: 216.180.128.134
+      * IP CH: 216.180.136.134
+      * IP NY: 162.213.48.134
+      * IP CA: 170.249.92.40
+  d. Wait up to 2 minutes for the test to complete
+  e. Take a Screenshot of the results Windows + Shift + S or using your preferred screenshot tool
+  f. Send to a Shadow Guru or Moderator'''
+        if user is None:
+            await(ctx.send(text))
+        else:
+            await ctx.send(f"Sent by: {ctx.author.name}\n{user.mention}\n{text}")
+        await ctx.message.delete()
+
     @commands.command(aliases=['slo', 'sm'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def slowmode(self, ctx, timer: int = 5):
