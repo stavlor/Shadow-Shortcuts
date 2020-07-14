@@ -128,8 +128,7 @@ class Admin(commands.Cog):
     @commands.command(aliases=['latency', 'trace', 'tr'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _latency(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = '''
-***Running a traceroute to/from Shadow***
+        text = '''***Running a traceroute to/from Shadow***
 
 *Designed to help determine potential network issues*
 
@@ -148,10 +147,10 @@ but there are comparable commands for other OSes**
     b. Type cmd then click OK
     c. Type in the following text without quotations or square brackets "tracert [insert IP here]"
         * The IP list for the data centers (choose the right one):
-            * IP TX: 216.180.128.134
-            * IP CH: 216.180.136.134
-            * IP NY: 162.213.48.134
-            * IP CA: 170.249.92.40
+            * TX: 216.180.128.134
+            * CH: 216.180.136.134
+            * NY: 162.213.48.134
+            * CA: 170.249.92.40
     d. Wait up to 2 minutes for the test to complete
     e. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
     f. Send to a Shadow Guru or Moderator'''
