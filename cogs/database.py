@@ -112,7 +112,7 @@ class Database(commands.Cog):
         await ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
 
     @commands.command(aliases=['auid'])
-    async def alter_roles(self, ctx, uid: int, role: commands.Greedy[discord.Role]):
+    async def alter_roles(self, ctx, uid: int, *, role: commands.Greedy[discord.Role]):
         """Alter Leaver roles for UID
         Note: This replaces all existing with the new role only."""
         role_list = list()
