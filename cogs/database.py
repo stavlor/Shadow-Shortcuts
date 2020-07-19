@@ -97,10 +97,13 @@ class Database(commands.Cog):
         if res is not None:
             roles = res['roles']
             for item in roles:
+                self.bot.logger.info(f"fuid: Debug: {item}")
                 if item is not None:
                     if item == '':
                         continue
                     role = ctx.guild.get_role(int(item))
+                    if role is None:
+                        continue
                     if role.name == "@everyone":
                         continue
                     if role is not None:
