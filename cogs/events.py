@@ -153,6 +153,16 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
                             value="For additional status information please see the status page", inline=True)
             await channel.send(embed=embed, delete_after=900)
 
+    @commands.Cog.listener()
+    async def on_message_delete(self, message):
+        from datetime import datetime
+        cur_time = datetime.now().isoformat()
+        author = message.author
+        content = message.content
+        channel = message.channel
+        dest_channel = self.bot.fetch_channel(462170485787066368)
+        await dest_channel.send(f"Message was deleted {author} - {content} - in {channel} created: {message.created_at} edited: {message.edited_at} current_time: {cur_time}")
+
 
 def setup(bot):
     bot.add_cog(Events(bot))
