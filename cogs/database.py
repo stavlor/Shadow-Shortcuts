@@ -96,8 +96,7 @@ class Database(commands.Cog):
         res = dict(res)
         if res is not None:
             roles = res['roles']
-            for item in roles:
-                self.bot.logger.info(f"fuid: Debug: {item}")
+            for item in str(roles).split(','):
                 if item is not None:
                     if item == '':
                         continue
