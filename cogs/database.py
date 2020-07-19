@@ -112,12 +112,13 @@ class Database(commands.Cog):
         await ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
 
     @commands.command(alias=['auid'])
-    async def alter_roles(self, ctx, uid: int, role: discord.role):
+    async def alter_roles(self, ctx, uid: int, role: commands.Greedy[discord.role]):
         """Alter Leaver roles for UID
         Note: This replaces all existing with the new role only."""
         role_list = list()
         role_str = str()
-        role_list.append(role.id)
+        for roles in role:
+            role_list.append(roles.id)
         for item in role_list:
             role_str += f"{item},"
         SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{uid}', '{role_str}') ON CONFLICT (discord_id) DO UPDATE SET roles='{role_str}';"
