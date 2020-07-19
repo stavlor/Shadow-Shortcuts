@@ -82,6 +82,7 @@ class Database(commands.Cog):
 
     @commands.command(aliases=['fuid'])
     async def find_roles(self, ctx, uid: int):
+        """Find Leaver Roles for a User ID"""
         roles = list()
         applied_roles = list()
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{uid}' LIMIT 1;"
@@ -109,6 +110,21 @@ class Database(commands.Cog):
                         applied_roles.append(role)
         await ctx.message.delete()
         await ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
+
+    @commands.command(alias=['auid'])
+    async def alter_roles(self, ctx, uid: int, role: discord.role):
+        """Alter Leaver roles for UID
+        Note: This replaces all existing with the new role only."""
+        role_list = list()
+        role_str = str()
+        role_list.append(role.id)
+        for item in role_list:
+            role_str += f"{item},"
+        SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{uid}', '{role_str}') ON CONFLICT (discord_id) DO UPDATE SET roles='{role_str}';"
+        async with self.bot.dbpool.acquire() as connection:
+            await connection.execute(SQL)
+        await ctx.message.delete()
+        await ctx.send(f"{ctx.message.author.mention} Leaver Roles have been updated for UID: {uid} to be {role.name}.")
 
     async def re_apply_roles(self, member):
         roles = list()
