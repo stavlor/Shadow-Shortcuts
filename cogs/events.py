@@ -160,7 +160,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         author = message.author
         content = message.content
         channel = message.channel
-        dest_channel = self.bot.fetch_channel(462170485787066368)
+        dest_channel = await self.bot.fetch_channel(462170485787066368)
         await dest_channel.send(f"Message was deleted {author} - {content} - in {channel} created: {message.created_at} edited: {message.edited_at} current_time: {cur_time}")
 
 
