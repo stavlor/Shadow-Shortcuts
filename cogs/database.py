@@ -2,6 +2,7 @@ from discord.ext import commands
 import discord
 import asyncpg
 import asyncio
+import typing
 
 
 class Database(commands.Cog):
@@ -79,6 +80,33 @@ class Database(commands.Cog):
         res = dict(res)
         return res
 
+    @commands.command(aliases=['fuid'])
+    async def find_roles(self, ctx, uid: int):
+        roles = list()
+        applied_roles = list()
+        SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{uid}' LIMIT 1;"
+        async with self.bot.dbpool.acquire() as connection:
+            res = await connection.fetch(SQL)
+        if len(res) != 0:
+            res = res.pop()
+        else:
+            ctx.message.delete()
+            ctx.send(f"UID: {uid} not found or had no roles.")
+            return
+        res = dict(res)
+        if res is not None:
+            roles = res['roles']
+            for item in roles:
+                if item is not None:
+                    if item == '':
+                        continue
+                    role = ctx.guild.get_role(int(item))
+                    if role.name == "@everyone":
+                        continue
+                    if role is not None:
+                        applied_roles.append(role)
+        ctx.message.delete()
+        ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
 
     async def re_apply_roles(self, member):
         roles = list()
