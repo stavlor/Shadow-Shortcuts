@@ -158,7 +158,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
     async def on_message_delete(self, message):
         from datetime import datetime
         links = str()
-        ignored_channels = ['bot_users', 'gurus-lab', 'bot-logs', 'known-issues']
+        ignored_channels = ['bot_users', 'gurus-lab', 'bot-logs', 'known-issues', 'dariisas-deli']
         cur_time = datetime.now().isoformat()
         author = message.author
         content = message.content
