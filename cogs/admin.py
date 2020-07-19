@@ -150,7 +150,7 @@ but there are comparable commands for other OSes**
             * TX: 216.180.128.134
             * CH: 216.180.136.134
             * NY: 162.213.48.134
-            * CA: 170.249.92.40
+            * SV: 170.249.92.40
     d. Wait up to 2 minutes for the test to complete
     e. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
     f. Send to a Shadow Guru or Moderator'''
