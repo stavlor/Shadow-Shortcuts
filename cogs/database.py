@@ -90,8 +90,8 @@ class Database(commands.Cog):
         if len(res) != 0:
             res = res.pop()
         else:
-            ctx.message.delete()
-            ctx.send(f"UID: {uid} not found or had no roles.")
+            await ctx.message.delete()
+            await ctx.send(f"UID: {uid} not found or had no roles.")
             return
         res = dict(res)
         if res is not None:
@@ -105,8 +105,8 @@ class Database(commands.Cog):
                         continue
                     if role is not None:
                         applied_roles.append(role)
-        ctx.message.delete()
-        ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
+        await ctx.message.delete()
+        await ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
 
     async def re_apply_roles(self, member):
         roles = list()
