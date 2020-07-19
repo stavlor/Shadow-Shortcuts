@@ -8,6 +8,7 @@ class Events(commands.Cog):
         self.bot = bot
         bot.events = self
         bot.logger.info("Initialized Events Cog")
+        self.check_status.start()
 
     @commands.Cog.listener()
     async def on_command_error(self, ctx, exception):
