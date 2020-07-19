@@ -156,14 +156,14 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         from datetime import datetime
-        links = list()
+        links = str()
         cur_time = datetime.now().isoformat()
         author = message.author
         content = message.content
         channel = message.channel
         dest_channel = await self.bot.fetch_channel(462170485787066368)
         for attachment in message.attachments:
-            links.append(attachment.url)
+            links += attachment.url + ' '
         await dest_channel.send(f"Message was deleted {author} - {content} Attachments: {links}- in {channel} created: {message.created_at} edited: {message.edited_at} current_time: {cur_time}")
 
 
