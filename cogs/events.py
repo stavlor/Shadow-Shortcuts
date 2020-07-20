@@ -164,8 +164,9 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         author = message.author
         content = message.content
         channel = message.channel
-        async for entry in message.guild.audit_logs(limit=1, action=discord.AuditLogAction.message_delete):
-            audit_user = entry.user
+        async for entry in message.guild.audit_logs(limit=10, action=discord.AuditLogAction.message_delete, oldest_first=False):
+            if entry.target.id == message.id:
+                audit_user = entry.user
         if channel in ignored_channels:
             return
         if message.author.id == self.bot.user.id:
