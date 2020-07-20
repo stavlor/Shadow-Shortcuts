@@ -158,13 +158,14 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
     async def on_message_delete(self, message):
         from datetime import datetime
         links = str()
+        audit_user = None
         ignored_channels = ['bot_users', 'gurus-lab', 'bot-logs', 'known-issues', 'dariisas-deli']
         cur_time = datetime.now().isoformat()
         author = message.author
         content = message.content
         channel = message.channel
-        audit_log = await message.guild.audit_logs(limit=1, action=discord.AuditLogAction.message_delete)
-        audit_user = audit_log.user
+        async for entry in  message.guild.audit_logs(limit=1, action=discord.AuditLogAction.message_delete):
+            audit_user = entry.user
         if channel in ignored_channels:
             return
         if message.author.id == self.bot.user.id:
