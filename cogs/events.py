@@ -141,8 +141,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
 
     @tasks.loop(minutes=5.0)
     async def check_status(self):
-        channel = self.bot.get_channel(633713376316620829)
-        msg = await channel.fetch_message(553765896666087442)
+        msg = await self.bot.get_channel(633713376316620829).fetch_message(553765896666087442)
         if await self.bot.admin.get_status() == "All services operating normally":
             embed = discord.Embed(title="Shadow Status", url="https://status.shadow.tech", color=0x00ff00)
             embed.add_field(name="All services operating normally",
