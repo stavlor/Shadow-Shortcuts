@@ -170,6 +170,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
                 if entry.created_at - cur_raw_time > timedelta(minutes=1):
                     self.bot.logger.info(f"Found possible match, but times aren't in range {entry} c:{entry.created_at} rt:{cur_raw_time} P: {entry.created_at - cur_raw_time}")
                 else:
+                    self.bot.logger.info(f"Match? Audit_Log_entry time: {entry.created_at}, rt: {cur_raw_time} P:{entry.created_at - cur_raw_time}")
                     audit_user = entry.user
         if channel in ignored_channels:
             return
