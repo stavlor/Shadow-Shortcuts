@@ -165,12 +165,12 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         author = message.author
         content = message.content
         channel = message.channel
-        async for entry in message.guild.audit_logs(limit=3, action=discord.AuditLogAction.message_delete, oldest_first=False):
+        async for entry in message.guild.audit_logs(limit=5, action=discord.AuditLogAction.message_delete, oldest_first=False):
             if entry.target.id == author.id:
-                if entry.created_at - cur_raw_time > timedelta(minutes=1):
-                    self.bot.logger.info(f"Found possible match, but times aren't in range {entry} c:{entry.created_at} rt:{cur_raw_time} P: {entry.created_at - cur_raw_time}")
+                if cur_raw_time - entry.created_at > timedelta(minutes=1):
+                    self.bot.logger.info(f"Found possible match, but times aren't in range {entry} c:{entry.created_at} rt:{cur_raw_time} P: {cur_raw_time - entry.created_at}")
                 else:
-                    self.bot.logger.info(f"Match? Audit_Log_entry time: {entry.created_at}, rt: {cur_raw_time} P:{entry.created_at - cur_raw_time}")
+                    self.bot.logger.info(f"Match? Audit_Log_entry time: {entry.created_at}, rt: {cur_raw_time} P:{cur_raw_time-entry.created_at}")
                     audit_user = entry.user
         if channel in ignored_channels:
             return
