@@ -342,7 +342,7 @@ but there are comparable commands for other OSes**
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def rr(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None, all_roles: bool = False):
-        """Remove Roles - remove role from a user  defa- Optional True/False for all_roles will remove all roles from a user."""
+        """Remove Roles - remove role from a user defa- Optional True/False for all_roles will remove all roles from a user."""
         if role is None:
             role = ctx.guild.get_role(461298541978058769)
         if all_roles:
