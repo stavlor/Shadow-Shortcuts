@@ -156,17 +156,21 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
-        from datetime import datetime
+        from datetime import datetime, timedelta
         links = str()
         audit_user = 'self'
         ignored_channels = ['bot_users', 'gurus-lab', 'bot-logs', 'known-issues', 'dariisas-deli']
         cur_time = datetime.now().isoformat()
+        cur_raw_time = datetime.now()
         author = message.author
         content = message.content
         channel = message.channel
-        async for entry in message.guild.audit_logs(limit=10, action=discord.AuditLogAction.message_delete, oldest_first=False):
+        async for entry in message.guild.audit_logs(limit=3, action=discord.AuditLogAction.message_delete, oldest_first=False):
             if entry.target.id == author.id:
-                audit_user = entry.user
+                if entry.created_at - cur_raw_time > timedelta(minutes=1):
+                    self.bot.logger.info(f"Found possible match, but times aren't in range {entry} c:{entry.created_at} rt:{cur_raw_time} P: {entry.created_at - cur_raw_time}")
+                else:
+                    audit_user = entry.user
         if channel in ignored_channels:
             return
         if message.author.id == self.bot.user.id:
