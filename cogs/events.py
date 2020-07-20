@@ -141,18 +141,18 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
 
     @tasks.loop(minutes=5.0)
     async def check_status(self):
-        channel = await self.bot.fetch_channel(633713376316620829)
+        msg = await self.bot.fetch_message(553765896666087442)
         if await self.bot.admin.get_status() == "All services operating normally":
             embed = discord.Embed(title="Shadow Status", url="https://status.shadow.tech", color=0x00ff00)
             embed.add_field(name="All services operating normally",
                             value="For additional status information please see the status page", inline=True)
-            await channel.send(embed=embed, delete_after=300)
+            await msg.edit(embed=embed)
         else:
             status = await self.bot.admin.get_status()
             embed = discord.Embed(title="Shadow Status", url="https://status.shadow.tech", color=0xff8040)
             embed.add_field(name=status,
                             value="For additional status information please see the status page", inline=True)
-            await channel.send(embed=embed, delete_after=300)
+            await msg.edit(embed=embed)
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
