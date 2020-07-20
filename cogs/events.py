@@ -172,6 +172,8 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
                 else:
                     self.bot.logger.info(f"Match? Audit_Log_entry time: {entry.created_at}, rt: {cur_raw_time} P:{cur_raw_time-entry.created_at}")
                     audit_user = entry.user
+        if audit_user == 'self':
+            self.bot.logger.info(f"No match in audit logs, Self Deleted.")
         if channel in ignored_channels:
             return
         if message.author.id == self.bot.user.id:
@@ -181,7 +183,12 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
             return
         for attachment in message.attachments:
             links += attachment.url + ' '
-        await dest_channel.send(f"Message was deleted {author} - {content} Attachments: {links}- in {channel} created: {message.created_at} edited: {message.edited_at} current_time: {cur_time} Deleted by: {audit_user}")
+        embed = discord.Embed(title=f"Message was deleted in Channel: {channel}", color=0xcc66c0)
+        embed.add_field(name="Message:", value=f"{message.content} sent by {message.author} at {message.created_at} in {channel}", inline=False)
+        embed.add_field(name="Attachments", value="{links}", inline=False)
+        embed.add_field(name="Deleted By:", value="{audit_user}", inline=False)
+        embed.set_footer(text="Message initally created at: {message.created_at} Deleted at: {cur_time}")
+        await dest_channel.send(embed=embed)
 
 
 def setup(bot):
