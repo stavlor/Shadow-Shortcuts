@@ -165,6 +165,8 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         channel = message.channel
         if channel in ignored_channels:
             return
+        if message.author.id == self.bot.user.id:
+            return
         dest_channel = await self.bot.fetch_channel(462170485787066368)
         if message.content.startswith("\\"):
             return
