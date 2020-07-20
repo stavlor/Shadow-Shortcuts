@@ -163,6 +163,8 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         author = message.author
         content = message.content
         channel = message.channel
+        audit_log = await message.guid.audit_logs(limit=1, action=discord.AuditLogAction.message_delete)
+        audit_user = audit_log.user
         if channel in ignored_channels:
             return
         if message.author.id == self.bot.user.id:
@@ -172,7 +174,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
             return
         for attachment in message.attachments:
             links += attachment.url + ' '
-        await dest_channel.send(f"Message was deleted {author} - {content} Attachments: {links}- in {channel} created: {message.created_at} edited: {message.edited_at} current_time: {cur_time}")
+        await dest_channel.send(f"Message was deleted {author} - {content} Attachments: {links}- in {channel} created: {message.created_at} edited: {message.edited_at} current_time: {cur_time} Deleted by: {audit_user}")
 
 
 def setup(bot):
