@@ -156,7 +156,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
     
     @check_status.before_loop
     async def before_check_status(self):
-        print('Waiting for bot to start before triggering status updates...')
+        self.bot.logger.info('Waiting for bot to start before triggering status updates...')
         await self.bot.wait_until_ready()
 
     @commands.Cog.listener()
