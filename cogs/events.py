@@ -193,9 +193,9 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         if message.content.startswith("\\"):
             return
         for attachment in message.attachments:
-            files.append(await attachment.to_file())
+            files.append(await attachment.to_file(use_cached=True))
         embed = discord.Embed(title=f"Message was deleted in Channel: {channel}", color=0xcc66c0)
-        embed.add_field(name="Message:", value=f"{message.content} sent by {message.author} at {message.created_at} in {channel}", inline=False)
+        embed.add_field(name="Message:", value=f"{message.content} sent by {message.author}", inline=False)
         embed.add_field(name="Deleted By:", value=f"{audit_user}", inline=False)
         embed.set_footer(text=f"Message initially created at: {message.created_at} Deleted at: {cur_time}")
         await dest_channel.send(embed=embed, files=files)
