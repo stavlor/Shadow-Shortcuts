@@ -148,7 +148,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
             embed = discord.Embed(title="Shadow Status", url="https://status.shadow.tech", color=0x00ff00)
             embed.add_field(name="All services operating normally",
                             value="For additional status information please see the status page", inline=True)
-            embed.set_footer(text=f"Automatically updated message. Last Update was at {curtime.isoformat()} {curtime.tzname()}")
+            embed.set_footer(text=f"Automatically updated message. Last Update was at {curtime.isoformat()} {curtime.tzinfo.tzname()}")
             await msg.edit(embed=embed)
         else:
             status = await self.bot.admin.get_status()
