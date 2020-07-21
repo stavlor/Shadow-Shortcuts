@@ -153,6 +153,11 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
             embed.add_field(name=status,
                             value="For additional status information please see the status page", inline=True)
             await msg.edit(embed=embed)
+    
+    @check_status.before_loop
+    async def before_check_status(self):
+        print('Waiting for bot to start before triggering status updates...')
+        await self.bot.wait_until_ready()
 
     @commands.Cog.listener()
     async def on_message_delete(self, message):
