@@ -116,7 +116,7 @@ If you have any issues updating the default password is blank “” if your pas
             await self.bot.autorespone.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
-        elif "long to boot up" in message.content.lower() and not await bot.admin.can_run_command(role_names):
+        elif "long to boot up" in message.content.lower() and not await self.bot.admin.can_run_command(role_names):
             await self.bot.autorespone.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
