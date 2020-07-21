@@ -167,7 +167,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
     @commands.Cog.listener()
     async def on_message_delete(self, message):
         from datetime import datetime, timedelta
-        links = str()
+        files = list()
         audit_user = 'self'
         ignored_channels = ['bot_users', 'gurus-lab', 'bot-logs', 'known-issues', 'dariisas-deli']
         cur_time = datetime.utcnow().isoformat()
@@ -193,15 +193,12 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         if message.content.startswith("\\"):
             return
         for attachment in message.attachments:
-            links += attachment.url + ' '
-        if links == str():
-            links = None
+            files.append(await attachment.to_file())
         embed = discord.Embed(title=f"Message was deleted in Channel: {channel}", color=0xcc66c0)
         embed.add_field(name="Message:", value=f"{message.content} sent by {message.author} at {message.created_at} in {channel}", inline=False)
-        embed.add_field(name="Attachments", value=f"{links}", inline=False)
         embed.add_field(name="Deleted By:", value=f"{audit_user}", inline=False)
         embed.set_footer(text=f"Message initially created at: {message.created_at} Deleted at: {cur_time}")
-        await dest_channel.send(embed=embed)
+        await dest_channel.send(embed=embed, files=files)
 
 
 def setup(bot):
