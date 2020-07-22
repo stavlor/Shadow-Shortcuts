@@ -41,6 +41,10 @@ class Events(commands.Cog):
         await self.bot.database.update_leaver_roles(member)
 
     @commands.Cog.listener()
+    async def on_member_update(self, before: discord.Member, after: discord.Member):
+        await self.bot.database.update_leaver_roles(after)
+
+    @commands.Cog.listener()
     async def on_member_join(self, member):
         await self.bot.database.re_apply_roles(member)
 
