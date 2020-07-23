@@ -61,12 +61,12 @@ class Admin(commands.Cog):
             await ctx.send('\N{OK HAND SIGN}')
 
     @commands.command(name='reload', hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin','Shadow Staff')
     async def _reload(self, ctx, *, module):
         """Reloads a module."""
         if not module.startswith('cogs.'):
             module = f'cogs.{module}'
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators','Shadow Staff']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
