@@ -9,6 +9,19 @@ class General(commands.Cog):
         bot.general = self
         bot.logger.info("Initialized General Cog")
 
+    async def text_command_process(self, ctx: commands.Context, user: discord.Member, text: str, command_name: str):
+        if await self.bot.admin.can_run_command(ctx.author.roles):
+            self.bot.logger.info(f"{command_name} recieved from {ctx.author.name} with argument of {user}")
+            if user is not None:
+                await ctx.send(f"From {ctx.author.name}\n{user.mention} {text}")
+            else:
+                await ctx.send(f"From {ctx.author.name}\n{text}")
+        else:
+            self.bot.logger.info(f"{command_name} command received from un-privileged user {ctx.author.name} Responding Via PM")
+            await ctx.author.send(f"{ctx.author.mention} {text}")
+        await ctx.message.delete()
+
+
     @commands.command(description="Send instructions on how to get Verified", aliases=['v'])
     async def verify(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to get verified command."""
@@ -17,31 +30,13 @@ class General(commands.Cog):
 Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click the Subscription link or this link again after you log in) to a Moderator or Shadow Guru to verify you are a subscriber.
 
 **Note:** Do not send a friend request. If you are unable to send a DM, adjust your Privacy Settings for this server (you can change it back after). See here for more info: <https://support.discordapp.com/hc/en-us/articles/217916488-Blocking-Privacy-Settings>"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "Verify command received from {author.name} with argument of {user}".format(author=ctx.author,
-                                                                                            user=user))
-            if user is not None:
-                await ctx.send(f"From {ctx.author.name}\n{user.mention} {text}")
-            else:
-                await ctx.send(f"From {ctx.author.name}\n{text}")
-        await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="verify")
 
 
     @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'rebootshadow', 'restartshadow', 'sd', 'shutdown'])
-    async def errorl104(self, ctx, user: typing.Optional[discord.Member] = None, min_time_to_wait=2, max_time_to_wait=5):
+    async def shutdown(self, ctx, user: typing.Optional[discord.Member] = None, min_time_to_wait=2, max_time_to_wait=5):
         text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait {min_time_to_wait}-{max_time_to_wait} minutes and restart your client to resolve your issue http://botrexford.shdw.info/reboot.gif"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "104 command received from {author.name} with argument of {user}".format(author=ctx.message.author,
-                                                                                         user=user))
-            if user is not None:
-                await ctx.send(f"From {ctx.author.name}\n{user.mention} {text}")
-            else:
-                await ctx.send(f"From {ctx.author.name}\n{text}")
-        else:
-            await ctx.author.send(f"{ctx.author.mention} {text}")
-        await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shutdown")
 
     @commands.command(aliases=['expired', 'pass', 'pw'])
     async def password(self, ctx, user: discord.Member = None):
@@ -85,18 +80,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     async def micfix(self, ctx, user: typing.Optional[discord.Member] = None):
         """Microphone fix information."""
         text = """To get your microphone working in Shadow please follow this guide: https://wiki.shadow.pink/index.php/Using_a_Microphone"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "Mic Fix command received from {author.name} with argument of {user}".format(author=ctx.message.author,
-                                                                                             user=user))
-            if user is not None:
-                await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
-            else:
-                await ctx.send(f"From: {ctx.author.name}\n{text}")
-        else:
-            self.bot.logger.info(f"Mic Fix command received from unauthorized user {ctx.author.name}, replied via PM. ")
-            await ctx.author.send(f"""{ctx.author.mention} {text}""")
-        await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="micfix")
 
     @commands.command(description="Speedtest-Links")
     async def speedtest(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -107,21 +91,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     Central DC(Texas): <http://www.speedtest.net/server/12190>
     East DC(NY): <http://www.speedtest.net/server/14855>
     West DC(CA): <http://www.speedtest.net/server/11613>"""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info("Speedtest command received from {author.name} with argument of {user}".format(
-                author=ctx.message.author,
-                user=user))
-            if user is not None:
-                await ctx.send(f"From {ctx.author.name}\n{user.mention}\n{text}")
-            else:
-                await ctx.send(f"From {ctx.author.name}\n{text}")
-
-        else:
-            await ctx.author.send(f"{ctx.author.mention}\n{text}")
-            self.bot.logger.info("Speedtest command received from unauthorized user {author.name}, replied via PM. ".format(
-                author=ctx.message.author,
-                user=user))
-        await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="micfix")
 
     @commands.command(aliases=['terms', 'tou'])
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -130,15 +100,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
 - See the official Terms of Use here: <https://shadow.tech/usen/terms>
 - For a simple breakdown of what's not allowed on shadow, see here: <https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow>
  **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating."""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "TOS command received from {author.name} with argument of {user}".format(author=ctx.message.author,
-                                                                                         user=user))
-            if user is not None:
-                await ctx.send(f"""From: {ctx.author.name}\n{user.mention} {text}""")
-            else:
-                await ctx.send(f"""From {ctx.author.name}\n{text}""")
-        await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
 
     @commands.command(aliases=['nvidiadrivers', 'drovers'])
     async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -151,19 +113,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
           - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
           - GeForce Experience is not recommended as all it can do is give you the latest stable driver which is already linked above. Game settings recommendations do not work, and GameStream and broadcast functions will break your streamer and prevent connection to your Shadow."""
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(
-                "Nvidia Drivers command received from {author.name} with argument of {user}".format(
-                    author=ctx.author,
-                    user=user))
-            if user is not None:
-                await ctx.send(f"""From {ctx.author.name}\n{user.mention} {text}""")
-            else:
-                await ctx.send(f"""From {ctx.author.name}\n{text}""")
-        else:
-            self.bot.logger.info(f"NVidia Drivers command received from un-privileged user {ctx.author.name} Responding Via PM")
-            await ctx.author.send(f"{ctx.author.mention} {text}")
-        await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="drivers")
 
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
     async def ghost(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -171,18 +121,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         text = """Ghosts can be purchased from your account page under Subscription: https://account.shadow.tech/subscription
 
 For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghost")
 
     @commands.group(name="account")
     async def account(self, ctx):
@@ -322,10 +261,6 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
     @commands.command(aliases=['minimums', 'minimalreq', 'requirements', 'reqs'])
     async def minreq(self, ctx, user: typing.Optional[discord.Member] = None):
         """Give Shadow Minimum requirements"""
-        self.bot.logger.info(
-            "Minreq received from {author.name} with argument of {user}".format(
-                author=ctx.author,
-                user=user))
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
         **Windows**
@@ -338,17 +273,7 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
         **Mac**
         - Mac OS 10.10 Yosemite or above
         - Mac device from 2012 or more recent"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif user is None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="minreq")
 
     @commands.command()
     async def ping(self, ctx):
@@ -366,18 +291,7 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
  Stable versions include: Windows 32/64 bit, macOS, Android, iOS
  Beta versions include: Windows 64 bit, macOS, Ubuntu
  Each version has a designated channel in Discord. To view these channels, you will need the Shadower role. Feedback on the beta versions should be left in the proper channels."""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps")
 
     @commands.command(aliases=['hotkeys', 'keybinds'])
     async def keys(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -389,19 +303,7 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming"""
-
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="keys")
 
 
     @commands.command(aliases=['val','valorant'])
@@ -416,42 +318,18 @@ As soon as we have more information, you will be the first to know. To stay up-t
 
 __Games with Issues Identified on Shadow__
 <https://help.shadow.tech/hc/en-gb/articles/360013641620-Games-with-Issues-Identified-on-Shadow>"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="valorant")
 
     @commands.command(aliases=['act', 'activation'])
     async def activationupdates(self, ctx, user: typing.Optional[discord.Member] = None):
-            """Activation updates"""
-            self.bot.logger.info(f"Processed activation  command for {ctx.author.name} with parameter {user}.")
-            text = """:boom: For the latest activation updates please see the Forum Activation Thread :boom:  
+        """Activation updates"""
+        text = """:boom: For the latest activation updates please see the Forum Activation Thread :boom:  
 https://shdw.me/activation_updates"""
-            if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-                text = f"From {ctx.author.name}\n{user.mention} {text}"
-                await ctx.send(text)
-                await ctx.message.delete()
-            elif await self.bot.admin.can_run_command(ctx.author.roles):
-                text = f"From {ctx.author.name}\n{text}"
-                await ctx.send(text)
-                await ctx.message.delete()
-            else:
-                text = f"{ctx.author.mention} {text}"
-                await ctx.author.send(text)
-                await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="activationupdates")
 
     @commands.command(aliases=['storage', 'stor', 'sto'])
     async def _storage(self, ctx, user: typing.Optional[discord.Member] = None):
         """Storage tutorial command"""
-        self.bot.logger.info(f"Processed storage command for {ctx.author.name} with parameter {user}.")
         text = """**How to add storage**:
 First Sign in to your account page via https://sso.shadow.tech/
 <https://botrexford.shdw.info/sso.png>
@@ -460,18 +338,7 @@ Then go to your Subscription/Billing Section:
 Hit Add Storage:
 <https://botrexford.shdw.info/storage-dialog.png>
 Choose how much you want and follow prompts, when adding storage ensure your ***Shadow is OFF***"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="storage")
 
 
     @commands.command(aliases=['ips','geoip'])
@@ -488,77 +355,30 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
                 - If your IP begins with **162.213.[48-55].** you are on the **New York** datacenter
                 - If your IP begins with **216.180.[128-135]** you are on the **Texas** datacenter
                 - If your IP begins with **216.180.[136-143]** you are on the **Chicago** datacenter"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ip")
 
     @commands.command(aliases=['sup'])
     async def _support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
-        self.bot.logger.info(f"Processed support command for {ctx.author.name} with parameter {user}.")
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/support
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new optionally, e-mail support at **support-us@shadow.tech** note Tickets are generally quicker."""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
     async def atv(self, ctx, user: typing.Optional[discord.Member] = None):
         """Apple TV Testflight invite link"""
-        self.bot.logger.info(f"Processed atv command for {ctx.author.name} with parameter {user}.")
         text = """You can join the Apple TV Testflight via this link from any iOS Device once Testflight is installed: <https://testflight.apple.com/join/h9H54DqA>"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="atv")
 
     @commands.command(aliases=['map', 'coveragemap', 'locations'])
     async def coverage(self, ctx, user: typing.Optional[discord.Member] = None):
         """Coverage Maps"""
-        self.bot.logger.info(f"Processed coverage command for {ctx.author.name} with parameter {user}.")
         text = """**Shadow Coverage maps:**
             North America - <https://shdw.me/NACoverage>
             Europe - <https://shdw.me/EUCoverage>"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="coverage")
 
     @commands.command(aliases=['ltt', 'linus'])
     async def linustechtips(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -566,74 +386,26 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         self.bot.logger.info(f"Processed linustechtips command for {ctx.author.name} with parameter {user}.")
         text = """Check out the Linus Tech Tips video exploring what's inside a Shadow's server at https://shdw.me/LTTVideo
 See the video where Linus visted the Mountain View office and datacenter tour at <https://www.youtube.com/watch?v=0BQ4bXNdEQI>"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linustechtips")
 
     @commands.command(aliases=['dct', 'datacentertour'])
     async def dctour(self, ctx, user: typing.Optional[discord.Member] = None):
         """AMS1 Datacenter Tour"""
-        self.bot.logger.info(f"Processed dctour command for {ctx.author.name} with parameter {user}.")
         text = """Check Out a tour of one of our datacenters found here: https://youtube.com/watch?v=DD3WNXkc7F0"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="dctour")
 
     @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps'])
     async def stats(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to access Shadow Control panel stats pane."""
-        self.bot.logger.info(f"Processed hstats command for {ctx.author.name} with parameter {user}.")
         text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, 
         Bitrate, Ping and Packet Loss) to access it please this http://botrexford.shdw.info/how_to_access_stats.png """
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="hstats")
 
     @commands.command(aliases=['language'])
     async def changelang(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to Change language from FR to EN."""
-        self.bot.logger.info(f"Processed changelang command for {ctx.author.name} with parameter {user}.")
         text = """How to change the language of your Shadow: https://w.shdw.info/wiki/Change_Language"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-            return
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="changelang")
 
     @commands.command(aliases=['virtualhere', 'vhere'])
     async def vh(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -649,19 +421,7 @@ When prompted, VirtualHere will ask you to install **Bonjour**; do this. It make
 Next step is getting Shadow on your local area network (LAN).
 
 You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation/EN/pdf/Hamachi/LogMeIn_Hamachi_UserGuide.pdf> or **ZeroTier** (Guide) <https://docs.google.com/document/d/1NcVK11lcS8m2G_0fsqMcXvkcdLWdaU2O4Vc_qyJrnng/edit?usp=sharing>"""
-        self.bot.logger.info(f"Processed vh command for {ctx.author.name} with parameter {user}.")
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vh")
 
 
     @commands.command()
@@ -672,19 +432,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
          - **Windows 32bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x86.msi
          - **Windows 64bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x64.msi
         Once installed reboot your local system and USB over IP should function normally, ***___Note Install these on your local PC not your shadow.___***"""
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-            return
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="usbdk")
 
     @commands.command()
     async def ghc(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -694,20 +442,7 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
 Thanks for your interest, and we’ll have more information as soon as we can lock down details.
 
 <https://shdw.me/NA-waiting-list-SGDC>"""
-        self.bot.logger.info(f"Processed ghc command for {ctx.author.name} with parameter {user}.")
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{user.mention} {text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-            return
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"From {ctx.author.name}\n{text}"
-            await ctx.send(text)
-            await ctx.message.delete()
-        else:
-            text = f"{ctx.author.mention} {text}"
-            await ctx.author.send(text)
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghc")
 
     @commands.command()
     async def cake(self, ctx):
@@ -741,16 +476,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
     @commands.command(aliases=['rm', 'roadmap'])
     async def _roadmap(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Shadow roadmap: <https://shdw.me/roadmap>"""
-        if not await self.bot.admin.can_run_command(ctx.author.roles):
-            await ctx.author.send(text)
-            await ctx.message.delete()
-            return
-        if not user:
-            await ctx.send(f"From: {ctx.author.name}\n{text}")
-            await ctx.message.delete()
-        else:
-            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="roadmap")
 
     @commands.command()
     async def _writelog(self, ctx):
@@ -765,30 +491,12 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
     async def _s101(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """To fix S:101 please see the following Shadow help article: 
         https://help.shadow.tech/hc/en-gb/articles/360010559860-S-101-An-Issue-Happened-with-the-Streaming-Services """
-        if not await self.bot.admin.can_run_command(ctx.author.roles):
-            await ctx.author.send(text)
-            await ctx.message.delete()
-            return
-        if not user:
-            await ctx.send(f"From: {ctx.author.name}\n{text}")
-            await ctx.message.delete()
-        else:
-            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="s101")
 
     @commands.command(aliases=['ask'])
     async def _ask(self, ctx, user: typing.Optional[discord.Member] = None):
         text = "https://www.dontasktoask.com/"
-        if not await self.bot.admin.can_run_command(ctx.author.roles):
-            await ctx.author.send(text)
-            await ctx.message.delete()
-            return
-        if not user:
-                await ctx.send(f"From: {ctx.author.name}\n{text}")
-                await ctx.message.delete()
-        else:
-            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ask")
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -816,32 +524,14 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 **CPU Clock Speed:** 3.3 GHz @ 6 cores - Turbo to 4 GHz
 **RAM:** 32 GB
 **Storage:** 1024 GB"""
-        if not await self.bot.admin.can_run_command(ctx.author.roles):
-            await ctx.author.send(text)
-            await ctx.message.delete()
-            return
-        if not user:
-            await ctx.send(f"From: {ctx.author.name}\n{text}")
-            await ctx.message.delete()
-        else:
-            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
 
             
     @commands.command(aliases=['sendlogs', 'slogs'])
     async def _sendlogs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """To Send client logs to Shadow Support please see the following: 
         https://botrexford.shdw.info/Send_Logs.png"""
-        if not await self.bot.admin.can_run_command(ctx.author.roles):
-            await ctx.author.send(text)
-            await ctx.message.delete()
-            return
-        if not user:
-            await ctx.send(f"From: {ctx.author.name}\n{text}")
-            await ctx.message.delete()
-        else:
-            await ctx.send(f"From: {ctx.author.name}\n{user.mention} {text}")
-            await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sendlogs")
 
 
 def setup(bot):
