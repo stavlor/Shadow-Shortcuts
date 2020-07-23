@@ -329,11 +329,11 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
         **Windows**
-        - Windows 8 (Windows 7 is no longer supported), Windows 10 Recommended - 32 bits or above note 64 bit required for USB Devices.
+        - Windows 8.1, Windows 10 Recommended - 32 bits or above (Note: 64 bit required for USBoIP)
         - Processor from 2011-2012 or more recent
         - Integrated GPU recommended
-        - AMD GPU from 2013 or more recent (to disable if older)
-        - Nvidia GPU from 2011 and more recent (to disable if older)
+        - AMD GPU from 2013 or more recent (disable if older)
+        - Nvidia GPU from 2011 and more recent (disable if older)
         
         **Mac**
         - Mac OS 10.10 Yosemite or above
@@ -564,7 +564,8 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
     async def linustechtips(self, ctx, user: typing.Optional[discord.Member] = None):
         """Linus Tech Tips"""
         self.bot.logger.info(f"Processed linustechtips command for {ctx.author.name} with parameter {user}.")
-        text = """Check out the Linus Tech Tips video about Shadow's server technology at https://shdw.me/LTTVideo"""
+        text = """Check out the Linus Tech Tips video exploring what's inside a Shadow's server at https://shdw.me/LTTVideo
+See the video where Linus visted the Mountain View office and datacenter tour at <https://www.youtube.com/watch?v=0BQ4bXNdEQI>"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
@@ -580,7 +581,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
 
     @commands.command(aliases=['dct', 'datacentertour'])
     async def dctour(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Linus Tech Tips"""
+        """AMS1 Datacenter Tour"""
         self.bot.logger.info(f"Processed dctour command for {ctx.author.name} with parameter {user}.")
         text = """Check Out a tour of one of our datacenters found here: https://youtube.com/watch?v=DD3WNXkc7F0"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
