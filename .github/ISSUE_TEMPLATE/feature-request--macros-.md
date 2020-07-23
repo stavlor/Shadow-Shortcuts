@@ -7,16 +7,16 @@ assignees: ''
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
+##Is your feature request related to a problem? Please describe.
 
-** Short Description
+##Short Description
 
-**Reason
+##Reason
 
-**Invoking Command
+##Invoking Command
 
-**Expected result (what output should be)
+##Expected result (what output should be)
 
-**Links or extra decriptions
+##Links or extra decriptions
 
 ```
