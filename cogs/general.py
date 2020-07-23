@@ -564,7 +564,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
     async def linustechtips(self, ctx, user: typing.Optional[discord.Member] = None):
         """Linus Tech Tips"""
         self.bot.logger.info(f"Processed linustechtips command for {ctx.author.name} with parameter {user}.")
-        text = """Check Out the Linus Tech Tips Video Found here: https://www.youtube.com/watch?v=0BQ4bXNdEQI"""
+        text = """Check out the Linus Tech Tips video about Shadow's server technology at https://shdw.me/LTTVideo"""
         if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
             text = f"From {ctx.author.name}\n{user.mention} {text}"
             await ctx.send(text)
