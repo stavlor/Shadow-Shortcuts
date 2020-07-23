@@ -253,10 +253,10 @@ but there are comparable commands for other OSes**
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def gitref(self, ctx):
         """Refresh git repo content."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
             await ctx.send(f"{ctx.author.mention} You aren't authorized to do that.")
         else:
-            cmd = "cd ~/Shadow-Shortcuts/; git pull"
+            cmd = "git pull"
             proc = await asyncio.create_subprocess_shell(
                 cmd,
                 stdout=asyncio.subprocess.PIPE,
