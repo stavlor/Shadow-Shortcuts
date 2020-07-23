@@ -154,11 +154,7 @@ but there are comparable commands for other OSes**
     d. Wait up to 2 minutes for the test to complete
     e. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
     f. Send to a Shadow Guru or Moderator'''
-        if user is None:
-            await(ctx.send(text))
-        else:
-            await ctx.send(f"From: {ctx.author.name}\nTo: {user.mention}\n{text}")
-        await ctx.message.delete()
+        await self.bot.general.text_command_process(ctx, user, text, "latency")
 
     @commands.command(aliases=['slo', 'sm'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
