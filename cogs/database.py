@@ -56,7 +56,7 @@ class Database(commands.Cog):
         role_list = list()
         role_str = str()
         if member.guild.id != 460948857304383488:
-            self.bot.logger.info(f"Ignoring leaver not in our guild of interest {member.id} left guild {member.guild.id}.")
+            self.bot.logger.debug(f"Ignoring leaver not in our guild of interest {member.id} left guild {member.guild.id}.")
             return
         if hasattr(member, 'roles'):
             for role in member.roles:
