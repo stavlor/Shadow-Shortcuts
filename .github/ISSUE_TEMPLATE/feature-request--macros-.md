@@ -7,16 +7,17 @@ assignees: ''
 
 ---
 
-##Is your feature request related to a problem? Please describe.
+## Short description (Briefly explain the project)
 
-##Short Description
+## Reason (Who would this help?)
 
-##Reason
+## Invoking commands and alias
 
-##Invoking Command
+## Expected result (What the output should be)
 
-##Expected result (what output should be)
+## Links or extra details
 
-##Links or extra decriptions
+## Is your feature request related to a problem? Please describe. (optional)
+
 
 ```
