@@ -178,20 +178,21 @@ but there are comparable commands for other OSes**
 
     @commands.command(name='ar')
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
-    async def add_role(self, ctx, user: discord.Member, *,  role: typing.Optional[discord.Role] = None):
+    async def add_role(self, ctx, user: discord.Member, *,  roles: commands.Greedy[discord.Role] = None):
         """Adds a role to a User default is Shadowers."""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff']):
-            if role is None:
-                role = ctx.guild.get_role(461298541978058769)
-            if user is None:
-                await ctx.send(f"{ctx.author.mention} User is a required parameter.")
-            else:
-                if role not in user.roles:
-                    await user.add_roles(role)
-                    await ctx.message.add_reaction('✅')
-                    await user.send(f"{user.mention} You have been granted the role {role.name} by {ctx.author}")
+            for role in roles:
+                if role is None:
+                    role = ctx.guild.get_role(461298541978058769)
+                if user is None:
+                    await ctx.send(f"{ctx.author.mention} User is a required parameter.")
                 else:
-                    await ctx.send(f"{ctx.author.mention} User {user.mention} appears to already have the {role.name} role.")
+                    if role not in user.roles:
+                        await user.add_roles(role)
+                        await ctx.message.add_reaction('✅')
+                        await user.send(f"{user.mention} You have been granted the role {role.name} by {ctx.author}")
+                    else:
+                        await ctx.send(f"{ctx.author.mention} User {user.mention} appears to already have the {role.name} role.")
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
