@@ -125,7 +125,7 @@ class Admin(commands.Cog):
             await ctx.send(f"Sent by: {ctx.author.name}\n{user.mention} {excuse['message']}")
         await ctx.message.delete()
 
-    @commands.command(aliases=['latency', 'trace', 'tr'])
+    @commands.command(aliases=['latency', 'trace', 'tr', 'tracert', 'traceroute', 'traces', 'lg', 'guru'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _latency(self, ctx, user: typing.Optional[discord.Member] = None):
         text = '''***Running a traceroute to/from Shadow***
