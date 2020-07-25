@@ -178,12 +178,10 @@ but there are comparable commands for other OSes**
 
     @commands.command(name='ar')
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
-    async def add_role(self, ctx, user: discord.Member, *,  roles: commands.Greedy[discord.Role] = None):
+    async def add_role(self, ctx, user: discord.Member, *,  roles: commands.Greedy[discord.Role] = ctx.guild.get_role(461298541978058769)):
         """Adds a role to a User default is Shadowers."""
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff']):
             for role in roles:
-                if role is None:
-                    role = ctx.guild.get_role(461298541978058769)
                 if user is None:
                     await ctx.send(f"{ctx.author.mention} User is a required parameter.")
                 else:
