@@ -27,7 +27,7 @@ class General(commands.Cog):
         """How to get verified command."""
         text = """The <:shadow1:495254769288609802> Shadower role (green name) grants access to <#463782843898658846> and many other channels that are not visible to unverified users (white name).
 
-Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click the Subscription link or this link again after you log in) to a Moderator or Shadow Guru to verify you are a subscriber.
+Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Subscription link or this link again after you log in) to a Moderator or Shadow Guru to verify you are a subscriber.
 
 **Note:** Do not send a friend request. If you are unable to send a DM, adjust your Privacy Settings for this server (you can change it back after). See here for more info: <https://support.discordapp.com/hc/en-us/articles/217916488-Blocking-Privacy-Settings>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="verify")
@@ -118,7 +118,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
     async def ghost(self, ctx, user: typing.Optional[discord.Member] = None):
         """Ghost Purchase information."""
-        text = """Ghosts can be purchased from your account page under Subscription: https://account.shadow.tech/subscription
+        text = """Ghosts are not currently available when ghosts are available they will be purchasable from your account page at <https://acount.shadow.tech/home>
 
 For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghost")
@@ -129,107 +129,43 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
 
     @account.command(aliases=['account'])
     async def myaccount(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, You can access your account page via <https://account.shadow.tech/>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\nYou can access your account page via <https://account.shadow.tech/>."""
-            await ctx.send(text)
-        else:
-            text = f"""You can access your account page via <https://account.shadow.tech/>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+            text = f"""You can access your account page via <https://account.shadow.tech/home>."""
+            await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
 
     @account.command(aliases=['reset'])
     async def myshadow(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, You can reset your shadow via <https://account.shadow.tech/myshadow>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\nYou can reset your shadow via <https://account.shadow.tech/myshadow>."""
-            await ctx.send(text)
-        else:
-            text = f"""You can reset your shadow via <https://account.shadow.tech/myshadow>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+            text = f"""You can reset your shadow via <https://account.shadow.tech/home/my-shadow>."""
+            await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account reset")
 
     @account.command()
     async def security(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, You can access the security page via <https://account.shadow.tech/security>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\nYou can access the security page via <https://account.shadow.tech/security>."""
-            await ctx.send(text)
-        else:
-            text = f"""You can access the security page via <https://account.shadow.tech/myshadow>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+            text = f"""You can access the security page via <https://account.shadow.tech/home/security>."""
+            await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
     @account.command()
     async def billing(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, You can access the billing page via <https://account.shadow.tech/financial>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\nYou can access the billing page via <https://account.shadow.tech/financial>."""
-            await ctx.send(text)
-        else:
-            text = f"""You can access the billing page via <https://account.shadow.tech/financial>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+        text = f"""You can access the billing page via <https://account.shadow.tech/home>."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account financial")
 
     @account.command()
     async def subscription(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://account.shadow.tech/subscription>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\nYou can access the subscription page via <https://account.shadow.tech/subscription>."""
-            await ctx.send(text)
-        else:
-            text = f"""You can access the subscription page via <https://account.shadow.tech/subscription>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+        text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://account.shadow.tech/home>."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account subscription")
 
     @account.command(aliases=['apps'])
     async def applications(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, You can get the current stable and beta applications from <https://account.shadow.tech/apps>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\nYou can get the current stable and beta applications from <https://account.shadow.tech/apps>."""
-            await ctx.send(text)
-        else:
-            text = f"""You can get the current stable and beta applications from <https://account.shadow.tech/apps>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+        text = f"""You can get the current stable and beta applications from <https://account.shadow.tech/home/applications>."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/share>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\n, Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/share>."""
-            await ctx.send(text)
-        else:
-            text = f"""Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/share>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+        text = f"""Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/home/referral>."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command(name='support')
     async def support(self, ctx, user: typing.Optional[discord.Member] = None):
-        if user is not None and await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From: {ctx.author.name}\n{user.mention}, Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/support>."""
-            await ctx.send(text)
-        elif await self.bot.admin.can_run_command(ctx.author.roles):
-            text = f"""From {ctx.author.name}\n, Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/support>."""
-            await ctx.send(text)
-        else:
-            text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/support>."""
-            await ctx.author.send(text)
-        await ctx.message.delete()
+        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://account.shadow.tech/home/support>."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command(description="Status command")
     async def status(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -287,7 +223,7 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
     @commands.command(aliases=['applications', 'beta', 'update', 'app'])
     async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
         """Link to Shadow Applications download."""
-        text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/apps
+        text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
  Stable versions include: Windows 32/64 bit, macOS, Android, iOS
  Beta versions include: Windows 64 bit, macOS, Ubuntu
  Each version has a designated channel in Discord. To view these channels, you will need the Shadower role. Feedback on the beta versions should be left in the proper channels."""
@@ -362,7 +298,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """Send details for how to reach support."""
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
-  - From your account page, click Support: https://account.shadow.tech/support
+  - From your account page, click Support: https://account.shadow.tech/home/support
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new optionally, e-mail support at **support-us@shadow.tech** note Tickets are generally quicker."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
