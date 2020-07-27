@@ -97,8 +97,8 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Terms of Service information"""
         text = """__Terms of Use__
-- See the official Terms of Use here: <https://shadow.tech/usen/terms>
-- For a simple breakdown of what's not allowed on shadow, see here: <https://help.shadow.tech/hc/en-gb/articles/360000455174-Not-allowed-on-Shadow>
+- See the official Terms of Use here: <https://shadow.tech/usen/legal/terms>
+- For a simple breakdown of what's not allowed on shadow, see here: <https://help.shadow.tech/hc/en-gb/articles/360000455174>
  **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
 
@@ -118,10 +118,17 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
     async def ghost(self, ctx, user: typing.Optional[discord.Member] = None):
         """Ghost Purchase information."""
-        text = """Ghosts are not currently available when ghosts are available they will be purchasable from your account page at <https://acount.shadow.tech/home>
+        text = """Ghosts can be purchased from your account page under Subscription once in stock: https://account.shadow.tech/subscription
+To join the waitlist: <https://shdw.me/NA-waiting-list-SGDC>
 
 For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghost")
+
+    @commands.command(aliases=['reset', 'raz', 'wipe', 'clear'])
+    async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Reset Shadow Information"""
+        text = """You can reset your shadow via <https://account.shadow.tech/home/my-shadow>, *Note:* This doesn't clear additional storage."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="reset")
 
     @commands.group(name="account")
     async def account(self, ctx):
@@ -307,6 +314,13 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """Apple TV Testflight invite link"""
         text = """You can join the Apple TV Testflight via this link from any iOS Device once Testflight is installed: <https://testflight.apple.com/join/h9H54DqA>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="atv")
+
+    @commands.command(aliases=['iphone', 'ios'])
+    async def atv(self, ctx, user: typing.Optional[discord.Member] = None):
+        """iOS apps"""
+        text = """You can download the iOS app here: <https://shdw.me/iOSApp>
+You can join the iOS app beta here: <https://shdw.me/iosbeta_uk>"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ios")
 
     @commands.command(aliases=['map', 'coveragemap', 'locations'])
     async def coverage(self, ctx, user: typing.Optional[discord.Member] = None):
