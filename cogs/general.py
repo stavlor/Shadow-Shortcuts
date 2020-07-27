@@ -33,7 +33,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="verify")
 
 
-    @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'rebootshadow', 'restartshadow', 'sd', 'error104'])
+    @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'errorl104', 'rebootshadow', 'restartshadow', 'sd', 'error104'])
     async def shutdown(self, ctx, user: typing.Optional[discord.Member] = None, min_time_to_wait=2, max_time_to_wait=5):
         text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait {min_time_to_wait}-{max_time_to_wait} minutes and restart your client to resolve your issue http://botrexford.shdw.info/reboot.gif"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shutdown")
