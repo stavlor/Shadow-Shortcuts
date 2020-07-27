@@ -312,7 +312,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
     @commands.command(aliases=['appletv', 'appletvbeta'])
     async def atv(self, ctx, user: typing.Optional[discord.Member] = None):
         """Apple TV Testflight invite link"""
-        text = """You can join the Apple TV Testflight via this link from any iOS Device once Testflight is installed: <https://testflight.apple.com/join/h9H54DqA>"""
+        text = """You can download the Apple TV app here: <https://shdw.me/AppleTV>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="atv")
 
     @commands.command(aliases=['iphone', 'ios'])
