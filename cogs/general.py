@@ -384,7 +384,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """iOS apps"""
         text = """You can download the iOS app here: <https://shdw.me/iOSApp>
 You can join the iOS app beta here: <https://shdw.me/iosbeta_uk>"""
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="atv")
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ios")
         
     @commands.command(aliases=['map', 'coveragemap', 'locations'])
     async def coverage(self, ctx, user: typing.Optional[discord.Member] = None):
