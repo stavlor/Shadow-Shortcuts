@@ -91,7 +91,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/subscription> (click
     Central DC(Texas): <http://www.speedtest.net/server/12190>
     East DC(NY): <http://www.speedtest.net/server/14855>
     West DC(CA): <http://www.speedtest.net/server/11613>"""
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="micfix")
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="speedtest")
 
     @commands.command(aliases=['terms', 'tou'])
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -525,6 +525,23 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 **RAM:** 32 GB
 **Storage:** 1024 GB"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
+
+    @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
+    async def vhdx(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """Microsoft Store/XBox Gamepass apps/games cannot be installed on a vanilla Shadow instance due to a UWP disk format limitation, however...
+
+***...there are two popular solutions to allow these apps/games to be installed on Shadow.***
+
+**Solution 1: Reformat Storage**
+Please see the relevant Reddit post for details: https://www.reddit.com/r/ShadowPC/comments/h0pifp/xbox_game_pass_and_ntfs_error_workaround/
+*Note that the above solution also details some of the reasons for the incompatibility and is a good read even if you decide to go with option 2.*
+
+**Solution 2: Create a VHDX (virtual hard disk) file**
+Please see the instructions at: https://www.windowscentral.com/how-create-and-set-vhdx-or-vhd-windows-10
+
+***Note that you **must** set the allocation size to 4kB for either option to work!***
+"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vhdx")
 
             
     @commands.command(aliases=['sendlogs', 'slogs'])
