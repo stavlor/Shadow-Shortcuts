@@ -81,6 +81,8 @@ class Database(commands.Cog):
         return res
 
     @commands.command(aliases=['fuid'])
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead',
+                           'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def find_roles(self, ctx, uid: int):
         """Find Leaver Roles for a User ID"""
         roles = list()
@@ -112,6 +114,8 @@ class Database(commands.Cog):
         await ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
 
     @commands.command(aliases=['auid'])
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead',
+                           'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def alter_roles(self, ctx, uid: int, *, role: commands.Greedy[discord.Role]):
         """Alter Leaver roles for UID
         Note: This replaces all existing with the new role only."""
