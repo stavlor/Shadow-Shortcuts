@@ -316,7 +316,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="atv")
 
     @commands.command(aliases=['iphone', 'ios'])
-    async def atv(self, ctx, user: typing.Optional[discord.Member] = None):
+    async def _apps_ios(self, ctx, user: typing.Optional[discord.Member] = None):
         """iOS apps"""
         text = """You can download the iOS app here: <https://shdw.me/iOSApp>
 You can join the iOS app beta here: <https://shdw.me/iosbeta_uk>"""
