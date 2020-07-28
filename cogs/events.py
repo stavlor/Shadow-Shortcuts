@@ -138,7 +138,7 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         elif "bad bot" in message.content.lower():
             await message.add_reaction("😢")
             await message.add_reaction("🖕🏼")
-        elif "alpha" in message.content.lower() and ("download" in message.content.lower() or "link" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+        elif "alpha" in message.content.lower() and ("download" in message.content.lower() or "link" in message.content.lower() or "get" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             if message.channel.id == 593516344415354880:
                 text = f"""Access the alpha apps at the links below
 Windows Alpha: https://shdw.me/winalpha
