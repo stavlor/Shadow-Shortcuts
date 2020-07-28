@@ -32,7 +32,7 @@ class SchedEvent(commands.Cog):
 
     @check_nightdaymode.before_loop
     async def before_check_nightdaymode(self):
-        self.bot.logger.info('Waiting for bot to start before triggering status updates...')
+        self.bot.logger.info('Waiting for bot to start before Starting night/day mode.')
         await self.bot.wait_until_ready()
 
 def setup(bot):
