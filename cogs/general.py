@@ -138,9 +138,9 @@ Windows Alpha: https://shdw.me/winalpha
 Mac Alpha: https://shdw.me/macalpha
 Linux Alpha: https://shdw.me/linuxalpha"""
         else:
-            text = f"""Access the alpha apps (and receive community support) in our #alpha Discord channel.
+            text = f"""Access the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
 
-**Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the #alpha channel.**"""
+**Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="alpha")
 
     @commands.group(name="account")
