@@ -456,7 +456,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         https://help.shadow.tech/hc/en-gb/articles/360010559860-S-101-An-Issue-Happened-with-the-Streaming-Services """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="s101")
 
-    @commands.command(aliases=['win', 'windows'])
+    @commands.command(aliases=['windows'])
     async def win(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the Windows apps at the links below
 Official: https://shdw.me/windows
@@ -473,15 +473,15 @@ Beta: https://shdw.me/win32beta
 Alpha: Accessible at <#593516344415354880>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="win32")
 
-    @commands.command(aliases=['mac', 'macos'])
-    async def win32(self, ctx, user: typing.Optional[discord.Member] = None):
+    @commands.command(aliases=['macos'])
+    async def mac(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the macOS apps at the links below
 Official: https://shdw.me/mac
 Beta: https://shdw.me/macbeta
 Alpha: Accessible at <#593516344415354880>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="mac")
 
-    @commands.command(aliases=['linux', 'ubuntu'])
+    @commands.command(aliases=['ubuntu'])
     async def linux(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the Linux apps at the links below
 Official: https://shdw.me/windows
@@ -500,7 +500,7 @@ Shadow liveOS (Shadow on a portable drive): <https://gitlab.com/NicolasGuilloux/
 Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linux")
 
-    @commands.command(aliases=['android', 'pixel'])
+    @commands.command(aliases=['pixel'])
     async def android(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """You can download the Android app here: <https://play.google.com/store/apps/details?id=com.blade.shadowcloudgaming&hl=en>
 You can join the Android app beta here: <https://play.google.com/apps/testing/com.blade.shadowcloudgaming>"""
