@@ -183,6 +183,10 @@ but there are comparable commands for other OSes**
         if roles is None:
             roles = list()
             roles.append(ctx.guild.get_role(461298541978058769))
+        elif isinstance(roles, discord.Role):
+            oroles = roles
+            roles = list()
+            roles.append(oroles)
         if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff']):
             for role in roles:
                 if user is None:
