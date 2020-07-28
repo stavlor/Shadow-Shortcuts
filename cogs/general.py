@@ -123,8 +123,8 @@ To join the waitlist: <https://shdw.me/NA-waiting-list-SGDC>
 
 For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghost")
-        
-@commands.command(aliases=['reset', 'raz', 'wipe', 'clear'])
+
+    @commands.command(aliases=['reset', 'raz', 'wipe', 'clear'])
     async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
         """Reset Shadow Information"""
         text = """You can reset your shadow via <https://account.shadow.tech/home/my-shadow>, *Note:* This doesn't clear additional storage."""
@@ -506,6 +506,56 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
         text = """To fix S:101 please see the following Shadow help article: 
         https://help.shadow.tech/hc/en-gb/articles/360010559860-S-101-An-Issue-Happened-with-the-Streaming-Services """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="s101")
+
+    @commands.command(aliases=['win', 'windows'])
+    async def win(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """Access the Windows apps at the links below
+Official: https://shdw.me/windows
+Beta: https://shdw.me/winbeta
+Alpha: Accessible at <#593516344415354880>"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="win")
+        
+    @commands.command(aliases=['win32', 'windows32'])
+    async def win32(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """Access the Windows 32 bit apps at the links below
+**WARNING**: Limited features in these versions, only download if you have a 32 bit device!
+Official: https://shdw.me/windows32
+Beta: https://shdw.me/win32beta
+Alpha: Accessible at <#593516344415354880>"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="win32")
+
+    @commands.command(aliases=['mac', 'macos'])
+    async def win32(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """Access the macOS apps at the links below
+Official: https://shdw.me/mac
+Beta: https://shdw.me/macbeta
+Alpha: Accessible at <#593516344415354880>"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="mac")
+
+    @commands.command(aliases=['linux', 'ubuntu'])
+    async def linux(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """Access the Linux apps at the links below
+Official: https://shdw.me/windows
+Beta: https://shdw.me/winbeta
+Alpha: Accessible at <#593516344415354880>
+
+__Known Issues with Linux Application__
+View these helpful sources if you are having issues installing Shadow on Linux
+<https://nicolasguilloux.github.io/blade-shadow-beta/setup>
+<https://help.shadow.tech/hc/en-gb/articles/360010819700-Known-errors-on-Linux-Client>
+
+__Other Resources__
+Other resources and applications to help you with your Shadow journey
+Shadowcker (Run Shadow in Docker): <https://gitlab.com/aar642/shadowcker>
+Shadow liveOS (Shadow on a portable drive): <https://gitlab.com/NicolasGuilloux/shadow-live-os>
+Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linux")
+
+    @commands.command(aliases=['android', 'pixel'])
+    async def android(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """You can download the Android app here: <https://play.google.com/store/apps/details?id=com.blade.shadowcloudgaming&hl=en>
+You can join the Android app beta here: <https://play.google.com/apps/testing/com.blade.shadowcloudgaming>"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="android")
 
     @commands.command(aliases=['ask'])
     async def _ask(self, ctx, user: typing.Optional[discord.Member] = None):
