@@ -131,7 +131,17 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="reset")
 
     @commands.command()
+    async def beta(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Send beta download links for desktop platforms."""
+        text = """Access the Beta apps at the links below
+Windows Beta: https://shdw.me/winbeta
+Mac Beta: https://shdw.me/macbeta
+Linux Beta: https://shdw.me/linuxbeta"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="beta")
+
+    @commands.command()
     async def alpha(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Send alpha download links (if run in <#593516344415354880>) or link to corresponding channel (if run outside of <#593516344415354880>)."""
         if ctx.message.channel.id == 593516344415354880:
             text = f"""Access the alpha apps at the links below
 Windows Alpha: https://shdw.me/winalpha
@@ -240,10 +250,10 @@ Linux Alpha: https://shdw.me/linuxalpha"""
             delta = (now - ctx.message.created_at).total_seconds()*1000
             await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
 
-    @commands.command(aliases=['applications', 'update', 'app'])
-    async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
+    @commands.command(aliases=['stable'])
+    async def official(self, ctx, user: typing.Optional[discord.Member] = None):
         """Link to Shadow Applications download."""
-        text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
+        text = """You can download the official Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
  Stable versions include: Windows 32/64 bit, macOS, Android, iOS
  Beta versions include: Windows 64 bit, macOS, Ubuntu
  Each version has a designated channel in Discord. To view these channels, you will need the Shadower role. Feedback on the beta versions should be left in the proper channels."""
@@ -428,6 +438,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 
     @commands.command(aliases=['google'])
     async def lmgtfy(self, ctx, *, args):
+        """Teach a person to fish."""
         if not await self.bot.admin.can_run_command(ctx.author.roles):
             await ctx.author.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
@@ -541,6 +552,7 @@ You can join the Android app beta here: <https://play.google.com/apps/testing/co
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
     async def vhdx(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Provide workarounds for installation of XBox Game Pass titles."""
         text = """Microsoft Store/XBox Game Pass apps/games cannot be installed on a vanilla Shadow instance due to a UWP disk format limitation, however...
 
 ***...there are two popular solutions to allow these apps/games to be installed on Shadow.***
