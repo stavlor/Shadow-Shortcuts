@@ -142,7 +142,20 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
         elif "bad bot" in message.content.lower():
             await message.add_reaction("😢")
             await message.add_reaction("🖕🏼")
+        elif "alpha" in message.content.lower() and ("download" in message.content.lower() or "link" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            if message.channel.id == 593516344415354880:
+                text = f"""Access the alpha apps at the links below
+Windows Alpha: https://shdw.me/winalpha
+Mac Alpha: https://shdw.me/macalpha
+Linux Alpha: https://shdw.me/linuxalpha"""
+            else:
+                text = f"""Access the alpha apps (and receive community support) in our #alpha Discord channel.
 
+**Please note that there is no official support provided for alpha versions. The only source of community support for alpha is the #alpha channel.**"""
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                message="{ctx.author.mention}\n{text}",
+                trigger="alpha")
+    
     @tasks.loop(minutes=5.0)
     async def check_status(self):
         from tzlocal import get_localzone
