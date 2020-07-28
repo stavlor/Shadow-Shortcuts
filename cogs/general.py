@@ -130,6 +130,19 @@ For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pd
         text = """You can reset your shadow via <https://account.shadow.tech/home/my-shadow>, *Note:* This doesn't clear additional storage."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="reset")
 
+    @commands.command()
+    async def alpha(self, ctx, user: typing.Optional[discord.Member] = None):
+        if ctx.message.channel.id == 593516344415354880:
+            text = f"""Access the alpha apps at the links below
+Windows Alpha: https://shdw.me/winalpha
+Mac Alpha: https://shdw.me/macalpha
+Linux Alpha: https://shdw.me/linuxalpha"""
+        else:
+            text = f"""Access the alpha apps (and receive community support) in our #alpha Discord channel.
+
+**Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the #alpha channel.**"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="alpha")
+
     @commands.group(name="account")
     async def account(self, ctx):
         pass
@@ -478,7 +491,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
     async def vhdx(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """Microsoft Store/XBox Gamepass apps/games cannot be installed on a vanilla Shadow instance due to a UWP disk format limitation, however...
+        text = """Microsoft Store/XBox Game Pass apps/games cannot be installed on a vanilla Shadow instance due to a UWP disk format limitation, however...
 
 ***...there are two popular solutions to allow these apps/games to be installed on Shadow.***
 
@@ -489,7 +502,7 @@ Please see the relevant Reddit post for details: https://www.reddit.com/r/Shadow
 **Solution 2: Create a VHDX (virtual hard disk) file**
 Please see the instructions at: https://www.windowscentral.com/how-create-and-set-vhdx-or-vhd-windows-10
 
-***Note that you **must** set the allocation size to 4kB for either option to work!***
+***Note that you **must** set the allocation size to 4 kB for either option to work!***
 """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vhdx")
 
