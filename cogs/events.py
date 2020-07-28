@@ -75,61 +75,61 @@ class Events(commands.Cog):
                 await message.channel.send(
                     f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="L:104")
         elif ("L 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="L 104")
         elif (" 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="104")
         elif ("shadow is off" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="104")
         elif "800x600" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix issues with 800x600 resolution http://botrexford.shdw.info/800x600.png",
                                                              trigger="800x600")
         elif "input lag" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following tips for solving input lag issues http://botrexford.shdw.info/inputlag.png",
                                                              trigger="input lag")
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
 If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903) - 
 
 If you have any issues updating the default password is blank “” if your password is expired.""",
                                                              trigger="password expired")
         elif "expired password" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
             If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903) - 
 
             If you have any issues updating the default password is blank “” if your password is expired.""",
                                                              trigger="password expired")
         elif "waiting for video" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
         elif "video error" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
         elif "long to boot up" in message.content.lower() and not await self.bot.admin.can_run_command(role_names):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
         elif "3/3" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message,
+            await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="3/3")
         elif "valorant" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autorespone.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
+            await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
 
 This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-games-new-anti-cheat-system-runs-at-system-boot-uses-kernel-driver>""")
         elif "good bot" in message.content.lower():
@@ -140,14 +140,14 @@ This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-g
             await message.add_reaction("🖕🏼")
         elif "alpha" in message.content.lower() and ("download" in message.content.lower() or "link" in message.content.lower() or "get" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             if message.channel.id == 593516344415354880:
-                await self.bot.autorespone.auto_response_message(ctx=message,
+                await self.bot.autoresponse.auto_response_message(ctx=message,
                     message="""{ctx.author.mention}\nAccess the alpha apps at the links below
 Windows Alpha: https://shdw.me/winalpha
 Mac Alpha: https://shdw.me/macalpha
 Linux Alpha: https://shdw.me/linuxalpha""",
                     trigger="alpha")
             else:
-                await self.bot.autorespone.auto_response_message(ctx=message,
+                await self.bot.autoresponse.auto_response_message(ctx=message,
                     message="""{ctx.author.mention}\nAccess the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
 
 **Please note that there is no official support provided for alpha versions. The only source of community support for alpha is the <#593516344415354880> channel.**""",
