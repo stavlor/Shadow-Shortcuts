@@ -124,7 +124,7 @@ To join the waitlist: <https://shdw.me/NA-waiting-list-SGDC>
 For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghost")
 
-    @commands.command(aliases=['reset', 'raz', 'wipe', 'clear'])
+    @commands.command(aliases=['raz', 'wipe', 'clear'])
     async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
         """Reset Shadow Information"""
         text = """You can reset your shadow via <https://account.shadow.tech/home/my-shadow>, *Note:* This doesn't clear additional storage."""
