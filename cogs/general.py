@@ -250,14 +250,24 @@ Linux Alpha: https://shdw.me/linuxalpha"""
             delta = (now - ctx.message.created_at).total_seconds()*1000
             await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
 
-    @commands.command(aliases=['stable'])
-    async def official(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Link to Shadow Applications download."""
-        text = """You can download the official Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
- Stable versions include: Windows 32/64 bit, macOS, Android, iOS
- Beta versions include: Windows 64 bit, macOS, Ubuntu
+    @commands.command(aliases=['applications', 'application', 'app'])
+    async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Link to the download page for Shadow Applications."""
+        text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
+ Stable versions include: Windows 32/64 bit, macOS, Android, iOS, Linux
+ Beta versions include: Windows 64 bit, macOS, Linux, Android
  Each version has a designated channel in Discord. To view these channels, you will need the Shadower role. Feedback on the beta versions should be left in the proper channels."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps")
+
+    @commands.command(aliases=['official'])
+    async def stable(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Provide links to stable clients for desktop applications."""
+        text = """Access the Official apps at the links below
+Windows: https://shdw.me/windows
+Mac: https://shdw.me/mac
+Linux: https://shdw.me/linux"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="stable")
+
 
     @commands.command(aliases=['hotkeys', 'keybinds'])
     async def keys(self, ctx, user: typing.Optional[discord.Member] = None):
