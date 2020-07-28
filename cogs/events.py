@@ -128,12 +128,8 @@ If you have any issues updating the default password is blank “” if your pas
             await self.bot.autorespone.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="3/3")
-        elif "shadow is off" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                              message="{ctx.author.mention} Please follow the following steps to resolve your issue, Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait 2-5 minutes and restart your client to resolve your issue http://botrexford.shdw.info/reboot.gif ",
-                                                              trigger="shadow is off")
         elif "valorant" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
+            await self.bot.autorespone.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
 
 This article might be helpful: <https://www.extremetech.com/gaming/309320-riot-games-new-anti-cheat-system-runs-at-system-boot-uses-kernel-driver>""")
         elif "good bot" in message.content.lower():
@@ -152,7 +148,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
                 text = f"""Access the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
 
 **Please note that there is no official support provided for alpha versions. The only source of community support for alpha is the <#593516344415354880> channel.**"""
-            await self.bot.autoresponse.auto_response_message(ctx=message,
+            await self.bot.autorespone.auto_response_message(ctx=message,
                 message="{ctx.author.mention}\n{text}",
                 trigger="alpha")
     
