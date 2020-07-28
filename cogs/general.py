@@ -152,7 +152,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
             text = f"""You can access your account page via <https://account.shadow.tech/home>."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
 
-    @account.command(aliases=['reset'])
+    @account.command()
     async def myshadow(self, ctx, user: typing.Optional[discord.Member] = None):
             text = f"""You can reset your shadow via <https://account.shadow.tech/home/my-shadow>."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account reset")
@@ -240,7 +240,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
             delta = (now - ctx.message.created_at).total_seconds()*1000
             await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
 
-    @commands.command(aliases=['applications', 'beta', 'update', 'app'])
+    @commands.command(aliases=['applications', 'update', 'app'])
     async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
         """Link to Shadow Applications download."""
         text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
