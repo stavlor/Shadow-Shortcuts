@@ -1,3 +1,4 @@
 botconfig.py
 /.idea/discord.xml
 venv/*
+.vscode/
