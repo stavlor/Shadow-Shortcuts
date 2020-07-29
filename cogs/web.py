@@ -7,9 +7,10 @@ class BotWebserver(commands.Cog):
 
     def __init__(self, bot):
         self.bot = bot
+        self.bot.web = self
         self.site = None
-        loop = asyncio.get_event_loop()
-        loop.run_until_complete(self.webserver())
+        self.bot.logger.info("Web Cog Loaded, will start webserver in on ready.")
+
 
     async def handler(self, request):
         self.bot.logger.info(f"WEB: Got GET / {request}")

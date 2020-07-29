@@ -35,6 +35,9 @@ class Events(commands.Cog):
     async def on_ready(self):
         self.bot.logger.info(
             "Bot Starting up.. Logged in as:" + str(self.bot.user.name) + " ID: " + str(self.bot.user.id))
+        self.bot.logger.info("Preparing to start webserver.")
+        await self.bot.web.webserver()
+        self.bot.logger.info("Webserver should be running.")
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
