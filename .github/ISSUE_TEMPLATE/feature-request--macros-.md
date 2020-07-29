@@ -1,8 +1,8 @@
 ---
 name: Feature request (macros)
 about: Suggest an idea for the bot
-title: "[REQUEST] [MACRO]"
-labels: enhancement
+title: ''
+labels: command, request/new
 assignees: ''
 
 ---
