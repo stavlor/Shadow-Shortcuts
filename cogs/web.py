@@ -25,6 +25,7 @@ class BotWebserver(commands.Cog):
         event_type = headers.getone('X-GitHub-Event')
         payload = json.loads(content.getone('payload'))
         channel = await self.bot.fetch_channel(738097347916988447)
+        self.bot.logger.info(f"WEB::GITHUB::: PAYLOAD DEBUG {payload}")
         if 'push' == event_type:
             branch = payload['ref'].replace('refs/heads/', '')
             user = payload['sender']['login']
