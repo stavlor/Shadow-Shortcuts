@@ -9,6 +9,7 @@ class BotWebserver(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.site = None
+        await self.webserver()
 
     async def webserver(self):
         async def handler(request):
@@ -27,6 +28,4 @@ class BotWebserver(commands.Cog):
 
 
 def setup(bot):
-    webserver = BotWebserver(bot)
-    bot.add_cog(web)
-    bot.loop.create_task(webserver.webserver())
+    bot.add_cog(BotWebserver(bot))
