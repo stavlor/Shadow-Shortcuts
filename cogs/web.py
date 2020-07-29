@@ -11,12 +11,15 @@ class BotWebserver(commands.Cog):
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self.webserver())
 
-    async def webserver(self):
-        async def handler(request):
-            return web.Response(text="Hello, world")
+    @staticmethod
+    async def handler(request):
+        return web.Response(
+            text="Greetings from the Bot Rexford's internal webserver this feature is still under development."
+        )
 
+    async def webserver(self):
         app = web.Application()
-        app.router.add_get('/', handler)
+        app.router.add_get('/', self.handler)
         runner = web.AppRunner(app)
         await runner.setup()
         self.site = web.TCPSite(runner, '157.245.134.212', 8099)
