@@ -11,15 +11,20 @@ class BotWebserver(commands.Cog):
         loop = asyncio.get_event_loop()
         loop.run_until_complete(self.webserver())
 
-    @staticmethod
-    async def handler(request):
+    async def handler(self, request):
+        self.bot.logger(f"WEB: Got GET / {request}")
         return web.Response(
             text="Greetings from the Bot Rexford's internal webserver this feature is still under development."
         )
 
+    async def handle_github(self, request):
+        self.bot.logger.info(f"WEB: Recieved Github Webhook {request}")
+
+
     async def webserver(self):
         app = web.Application()
         app.router.add_get('/', self.handler)
+        app.router.add_post('/github', self.handle_github)
         runner = web.AppRunner(app)
         await runner.setup()
         self.site = web.TCPSite(runner, '157.245.134.212', 8099)
