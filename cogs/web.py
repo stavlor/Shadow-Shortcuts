@@ -1,8 +1,6 @@
 from aiohttp import web
 import asyncio
 from discord.ext import commands
-import nest_asyncio
-nest_asyncio.apply()
 
 
 class BotWebserver(commands.Cog):
