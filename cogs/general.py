@@ -565,7 +565,7 @@ You can join the Android app beta here: <https://play.google.com/apps/testing/co
     @commands.command(aliases=['contribute'])
     async def github(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the GitHub for Bot Rexford <https://github.com/stavlor/Shadow-ShortcutsHelp> 
-Contribute to Bot Rexford by submitting your ideas and bugs here! <https://github.com/stavlor/Shadow-Shortcuts/issues"""
+Contribute to Bot Rexford by submitting your ideas and bugs here! <https://github.com/stavlor/Shadow-Shortcuts/issues?"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="github")
 
     @commands.command(aliases=['specs', 'tiers'])
