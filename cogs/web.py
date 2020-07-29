@@ -12,7 +12,6 @@ class BotWebserver(commands.Cog):
         self.site = None
         self.bot.logger.info("Web Cog Loaded, will start webserver in on ready.")
 
-
     async def handler(self, request):
         self.bot.logger.debug(f"WEB: Got GET / {request}")
         return web.Response(
@@ -25,6 +24,13 @@ class BotWebserver(commands.Cog):
         content = await request.post()
         event_type = headers.getone('X-GitHub-Event')
         payload = json.loads(content.getone('payload'))
+        channel = await self.bot.fetch_channel(738097347916988447)
+        if event_type is 'push':
+            branch = payload['ref'].replace('refs/heads/', '')
+            user = payload['sender']['login']
+            embed = discord.Embed(title=f"New Commits Pushed to {branch} by {user}", color=0x26a781)
+            await channel.send(embed=embed)
+
         self.bot.logger.info(f"WEB: GITHUB EVENT {event_type} Keys recieved. {payload.keys()}")
         self.bot.logger.debug(f"WEB: GITHUB EVENT CONTENT: {content}")
         return web.Response(text="Event Recieved.")
