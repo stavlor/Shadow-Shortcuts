@@ -525,7 +525,7 @@ Alpha: Accessible at <#593516344415354880>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="win32")
 
     @commands.command(aliases=['mac', 'macos'])
-    async def win32(self, ctx, user: typing.Optional[discord.Member] = None):
+    async def mac(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the macOS apps at the links below
 Official: https://shdw.me/mac
 Beta: https://shdw.me/macbeta
@@ -551,11 +551,7 @@ Shadow liveOS (Shadow on a portable drive): <https://gitlab.com/NicolasGuilloux/
 Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linux")
 
-<<<<<<< Updated upstream
-    @commands.command(aliases=['android', 'pixel'])
-=======
     @commands.command(aliases=['pixel', 'samsung', 'oneplus'])
->>>>>>> Stashed changes
     async def android(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """You can download the Android app here: <https://play.google.com/store/apps/details?id=com.blade.shadowcloudgaming&hl=en>
 You can join the Android app beta here: <https://play.google.com/apps/testing/com.blade.shadowcloudgaming>"""
