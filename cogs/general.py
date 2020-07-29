@@ -524,7 +524,7 @@ Beta: https://shdw.me/win32beta
 Alpha: Accessible at <#593516344415354880>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="win32")
 
-    @commands.command(aliases=['mac', 'macos'])
+    @commands.command(aliases=['macos'])
     async def mac(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the macOS apps at the links below
 Official: https://shdw.me/mac
