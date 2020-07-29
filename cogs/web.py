@@ -1,6 +1,8 @@
 from aiohttp import web
 import asyncio
 from discord.ext import commands
+import nest_asyncio
+nest_asyncio.apply()
 
 
 class BotWebserver(commands.Cog):
@@ -18,7 +20,10 @@ class BotWebserver(commands.Cog):
         )
 
     async def handle_github(self, request):
-        self.bot.logger.info(f"WEB: Recieved Github Webhook {await request.post()}")
+        import json
+        content = await request.post()
+        content_dict = json.loads(content)
+        self.bot.logger.info(f"WEB: GITHUB EVENT {content_dict}")
         return web.Response(text="Event Recieved.")
 
     async def webserver(self):
