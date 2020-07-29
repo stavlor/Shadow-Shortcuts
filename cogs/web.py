@@ -25,7 +25,6 @@ class BotWebserver(commands.Cog):
         event_type = headers.getone('X-GitHub-Event')
         payload = json.loads(content.getone('payload'))
         channel = await self.bot.fetch_channel(738097347916988447)
-        self.bot.logger.info(f"WEB::GITHUB::: PAYLOAD DEBUG {payload}")
         if 'push' == event_type:
             branch = payload['ref'].replace('refs/heads/', '')
             user = payload['sender']['login']
@@ -33,32 +32,32 @@ class BotWebserver(commands.Cog):
             await channel.send(embed=embed)
             self.bot.logger.debug("WEB: GITHUB: Processed push Event.")
         elif 'issues' == event_type:
-            action = content['action']
-            issue_title = content['issue']['title']
-            issue_url = content['issue']['html_url']
-            issue_number = content['issue']['number']
+            action = payload['action']
+            issue_title = payload['issue']['title']
+            issue_url = payload['issue']['html_url']
+            issue_number = payload['issue']['number']
             user = payload['user']['login']
             embed = discord.Embed(title=f"User {user} {action} an issue #{issue_number}", url=issue_url, color=0x37ada1)
             embed.add_field(name="Issue Title:", value=issue_title)
             await channel.send(embed=embed)
             self.bot.logger.debug("WEB: GITHUB: Processed issues Event.")
         elif 'issue_comment' == event_type:
-            action = content['action']
-            issue_title = content['issue']['title']
-            issue_url = content['issue']['html_url']
-            issue_number = content['issue']['number']
+            action = payload['action']
+            issue_title = payload['issue']['title']
+            issue_url = payload['issue']['html_url']
+            issue_number = payload['issue']['number']
             user = payload['user']['login']
             embed = discord.Embed(title=f"User {user} {action} an issue comment on issue #{issue_number}", url=issue_url, color=0x37ada1)
             embed.add_field(name="Issue Title:", value=issue_title)
             await channel.send(embed=embed)
             self.bot.logger.debug("WEB: GITHUB: Processed issue_comment Event.")
         elif 'pull_request' == event_type:
-            action = content['action']
-            number = content['number']
-            title = content['pull_request']['title']
-            pull_url = content['pull_request']['html_url']
-            body = content['pull_request']['body']
-            user = content['user']['login']
+            action = payload['action']
+            number = payload['number']
+            title = payload['pull_request']['title']
+            pull_url = payload['pull_request']['html_url']
+            body = payload['pull_request']['body']
+            user = payload['user']['login']
             embed = discord.Embed(title=f"User {user} {action} pull request number #{number}", url=pull_url, color=0x37ada1)
             embed.add_field(name="Pull Request Title:", value=title)
             embed.add_field(name="Pull Request Body:", value=body)
