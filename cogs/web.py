@@ -12,7 +12,7 @@ class BotWebserver(commands.Cog):
         loop.run_until_complete(self.webserver())
 
     async def handler(self, request):
-        self.bot.logger(f"WEB: Got GET / {request}")
+        self.bot.logger.info(f"WEB: Got GET / {request}")
         return web.Response(
             text="Greetings from the Bot Rexford's internal webserver this feature is still under development."
         )
