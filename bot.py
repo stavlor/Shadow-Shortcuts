@@ -3,7 +3,7 @@ import logging
 from discord.ext import commands
 import botconfig as cfg
 
-description = "Shadow US Discord helper bot.\nFor issues with this bot please contact Stavlor.\n"
+description = "Shadow US Discord helper bot.\nFor issues with this bot please submit a report at <https://github.com/stavlor/Shadow-Shortcuts/issues>.\n"
 TOKEN = cfg.TOKEN
 logger = logging.getLogger('discord')
 logger.setLevel(logging.INFO)
