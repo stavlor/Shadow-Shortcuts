@@ -581,6 +581,10 @@ Please see the relevant Reddit post for details: https://www.reddit.com/r/Shadow
 Please see the instructions at: https://www.windowscentral.com/how-create-and-set-vhdx-or-vhd-windows-10
 
 ***Note that you **must** set the allocation size to 4 kB for either option to work!***
+
+*Note: You may have to change the location within Windows settings, put in the Windows search "Storage Settings" then Change where new content is saved > New apps will save to.
+
+Then within the Xbox Beta app go to Settings > General > Drive Selection. If not changed, change it.*
 """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vhdx")
 
