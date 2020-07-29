@@ -1,6 +1,5 @@
 from aiohttp import web
 import asyncio
-import discord
 from discord.ext import commands
 
 
@@ -9,7 +8,7 @@ class BotWebserver(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.site = None
-        await self.webserver()
+        self.webserver()
 
     async def webserver(self):
         async def handler(request):
