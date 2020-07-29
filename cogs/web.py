@@ -1,5 +1,6 @@
 from aiohttp import web
 import asyncio
+import discord
 from discord.ext import commands
 
 
@@ -13,7 +14,7 @@ class BotWebserver(commands.Cog):
 
 
     async def handler(self, request):
-        self.bot.logger.info(f"WEB: Got GET / {request}")
+        self.bot.logger.debug(f"WEB: Got GET / {request}")
         return web.Response(
             text="Greetings from the Bot Rexford's internal webserver this feature is still under development."
         )
@@ -21,7 +22,9 @@ class BotWebserver(commands.Cog):
     async def handle_github(self, request):
         headers = request.headers
         content = await request.post()
-        self.bot.logger.info(f"WEB: GITHUB EVENT {headers}")
+        event_type = headers.getone('X-GitHub-Event')
+        event_action = content.getone('action')
+        self.bot.logger.info(f"WEB: GITHUB EVENT {event_type} {event_action}")
         self.bot.logger.debug(f"WEB: GITHUB EVENT CONTENT: {content}")
         return web.Response(text="Event Recieved.")
 
