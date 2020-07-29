@@ -563,7 +563,7 @@ You can join the Android app beta here: <https://play.google.com/apps/testing/co
 
     @commands.command(aliases=['_ask'])
     async def ask(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """https://dontasktoaskjustask.com/"""
+        text = """https://www.dontasktoask.com/"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ask")
 
     @commands.command(aliases=['contribute'])
