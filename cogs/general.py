@@ -505,8 +505,8 @@ Alpha: Accessible at <#593516344415354880>"""
     @commands.command(aliases=['ubuntu'])
     async def linux(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the Linux apps at the links below
-Official: https://shdw.me/windows
-Beta: https://shdw.me/winbeta
+Official: https://shdw.me/linux
+Beta: https://shdw.me/linuxbeta
 Alpha: Accessible at <#593516344415354880>
 
 __Known Issues with Linux Application__
@@ -527,10 +527,16 @@ Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
 You can join the Android app beta here: <https://play.google.com/apps/testing/com.blade.shadowcloudgaming>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="android")
 
-    @commands.command(aliases=['ask'])
-    async def _ask(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = "https://www.dontasktoask.com/"
+    @commands.command(aliases=['_ask'])
+    async def ask(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """https://www.dontasktoask.com/"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ask")
+
+    @commands.command(aliases=['contribute'])
+    async def github(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """Access the GitHub for Bot Rexford <https://github.com/stavlor/Shadow-ShortcutsHelp> 
+Contribute to Bot Rexford by submitting your ideas and bugs here! <https://github.com/stavlor/Shadow-Shortcuts/issues"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="github")
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
