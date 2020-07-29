@@ -20,7 +20,6 @@ class BotWebserver(commands.Cog):
     async def handle_github(self, request):
         self.bot.logger.info(f"WEB: Recieved Github Webhook {request}")
 
-
     async def webserver(self):
         app = web.Application()
         app.router.add_get('/', self.handler)
