@@ -2,7 +2,7 @@
 name: Feature request (macros)
 about: Suggest an idea for the bot
 title: ''
-labels: macro, request/new
+labels: command, request/new
 assignees: ''
 
 ---
