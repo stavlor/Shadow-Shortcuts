@@ -18,7 +18,7 @@ class BotWebserver(commands.Cog):
         )
 
     async def handle_github(self, request):
-        headers = await request.headers()
+        headers = request.headers
         content = await request.post()
         self.bot.logger.info(f"WEB: GITHUB EVENT {headers}")
         self.bot.logger.debug(f"WEB: GITHUB EVENT CONTENT: {content}")
