@@ -30,7 +30,38 @@ class BotWebserver(commands.Cog):
             user = payload['sender']['login']
             embed = discord.Embed(title=f"New Commits Pushed to {branch} by {user}", color=0x26a781)
             await channel.send(embed=embed)
-
+            self.bot.logger.debug("WEB: GITHUB: Processed push Event.")
+        elif 'issues' == event_type:
+            action = content['action']
+            issue_title = content['issue']['title']
+            issue_url = content['issue']['html_url']
+            issue_number = content['issue']['number']
+            user = payload['user']['login']
+            embed = discord.Embed(title=f"User {user} {action} an issue #{issue_number}", url=issue_url, color=0x37ada1)
+            embed.add_field(name="Issue Title:", value=issue_title)
+            await channel.send(embed=embed)
+            self.bot.logger.debug("WEB: GITHUB: Processed issues Event.")
+        elif 'issue_comment' == event_type:
+            action = content['action']
+            issue_title = content['issue']['title']
+            issue_url = content['issue']['html_url']
+            issue_number = content['issue']['number']
+            user = payload['user']['login']
+            embed = discord.Embed(title=f"User {user} {action} an issue comment on issue #{issue_number}", url=issue_url, color=0x37ada1)
+            embed.add_field(name="Issue Title:", value=issue_title)
+            await channel.send(embed=embed)
+            self.bot.logger.debug("WEB: GITHUB: Processed issue_comment Event.")
+        elif 'pull_request' == event_type:
+            action = content['action']
+            number = content['number']
+            title = content['pull_request']['title']
+            pull_url = content['pull_request']['html_url']
+            body = content['pull_request']['body']
+            user = content['user']['login']
+            embed = discord.Embed(title=f"User {user} {action} pull request number #{number}", url=pull_url, color=0x37ada1)
+            embed.add_field(name="Pull Request Title:", value=title)
+            embed.add_field(name="Pull Request Body:", value=body)
+            await channel.send(embed=embed)
         self.bot.logger.info(f"WEB: GITHUB EVENT {event_type} Keys recieved. {payload.keys()}")
         self.bot.logger.debug(f"WEB: GITHUB EVENT CONTENT: {content}")
         return web.Response(text="Event Recieved.")
