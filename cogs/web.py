@@ -36,7 +36,7 @@ class BotWebserver(commands.Cog):
             issue_title = payload['issue']['title']
             issue_url = payload['issue']['html_url']
             issue_number = payload['issue']['number']
-            user = payload['user']['login']
+            user = payload['sender']['login']
             embed = discord.Embed(title=f"User {user} {action} an issue #{issue_number}", url=issue_url, color=0x37ada1)
             embed.add_field(name="Issue Title:", value=issue_title)
             await channel.send(embed=embed)
@@ -46,7 +46,7 @@ class BotWebserver(commands.Cog):
             issue_title = payload['issue']['title']
             issue_url = payload['issue']['html_url']
             issue_number = payload['issue']['number']
-            user = payload['user']['login']
+            user = payload['sender']['login']
             embed = discord.Embed(title=f"User {user} {action} an issue comment on issue #{issue_number}", url=issue_url, color=0x37ada1)
             embed.add_field(name="Issue Title:", value=issue_title)
             await channel.send(embed=embed)
@@ -57,7 +57,7 @@ class BotWebserver(commands.Cog):
             title = payload['pull_request']['title']
             pull_url = payload['pull_request']['html_url']
             body = payload['pull_request']['body']
-            user = payload['user']['login']
+            user = payload['sender']['login']
             embed = discord.Embed(title=f"User {user} {action} pull request number #{number}", url=pull_url, color=0x37ada1)
             embed.add_field(name="Pull Request Title:", value=title)
             embed.add_field(name="Pull Request Body:", value=body)
