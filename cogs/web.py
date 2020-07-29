@@ -8,7 +8,8 @@ class BotWebserver(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         self.site = None
-        self.webserver()
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self.webserver())
 
     async def webserver(self):
         async def handler(request):
