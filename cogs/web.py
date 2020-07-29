@@ -25,7 +25,7 @@ class BotWebserver(commands.Cog):
         event_type = headers.getone('X-GitHub-Event')
         payload = json.loads(content.getone('payload'))
         channel = await self.bot.fetch_channel(738097347916988447)
-        if event_type is 'push':
+        if 'push' == event_type:
             branch = payload['ref'].replace('refs/heads/', '')
             user = payload['sender']['login']
             embed = discord.Embed(title=f"New Commits Pushed to {branch} by {user}", color=0x26a781)
