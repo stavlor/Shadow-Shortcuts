@@ -18,7 +18,7 @@ class BotWebserver(commands.Cog):
         )
 
     async def handle_github(self, request):
-        self.bot.logger.info(f"WEB: Recieved Github Webhook {request.post()}")
+        self.bot.logger.info(f"WEB: Recieved Github Webhook {await request.post()}")
         return web.Response(text="Event Recieved.")
 
     async def webserver(self):
