@@ -20,10 +20,11 @@ class BotWebserver(commands.Cog):
         )
 
     async def handle_github(self, request):
+        import json
         headers = request.headers
         content = await request.post()
         event_type = headers.getone('X-GitHub-Event')
-        payload = content.getone('payload')
+        payload = json.loads(content.getone('payload'))
         self.bot.logger.info(f"WEB: GITHUB EVENT {event_type} Keys recieved. {payload.keys()}")
         self.bot.logger.debug(f"WEB: GITHUB EVENT CONTENT: {content}")
         return web.Response(text="Event Recieved.")
