@@ -184,7 +184,7 @@ but there are comparable commands for other OSes**
             await dest_channel.send(embed=embed)
             await ctx.message.delete()
         else:
-            await ctx.author.send(f"{ctx.author.mention} this command is limited to once every 30 minutes shared across all bot users and with a requirement that timer is in  ['10', '20', '30', '40', '50', '60']. and reason be properly supplied somethging did not meet these requirements.")
+            await ctx.author.send(f"{ctx.author.mention} this command is limited to once every 30 minutes shared across all bot users and with a requirement that timer is in  ['10', '20', '30', '40', '50', '60']; and that a reason be properly supplied. Something did not meet these requirements.")
             await ctx.message.delete()
 
 
