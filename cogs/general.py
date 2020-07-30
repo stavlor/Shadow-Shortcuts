@@ -538,7 +538,7 @@ You can join the Android app beta here: <https://play.google.com/apps/testing/co
 Contribute to Bot Rexford by submitting your ideas and bugs here! <https://github.com/stavlor/Shadow-Shortcuts/issues?"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="github")
 
-@commands.command(aliases=[])
+    @commands.command(aliases=[])
     async def copypasta(self, ctx, user: typing.Optional[discord.Member] = None):
         text = f"""If you could perhaps consider this optimal strategy, which could facilitate about your own reward. There exists a contraption that enables one to - with a few strokes of the fingers to depress buttons in a sequence of letters to formulate a word, and then a sentence. Which if phrased as a question, could result in an answer. I believe you know of this contraption called the computer, if - when in use with the internet, one could maneuver oneself onto a place referred to as a website; I will help you in this prospect for I know of the address: www.google.com. When you find yourself in this place, you will see a box in which you could - once again, maneuver your fingers in the correct sequence in order to arrange an assortment of questions that would result in the delivery of your much needed answer.
 
