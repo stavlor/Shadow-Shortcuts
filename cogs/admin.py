@@ -8,13 +8,14 @@ import typing
 
 class MyHelpCommand(commands.MinimalHelpCommand):
     def get_command_signature(self, command):
-            return '{0.context.prefix}{1.qualified_name} {1.signature}'.format(self, command)
+        return '{0.context.prefix}{1.qualified_name} {1.signature}'.format(self, command)
 
 
 class Admin(commands.Cog):
     """Admin level bot commands cog"""
 
     def __init__(self, bot):
+        import datetime
         self.bot = bot
         self.bot.admin = self
         self._last_member = None
@@ -22,6 +23,7 @@ class Admin(commands.Cog):
         bot.help_command = MyHelpCommand()
         bot.help_command.cog = self
         bot.logger.info("Initialized Admin Cog")
+        self.bot.admin.last_bot_users_sm = datetime.datetime.now() - datetime.timedelta(hours=2)
 
     def cog_unload(self):
         self.bot.help_command = self._original_help_command
@@ -162,6 +164,28 @@ but there are comparable commands for other OSes**
         """Change Channel Slowmode"""
         await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author}")
         await ctx.send(f"{ctx.author.mention} Slowmode timer updated to {timer} seconds.")
+
+
+    @commands.command(aliases=['botsm', 'bsm'])
+    @commands.has_role('Bot User')
+    async def _bot_user_slowmode(self, ctx, timer: int = 10, *, reason: str):
+        """Bot User Slowmode"""
+        import datetime
+        last_time_diff = datetime.datetime.now() - datetime.timedelta(minutes=30)
+        if self.bot.admin.last_bot_users_sm < last_time_diff and timer in ['10', '20', '30', '40', '50', '60'] and timer > ctx.channel.slowmode_delay:
+            self.bot.admin.last_bot_users_sm = datetime.datetime.now()
+            await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author} {reason}")
+            await ctx.send(f"{ctx.author.mention} Slowmode timer increased to {timer}")
+            dest_channel = await self.bot.fetch_channel(462170485787066368)
+            embed = discord.Embed(title=f"Altered Slowmode for #{ctx.channel.name}", color=0xeb1291)
+            embed.add_field(name="Requested by:", value=ctx.author)
+            embed.add_field(name="Slowmode Delay:", value=str(timer))
+            embed.add_field(name="Reason", value=reason)
+            await dest_channel.send(embed=embed)
+            await ctx.message.delete()
+        else:
+            await ctx.author.send(f"{ctx.author.mention} this command is limited to once every 30 minutes shared across all bot users and with a requirement that timer is in  ['10', '20', '30', '40', '50', '60']. and reason be properly supplied somethging did not meet these requirements.")
+            await ctx.message.delete()
 
 
     @commands.command(description="Auto-Responders debug", name="timertest")
