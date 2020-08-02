@@ -550,10 +550,10 @@ Your friend,
     @commands.command(aliases=['shaduwu'])
     async def shadowo(self, ctx, user: typing.Optional[discord.Member] = None):
         if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(f"{command_name} recieved from {ctx.author.name} with argument of {user}")
+            self.bot.logger.info(f"shadowo recieved from {ctx.author.name}")
             await ctx.send('https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png')
         else:
-            self.bot.logger.info(f"{command_name} command received from un-privileged user {ctx.author.name} Responding Via PM")
+            self.bot.logger.info(f"shadowo command received from un-privileged user {ctx.author.name} Responding Via PM")
             await ctx.author.send('https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png')
         await ctx.message.delete()
 
