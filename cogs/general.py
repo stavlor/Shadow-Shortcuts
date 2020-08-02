@@ -547,6 +547,11 @@ Your friend,
 {ctx.author.mention}"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="copypasta")
 
+    @commands.command(aliases=['shaduwu'])
+    async def shadowo(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = 'https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png'
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name='shadowo')
+
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """
