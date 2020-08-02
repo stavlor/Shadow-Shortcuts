@@ -9,10 +9,14 @@ class General(commands.Cog):
         bot.general = self
         bot.logger.info("Initialized General Cog")
 
-    async def text_command_process(self, ctx: commands.Context, user: discord.Member, text: str, command_name: str):
+    async def text_command_process(self, ctx: commands.Context, user: discord.Member, text: str, command_name: str, suppress_from: bool = False):
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(f"{command_name} recieved from {ctx.author.name} with argument of {user}")
-            if user is not None:
+            if suppress_from and user is not None:
+                await ctx.send(f"{user.mention} {text}")
+            elif suppress_from and user is None:
+                await ctx.send(f"{text}")
+            elif user is not None:
                 await ctx.send(f"From {ctx.author.name}\n{user.mention} {text}")
             else:
                 await ctx.send(f"From {ctx.author.name}\n{text}")
@@ -549,13 +553,8 @@ Your friend,
 
     @commands.command(aliases=['shaduwu'])
     async def shadowo(self, ctx, user: typing.Optional[discord.Member] = None):
-        if await self.bot.admin.can_run_command(ctx.author.roles):
-            self.bot.logger.info(f"shadowo recieved from {ctx.author.name}")
-            await ctx.send('https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png')
-        else:
-            self.bot.logger.info(f"shadowo command received from un-privileged user {ctx.author.name} Responding Via PM")
-            await ctx.author.send('https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png')
-        await ctx.message.delete()
+        text = """https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shadowo", suppress_from=True)
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
