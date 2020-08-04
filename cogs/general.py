@@ -234,15 +234,27 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
         **Windows**
-        - Windows 8.1, Windows 10 Recommended - 32 bits or above (Note: 64 bit required for USBoIP)
-        - Processor from 2011-2012 or more recent
-        - Integrated GPU recommended
-        - AMD GPU from 2013 or more recent (disable if older)
-        - Nvidia GPU from 2011 and more recent (disable if older)
-        
+            - OS: Windows 10 or Windows 8.1 (Older versions are not supported)
+            - CPU: 
+                - Intel Sandy Bridge range (2011), Core™ i7 / i5 / i3, Pentium™, Celeron™, Xeon 1.60 GHz
+                - AMD AM2+ range (2008), Athlon™, Sempron™, Phenom™, Opteron™
+            - RAM: 2 GB
+            - Additional Software: DirectX 9c or higher
+
         **Mac**
-        - Mac OS 10.10 Yosemite or above
-        - Mac device from 2012 or more recent"""
+        - OS: OS X 10.10 Yosemite or higher
+        - CPU x86-64 (Intel Core 2 Duo processor, Intel Core i3 / i5 / i7, or Xeon)
+        - Firmware System EFI 64-bit
+        - RAM: 2 GB
+        - Hard Drive Space: 8GB
+
+        **Linux**
+        - Ubuntu: Bionic Beaver (18.04), Eoan Ermine (19.10)
+        - CPU: 
+            - Intel Sandy Bridge range (2011), Core™ i7 / i5 / i3, Pentium™, Celeron™, Xeon 1.60 GHz
+            - AMD AM2+ range (2008), Athlon™, Sempron™, Phenom™, Opteron™
+        RAM: 2 GB
+        Required additional software libva-glx2"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="minreq")
 
     @commands.command()
