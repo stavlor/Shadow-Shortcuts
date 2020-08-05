@@ -121,8 +121,11 @@ class Database(commands.Cog):
         Note: This replaces all existing with the new role only."""
         role_list = list()
         role_str = str()
-        for roles in role:
-            role_list.append(roles.id)
+        if isinstance(role, discord.Role):
+            role_list.append(role.id)
+        else:
+            for roles in role:
+                role_list.append(roles.id)
         for item in role_list:
             role_str += f"{item},"
         SQL = f"INSERT INTO role_tracking(discord_id, roles) VALUES('{uid}', '{role_str}') ON CONFLICT (discord_id) DO UPDATE SET roles='{role_str}';"
