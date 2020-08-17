@@ -355,7 +355,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#463782843898658846>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/home/support
-  - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new optionally, e-mail support at **support-us@shadow.tech** note Tickets are generally quicker."""
+  - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/requests/new"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
