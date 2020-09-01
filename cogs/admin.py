@@ -298,9 +298,9 @@ but there are comparable commands for other OSes**
         import queue
         final_messages = list()
         messages = queue.Queue(maxsize=message_count)
-        for channel in guild.text_channels:
+        async for channel in guild.text_channels:
             try:
-                async for message in channel.history(limit=15000):
+                async for message in channel.history(limit=5000):
                     if message.author == user:
                         if not messages.full():
                             messages.put(message)
@@ -360,7 +360,7 @@ but there are comparable commands for other OSes**
             await ctx.send(embed=em)
             await ctx.send(f"Recent message history for {users.mention}")
             paginator = commands.Paginator()
-            for item in await self.find_message_history(users, ctx.guild, 10):
+            for item in await self.find_message_history(users, ctx.guild, 25):
                 paginator.add_line(f"{item.content} in channel #{item.channel} at {item.created_at}")
             for page in paginator.pages:
                 await ctx.send(page)
