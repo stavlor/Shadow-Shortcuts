@@ -294,24 +294,6 @@ but there are comparable commands for other OSes**
             if stderr:
                 await ctx.send(f'[stderr]\n{stderr.decode()}')
 
-    async def find_message_history(self, user: discord.Member, guild: discord.Guild, message_count: int = 10):
-        import queue
-        final_messages = list()
-        messages = queue.Queue(maxsize=message_count)
-        async for channel in guild.text_channels:
-            try:
-                async for message in channel.history(limit=5000):
-                    if message.author == user:
-                        if not messages.full():
-                            messages.put(message)
-            except:
-                continue
-        while not messages.empty():
-            rec = messages.get()
-            final_messages.append(rec)
-        return final_messages
-
-
     @commands.command(aliases=['ui', 'uinfo'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
@@ -358,12 +340,6 @@ but there are comparable commands for other OSes**
             em.set_thumbnail(url=avi)
             em.set_author(name=users, icon_url='https://i.imgur.com/RHagTDg.png')
             await ctx.send(embed=em)
-            await ctx.send(f"Recent message history for {users.mention}")
-            paginator = commands.Paginator()
-            for item in await self.find_message_history(users, ctx.guild, 25):
-                paginator.add_line(f"{item.content} in channel #{item.channel} at {item.created_at}")
-            for page in paginator.pages:
-                await ctx.send(page)
 
     @commands.command()
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
