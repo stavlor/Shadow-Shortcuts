@@ -11,6 +11,7 @@ class MyHelpCommand(commands.MinimalHelpCommand):
         return '{0.context.prefix}{1.qualified_name} {1.signature}'.format(self, command)
 
 
+# noinspection PyDunderSlots,PyUnresolvedReferences
 class Admin(commands.Cog):
     """Admin level bot commands cog"""
 
