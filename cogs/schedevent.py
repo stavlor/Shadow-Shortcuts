@@ -8,8 +8,8 @@ class SchedEvent(commands.Cog):
         bot.logger.info("Initialized Scheduled Event Cog")
         self.bot.schedevent.night_mode = False
         self.bot.schedevent.day_mode = False
-        self.bot.schedevent.night_mode_delay = 30
-        self.bot.schedevent.day_mode_delay = 10
+        self.bot.schedevent.night_mode_delay = 5
+        self.bot.schedevent.day_mode_delay = 5
         self.check_nightdaymode.start()
 
     @tasks.loop(seconds=60)
