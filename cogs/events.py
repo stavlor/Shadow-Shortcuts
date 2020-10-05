@@ -188,7 +188,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
         url = str()
         attachments_present = False
         audit_user = 'self'
-        ignored_channels = ['bot_users', 'gurus-lab', 'bot-logs', 'known-issues', 'dariisas-deli']
+        ignored_channels = ['bot_users', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods']
         cur_time = datetime.utcnow().isoformat()
         cur_raw_time = datetime.utcnow()
         author = message.author
@@ -225,6 +225,21 @@ Linux Alpha: https://shdw.me/linuxalpha""",
         embed.add_field(name="Deleted By:", value=f"{audit_user}", inline=False)
         embed.set_footer(text=f"Message initially created at: {message.created_at} Deleted at: {cur_time}")
         await dest_channel.send(embed=embed, files=files)
+
+
+    @commands.Cog.listener()
+    async def on_message_edit(self, before, after):
+        dest_channel = await self.bot.fetch_channel(462170485787066368)
+        ignored_channels = ['bot_users', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods']
+        if after.channel in ignored_channels:
+            return
+        if after.author.id == self.bot.user.id:
+            return
+        e = discord.Embed(title=f"Message was edited in Channel: {after.channel}", color=0xcc66c0)
+        e.add_field(name="Prior Content:", value=f"{before.system_content}")
+        e.add_field(name="New Content:", value=f"{after.system_content}")
+        e.set_footer(text=f"Message initial creation timestamp: {after.created_at} edited at {after.edited_at}.")
+        await dest_channel.send(embed=e)
 
 
 def setup(bot):
