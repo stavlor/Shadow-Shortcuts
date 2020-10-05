@@ -236,6 +236,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
         if after.author.id == self.bot.user.id:
             return
         e = discord.Embed(title=f"Message was edited in Channel: {after.channel}", color=0xcc66c0)
+        e.add_field(name="Message Author:", value=f"{after.author}")
         e.add_field(name="Prior Content:", value=f"{before.system_content}")
         e.add_field(name="New Content:", value=f"{after.system_content}")
         e.set_footer(text=f"Message initial creation timestamp: {after.created_at} edited at {after.edited_at}.")
