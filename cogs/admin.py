@@ -83,8 +83,7 @@ class Admin(commands.Cog):
     async def can_run_command(role_check, allowed=None):
         role_check = [role.name for role in role_check]
         if allowed is None:
-            allowed = ['Shadow Guru', 'Community Manager', 'Adélina', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff', 'Code Approvers', 'Admin', 'Silent Admin',
-                       'Administrator', 'Bot User', 'International Discord Team']
+            allowed = ['Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff', 'Code Approvers', 'Admin', 'Greeter']
         for item in allowed:
             if item in role_check:
                 return True
@@ -233,7 +232,7 @@ but there are comparable commands for other OSes**
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
-                if "Bot User" not in [role.name for role in user.roles]:
+                if "Greeters" not in [role.name for role in user.roles]:
                     shadowers = ctx.guild.get_role(551917324949651477)
                     await user.add_roles(shadowers)
                     await ctx.message.add_reaction('✅')
@@ -251,7 +250,7 @@ but there are comparable commands for other OSes**
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
-                if "Bot User" in [role.name for role in user.roles]:
+                if "Greeters" in [role.name for role in user.roles]:
                     shadowers = ctx.guild.get_role(551917324949651477)
                     await user.remove_roles(shadowers)
                     await ctx.message.add_reaction('✅')
@@ -376,10 +375,10 @@ but there are comparable commands for other OSes**
         await ctx.message.add_reaction('✅')
 
     @commands.command(description="Bot Logs")
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff')
+    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff')
     async def logs(self, ctx):
         """Logs Command"""
-        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
+        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff']):
             fname = 'discord.log'
             lines = await self.bot.admin.tail(filename=fname, lines=50)
             lines = lines.split("\n")
