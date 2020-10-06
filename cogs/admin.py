@@ -83,7 +83,7 @@ class Admin(commands.Cog):
     async def can_run_command(role_check, allowed=None):
         role_check = [role.name for role in role_check]
         if allowed is None:
-            allowed = ['Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff', 'Code Approvers', 'Admin', 'Greeter']
+            allowed = ['Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff', 'Code Approvers', 'Admin', 'Greeters']
         for item in allowed:
             if item in role_check:
                 return True
