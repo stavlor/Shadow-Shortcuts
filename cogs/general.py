@@ -101,7 +101,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Terms of Service information"""
         text = """__Terms of Use__
-- See the official Terms of Use here: <https://shadow.tech/usen/legal/terms>
+- See the official Terms of Use here: <https://shadow.tech/en-gb/terms-of-use>
 - For a simple breakdown of what's not allowed on shadow, see here: <https://help.shadow.tech/hc/en-gb/articles/360000455174>
  **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
