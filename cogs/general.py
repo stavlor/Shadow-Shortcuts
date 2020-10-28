@@ -303,6 +303,16 @@ Linux: https://shdw.me/linux"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="keys")
 
 
+    @commands.command(aliases=['vraplha', 'vr'])
+    async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Send VR Forum Links"""
+        text = """Please note that Information about the VR Alpha can be found on the Shadow Forums located here: 
+        Frequently Asked Questions: <https://forum.shadow.tech/let-s-talk-shadow-vr-alpha-52/shadow-vr-alpha-faq-1477>
+        To Report a Bug: <https://forum.shadow.tech/reporting-feature-requests-53/how-to-report-a-bug-1473>
+        Known issues: <https://forum.shadow.tech/reporting-feature-requests-53/missing-features-known-bugs-performance-issues-1478>
+        Other Topics: <https://forum.shadow.tech/shadow-vr-alpha-50>
+        """
+
     @commands.command(aliases=['val','valorant'])
     async def _valorant(self, ctx, user: typing.Optional[discord.Member] = None):
         """Valorant Command"""
