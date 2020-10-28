@@ -312,6 +312,7 @@ Linux: https://shdw.me/linux"""
         Known issues: <https://forum.shadow.tech/reporting-feature-requests-53/missing-features-known-bugs-performance-issues-1478>
         Other Topics: <https://forum.shadow.tech/shadow-vr-alpha-50>
         """
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
 
     @commands.command(aliases=['val','valorant'])
     async def _valorant(self, ctx, user: typing.Optional[discord.Member] = None):
