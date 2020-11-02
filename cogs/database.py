@@ -135,7 +135,13 @@ class Database(commands.Cog):
         await ctx.send(f"{ctx.message.author.mention} Leaver Roles have been updated for UID: {uid} to be {role.name}.")
 
     async def re_apply_roles(self, member):
+        from tzlocal import get_localzone
+        from datetime import datetime
+        tz = get_localzone()
+        curtime = datetime.now()
         roles = list()
+        log_chan1 = await self.bot.fetch_channel(462170485787066368)
+        log_chan2 = await self.bot.fetch_channel(464371559214219264)
         applied_roles = list()
         if member.guild.id != 460948857304383488:
             self.bot.logger.info(f"Ignoring leaver not in our guild of interest {member.id} left guild {member.guild.id}.")
@@ -163,6 +169,12 @@ class Database(commands.Cog):
                         applied_roles.append(role)
                         await member.add_roles(role, reason="Re-Applying leaver's roles.")
         self.bot.logger.info(f"Leaver roles applied, for ({member.id}){member.name} Roles-applied: {applied_roles}")
+        embed = discord.Embed(title=f"Member returned: {member}", color=0x222cb)
+        embed.add_field(name="Discord ID:", value=f"{member.id}", inline=False)
+        embed.add_field(name="Roles Re-Applied:", value=f"{applied_roles}")
+        embed.set_footer(text=f"Processed at: {curtime.isoformat()} {tz}")
+        await log_chan1.send(embed=embed)
+        await log_chan2.send(embed=embed)
 
     @staticmethod
     async def get_string(self, id: int, lang: str):

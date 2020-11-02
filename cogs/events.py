@@ -41,7 +41,40 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
+        from tzlocal import get_localzone
+        from datetime import datetime
+        tz = get_localzone()
+        curtime = datetime.now()
         await self.bot.database.update_leaver_roles(member)
+        log_chan1 = await self.bot.fetch_channel(462170485787066368)
+        log_chan2 = await self.bot.fetch_channel(464371559214219264)
+        embed = discord.Embed(title=f"Member left: {member}")
+        embed.add_field(name="Discord ID:", value=f"{member.id}")
+        roles = list()
+        guild = await self.bot.get_guild(460948857304383488)
+        applied_roles = list()
+        SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
+        async with self.bot.dbpool.acquire() as connection:
+            res = await connection.fetch(SQL)
+        if len(res) != 0:
+            res = res.pop()
+        res = dict(res)
+        if res is not None:
+            roles = res['roles']
+            for item in str(roles).split(','):
+                if item is not None:
+                    if item == '':
+                        continue
+                    role = guild.get_role(int(item))
+                    if role is None:
+                        continue
+                    if role.name == "@everyone":
+                        continue
+                    if role is not None:
+                        applied_roles.append(role)
+        embed.add_field(name="Roles Recorded:", value=f"{applied_roles}", inline=False)
+        embed.set_footer(text=f"Processed at: {curtime.isoformat()} {tz}")
+
 
     @commands.Cog.listener()
     async def on_member_update(self, before: discord.Member, after: discord.Member):
@@ -174,6 +207,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
             embed = discord.Embed(title="Shadow Status", url="https://status.shadow.tech", color=0xff8040)
             embed.add_field(name=status,
                             value="For additional status information please see the status page", inline=True)
+            embed.set_footer(text=f"Automatically updated message. Last Update was at {curtime.isoformat()} {tz}")
             await msg.edit(embed=embed)
     
     @check_status.before_loop
@@ -230,7 +264,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
         dest_channel = await self.bot.fetch_channel(462170485787066368)
-        ignored_channels = ['bot_users', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods']
+        ignored_channels = ['greeters', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods']
         if after.channel in ignored_channels:
             return
         if after.author.id == self.bot.user.id:
