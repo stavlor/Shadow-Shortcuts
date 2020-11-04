@@ -89,12 +89,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     @commands.command(description="Speedtest-Links")
     async def speedtest(self, ctx, user: typing.Optional[discord.Member] = None):
         """Speedtest Links"""
-        text = """Speedtest.net links
-    NORTH AMERICA
-    Midwest DC(Chicago): <http://www.speedtest.net/server/14489>
-    Central DC(Texas): <http://www.speedtest.net/server/12190>
-    East DC(NY): <http://www.speedtest.net/server/14855>
-    West DC(CA): <http://www.speedtest.net/server/11613>"""
+        text = """For Shadows Official Speedtest please see here: <https://shadow.tech/requirements/internet-speed-test>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="speedtest")
 
     @commands.command(aliases=['terms', 'tou'])
