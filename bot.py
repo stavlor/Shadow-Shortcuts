@@ -4,7 +4,9 @@ from discord.ext import commands
 import discord
 import botconfig as cfg
 
-intents = discord.Intents(messages=True, guilds=True, presence=True, members=True)
+intents = discord.Intents.default()
+intents.typing = True
+intents.presences = True
 description = "Shadow Discord helper bot.\nFor issues with this bot please submit a report at <https://github.com/stavlor/Shadow-Shortcuts/issues>.\n"
 TOKEN = cfg.TOKEN
 logger = logging.getLogger('discord')
