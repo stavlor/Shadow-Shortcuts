@@ -1,8 +1,10 @@
 import sys
 import logging
 from discord.ext import commands
+import discord
 import botconfig as cfg
 
+intents = discord.Intents(messages=True, guilds=True, presence=True, members=True)
 description = "Shadow Discord helper bot.\nFor issues with this bot please submit a report at <https://github.com/stavlor/Shadow-Shortcuts/issues>.\n"
 TOKEN = cfg.TOKEN
 logger = logging.getLogger('discord')
@@ -14,7 +16,7 @@ handler = logging.StreamHandler(sys.stdout)
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 handler.setLevel(logging.INFO)
 logger.addHandler(handler)
-bot = commands.AutoShardedBot(command_prefix='\\', description=description)
+bot = commands.AutoShardedBot(command_prefix='\\', description=description, intents=intents)
 bot.last_message = dict()
 bot.logger = logger
 bot.logging_root = logging
