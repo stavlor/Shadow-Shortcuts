@@ -74,6 +74,9 @@ class Events(commands.Cog):
                         applied_roles.append(role)
         embed.add_field(name="Roles Recorded:", value=f"{applied_roles}", inline=False)
         embed.set_footer(text=f"Processed at: {curtime.isoformat()} {tz}")
+        log_chan1.send(embed=embed)
+        log_chan2.send(embed=embed)
+
 
 
     @commands.Cog.listener()

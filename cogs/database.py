@@ -149,11 +149,11 @@ class Database(commands.Cog):
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
         async with self.bot.dbpool.acquire() as connection:
             res = await connection.fetch(SQL)
-        if len(res) != 0:
-            res = res.pop()
-        else:
-            return
-        res = dict(res)
+            if len(res) != 0:
+                res = res.pop()
+                res = dict(res)
+            else:
+                res = None
         if res is not None:
             roles = res['roles']
             self.bot.logger.info(f"User {member.id} Has prior roles, reapplying.Found roles: {roles}")
