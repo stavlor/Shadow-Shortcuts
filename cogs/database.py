@@ -149,6 +149,7 @@ class Database(commands.Cog):
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
         async with self.bot.dbpool.acquire() as connection:
             res = await connection.fetch(SQL)
+            self.bot.logger.info(f"Query: {SQL}")
             self.bot.logger.info(f"Query Result: for {member.id} RES: {res} ")
             if len(res) != 0:
                 res = res.pop()
