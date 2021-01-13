@@ -51,7 +51,7 @@ class Events(commands.Cog):
         embed = discord.Embed(title=f"Member left: {member}")
         embed.add_field(name="Discord ID:", value=f"{member.id}")
         roles = list()
-        guild = await self.bot.get_guild(460948857304383488)
+        guild = self.bot.get_guild(460948857304383488)
         applied_roles = list()
         SQL = f"SELECT roles FROM role_tracking WHERE discord_id='{member.id}' LIMIT 1;"
         async with self.bot.dbpool.acquire() as connection:
