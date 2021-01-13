@@ -188,6 +188,8 @@ class Database(commands.Cog):
             for role in member.roles:
                 if role.name == "Prisoner":
                     continue
+                if role.name == "@everyone":
+                    continue
                 else:
                     self.bot.logger.info(f"Removing {role} from {member}")
                     await member.remove_roles(role, reason=f"Prisoner Role Gain Prevention")
