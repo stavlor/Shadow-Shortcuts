@@ -178,6 +178,21 @@ class Database(commands.Cog):
         await log_chan1.send(embed=embed)
         await log_chan2.send(embed=embed)
 
+    async def check_prisoner_roles(self, member):
+        prisoner = bool()
+        for role in member.roles:
+            if role.name == "Prisoner":
+                self.bot.logger.info(f"Preventing Prisoner Role Gain - for {member}")
+                prisoner = True
+        if prisoner:
+            for role in member.roles:
+                if role.name == "Prisoner":
+                    continue
+                else:
+                    self.bot.logger.info(f"Removing {role} from {member}")
+                    await member.remove_roles(role, reason=f"Prisoner Role Gain Prevention")
+
+
     @staticmethod
     async def get_string(self, id: int, lang: str):
         import json

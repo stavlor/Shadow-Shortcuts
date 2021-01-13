@@ -81,7 +81,9 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_update(self, before: discord.Member, after: discord.Member):
-        await self.bot.database.update_leaver_roles(after)
+        if before.roles != after.roles:
+            await self.bot.database.update_leaver_roles(after)
+            await self.bot.database.check_prisoner_roles(after)
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
