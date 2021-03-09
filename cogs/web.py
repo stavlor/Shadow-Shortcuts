@@ -72,7 +72,7 @@ class BotWebserver(commands.Cog):
         app.router.add_post('/github', self.handle_github)
         runner = web.AppRunner(app)
         await runner.setup()
-        self.site = web.TCPSite(runner, '157.245.134.212', 8099)
+        self.site = web.TCPSite(runner, '104.131.86.125', 8099)
         await self.bot.wait_until_ready()
         await self.site.start()
 
