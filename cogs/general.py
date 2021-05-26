@@ -368,7 +368,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
     @commands.command(aliases=['sup'])
     async def _support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
-        text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#847158170862485565>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
+        text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/home/support
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form"""
