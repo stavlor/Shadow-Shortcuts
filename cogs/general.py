@@ -277,7 +277,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
  Stable versions include: Windows 32/64 bit, macOS, Android, iOS, Linux
  Beta versions include: Windows 64 bit, macOS, Linux, Android
- Each version has a designated channel in Discord. To view these channels, you will need the Shadower role. Feedback on the beta versions should be left in the proper channels."""
+ Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#752944295153238136> channel. Feedback on the beta versions should be left in the proper channels."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps")
 
     @commands.command(aliases=['official'])
