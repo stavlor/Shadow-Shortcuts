@@ -139,6 +139,18 @@ class Events(commands.Cog):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following tips for solving input lag issues http://botrexford.shdw.info/inputlag.png",
                                                              trigger="input lag")
+        elif "shadowapples" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message="{ctx.author.mention} This is not the ShadowApples Discord. This is a Discord for Shadow, a high performance computer in the cloud. You can find the official ShadowApples Discord in the description of their channel.",
+                                                             trigger="shadowapples")
+        elif "shadow apples" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message="{ctx.author.mention} This is not the ShadowApples Discord. This is a Discord for Shadow, a high performance computer in the cloud. You can find the official ShadowApples Discord in the description of their channel.",
+                                                             trigger="shadow apples")
+        elif "drive" in message.content.lower() and ("slow" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message="{ctx.author.mention} If you are currently experiencing issues with your additional storage post migration, please put in a support ticket from your account page.",
+                                                             trigger="drive")
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
