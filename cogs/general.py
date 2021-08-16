@@ -88,7 +88,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     @commands.command(description="microphone fix", aliases=['mic', 'micguide'])
     async def micfix(self, ctx, user: typing.Optional[discord.Member] = None):
         """Microphone fix information."""
-        text = """To get your microphone working in Shadow please follow this guide: https://wiki.shadow.pink/index.php/Using_a_Microphone"""
+        text = """To get your microphone working in Shadow please follow this guide: https://wiki.shdw.info/w/Microphone"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="micfix")
 
     @commands.command(description="Speedtest-Links")
