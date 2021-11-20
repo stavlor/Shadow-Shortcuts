@@ -185,6 +185,10 @@ If you have any issues updating the default password is blank “” if your pas
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Halo Infinite is currently not playable on Shadow due to detection of virtual machines. This issue is being worked on by Shadow. For more information, see: https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow",
                                                              trigger="halo infinite crash")
+        elif "halo infinite crashing" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message="{ctx.author.mention} Halo Infinite is currently not playable on Shadow due to detection of virtual machines. This issue is being worked on by Shadow. For more information, see: https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow",
+                                                             trigger="halo infinite crashing")
         elif "valorant" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
 
