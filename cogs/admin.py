@@ -129,32 +129,7 @@ class Admin(commands.Cog):
     @commands.command(aliases=['latency', 'trace', 'tr', 'tracert', 'traceroute', 'traces', 'lg', 'guru'])
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _latency(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = '''***Running a traceroute to/from Shadow***
-
-*Designed to help determine potential network issues*
-
-**Note that the commands in step two (2) below are Windows-specific,
-but there are comparable commands for other OSes**
-
-1. Traceroute from Shadow to your Local IP
-    a. On your local PC navigate to http://lg.shadow.guru/
-    b. Select your data center (for Router to Use)
-    c. Select traceroute (for Command to Issue)
-    d. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
-    e. Send to a Shadow Guru or Moderator
-
-2. Traceroute from your local IP to Shadow
-    a. On your local PC press Windows + R
-    b. Type cmd then click OK
-    c. Type in the following text without quotations or square brackets "tracert [insert IP here]"
-        * The IP list for the data centers (choose the right one):
-            * TX: 216.180.128.134
-            * CH: 216.180.136.134
-            * NY: 162.213.48.134
-            * SV: 170.249.92.40
-    d. Wait up to 2 minutes for the test to complete
-    e. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
-    f. Send to a Shadow Guru or Moderator'''
+        text = '''To diagnose latency or packet loss on your Shadow, check out this wiki page https://wiki.shdw.info/w/PingPlotter'''
         await self.bot.general.text_command_process(ctx, user, text, "latency")
 
     @commands.command(aliases=['slo', 'sm'])
