@@ -101,7 +101,7 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Terms of Service information"""
         text = """__Terms of Use__
-- See the official Terms of Use here: <https://shadow.tech/terms-of-use>
+- See the official Terms of Use here: <https://shadow.tech/en-gb/terms-of-use>
 - For a simple breakdown of what's not allowed on shadow, see here: <https://help.shadow.tech/hc/en-gb/articles/360000455174>
  **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
@@ -109,15 +109,14 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     @commands.command(aliases=['nvidiadrivers', 'drovers'])
     async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send current NVidia Drivers Info."""
-        text = """**Current Nvidia For Quadro Family Devices (Shadow, Shadow Ultra and Shadow Infinite.)
+        text = """**Current Nvidia For Quadro Family Devices (Boost, Ultra and Infinite.)
                     
-          - Stable Drivers (ODE)  *(**Recommended**)*: <https://www.nvidia.com/Download/driverResults.aspx/184785/en-us>
-          - Beta Drivers (QNF) *(**Not always current**)*: <https://www.nvidia.com/Download/driverResults.aspx/182231/en-us>
-          - GTX 1080 (GRD) *(**For 1080 cards only**)*: <https://www.nvidia.com/Download/driverResults.aspx/185108/en-us>
-          - GTX 1080 (Studio) *(**Only if the GRD driver does not work**)*: <https://www.nvidia.com/Download/driverResults.aspx/184781/en-us>
+          P5000 (Shadow Boost):
+          - Stable Drivers (ODE)  *(**Recommended**)*: <https://l.shdw.info/current-ODE>
+          - Beta Drivers (QNF) *(**Not always current**)*: <https://l.shdw.info/current-QNF>
 
         **Notes:**
-          - If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
+          - If running NVidia Drivers prior to 430.64 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
           - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
           - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use Care..
@@ -127,8 +126,10 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
     async def ghost(self, ctx, user: typing.Optional[discord.Member] = None):
         """Ghost Purchase information."""
-        text = """Ghosts can no longer be purchased from your account page.
-        For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
+        text = """Ghosts can be purchased from your account page under Subscription once in stock: https://account.shadow.tech/subscription
+To join the waitlist: <https://shdw.me/NA-waiting-list-SGDC>
+
+For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghost")
 
     @commands.command(aliases=['raz', 'wipe', 'clear'])
@@ -246,8 +247,8 @@ Linux Alpha: https://shdw.me/linuxalpha"""
             - Additional Software: DirectX 9c or higher
 
         **Mac**
-        - OS: OS X 10.12.2 Sierra or higher
-        - CPU x86-64 (Intel Core 2 Duo processor, Intel Core i3 / i5 / i7, or Xeon) or ARM M1
+        - OS: OS X 10.10 Yosemite or higher
+        - CPU x86-64 (Intel Core 2 Duo processor, Intel Core i3 / i5 / i7, or Xeon)
         - Firmware System EFI 64-bit
         - RAM: 2 GB
         - Hard Drive Space: 8GB
@@ -302,10 +303,14 @@ Linux: https://shdw.me/linux"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="keys")
 
 
-    @commands.command(aliases=['vralpha', 'vr'])
+    @commands.command(aliases=['vraplha', 'vr'])
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send VR Forum Links"""
-        text = """Download the Shadow VR application from Sidequest at PLACEHOLDERHEREPLEASECHANGESTAVORGERALD.
+        text = """Please note that Information about the VR Alpha can be found on the Shadow Forums located here: 
+        Frequently Asked Questions: <https://forum.shadow.tech/let-s-talk-shadow-vr-alpha-52/shadow-vr-alpha-faq-1477>
+        To Report a Bug: <https://forum.shadow.tech/reporting-feature-requests-53/how-to-report-a-bug-1473>
+        Known issues: <https://forum.shadow.tech/reporting-feature-requests-53/missing-features-known-bugs-performance-issues-1478>
+        Other Topics: <https://forum.shadow.tech/shadow-vr-alpha-50>
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
 
@@ -326,7 +331,8 @@ __Games with Issues Identified on Shadow__
     @commands.command(aliases=['act', 'activation'])
     async def activationupdates(self, ctx, user: typing.Optional[discord.Member] = None):
         """Activation updates"""
-        text = """:rocket: For the latest activation updates please see your Shadow account page."""
+        text = """:boom: For the latest activation updates please see the Forum Activation Thread :boom:  
+https://shdw.me/activation_updates"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="activationupdates")
 
     @commands.command(aliases=['storage', 'stor', 'sto'])
@@ -355,7 +361,8 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
             - **North America**
                 - If your IP begins with **170.249.[92-95].** you are on the **California** datacenter
                 - If your IP begins with **162.213.[48-55].** you are on the **New York** datacenter
-                - If your IP begins with **216.180.[128-143]** you are on the **Texas** datacenter"""
+                - If your IP begins with **216.180.[128-135]** you are on the **Texas** datacenter
+                - If your IP begins with **216.180.[136-143]** you are on the **Chicago** datacenter"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ip")
 
     @commands.command(aliases=['sup'])
@@ -580,11 +587,11 @@ Your friend,
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """
-***___Shadow___***
+***___Shadow Legacy/Shadow Boost___***
 **GPU:** Quadro P5000 (GeForce GTX 1080 Equiv.)
 **VRAM:** 16 GB
-**CPU:** Intel Xeon E5-2678v3 Processor
-**CPU Clock Speed:** 2.5 GHz Turbo @ 4 cores - Turbo to 3.2 GHz
+**CPU:** Intel Xeon E5-2667v3 Processor
+**CPU Clock Speed:** 2.5 GHz Turbo to 3.2 GHz
 **RAM:** 12 GB
 **Storage:** 256 GB
 
