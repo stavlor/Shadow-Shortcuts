@@ -323,6 +323,16 @@ __Games with Issues Identified on Shadow__
 <https://help.shadow.tech/hc/en-gb/articles/360013641620-Games-with-Issues-Identified-on-Shadow>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="valorant")
 
+    @commands.command(aliases=['gen','genshin','genshit'])
+    async def _genshin(self, ctx, user: typing.Optional[discord.Member] = None):
+        """Valorant Command"""
+        self.bot.logger.info(f"Processed genshit command for {ctx.author.name} with parameter {user}.")
+        text = """Shadow is aware of this concern. The Shadow team has contacted Genshin Impact's developers about this issue. For now, it is considered incompatible.
+
+__Games with Issues Identified on Shadow__
+<https://help.shadow.tech/hc/en-gb/articles/360013641620-Games-with-Issues-Identified-on-Shadow>"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="genshin")
+
     @commands.command(aliases=['act', 'activation'])
     async def activationupdates(self, ctx, user: typing.Optional[discord.Member] = None):
         """Activation updates"""
@@ -399,7 +409,7 @@ See the video where Linus visted the Mountain View office and datacenter tour at
     @commands.command(aliases=['dct', 'datacentertour'])
     async def dctour(self, ctx, user: typing.Optional[discord.Member] = None):
         """AMS1 Datacenter Tour"""
-        text = """Check Out a tour of one of our datacenters found here: https://youtube.com/watch?v=DD3WNXkc7F0"""
+        text = """Check Out a tour of one of our datacenters found here: https://youtu.be/0BQ4bXNdEQI?t=157"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="dctour")
 
     @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps'])
@@ -412,7 +422,7 @@ See the video where Linus visted the Mountain View office and datacenter tour at
     @commands.command(aliases=['language'])
     async def changelang(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to Change language from FR to EN."""
-        text = """How to change the language of your Shadow: https://w.shdw.info/wiki/Change_Language"""
+        text = """How to change the language of your Shadow: https://help.shadow.tech/hc/en-gb/articles/360000902673-Change-the-Language-for-Windows-10"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="changelang")
 
     @commands.command(aliases=['virtualhere', 'vhere'])
@@ -484,7 +494,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
 
     @commands.command(aliases=['rm', 'roadmap'])
     async def _roadmap(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """Shadow roadmap: <https://shdw.me/roadmap>"""
+        text = """Shadow roadmap: <https://forum.shadow.tech/roadmap-release-notes-24?sort=dateline.desc>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="roadmap")
 
     @commands.command()
@@ -537,7 +547,7 @@ Alpha: Accessible at <#593516344415354880>
 __Known Issues with Linux Application__
 View these helpful sources if you are having issues installing Shadow on Linux
 <https://nicolasguilloux.github.io/blade-shadow-beta/setup>
-<https://help.shadow.tech/hc/en-gb/articles/360010819700-Known-errors-on-Linux-Client>
+<https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow>
 
 __Other Resources__
 Other resources and applications to help you with your Shadow journey

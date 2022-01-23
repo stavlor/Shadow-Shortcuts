@@ -117,19 +117,19 @@ class Events(commands.Cog):
                     f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
+                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="L:104")
         elif ("L 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
+                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="L 104")
         elif (" 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
+                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="104")
         elif ("shadow is off" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 2-5 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
+                                                             message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="104")
         elif "800x600" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
@@ -189,6 +189,10 @@ If you have any issues updating the default password is blank “” if your pas
             await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
 
 Check here for the current list of Shadow issues: <https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow>""")
+        elif "genshin" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Shadow is aware of this concern. The Shadow team has contacted Genshin Impact's developers about this issue. For now, it is considered incompatible.
+
+Check here for the current list of Shadow issues: <https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow>""")
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
@@ -243,7 +247,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
         url = str()
         attachments_present = False
         audit_user = 'self'
-        ignored_channels = ['bot_users', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods']
+        ignored_channels = ['bot_users', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods','community-drafts']
         cur_time = datetime.utcnow().isoformat()
         cur_raw_time = datetime.utcnow()
         author = message.author
@@ -285,7 +289,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
         dest_channel = await self.bot.fetch_channel(462170485787066368)
-        ignored_channels = ['greeters', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods']
+        ignored_channels = ['mods-and-gurus', 'bot-logs', 'known-issues', 'mods','community-drafts']
         if after.channel in ignored_channels:
             return
         if after.author.id == self.bot.user.id:
