@@ -343,7 +343,7 @@ but there are comparable commands for other OSes**
                 else:
                     rolelist += f"{role.name}"
             em.add_field(name='Roles', value=rolelist, inline=True)
-            now = datetime.datetime.now()
+            now = datetime.datetime.now().replace(tzinfo=None)
             joined_delta = now - users.joined_at
             createdat_delta = now - users.created_at
             joinedat = users.joined_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
