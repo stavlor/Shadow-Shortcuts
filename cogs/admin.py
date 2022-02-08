@@ -312,7 +312,6 @@ but there are comparable commands for other OSes**
 
 
     @commands.command(aliases=['ui', 'uinfo'])
-    @commands.slash_command(name='userinfo', description="Returns Userinfo")
     @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
