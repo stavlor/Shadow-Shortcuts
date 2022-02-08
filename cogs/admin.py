@@ -323,7 +323,7 @@ but there are comparable commands for other OSes**
             await ctx.send(
                 f"{ctx.author.mention} Could not locate Guild Member, note this command requires the user to be a member of the Discord Guild.")
         for users in user:
-            avi = users.display_avatar.url()
+            avi = users.display_avatar.url
             em = discord.Embed(timestamp=ctx.message.created_at, colour=0x708DD0)
             if isinstance(users, discord.Member):
                 role = users.top_role.name
