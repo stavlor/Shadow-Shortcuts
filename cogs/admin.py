@@ -344,8 +344,8 @@ but there are comparable commands for other OSes**
                     rolelist += f"{role.name}"
             em.add_field(name='Roles', value=rolelist, inline=True)
             now = datetime.datetime.now().replace(tzinfo=None)
-            joined_delta = now - users.joined_at
-            createdat_delta = now - users.created_at
+            joined_delta = now - users.joined_at.replace(tzinfo=None)
+            createdat_delta = now - users.created_at.replace(tzinfo=None)
             joinedat = users.joined_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
             createdat = users.created_at.strftime('%A, %d. %B %Y @ %H:%M:%S')
             created_str = f"{createdat} ({createdat_delta})"

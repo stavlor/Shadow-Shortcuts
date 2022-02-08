@@ -267,7 +267,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         import datetime
         if await self.bot.admin.can_run_command(ctx.author.roles):
             now = datetime.datetime.utcnow().replace(tzinfo=None)
-            delta = (now - ctx.message.created_at).total_seconds()*1000
+            delta = (now - ctx.message.created_at.replace(tzinfo=None)).total_seconds()*1000
             await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
 
     @commands.command(aliases=['applications', 'application', 'app'])
