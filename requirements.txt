@@ -1,4 +1,4 @@
-discord.py~=1.6.0
+py-cord==2.0.0b3
 aiohttp~=3.6.2
 asyncpg~=0.20.1
 tzlocal~=2.1
