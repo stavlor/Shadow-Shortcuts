@@ -29,10 +29,10 @@ class Admin(commands.Cog):
         self.bot.help_command = self._original_help_command
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def load(self, ctx, *, module):
         """Loads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -43,16 +43,16 @@ class Admin(commands.Cog):
             await ctx.send('\N{OK HAND SIGN}')
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Code Approvers')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Code Approvers')
     async def logout(self, ctx):
         await ctx.send(f"{ctx.author.mention} begining bot shutdown..")
         await self.bot.logout()
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Code Approvers')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Code Approvers')
     async def unload(self, ctx, *, module):
         """Unloads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -63,12 +63,12 @@ class Admin(commands.Cog):
             await ctx.send('\N{OK HAND SIGN}')
 
     @commands.command(name='reload', hidden=True)
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin','Shadow Staff', 'Code Approvers')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin','Shadow Staff', 'Code Approvers')
     async def _reload(self, ctx, *, module):
         """Reloads a module."""
         if not module.startswith('cogs.'):
             module = f'cogs.{module}'
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators','Shadow Staff', 'Code Approvers']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators','Shadow Staff', 'Code Approvers']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -83,7 +83,7 @@ class Admin(commands.Cog):
     async def can_run_command(role_check, allowed=None):
         role_check = [role.name for role in role_check]
         if allowed is None:
-            allowed = ['Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff', 'Code Approvers', 'Admin', 'Greeters']
+            allowed = ['Shadow Expert', 'Community Manager', 'Moderators', 'Shadow Staff', 'Code Approvers', 'Admin', 'Greeters']
         for item in allowed:
             if item in role_check:
                 return True
@@ -117,7 +117,7 @@ class Admin(commands.Cog):
 
 
     @commands.command(aliases=['excuse'])
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Bot User')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Bot User')
     async def _excuse(self, ctx, user: typing.Optional[discord.Member] = None):
         excuse = await self.get_excuse()
         if user is None:
@@ -127,7 +127,7 @@ class Admin(commands.Cog):
         await ctx.message.delete()
 
     @commands.command(aliases=['latency', 'trace', 'tr', 'tracert', 'traceroute', 'traces', 'lg', 'guru'])
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _latency(self, ctx, user: typing.Optional[discord.Member] = None):
         text = '''***Running a traceroute to/from Shadow***
 
@@ -141,7 +141,7 @@ but there are comparable commands for other OSes**
     b. Select your data center (for Router to Use)
     c. Select traceroute (for Command to Issue)
     d. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
-    e. Send to a Shadow Guru or Moderator
+    e. Send to a Shadow Expert or Moderator
 
 2. Traceroute from your local IP to Shadow
     a. On your local PC press Windows + R
@@ -154,11 +154,11 @@ but there are comparable commands for other OSes**
             * SV: 170.249.92.40
     d. Wait up to 2 minutes for the test to complete
     e. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
-    f. Send to a Shadow Guru or Moderator'''
+    f. Send to a Shadow Expert or Moderator'''
         await self.bot.general.text_command_process(ctx, user, text, "latency")
 
     @commands.command(aliases=['slo', 'sm'])
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def slowmode(self, ctx, timer: int = 5):
         """Change Channel Slowmode"""
         await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author}")
@@ -188,10 +188,10 @@ but there are comparable commands for other OSes**
 
 
     @commands.command(description="Auto-Responders debug", name="timertest")
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
     async def _timertest(self, ctx):
         """Auto-responder timer debug tool"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderator']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderator']):
             timers = " "
             for item in self.bot.last_message.keys():
                 timers += "{:10s} - {:10s}\n".format(item, self.bot.last_message[item].isoformat())
@@ -200,7 +200,7 @@ but there are comparable commands for other OSes**
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(name='ar')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def add_role(self, ctx, user: discord.Member, *,  roles: commands.Greedy[discord.Role] = None):
         """Adds a role to a User default is Shadowers."""
         if roles is None:
@@ -210,7 +210,7 @@ but there are comparable commands for other OSes**
             oroles = roles
             roles = list()
             roles.append(oroles)
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff']):
             for role in roles:
                 if user is None:
                     await ctx.send(f"{ctx.author.mention} User is a required parameter.")
@@ -225,10 +225,10 @@ but there are comparable commands for other OSes**
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Grant a user bot access", name='grantbot')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def add_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Grant Bot User Role to a user - Admin"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -243,10 +243,10 @@ but there are comparable commands for other OSes**
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Revoke a user bot access", name='revokebot')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def revoke_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Revoke Bot User Role from a user - Admin"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
@@ -260,10 +260,10 @@ but there are comparable commands for other OSes**
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command(description="Roles test", name='roletest')
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _roletest(self, ctx):
         """Admin - Role ID Listing tool"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
             paginator = discord.ext.commands.Paginator()
             guild = ctx.guild
             paginator.add_line("Beginning role debug")
@@ -275,10 +275,10 @@ but there are comparable commands for other OSes**
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Code Approvers')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Code Approvers')
     async def gitref(self, ctx):
         """Refresh git repo content."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff', 'Code Approvers']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff', 'Code Approvers']):
             await ctx.send(f"{ctx.author.mention} You aren't authorized to do that.")
         else:
             cmd = "git pull"
@@ -312,11 +312,11 @@ but there are comparable commands for other OSes**
 
 
     @commands.command(aliases=['ui', 'uinfo'])
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
         import datetime
-        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
             await ctx.send(f"{ctx.author.mention} your not authorized to do that.")
             return
         elif user is None:
@@ -360,7 +360,7 @@ but there are comparable commands for other OSes**
             
 
     @commands.command()
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def rr(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None, all_roles: bool = False):
         """Remove Roles - remove role from a user defa- Optional True/False for all_roles will remove all roles from a user."""
         if role is None:
@@ -375,10 +375,10 @@ but there are comparable commands for other OSes**
         await ctx.message.add_reaction('✅')
 
     @commands.command(description="Bot Logs")
-    @commands.has_any_role('Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'Moderators', 'Shadow Staff')
     async def logs(self, ctx):
         """Logs Command"""
-        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Guru', 'Community Manager', 'Moderators', 'Shadow Staff']):
+        if await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Expert', 'Community Manager', 'Moderators', 'Shadow Staff']):
             fname = 'discord.log'
             lines = await self.bot.admin.tail(filename=fname, lines=50)
             lines = lines.split("\n")
@@ -402,7 +402,7 @@ but there are comparable commands for other OSes**
             self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
 
     @commands.command(aliases=['openth', 'startth'])
-    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
+    @commands.has_any_role('Shadow Staff', 'Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def begin_town_hall(self, ctx):
         overwrite = discord.PermissionOverwrite()
         overwrite.read_messages = True
@@ -418,7 +418,7 @@ but there are comparable commands for other OSes**
         await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
 
     @commands.command(aliases=['endth', 'closeth'])
-    @commands.has_any_role('Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
+    @commands.has_any_role('Shadow Staff', 'Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def end_town_hall(self, ctx):
         overwrite = discord.PermissionOverwrite()
         overwrite.read_messages = True
@@ -434,13 +434,13 @@ but there are comparable commands for other OSes**
         await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
 
     @commands.command(aliases=['sayin'])
-    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def say_in_channel(self, ctx, channel: discord.TextChannel, *,  message: str):
         await channel.send(message)
         await ctx.send(f"{ctx.author.mention} Completed")
 
     @commands.command()
-    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Guru', 'Community Manager', 'Head of Community', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Expert', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
     async def strings(self, ctx):
         import json
         paginator = discord.ext.commands.Paginator()
