@@ -281,8 +281,8 @@ Linux Alpha: https://shdw.me/linuxalpha"""
     async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
         """Link to the download page for Shadow Applications."""
         text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
- Stable versions include: Windows 32/64 bit, macOS, Android, iOS, Linux
- Beta versions include: Windows 64 bit, macOS, Linux, Android
+ Stable versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
+ Beta versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#752944295153238136> channel. Feedback on the beta versions should be left in the proper channels."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps")
 
@@ -290,14 +290,14 @@ Linux Alpha: https://shdw.me/linuxalpha"""
     async def stable(self, ctx, user: typing.Optional[discord.Member] = None):
         """Provide links to stable clients for desktop applications."""
         text = """Access the Official apps at the links below
-        Windows 64-bit: https://shdw.me/windows
-        Windows 32-bit: https://shdw.me/windows32
-        Mac Intel: https://shdw.me/mac
-        Mac M1: https://shdw.me/macsilicon
-        Linux: https://shdw.me/linux
-        iOS/tvOS: <https://shdw.me/iosApp>
-        Android OS: <https://shdw.me/android>
-        Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
+Windows 64-bit: https://shdw.me/windows
+Windows 32-bit: https://shdw.me/windows32
+Mac Intel: https://shdw.me/mac
+Mac M1: https://shdw.me/macsilicon
+Linux: https://shdw.me/linux
+iOS/tvOS: <https://shdw.me/iosApp>
+Android OS: <https://shdw.me/android>
+Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="stable")
 
 
