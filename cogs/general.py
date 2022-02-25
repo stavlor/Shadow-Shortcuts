@@ -112,13 +112,13 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
         text = """**Current Nvidia For Quadro Family Devices (Shadow, Shadow Ultra and Shadow Infinite.)
                     
           - Stable Drivers (ODE)  *(**Recommended**)*: <https://www.nvidia.com/Download/driverResults.aspx/184785/en-us>
-          - Beta Drivers (QNF) *(**Not always current**)*: <https://www.nvidia.com/Download/driverResults.aspx/182231/en-us>
-          - GTX 1080 (GRD) *(**For 1080 cards only**)*: <https://www.nvidia.com/Download/driverResults.aspx/185108/en-us>
-          - GTX 1080 (Studio) *(**Only if the GRD driver does not work**)*: <https://www.nvidia.com/Download/driverResults.aspx/184781/en-us>
+          - Beta Drivers (QNF) (**Not always current**): <https://www.nvidia.com/Download/driverResults.aspx/182231/en-us>
+          - GTX 1080 (GRD) (**For 1080 cards only**): <https://www.nvidia.com/Download/driverResults.aspx/185108/en-us>
+          - GTX 1080 (Studio) (**Only if the GRD driver does not work**): <https://www.nvidia.com/Download/driverResults.aspx/184781/en-us>
 
         **Notes:**
           - If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
-          - Driver installation can potentially glitch the streamer, so __***prior to installation***__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
+          - Driver installation can potentially glitch the streamer, so __**prior to installation**__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
           - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use Care..
           - Quadro Experience works well and can help with keeping Quadro Drivers updated: <https://www.nvidia.com/en-us/design-visualization/software/quadro-experience/>"""
@@ -141,9 +141,14 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     async def beta(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send beta download links for desktop platforms."""
         text = """Access the Beta apps at the links below
-Windows Beta: https://shdw.me/winbeta
-Mac Beta: https://shdw.me/macbeta
-Linux Beta: https://shdw.me/linuxbeta"""
+Windows 64-bit Beta: https://shdw.me/winbeta
+Windows 32-bit Beta: https://shdw.me/win32beta
+Mac Intel Beta: https://shdw.me/macbeta
+Mac Silicon Beta: https://shdw.me/macsiliconbeta
+Linux Beta: https://shdw.me/linuxbeta
+iOS/tvOS Beta: <https://shdw.me/iosbeta_uk>
+Android OS Beta: <https://shdw.me/androidbeta>
+Oculus Quest: <https://shdw.me/vrbeta>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="beta")
 
     @commands.command()
@@ -151,8 +156,10 @@ Linux Beta: https://shdw.me/linuxbeta"""
         """Send alpha download links (if run in <#593516344415354880>) or link to corresponding channel (if run outside of <#593516344415354880>)."""
         if ctx.message.channel.id == 593516344415354880:
             text = f"""Access the alpha apps at the links below
-Windows Alpha: https://shdw.me/winalpha
-Mac Alpha: https://shdw.me/macalpha
+Windows 64-bit Alpha: https://shdw.me/winalpha
+Windows 32-bit Alpha: https://shdw.me/winalpha32
+Mac Intel Alpha: https://shdw.me/macalpha
+Mac ARM Alpha: https://shdw.me/macarmalpha
 Linux Alpha: https://shdw.me/linuxalpha"""
         else:
             text = f"""Access the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
@@ -274,8 +281,8 @@ Linux Alpha: https://shdw.me/linuxalpha"""
     async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
         """Link to the download page for Shadow Applications."""
         text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
- Stable versions include: Windows 32/64 bit, macOS, Android, iOS, Linux
- Beta versions include: Windows 64 bit, macOS, Linux, Android
+ Stable versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
+ Beta versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#752944295153238136> channel. Feedback on the beta versions should be left in the proper channels."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps")
 
@@ -283,9 +290,14 @@ Linux Alpha: https://shdw.me/linuxalpha"""
     async def stable(self, ctx, user: typing.Optional[discord.Member] = None):
         """Provide links to stable clients for desktop applications."""
         text = """Access the Official apps at the links below
-Windows: https://shdw.me/windows
-Mac: https://shdw.me/mac
-Linux: https://shdw.me/linux"""
+Windows 64-bit: https://shdw.me/windows
+Windows 32-bit: https://shdw.me/windows32
+Mac Intel: https://shdw.me/mac
+Mac M1: https://shdw.me/macsilicon
+Linux: https://shdw.me/linux
+iOS/tvOS: <https://shdw.me/iosApp>
+Android OS: <https://shdw.me/android>
+Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="stable")
 
 
@@ -305,7 +317,7 @@ Linux: https://shdw.me/linux"""
     @commands.command(aliases=['vralpha', 'vr'])
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send VR Forum Links"""
-        text = """Download the Shadow VR application from Sidequest at PLACEHOLDERHEREPLEASECHANGESTAVORGERALD.
+        text = """Download the Shadow VR application from Sidequest at <https://shdw.me/vr_earlyaccess>.
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
 
@@ -371,7 +383,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
     @commands.command(aliases=['sup'])
     async def _support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
-        text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Blade Employees, and although Blade employees do occasionally interact here, this isn't an official support channel.
+        text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://account.shadow.tech/home/support
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form"""
@@ -532,8 +544,13 @@ Alpha: Accessible at <#593516344415354880>"""
     @commands.command(aliases=['macos'])
     async def mac(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the macOS apps at the links below
+__Intel__
 Official: https://shdw.me/mac
 Beta: https://shdw.me/macbeta
+
+__ARM__
+Official: https://shdw.me/macsilicon
+Beta: https://shdw.me/macsiliconbeta
 Alpha: Accessible at <#593516344415354880>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="mac")
 
@@ -558,8 +575,8 @@ Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
 
     @commands.command(aliases=['pixel'])
     async def android(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """You can download the Android app here: <https://play.google.com/store/apps/details?id=com.blade.shadowcloudgaming&hl=en>
-You can join the Android app beta here: <https://play.google.com/apps/testing/com.blade.shadowcloudgaming>"""
+        text = """You can download the Android app here: <https://shdw.me/android>
+You can join the Android app beta here: <https://shdw.me/androidbeta>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="android")
 
     @commands.command(aliases=['_ask'])
