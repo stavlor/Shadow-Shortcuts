@@ -17,10 +17,10 @@ class Database(commands.Cog):
         bot.logger.info("Initialized Database cog")
 
     @commands.command()
-    @commands.has_any_role('Shadow Experts', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Expert', 'Moderators', 'Admin', 'Shadow Staff')
     async def sql(self, ctx, *, arguments):
         """Admin SQL Tool"""
-        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Experts', 'Moderators', 'Shadow Staff']):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Expert', 'Moderators', 'Shadow Staff']):
             await ctx.send("{ctx.author.mention} you are not authorized to do that.".format(ctx=ctx))
             return
         self.logger.info("SQL: {sql}".format(sql=str(arguments)))
@@ -29,9 +29,9 @@ class Database(commands.Cog):
             await connection.execute(sql)
 
     @commands.command(aliases=['cleanpms'])
-    @commands.has_any_role('Shadow Experts', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Expert', 'Moderators', 'Admin')
     async def clean_pm_tracking(self, ctx, *, arguments = None):
-        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Experts', 'Moderators', 'Shadow Staff']):
+        if not await self.bot.admin.can_run_command(ctx.author.roles, ['Shadow Expert', 'Moderators', 'Shadow Staff']):
             await ctx.send("{ctx.author.mention} you are not authorized to do that.".format(ctx=ctx))
             return
         sql = 'TRUNCATE pm_tracking;'
@@ -81,7 +81,7 @@ class Database(commands.Cog):
         return res
 
     @commands.command(aliases=['fuid'])
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'Head of Community', 'Shadow Support Lead',
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'Head of Community', 'Shadow Support Lead',
                            'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def find_roles(self, ctx, uid: int):
         """Find Leaver Roles for a User ID"""
@@ -114,7 +114,7 @@ class Database(commands.Cog):
         await ctx.send(f"Successfully found UID: {uid} Roles discovered: {applied_roles}")
 
     @commands.command(aliases=['auid'])
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'Head of Community', 'Shadow Support Lead',
+    @commands.has_any_role('Shadow Expert', 'Community Manager', 'Head of Community', 'Shadow Support Lead',
                            'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def alter_roles(self, ctx, uid: int, *, role: commands.Greedy[discord.Role]):
         """Alter Leaver roles for UID
