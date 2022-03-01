@@ -109,16 +109,16 @@ Send a clear **screenshot** of <https://account.shadow.tech/home> (click the Sub
     @commands.command(aliases=['nvidiadrivers', 'drovers'])
     async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send current NVidia Drivers Info."""
-        text = """**Current Nvidia For Quadro Family Devices (Shadow, Shadow Ultra and Shadow Infinite.)
+        text = """**Current Nvidia For Quadro Family Devices** (Shadow, Shadow Ultra and Shadow Infinite.)
                     
-          - Stable Drivers (ODE)  *(**Recommended**)*: <https://www.nvidia.com/Download/driverResults.aspx/184785/en-us>
+          - Stable Drivers (ODE)  (**Recommended**): <https://www.nvidia.com/Download/driverResults.aspx/184785/en-us>
           - Beta Drivers (QNF) (**Not always current**): <https://www.nvidia.com/Download/driverResults.aspx/182231/en-us>
           - GTX 1080 (GRD) (**For 1080 cards only**): <https://www.nvidia.com/Download/driverResults.aspx/185108/en-us>
           - GTX 1080 (Studio) (**Only if the GRD driver does not work**): <https://www.nvidia.com/Download/driverResults.aspx/184781/en-us>
 
         **Notes:**
           - If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
-          - Driver installation can potentially glitch the streamer, so __**prior to installation**__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
+          - Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
           - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use Care..
           - Quadro Experience works well and can help with keeping Quadro Drivers updated: <https://www.nvidia.com/en-us/design-visualization/software/quadro-experience/>"""
