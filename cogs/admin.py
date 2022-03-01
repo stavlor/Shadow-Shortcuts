@@ -46,7 +46,7 @@ class Admin(commands.Cog):
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Code Approvers')
     async def logout(self, ctx):
         await ctx.send(f"{ctx.author.mention} begining bot shutdown..")
-        await self.bot.logout()
+        await self.bot.close()
 
     @commands.command(hidden=True)
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Code Approvers')
