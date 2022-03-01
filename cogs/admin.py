@@ -263,7 +263,7 @@ but there are comparable commands for other OSes**
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _roletest(self, ctx):
         """Admin - Role ID Listing tool"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Staff', 'Moderators']):
             paginator = discord.ext.commands.Paginator()
             guild = ctx.guild
             paginator.add_line("Beginning role debug")
