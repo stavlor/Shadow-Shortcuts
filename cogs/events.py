@@ -203,15 +203,18 @@ Check here for the current list of Shadow issues: <https://help.shadow.tech/hc/e
             if message.channel.id == 593516344415354880:
                 await self.bot.autoresponse.auto_response_message(ctx=message,
                     message="""{ctx.author.mention}\nAccess the alpha apps at the links below
-Windows Alpha: https://shdw.me/winalpha
-Mac Alpha: https://shdw.me/macalpha
+Windows 64-bit Alpha: https://shdw.me/winalpha
+Windows 32-bit Alpha: https://shdw.me/winalpha32
+Mac Intel Alpha: https://shdw.me/macalpha
+Mac ARM Alpha: https://shdw.me/macarmalpha
 Linux Alpha: https://shdw.me/linuxalpha""",
                     trigger="alpha")
             else:
                 await self.bot.autoresponse.auto_response_message(ctx=message,
                     message="""{ctx.author.mention}\nAccess the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
+            Note You will need to get the appropriate (Alpha) role from <#935975354496090112> to see the channel for Alpha.. 
 
-**Please note that there is no official support provided for alpha versions. The only source of community support for alpha is the <#593516344415354880> channel.**""",
+**Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**""",
                     trigger="alpha")
     
     @tasks.loop(minutes=5.0)

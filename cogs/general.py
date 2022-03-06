@@ -163,7 +163,7 @@ Mac ARM Alpha: https://shdw.me/macarmalpha
 Linux Alpha: https://shdw.me/linuxalpha"""
         else:
             text = f"""Access the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
-            Note You will need to get the appropriate (Alpha) role from <#752944295153238136> to see the channel for Alpha.. 
+            Note You will need to get the appropriate (Alpha) role from <#935975354496090112> to see the channel for Alpha.. 
 
 **Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="alpha")
@@ -283,7 +283,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
  Stable versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Beta versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
- Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#752944295153238136> channel. Feedback on the beta versions should be left in the proper channels."""
+ Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#935975354496090112> channel. Feedback on the beta versions should be left in the proper channels."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps")
 
     @commands.command(aliases=['official'])
@@ -500,7 +500,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             await ctx.author.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
         args2 = args.replace(' ', '+')
-        url = "https://lmgtfy.com/?q=" + str(args2)
+        url = "https://letmegooglethat.com/?q=" + str(args2)
         await ctx.send(embed=discord.Embed(description="**[Look here!](%s)**" % url, color=discord.Color.gold()))
         await ctx.message.delete()
 
