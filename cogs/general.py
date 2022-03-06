@@ -500,7 +500,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
             await ctx.author.send(f"{ctx.author.mention} Your not authorized to do that...")
             return
         args2 = args.replace(' ', '+')
-        url = "https://lmgtfy.com/?q=" + str(args2)
+        url = "https://letmegooglethat.com/?q=" + str(args2)
         await ctx.send(embed=discord.Embed(description="**[Look here!](%s)**" % url, color=discord.Color.gold()))
         await ctx.message.delete()
 
