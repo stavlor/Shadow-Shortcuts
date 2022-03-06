@@ -137,7 +137,7 @@ class Admin(commands.Cog):
 but there are comparable commands for other OSes**
 
 1. Traceroute from Shadow to your Local IP
-    a. On your local PC navigate to http://lg.shadow.guru/
+    a. On your local PC navigate to http://lg.shadow.tech/
     b. Select your data center (for Router to Use)
     c. Select traceroute (for Command to Issue)
     d. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
@@ -149,7 +149,6 @@ but there are comparable commands for other OSes**
     c. Type in the following text without quotations or square brackets "tracert [insert IP here]"
         * The IP list for the data centers (choose the right one):
             * TX: 216.180.128.134
-            * CH: 216.180.136.134
             * NY: 162.213.48.134
             * SV: 170.249.92.40
     d. Wait up to 2 minutes for the test to complete
@@ -162,7 +161,6 @@ but there are comparable commands for other OSes**
     async def slowmode(self, ctx, timer: int = 5):
         """Change Channel Slowmode"""
         await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author}")
-        await ctx.send(f"{ctx.author.mention} Slowmode timer updated to {timer} seconds.")
 
 
     @commands.command(aliases=['botsm', 'bsm'])
