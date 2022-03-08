@@ -203,7 +203,7 @@ but there are comparable commands for other OSes**
         """Adds a role to a User default is Shadowers."""
         if roles is None:
             roles = list()
-            roles.append(ctx.guild.get_role(461298541978058769))
+            roles.append(ctx.guild.get_role(748307869425860619)
         elif isinstance(roles, discord.Role):
             oroles = roles
             roles = list()
@@ -231,7 +231,7 @@ but there are comparable commands for other OSes**
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
                 if "Greeters" not in [role.name for role in user.roles]:
-                    shadowers = ctx.guild.get_role(551917324949651477)
+                    shadowers = ctx.guild.get_role(748307869425860619)
                     await user.add_roles(shadowers)
                     await ctx.message.add_reaction('✅')
                 else:
