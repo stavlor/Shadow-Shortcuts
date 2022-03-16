@@ -231,7 +231,7 @@ but there are comparable commands for other OSes**
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
                 if "Code Approvers" not in [role.name for role in user.roles]:
-                    shadowers = ctx.guild.get_role(737699278054490182)
+                    shadowers = ctx.guild.get_role(551917324949651477)
                     await user.add_roles(shadowers)
                     await ctx.message.add_reaction('✅')
                 else:
