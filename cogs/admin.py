@@ -203,7 +203,7 @@ but there are comparable commands for other OSes**
         """Adds a role to a User default is Shadowers."""
         if roles is None:
             roles = list()
-            roles.append(ctx.guild.get_role(461298541978058769))
+            roles.append(ctx.guild.get_role(748307869425860619)
         elif isinstance(roles, discord.Role):
             oroles = roles
             roles = list()
@@ -230,7 +230,7 @@ but there are comparable commands for other OSes**
             if user is None:
                 await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
             else:
-                if "Greeters" not in [role.name for role in user.roles]:
+                if "Code Approvers" not in [role.name for role in user.roles]:
                     shadowers = ctx.guild.get_role(551917324949651477)
                     await user.add_roles(shadowers)
                     await ctx.message.add_reaction('✅')
@@ -362,7 +362,7 @@ but there are comparable commands for other OSes**
     async def rr(self, ctx, user: discord.Member, role: typing.Optional[discord.Role] = None, all_roles: bool = False):
         """Remove Roles - remove role from a user defa- Optional True/False for all_roles will remove all roles from a user."""
         if role is None:
-            role = ctx.guild.get_role(461298541978058769)
+            role = ctx.guild.get_role(748307869425860619)
         if all_roles:
             for role in user.roles:
                 if role.name != "@everyone":
