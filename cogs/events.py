@@ -118,7 +118,7 @@ class Events(commands.Cog):
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
-                                                             trigger="L:104")
+                                                             trigger="L-104")
         elif ("L 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
@@ -149,7 +149,7 @@ class Events(commands.Cog):
                                                              trigger="shadow apples")
         elif "drive" in message.content.lower() and ("slow" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message="{ctx.author.mention} If you are currently experiencing issues with your additional storage post migration, please put in a support ticket from your account page.",
+                                                             message="{ctx.author.mention} If you are currently experiencing issues with your storage post migration, please put in a support ticket from your account page. <https://sso.shadow.tech/>. Please also consult the Shadow Status Page for more information on the issue. <https://status.shadow.tech/pages/incident/5bbcb1b0b0936904c004bbeb/62602c566336fb04d61cfa4e/>",
                                                              trigger="drive")
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
@@ -250,7 +250,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
         url = str()
         attachments_present = False
         audit_user = 'self'
-        ignored_channels = ['bot_users', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods','community-drafts']
+        ignored_channels = ['bot_users', 'mods-and-gurus', 'bot-logs', 'known-issues', 'mods','community-drafts', 'staff-testing']
         cur_time = datetime.utcnow().isoformat()
         cur_raw_time = datetime.utcnow()
         author = message.author
@@ -292,7 +292,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
         dest_channel = await self.bot.fetch_channel(462170485787066368)
-        ignored_channels = ['mods-and-gurus', 'bot-logs', 'known-issues', 'mods','community-drafts']
+        ignored_channels = ['mods-and-gurus', 'bot-logs', 'known-issues', 'mods','community-drafts', 'staff-testing']
         if after.channel in ignored_channels:
             return
         if after.author.id == self.bot.user.id:
