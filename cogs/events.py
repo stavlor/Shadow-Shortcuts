@@ -212,7 +212,7 @@ Linux Alpha: https://shdw.me/linuxalpha""",
             else:
                 await self.bot.autoresponse.auto_response_message(ctx=message,
                     message="""{ctx.author.mention}\nAccess the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
-            Note You will need to get the appropriate (Alpha) role from <#935975354496090112> to see the channel for Alpha.. 
+            Note You will need to get the appropriate (Alpha) role from <#983450525292978186> to see the channel for Alpha.. 
 
 **Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**""",
                     trigger="alpha")
