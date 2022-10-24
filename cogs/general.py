@@ -132,7 +132,7 @@ Please use the <#983433497530216448> channel to get your roles"""
     @commands.command(aliases=['raz', 'wipe', 'clear'])
     async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
         """Reset Shadow Information"""
-        text = """You can reset your shadow via <https://account.shadow.tech/home/my-shadow>, *Note:* This doesn't clear additional storage."""
+        text = """You can reset your shadow via <https://eu.shadow.tech/account/>, on the Shadow PC tab > "Manage my subscription" *Note:* This doesn't clear additional storage and your Shadow PC should be shutdown before resetting."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="reset")
 
     @commands.command()
@@ -172,37 +172,37 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @account.command(aliases=['account'])
     async def myaccount(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can access your account page via <https://account.shadow.tech/home>."""
+            text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
 
     @account.command()
     async def myshadow(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can reset your shadow via <https://account.shadow.tech/home/my-shadow>."""
+            text = f"""You can reset your shadow via <https://eu.shadow.tech/account/>. > Select the Shadow PC tab > "Manage my subscription"""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account reset")
 
     @account.command()
     async def security(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can access the security page via <https://account.shadow.tech/home/security>."""
+            text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab"""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
     @account.command()
     async def billing(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can access the billing page via <https://account.shadow.tech/home>."""
+        text = f"""You can access the billing page via <https://eu.shadow.tech/account/>. > Select the Account tab"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account financial")
 
     @account.command()
     async def subscription(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://account.shadow.tech/home>."""
+        text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://eu.shadow.tech/account/>. > Select the product you want to manage"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account subscription")
 
     @account.command(aliases=['apps'])
     async def applications(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can get the current stable and beta applications from <https://account.shadow.tech/home/applications>."""
+        text = f"""You can get the current stable applications from <http://shadow.tech/shadow-apps>.""" ### Need to fix once apps is back on account page
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Want to earn credit for referring your friends to Shadow? see  <https://account.shadow.tech/home/referral>."""
+        text = f"""Want to earn credit for referring your friends to Shadow? see  <https://eu.shadow.tech/account/>."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command(name='support')
@@ -278,11 +278,19 @@ Linux Alpha: https://shdw.me/linuxalpha"""
     @commands.command(aliases=['applications', 'application', 'app'])
     async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
         """Link to the download page for Shadow Applications."""
-        text = """You can download the Shadow client from the Appplications section of your account page: https://account.shadow.tech/home/applications
+        text = """Access the Official apps at the links below
+Windows 64-bit: https://shdw.me/windows
+Windows 32-bit: https://shdw.me/windows32
+Mac Intel: https://shdw.me/mac
+Mac M1: https://shdw.me/macsilicon
+Linux: https://shdw.me/linux
+iOS/tvOS: <https://shdw.me/iosApp>
+Android OS: <https://shdw.me/android>
+Oculus Quest: <https://shdw.me/vr_earlyaccess>
  Stable versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Beta versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#983450525292978186> channel. Feedback on the beta versions should be left in the proper channels."""
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps")
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps") ### Need to fix after applications downloads are fixed
 
     @commands.command(aliases=['official'])
     async def stable(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -353,12 +361,7 @@ __Games with Issues Identified on Shadow__
     async def _storage(self, ctx, user: typing.Optional[discord.Member] = None):
         """Storage tutorial command"""
         text = """**How to add storage**:
-First Sign in to your account page via https://sso.shadow.tech/
-<https://botrexford.shdw.info/sso.png>
-Then go to your Subscription/Billing Section:
-<https://botrexford.shdw.info/sub-billing.png>
-Hit Add Storage:
-<https://botrexford.shdw.info/storage-dialog.png>
+Sign in to your account page via https://eu.shadow.tech/account
 Choose how much you want and follow prompts, when adding storage ensure your ***Shadow is OFF***"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="storage")
 
@@ -383,7 +386,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """Send details for how to reach support."""
         text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
-  - From your account page, click Support: https://account.shadow.tech/home/support
+  - From your account page, click Support: https://eu.shadow.tech/account/
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
