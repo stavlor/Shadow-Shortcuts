@@ -80,7 +80,7 @@ Please use the <#983433497530216448> channel to get your roles"""
 
     @commands.command(description="L203 Forum Page", aliases=['l203'])
     async def l203forum(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = "For additional information on Error L:203 Please see the following forum article: https://l.shdw.info/l203"
+        text = "For additional information on Error L:203 Please see the following forum article: https://help.shadow.tech/hc/en-gb/articles/360012641700-L-203-Shadow-can-t-connect-and-we-ll-give-you-priority-for-the-next-10-min"
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="micfix")
 
     @commands.command(description="microphone fix", aliases=['mic', 'micguide'])
@@ -119,13 +119,13 @@ Please use the <#983433497530216448> channel to get your roles"""
           - Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
           - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use Care..
-          - Quadro Experience works well and can help with keeping Quadro Drivers updated: <https://www.nvidia.com/en-us/design-visualization/software/quadro-experience/>"""
+          - RTX Experience works well and can help with keeping RTX Drivers updated: <https://www.nvidia.com/en-us/design-visualization/software/rtx-experience/>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="drivers")
 
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
     async def ghost(self, ctx, user: typing.Optional[discord.Member] = None):
         """Ghost Purchase information."""
-        text = """Ghosts can no longer be purchased from your account page.
+        text = """Ghosts can no longer be purchased from your account page and are depreciated.
         For the Ghost user manual, see here: http://botrexford.shdw.info/Ghost_Manual.pdf"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ghost")
 
@@ -177,17 +177,17 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @account.command()
     async def myshadow(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can reset your shadow via <https://eu.shadow.tech/account/>. > Select the Shadow PC tab > "Manage my subscription"""
+            text = f"""You can reset your shadow via <https://eu.shadow.tech/account/>. > Select the Shadow PC tab > "Manage my subscription"."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account reset")
 
     @account.command()
     async def security(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab"""
+            text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
     @account.command()
     async def billing(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can access the billing page via <https://eu.shadow.tech/account/>. > Select the Account tab"""
+        text = f"""You can access the billing page via <https://eu.shadow.tech/account/>. > Select the Account tab."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account financial")
 
     @account.command()
@@ -197,17 +197,17 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @account.command(aliases=['apps'])
     async def applications(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can get the current stable applications from <http://shadow.tech/shadow-apps>.""" ### Need to fix once apps is back on account page
+        text = f"""You can get the current official and beta applications from <http://shadow.tech/shadow-apps>.""" ### Need to fix once apps is back on account page (nvm lol)
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Want to earn credit for referring your friends to Shadow? see  <https://eu.shadow.tech/account/>."""
+        text = f"""Want to earn credit for referring your friends to Shadow? see  <https://eu.shadow.tech/account/>.""" ### Currently Disabled LUL
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command(name='support')
     async def support(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form>."""
+        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form>.""" ### Add account page link later
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command(description="Status command")
@@ -239,7 +239,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @commands.command(aliases=['minimums', 'minimalreq', 'requirements', 'reqs'])
     async def minreq(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Give Shadow Minimum requirements"""
+        """Give Shadow Minimum requirements""" ### Add min req page
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
         **Windows**
@@ -322,7 +322,7 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
 
     @commands.command(aliases=['vralpha', 'vr'])
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Send VR Forum Links"""
+        """Send VR Forum Links""" ### Steal VR macro from Reina, add Hydra link with note saying type code in all caps
         text = """Download the Shadow VR application from Sidequest at <https://shdw.me/vr_earlyaccess>.
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
@@ -333,9 +333,7 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         self.bot.logger.info(f"Processed valorant command for {ctx.author.name} with parameter {user}.")
         text = """Like so many gamers around the world, we're excited for the official release of Valorant!
          
-Due to Riot Games' anti-cheat system, Vanguard, it is currently not possible to play on virtual machines, like Shadow. We are currently looking into potential solutions so all of you at #TeamShadow can get in some sweet competitive MP action.
- 
-As soon as we have more information, you will be the first to know. To stay up-to-date, you can also refer to our Help Center article.
+Due to Riot Games' anti-cheat system, Vanguard, it is currently not possible to play on virtual machines, like Shadow. If you installed Valorant or Vanguard will need to uninstall these applications or reset your Shadow. Please see the Help Center for more information
 
 __Games with Issues Identified on Shadow__
 <https://help.shadow.tech/hc/en-gb/articles/360013641620-Games-with-Issues-Identified-on-Shadow>"""
@@ -384,7 +382,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
     @commands.command(aliases=['sup'])
     async def _support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
-        text = """  This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
+        text = """This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://eu.shadow.tech/account/
   - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form"""
@@ -415,8 +413,9 @@ You can join the iOS app beta here: <https://shdw.me/iosbeta_uk>"""
     async def linustechtips(self, ctx, user: typing.Optional[discord.Member] = None):
         """Linus Tech Tips"""
         self.bot.logger.info(f"Processed linustechtips command for {ctx.author.name} with parameter {user}.")
-        text = """Check out the Linus Tech Tips video exploring what's inside a Shadow's server at https://shdw.me/LTTVideo
-See the video where Linus visted the Mountain View office and datacenter tour at <https://www.youtube.com/watch?v=0BQ4bXNdEQI>"""
+        text = """Check out the Linus Tech Tips video exploring what's inside a Shadow Infinite server at <https://shdw.me/LTTVideo>
+                See the video where Luke visited OVHCloud datacenters and factory tour at https://youtu.be/RFzirpvTiOo
+                See the video where Linus visited the Mountain View office and Equinix datacenter tour at <https://www.youtube.com/watch?v=0BQ4bXNdEQI>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linustechtips")
 
     @commands.command(aliases=['dct', 'datacentertour'])
@@ -425,11 +424,12 @@ See the video where Linus visted the Mountain View office and datacenter tour at
         text = """Check Out a tour of one of our datacenters found here: https://youtu.be/0BQ4bXNdEQI?t=157"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="dctour")
 
-    @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps'])
+    @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps', 'qm', 'quickmenu'])
     async def stats(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to access Shadow Control panel stats pane."""
-        text = """The Stats page in the shadow control panel can provide useful troubleshooting information (IPS, 
-        Bitrate, Ping and Packet Loss) to access it please this http://botrexford.shdw.info/how_to_access_stats.png """
+        text = """The Quick Menu let's you adjust Shadow settings while streaming access using the following command
+                <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu
+                Note: The Quick Menu with statistics is only avaiable on Windows, Mac, Linux, and Raspberry Pi"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="hstats")
 
     @commands.command(aliases=['language'])
@@ -451,7 +451,7 @@ When prompted, VirtualHere will ask you to install **Bonjour**; do this. It make
 
 Next step is getting Shadow on your local area network (LAN).
 
-You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation/EN/pdf/Hamachi/LogMeIn_Hamachi_UserGuide.pdf> or **ZeroTier** (Guide) <https://docs.google.com/document/d/1NcVK11lcS8m2G_0fsqMcXvkcdLWdaU2O4Vc_qyJrnng/edit?usp=sharing>"""
+You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation/EN/pdf/Hamachi/LogMeIn_Hamachi_UserGuide.pdf>, **ZeroTier** (Guide) <https://docs.google.com/document/d/1NcVK11lcS8m2G_0fsqMcXvkcdLWdaU2O4Vc_qyJrnng/edit?usp=sharing>, or **TailScale** (Guide) <https://www.reddit.com/r/ShadowPC/comments/pwjtmt/tut_how_to_use_your_external_hard_drive_on_shadow/> """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vh")
 
 
@@ -573,7 +573,7 @@ Shadowcker (Run Shadow in Docker): <https://gitlab.com/aar642/shadowcker>
 Shadow liveOS (Shadow on a portable drive): <https://gitlab.com/NicolasGuilloux/shadow-live-os>
 Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linux")
-
+### When I'm drunk add RaspberryPi command
     @commands.command(aliases=['pixel'])
     async def android(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """You can download the Android app here: <https://shdw.me/android>
@@ -608,15 +608,24 @@ Your friend,
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """
-***___Shadow___***
-**GPU:** Quadro P5000 (GeForce GTX 1080 Equiv.)
-**VRAM:** 16 GB
-**CPU:** Intel Xeon E5-2678v3 Processor
-**CPU Clock Speed:** 2.5 GHz Turbo @ 4 cores - Turbo to 3.2 GHz
+***___Shadow (Spark)___***
+**GPU:** P5000 with 16GB GDDR5X
+Alternatively in some regions: GTX 1080 with 8GB GDDR5X
+Alternatively in some regions: RTX4000 with 8GB GDDR6 (GeForce GTX 1080 Equiv.)
+**CPU:** Intel® Xeon® E5-2678 v3 4 cores 8 threads at 2.5 GHz with 3.1 GHz Turbo Boost
+Alternatively: Intel® Xeon® E5-2667 v3 4 cores 8 threads at 3.2 GHz with 3.6 GHz Turbo Boost
 **RAM:** 12 GB
 **Storage:** 256 GB
 
-***___Shadow Ultra___***
+***__Shadow w/ Power Upgrade__***
+**GPU:** Quadro RTX A4500 (GeForce RTX 3070 Equiv.)
+**VRAM:** 16 GB
+**CPU:** AMD 
+**CPU Clock Speed:** 
+**RAM:** 16 GB
+**Storage:** 256 GB
+
+***___Shadow Ultra (Aurora)___***
 **GPU:** Quadro RTX 5000 (GeForce RTX 2080 SUPER Equiv.)
 **VRAM:** 16 GB
 **CPU:** Intel Xeon W-3235 Processor
@@ -624,7 +633,7 @@ Your friend,
 **RAM:** 16 GB
 **Storage:** 512 GB
 
-***___Shadow Infinite___***
+***___Shadow Infinite (Lightning)___***
 **GPU:** Quadro RTX 6000 (Nvidia TITAN RTX Equiv.)
 **VRAM:** 24 GB
 **CPU:** Intel Xeon W-3235 Processor
