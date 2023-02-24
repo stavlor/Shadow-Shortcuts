@@ -203,59 +203,7 @@ but there are comparable commands for other OSes**
         if roles is None:
             roles = list()
             roles.append(ctx.guild.get_role(748307869425860619)
-        elif isinstance(roles, discord.Role):
-            oroles = roles
-            roles = list()
-            roles.append(oroles)
-        if await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff']):
-            for role in roles:
-                if user is None:
-                    await ctx.send(f"{ctx.author.mention} User is a required parameter.")
-                else:
-                    if role not in user.roles:
-                        await user.add_roles(role)
-                        await ctx.message.add_reaction('✅')
-                        await user.send(f"{user.mention} You have been granted the role {role.name} by {ctx.author}")
-                    else:
-                        await ctx.send(f"{ctx.author.mention} User {user.mention} appears to already have the {role.name} role.")
-        else:
-            await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
-
-    @commands.command(description="Grant a user bot access", name='grantbot') ### Will need to adjust if a bot user is added again
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
-    async def add_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Grant Bot User Role to a user - Admin"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
-            if user is None:
-                await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
-            else:
-                if "Code Approvers" not in [role.name for role in user.roles]:
-                    shadowers = ctx.guild.get_role(551917324949651477)
-                    await user.add_roles(shadowers)
-                    await ctx.message.add_reaction('✅')
-                else:
-                    await ctx.send("{author} User {user.mention} appears to already have this role.".format(
-                        author=ctx.author.mention, user=user))
-        else:
-            await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
-
-    @commands.command(description="Revoke a user bot access", name='revokebot') ### Will need to adjust if a bot user is added again
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
-    async def revoke_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Revoke Bot User Role from a user - Admin"""
-        if await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Shadow Staff']):
-            if user is None:
-                await ctx.send("{author} User is a required parameter.".format(author=ctx.author.mention))
-            else:
-                if "Greeters" in [role.name for role in user.roles]:
-                    shadowers = ctx.guild.get_role(551917324949651477)
-                    await user.remove_roles(shadowers)
-                    await ctx.message.add_reaction('✅')
-                else:
-                    await ctx.send("{author} User {user.mention} appears to not have this role.".format(author=ctx.author.mention, user=user))
-        else:
-            await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
-
+ 
     @commands.command(description="Roles test", name='roletest')
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def _roletest(self, ctx):
