@@ -175,14 +175,14 @@ Linux Alpha: https://shdw.me/linuxalpha"""
             text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
 
-    @account.command()
-    async def myshadow(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can reset your shadow via <https://eu.shadow.tech/account/>. > Select the Shadow PC tab > "Manage my subscription"."""
+    @account.command(aliases=['raz', 'wipe', 'clear'])
+    async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
+            text = f"""You can reset your shadow via <https://eu.shadow.tech/account/>. > Select the Shadow PC tab > Manage my subscription > Reset my Shadow > Select your reset options."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account reset")
 
     @account.command()
-    async def security(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab."""
+    async def email(self, ctx, user: typing.Optional[discord.Member] = None):
+            text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
     @account.command()
@@ -192,7 +192,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @account.command()
     async def subscription(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://eu.shadow.tech/account/>. > Select the product you want to manage"""
+        text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://eu.shadow.tech/account/>. > Select the product you want to manage."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account subscription")
 
     @account.command(aliases=['apps'])
@@ -202,12 +202,12 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @account.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Want to earn credit for referring your friends to Shadow? see  <https://eu.shadow.tech/account/>.""" ### Currently Disabled LUL
+        text = f"""Want to earn credit for referring your friends to Shadow? see <https://eu.shadow.tech/account/> for your referral code.""" ### Currently Disabled LUL
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command(name='support')
     async def support(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form>.""" ### Add account page link later
+        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://eu.shadow.tech/account> > Select Support and scroll down to Contact Us.""" ### Add account page link later
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command(description="Status command")
@@ -607,39 +607,43 @@ Your friend,
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """
-***___Shadow (Spark)___***
-**GPU:** P5000 with 16GB GDDR5X
-Alternatively in some regions: GTX 1080 with 8GB GDDR5X
-Alternatively in some regions: RTX4000 with 8GB GDDR6 (GeForce GTX 1080 Equiv.)
-**CPU:** Intel® Xeon® E5-2678 v3 4 cores 8 threads at 2.5 GHz with 3.1 GHz Turbo Boost
-Alternatively: Intel® Xeon® E5-2667 v3 4 cores 8 threads at 3.2 GHz with 3.6 GHz Turbo Boost
+        text = """***___Shadow (Spark)___***
+**GPUs:** 
+NVIDIA Quadro P5000 with 16GB GDDR5X
+NVIDIA GeForce GTX 1080 with 8GB GDDR5X
+NVIDIA Quadro RTX 4000 with 8GB GDDR6 
+
+**CPUs:** 
+Intel Xeon E5-2678 v3 4 cores 8 threads at 2.5 GHz with 3.1 GHz Turbo Boost
+Intel Xeon E5-2667 v3 4 cores 8 threads at 3.2 GHz with 3.6 GHz Turbo Boost
+AMD EPYC 7513 4 cores 8 threads at 2.6 GHz with 3.65 GHz Max Boost Clock
+
 **RAM:** 12 GB
-**Storage:** 256 GB
+**Storage:** 256 GB (expandable up to 5 TB of additional storage)
 
 ***__Shadow w/ Power Upgrade__***
-**GPU:** Quadro RTX A4500 (GeForce RTX 3070 Equiv.)
-**VRAM:** 16 GB
-**CPU:** AMD 
-**CPU Clock Speed:** 
+**GPUs:** 
+NVIDIA RTX A4500 with 16GB GDDR6 
+AMD Radeon RX 6700 XT with 12GB GDDR6
+*Early Access Only*: NVIDIA RTX A4000 with 16GB GDDR6  (FRDUN02 only)
+
+**CPU:** AMD EPYC 7543P 4 cores 8 threads at 2.8 GHz with 3.7 GHz Max Boost Clock
 **RAM:** 16 GB
-**Storage:** 256 GB
+**Storage:** 256 GB (expandable up to 5 TB of additional storage)
 
 ***___Shadow Ultra (Aurora)___***
-**GPU:** Quadro RTX 5000 (GeForce RTX 2080 SUPER Equiv.)
+**GPU:** NVIDIA Quadro RTX 5000 with 16GB GDDR6 
 **VRAM:** 16 GB
-**CPU:** Intel Xeon W-3235 Processor
-**CPU Clock Speed:** 3.3 GHz @ 4 cores - Turbo to 4 GHz
+**CPU:** Intel Xeon W-3235 Processor 3.3 GHz 4 cores 8 threads at 3.3 GHz with 4 GHz Turbo Boost
 **RAM:** 16 GB
-**Storage:** 512 GB
+**Storage:** 512 GB (expandable up to 5 TB of additional storage)
 
 ***___Shadow Infinite (Lightning)___***
-**GPU:** Quadro RTX 6000 (Nvidia TITAN RTX Equiv.)
+**GPU:** NVIDIA Quadro RTX 6000 with 24GB GDDR6 
 **VRAM:** 24 GB
-**CPU:** Intel Xeon W-3235 Processor
-**CPU Clock Speed:** 3.3 GHz @ 6 cores - Turbo to 4 GHz
+**CPU:** Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost
 **RAM:** 32 GB
-**Storage:** 1024 GB"""
+**Storage:** 1024 GB (expandable up to 5 TB of additional storage)""" 
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
