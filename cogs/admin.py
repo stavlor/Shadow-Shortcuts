@@ -195,14 +195,6 @@ but there are comparable commands for other OSes**
             await ctx.send("Timer debug:\n```{timers}```".format(timers=timers))
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
-
-    @commands.command(name='ar')
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
-    async def add_role(self, ctx, user: discord.Member, *,  roles: commands.Greedy[discord.Role] = None):
-        """Adds a role to a User default is Shadowers."""
-        if roles is None:
-            roles = list()
-            roles.append(ctx.guild.get_role(748307869425860619)
  
     @commands.command(description="Roles test", name='roletest')
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
