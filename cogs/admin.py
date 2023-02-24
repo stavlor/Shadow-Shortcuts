@@ -29,10 +29,10 @@ class Admin(commands.Cog):
         self.bot.help_command = self._original_help_command
 
     @commands.command(hidden=True)
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin')
+    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin' , 'Code Approvers')
     async def load(self, ctx, *, module):
         """Loads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Code Approvers']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -133,6 +133,8 @@ class Admin(commands.Cog):
 
 *Designed to help determine potential network issues*
 
+For a more in-depth guide for all operating systems see the guide from the Community Wiki <https://wiki.shdw.info/w/PingPlotter> 
+
 **Note that the commands in step two (2) below are Windows-specific,
 but there are comparable commands for other OSes**
 
@@ -148,9 +150,7 @@ but there are comparable commands for other OSes**
     b. Type cmd then click OK
     c. Type in the following text without quotations or square brackets "tracert [insert IP here]"
         * The IP list for the data centers (choose the right one):
-            * TX: 216.180.128.134
-            * NY: 162.213.48.134
-            * SV: 170.249.92.40
+            * Go to: http://eth0.me/ for your Shadow IP address
     d. Wait up to 2 minutes for the test to complete
     e. Take a screenshot of the results Windows + Shift + S or using your preferred screenshot tool
     f. Send to a Shadow Experts or Moderator'''
@@ -160,7 +160,6 @@ but there are comparable commands for other OSes**
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def slowmode(self, ctx, timer: int = 5):
         """Change Channel Slowmode"""
-        await ctx.channel.edit(slowmode_delay=timer, reason=f"Requested change by {ctx.author}")
 
 
     @commands.command(aliases=['botsm', 'bsm'])
@@ -222,7 +221,7 @@ but there are comparable commands for other OSes**
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
-    @commands.command(description="Grant a user bot access", name='grantbot')
+    @commands.command(description="Grant a user bot access", name='grantbot') ### Will need to adjust if a bot user is added again
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def add_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Grant Bot User Role to a user - Admin"""
@@ -240,7 +239,7 @@ but there are comparable commands for other OSes**
         else:
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
 
-    @commands.command(description="Revoke a user bot access", name='revokebot')
+    @commands.command(description="Revoke a user bot access", name='revokebot') ### Will need to adjust if a bot user is added again
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
     async def revoke_role_bot(self, ctx, user: typing.Optional[discord.Member] = None):
         """Revoke Bot User Role from a user - Admin"""
