@@ -80,8 +80,8 @@ Please use the <#983433497530216448> channel to get your roles"""
 
     @commands.command(description="L203 Forum Page", aliases=['l203'])
     async def l203forum(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = "For additional information on Error L:203 Please see the following forum article: https://help.shadow.tech/hc/en-gb/articles/360012641700-L-203-Shadow-can-t-connect-and-we-ll-give-you-priority-for-the-next-10-min"
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="micfix")
+        text = "For additional information on Error L:203 Please see the following forum article: https://shdw.me/HC-B2C-L203"""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="l203forum")
 
     @commands.command(description="microphone fix", aliases=['mic', 'micguide'])
     async def micfix(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -100,7 +100,7 @@ Please use the <#983433497530216448> channel to get your roles"""
         """Send Terms of Service information"""
         text = """__Terms of Use__
 - See the official Terms of Use here: <https://shadow.tech/terms-of-use>
-- For a simple breakdown of what's not allowed on shadow, see here: <https://help.shadow.tech/hc/en-gb/articles/360000455174>
+- For a simple breakdown of what's not allowed on shadow, see here: <https://shdw.me/HC-B2C-Rules>
  **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
 
@@ -202,12 +202,12 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @account.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Want to earn credit for referring your friends to Shadow? see <https://eu.shadow.tech/account/> for your referral code.""" ### Currently Disabled LUL
+        text = f"""Want to earn credit for referring your friends to Shadow? see <https://eu.shadow.tech/account/> for your referral code.""" ### Enabled
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @account.command(name='support')
     async def support(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://eu.shadow.tech/account> > Select Support and scroll down to Contact Us.""" ### Add account page link later
+        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://eu.shadow.tech/account> > Select Support and scroll down to Contact Us.""" ### Done
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command(description="Status command")
@@ -242,6 +242,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         """Give Shadow Minimum requirements""" ### Add min req page
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
+        For a full overview of the minumum requirements please see this help center article: <https://shdw.me/HC-B2C-Device_Reqs>
         **Windows**
             - OS: Windows 10 or Windows 8.1 (Older versions are not supported)
             - CPU: 
@@ -324,6 +325,7 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send VR Forum Links""" ### Steal VR macro from Reina, add Hydra link with note saying type code in all caps
         text = """Download the Shadow VR application from Sidequest at <https://shdw.me/vr_earlyaccess>.
+        Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
 
@@ -336,7 +338,7 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
 Due to Riot Games' anti-cheat system, Vanguard, it is currently not possible to play on virtual machines, like Shadow. If you installed Valorant or Vanguard will need to uninstall these applications or reset your Shadow. Please see the Help Center for more information
 
 __Games with Issues Identified on Shadow__
-<https://help.shadow.tech/hc/en-gb/articles/360013641620-Games-with-Issues-Identified-on-Shadow>"""
+<https://shdw.me/HC-B2C-Known_Issues>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="valorant")
 
     @commands.command(aliases=['gen','genshin','genshit'])
@@ -346,7 +348,7 @@ __Games with Issues Identified on Shadow__
         text = """Shadow is aware of this concern. The Shadow team has contacted Genshin Impact's developers about this issue. For now, it is considered incompatible.
 
 __Games with Issues Identified on Shadow__
-<https://help.shadow.tech/hc/en-gb/articles/360013641620-Games-with-Issues-Identified-on-Shadow>"""
+<https://shdw.me/HC-B2C-Known_Issues>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="genshin")
 
     @commands.command(aliases=['act', 'activation'])
@@ -368,15 +370,22 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
     async def ip(self, ctx, user: typing.Optional[discord.Member] = None):
         """IP/Geoip Information"""
         self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
-        text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Blade occasionally moves IP addresses around between its datacenters.
+        text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Shadow assigns a local IP address in the country that you purchased in.
  If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://ipv4bot.whatismyipaddress.com/:
             - **Europe**
-                - If your IP begins with **185.161.** you are on the **Amsterdam** datacenter
-                - If your IP begins with **85.190.** you are on the **France** datacenter
+                - If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
+                - If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
+                - If your IP begins with **85.190.[67-91]** you are on the Dunkirk (FRDUN02) datacenter
+                - If your IP begins with **185.161.[168-171]** you are on the Dunkirk (FRDUN02) datacenter
+                - If your IP begins with **185.253.[168-169]** you are on the Stratsbourg (FRSBG01) datacenter
+                - If your IP begins with **185.253.[170-171]** you are on the Dunkirk (FRDUN02) datacenter
             - **North America**
-                - If your IP begins with **170.249.[92-95].** you are on the **California** datacenter
-                - If your IP begins with **162.213.[48-55].** you are on the **New York** datacenter
-                - If your IP begins with **216.180.[128-143]** you are on the **Texas** datacenter"""
+                - If your IP begins with **66.51.[112-115]** you are on the Washington D.C. (USWDC01) datacenter
+                - If your IP begins with **66.51.[116-119]** you are on the Portland (USPOR01) data center
+                - If your IP begins with **69.58.[92-93]** you are on the Montreal (CAMTL01) data center
+                - If your IP begins with **216.180.[128-135]** you are on the Texas (TX1) data center
+                - If your IP begins with **216.180.[136]** you are on the Montreal (CAMTL01) data center
+                - If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ip")
 
     @commands.command(aliases=['sup'])
@@ -385,7 +394,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         text = """This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://eu.shadow.tech/account/
-  - If you are unable to access your account page, use the Help Desk: https://help.shadow.tech/hc/en-gb/articles/360018626660-Support-Request-Form"""
+  - If you are unable to access your account page, use the Help Desk: https://shdw.me/HC-B2C-Support_Form"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
@@ -435,7 +444,7 @@ You can join the iOS app beta here: <https://shdw.me/iosbeta_uk>"""
     @commands.command(aliases=['language'])
     async def changelang(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to Change language from FR to EN."""
-        text = """How to change the language of your Shadow: https://help.shadow.tech/hc/en-gb/articles/360000902673-Change-the-Language-for-Windows-10"""
+        text = """How to change the language of your Shadow: https://shdw.me/HC-B2C-Windows_Language"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="changelang")
 
     @commands.command(aliases=['virtualhere', 'vhere'])
@@ -522,7 +531,7 @@ Thanks for your interest, and we’ll have more information as soon as we can lo
     @commands.command(aliases=['s101', 'S101'])
     async def _s101(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """To fix S:101 please see the following Shadow help article: 
-        https://help.shadow.tech/hc/en-gb/articles/360010559860-S-101-An-Issue-Happened-with-the-Streaming-Services """
+        https://shdw.me/HC-B2C-S101"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="s101")
 
     @commands.command(aliases=['windows'])
@@ -564,8 +573,9 @@ Alpha: Accessible at <#593516344415354880>
 
 __Known Issues with Linux Application__
 View these helpful sources if you are having issues installing Shadow on Linux
+<https://shdw.me/HC-B2C-Known_Issues>
+<https://gitlab.com/aar642/shadow-repackaged>
 <https://nicolasguilloux.github.io/blade-shadow-beta/setup>
-<https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow>
 
 __Other Resources__
 Other resources and applications to help you with your Shadow journey
