@@ -26,12 +26,14 @@ class General(commands.Cog):
         await ctx.message.delete()
 
 
-    @commands.command(description="Send instructions on how to get Verified", aliases=['v'])
+    @commands.command(description="Send instructions on how to get Verified", aliases=['v', 'welcome', 'intro', 'reception'])
     async def verify(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to get verified command."""
-        text = """The <:shadow:983397222119010355> Shadow role grants access to the Discord server and many other channels that are not visible to unverified users.
+        text = """Welcome to the Shadow-ENG Discord server! We’re happy to have you join us here!
 
-Please use the <#983433497530216448> channel to get your roles"""
+First things first, to get access to the rest of the server, please react to a role in <#983433497530216448> and <#983443571078221885>  . Then, should you so choose, you can add any additional roles you may want through <#983450525292978186>  !
+
+We hope you enjoy your stay!"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="verify")
 
 
@@ -388,13 +390,13 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
                 - If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ip")
 
-    @commands.command(aliases=['sup'])
+    @commands.command(aliases=['sup','suppport'])
     async def _support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
-        text = """This is a community-based Discord where other members of the community may be able to assist with your issues in <#752963617627963412>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
+        text = """This is a community-based Discord where other members of the community may be able to assist with your issues in <#1021479747823337522>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
   - From your account page, click Support: https://eu.shadow.tech/account/
-  - If you are unable to access your account page, use the Help Desk: https://shdw.me/HC-B2C-Support_Form"""
+  - If you are unable to access your account page, use the Help Desk: <https://shdw.me/HC-B2C-Support_Form>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
