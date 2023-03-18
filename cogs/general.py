@@ -8,7 +8,7 @@ class General(commands.Cog):
         self.bot = bot
         bot.general = self
         bot.logger.info("Initialized General Cog")
-
+### Remove the "From {ctx.author.name} blame the bot" from the text command process.
     async def text_command_process(self, ctx: commands.Context, user: discord.Member, text: str, command_name: str, suppress_from: bool = False):
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(f"{command_name} recieved from {ctx.author.name} with argument of {user}")
@@ -17,9 +17,9 @@ class General(commands.Cog):
             elif suppress_from and user is None:
                 await ctx.send(f"{text}")
             elif user is not None:
-                await ctx.send(f"From {ctx.author.name}\n{user.mention} {text}")
+                await ctx.send(f"\n{user.mention} {text}")
             else:
-                await ctx.send(f"From {ctx.author.name}\n{text}")
+                await ctx.send(f"\n{text}")
         else:
             self.bot.logger.info(f"{command_name} command received from un-privileged user {ctx.author.name} Responding Via PM")
             await ctx.author.send(f"{ctx.author.mention} {text}")
@@ -53,7 +53,7 @@ We hope you enjoy your stay!"""
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update", value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)" , inline=True)
                 embed.add_field(name='Default Password', value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"", inline=True)
-                await ctx.send(f"From: {ctx.author.name}\n{user.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n", embed=embed)
+                await ctx.send(f"\n{user.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n", embed=embed)
             else:
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update",
@@ -194,7 +194,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @account.command()
     async def subscription(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""From: {ctx.author.name}\n{user.mention}, You can access the subscription page via <https://eu.shadow.tech/account/>. > Select the product you want to manage."""
+        text = f"""\n{user.mention}, You can access the subscription page via <https://eu.shadow.tech/account/>. > Select the product you want to manage."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account subscription")
 
     @account.command(aliases=['apps'])
