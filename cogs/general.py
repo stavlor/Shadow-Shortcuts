@@ -8,8 +8,10 @@ class General(commands.Cog):
         self.bot = bot
         bot.general = self
         bot.logger.info("Initialized General Cog")
-### Remove the "From {ctx.author.name} blame the bot" from the text command process.
-    async def text_command_process(self, ctx: commands.Context, user: discord.Member, text: str, command_name: str, suppress_from: bool = False):
+
+    ### Remove the "From {ctx.author.name} blame the bot" from the text command process.
+    async def text_command_process(self, ctx: commands.Context, user: discord.Member, text: str, command_name: str,
+                                   suppress_from: bool = False):
         if await self.bot.admin.can_run_command(ctx.author.roles):
             self.bot.logger.info(f"{command_name} recieved from {ctx.author.name} with argument of {user}")
             if suppress_from and user is not None:
@@ -21,12 +23,13 @@ class General(commands.Cog):
             else:
                 await ctx.send(f"\n{text}")
         else:
-            self.bot.logger.info(f"{command_name} command received from un-privileged user {ctx.author.name} Responding Via PM")
+            self.bot.logger.info(
+                f"{command_name} command received from un-privileged user {ctx.author.name} Responding Via PM")
             await ctx.author.send(f"{ctx.author.mention} {text}")
         await ctx.message.delete()
 
-
-    @commands.command(description="Send instructions on how to get Verified", aliases=['v', 'welcome', 'intro', 'reception'])
+    @commands.command(description="Send instructions on how to get Verified",
+                      aliases=['v', 'welcome', 'intro', 'reception'])
     async def verify(self, ctx, user: typing.Optional[discord.Member] = None):
         """How to get verified command."""
         text = """Welcome to the Shadow-ENG Discord server! We’re happy to have you join us here!
@@ -36,8 +39,8 @@ First things first, to get access to the rest of the server, please react to a r
 We hope you enjoy your stay!"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="verify")
 
-
-    @commands.command(description="L:104 Error Troubleshooting tips.", aliases=['fix104', '104', 'l104', 'errorl104', 'rebootshadow', 'restartshadow', 'sd', 'error104'])
+    @commands.command(description="L:104 Error Troubleshooting tips.",
+                      aliases=['fix104', '104', 'l104', 'errorl104', 'rebootshadow', 'restartshadow', 'sd', 'error104'])
     async def shutdown(self, ctx, user: typing.Optional[discord.Member] = None, min_time_to_wait=2, max_time_to_wait=5):
         text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait {min_time_to_wait}-{max_time_to_wait} minutes and restart your client to resolve your issue http://botrexford.shdw.info/reboot.gif"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shutdown")
@@ -51,9 +54,15 @@ We hope you enjoy your stay!"""
                                                                                               user=user))
             if user is not None:
                 embed = discord.Embed(color=0x3d8023)
-                embed.add_field(name="Ready to go password Update", value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation." , inline=True)
-                embed.add_field(name='Default Password and Workaround', value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)", inline=True)
-                await ctx.send(f"\n{user.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n", embed=embed)
+                embed.add_field(name="Ready to go password Update",
+                                value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation.",
+                                inline=True)
+                embed.add_field(name='Default Password and Workaround',
+                                value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)",
+                                inline=True)
+                await ctx.send(
+                    f"\n{user.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n",
+                    embed=embed)
             else:
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update",
@@ -66,8 +75,9 @@ We hope you enjoy your stay!"""
                     f"From: {ctx.author.name}\nPlease see the following regarding Ready to Go Shadow and Password expiring:\n",
                     embed=embed)
         else:
-            self.bot.logger.info("Password command received from unauthorized user {author.name}, replied via PM. ".format(
-                author=ctx.message.author))
+            self.bot.logger.info(
+                "Password command received from unauthorized user {author.name}, replied via PM. ".format(
+                    author=ctx.message.author))
             embed = discord.Embed(color=0x3d8023)
             embed.add_field(name="Ready to go password Update",
                             value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation.",
@@ -167,16 +177,17 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
 **Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="alpha")
-# Removing the account subcommand and merging it into General
+
+    # Removing the account subcommand and merging it into General
     @commands.command(aliases=['account'])
     async def myaccount(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
-            await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
+        text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
 
     @commands.command(aliases=['security'])
     async def email(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password."""
-            await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
+        text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password."""
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
     @commands.command(aliases=['invoices'])
     async def billing(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -188,19 +199,14 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         text = f"""\n{user.mention}, You can access the subscription page via <https://eu.shadow.tech/account/>. > Select the product you want to manage."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account subscription")
 
-    @commands.command(aliases=['apps'])
-    async def applications(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can get the current official and beta applications from <http://shadow.tech/shadow-apps>.""" ### Need to fix once apps is back on account page (nvm lol)
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
-
     @commands.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Want to earn credit for referring your friends to Shadow? see <https://eu.shadow.tech/account/> in the lower left corner for your referral code. Terms and Conditions: For now it is only possible to refer someone in the same currency as you, and you are limited to 10 referrals per user""" ### Enabled
+        text = f"""Want to earn credit for referring your friends to Shadow? see <https://eu.shadow.tech/account/> in the lower left corner for your referral code. Terms and Conditions: For now it is only possible to refer someone in the same currency as you, and you are limited to 10 referrals per user"""  ### Enabled
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command()
     async def helpdesk(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Check out the Shadow Help Desk here <https://shdw.me/HC-B2C/>""" ### Done
+        text = f"""Check out the Shadow Help Desk here <https://shdw.me/HC-B2C/>"""  ### Done
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command(description="Status command")
@@ -223,8 +229,9 @@ Linux Alpha: https://shdw.me/linuxalpha"""
                 await ctx.message.delete()
         else:
             if await self.bot.admin.can_run_command(ctx.author.roles):
-                self.bot.logger.info("Status command processed for {author.name} with args {user}".format(author=ctx.author,
-                                                                                                 user=user))
+                self.bot.logger.info(
+                    "Status command processed for {author.name} with args {user}".format(author=ctx.author,
+                                                                                         user=user))
                 await ctx.send(
                     "From {author.name}\n{user.mention} Current Shadow network status is {status}. For more info see https://status.shadow.tech".format(
                         author=ctx.author, user=user, status=await self.bot.admin.get_status()))
@@ -232,7 +239,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @commands.command(aliases=['minimums', 'minimalreq', 'requirements', 'reqs'])
     async def minreq(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Give Shadow Minimum requirements""" ### Add min req page
+        """Give Shadow Minimum requirements"""  ### Add min req page
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
         For a full overview of the minumum requirements please see this help center article: <https://shdw.me/HC-B2C-Device_Reqs>
@@ -266,8 +273,9 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         import datetime
         if await self.bot.admin.can_run_command(ctx.author.roles):
             now = datetime.datetime.utcnow().replace(tzinfo=None)
-            delta = (now - ctx.message.created_at.replace(tzinfo=None)).total_seconds()*1000
-            await ctx.send('Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency*1000))
+            delta = (now - ctx.message.created_at.replace(tzinfo=None)).total_seconds() * 1000
+            await ctx.send(
+                'Pong! Server ping {:.3f}ms API ping: {:.3f}ms :ping_pong:'.format(delta, self.bot.latency * 1000))
 
     @commands.command(aliases=['applications', 'application', 'app'])
     async def apps(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -284,7 +292,8 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>
  Stable versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Beta versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#983450525292978186> channel. Feedback on the beta versions should be left in the proper channels."""
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="apps") ### Need to fix after applications downloads are fixed
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text,
+                                                    command_name="apps")  ### Need to fix after applications downloads are fixed
 
     @commands.command(aliases=['official'])
     async def stable(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -300,7 +309,6 @@ Android OS: <https://shdw.me/android>
 Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="stable")
 
-
     @commands.command(aliases=['hotkeys', 'keybinds'])
     async def keys(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Keybinding information"""
@@ -313,16 +321,15 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="keys")
 
-
     @commands.command(aliases=['vralpha', 'vr'])
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Send VR Forum Links""" ### Steal VR macro from Reina, add Hydra link with note saying type code in all caps
+        """Send VR Forum Links"""  ### Steal VR macro from Reina, add Hydra link with note saying type code in all caps
         text = """Download the Shadow VR application from Sidequest at <https://shdw.me/vr_earlyaccess>.
         Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
 
-    @commands.command(aliases=['val','valorant'])
+    @commands.command(aliases=['val', 'valorant'])
     async def _valorant(self, ctx, user: typing.Optional[discord.Member] = None):
         """Valorant Command"""
         self.bot.logger.info(f"Processed valorant command for {ctx.author.name} with parameter {user}.")
@@ -334,7 +341,7 @@ __Games with Issues Identified on Shadow__
 <https://shdw.me/HC-B2C-Known_Issues>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="valorant")
 
-    @commands.command(aliases=['gen','genshin','genshit'])
+    @commands.command(aliases=['gen', 'genshin', 'genshit'])
     async def _genshin(self, ctx, user: typing.Optional[discord.Member] = None):
         """Valorant Command"""
         self.bot.logger.info(f"Processed genshit command for {ctx.author.name} with parameter {user}.")
@@ -358,8 +365,7 @@ Sign in to your account page via https://eu.shadow.tech/account
 Choose how much you want and follow prompts, when adding storage ensure your ***Shadow is OFF***"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="storage")
 
-
-    @commands.command(aliases=['ips','geoip'])
+    @commands.command(aliases=['ips', 'geoip'])
     async def ip(self, ctx, user: typing.Optional[discord.Member] = None):
         """IP/Geoip Information"""
         self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
@@ -456,7 +462,6 @@ Next step is getting Shadow on your local area network (LAN).
 You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation/EN/pdf/Hamachi/LogMeIn_Hamachi_UserGuide.pdf>, **ZeroTier** (Guide) <https://docs.google.com/document/d/1NcVK11lcS8m2G_0fsqMcXvkcdLWdaU2O4Vc_qyJrnng/edit?usp=sharing>, or **TailScale** (Guide) <https://www.reddit.com/r/ShadowPC/comments/pwjtmt/tut_how_to_use_your_external_hard_drive_on_shadow/> """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vh")
 
-
     @commands.command()
     async def usbdk(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send USB Dev Kit Downloads/info"""
@@ -534,7 +539,7 @@ Official: https://shdw.me/windows
 Beta: https://shdw.me/winbeta
 Alpha: Accessible at <#593516344415354880>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="win")
-        
+
     @commands.command(aliases=['windows32'])
     async def win32(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """Access the Windows 32 bit apps at the links below
@@ -576,7 +581,8 @@ Shadowcker (Run Shadow in Docker): <https://gitlab.com/aar642/shadowcker>
 Shadow liveOS (Shadow on a portable drive): <https://gitlab.com/NicolasGuilloux/shadow-live-os>
 Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linux")
-### When I'm drunk add RaspberryPi command
+
+    ### When I'm drunk add RaspberryPi command
     @commands.command(aliases=['pixel'])
     async def android(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """You can download the Android app here: <https://shdw.me/android>
@@ -606,7 +612,8 @@ Your friend,
     @commands.command(aliases=['shaduwu'])
     async def shadowo(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png"""
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shadowo", suppress_from=True)
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shadowo",
+                                                    suppress_from=True)
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -646,7 +653,7 @@ AMD Radeon RX 6700 XT with 12GB GDDR6
 **VRAM:** 24 GB
 **CPU:** Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost
 **RAM:** 32 GB
-**Storage:** 1024 GB (expandable up to 5 TB of additional storage)""" 
+**Storage:** 1024 GB (expandable up to 5 TB of additional storage)"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
@@ -671,7 +678,6 @@ Then within the Xbox Beta app go to Settings > General > Drive Selection. If not
 """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vhdx")
 
-            
     @commands.command(aliases=['sendlogs', 'slogs'])
     async def _sendlogs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """To Send client logs to Shadow Support please see the following: 
