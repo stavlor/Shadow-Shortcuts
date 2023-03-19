@@ -167,49 +167,45 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
 **Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="alpha")
-
-    @commands.group(name="account")
-    async def account(self, ctx):
-        pass
-
-    @account.command(aliases=['account'])
+# Removing the account subcommand and merging it into General
+    @commands.command(aliases=['account'])
     async def myaccount(self, ctx, user: typing.Optional[discord.Member] = None):
             text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
 
-    @account.command(aliases=['raz', 'wipe', 'clear'])
+    @commands.command(aliases=['raz', 'wipe', 'clear'])
     async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
             text = f"""You can reset your shadow via <https://eu.shadow.tech/account/>. > Select the Shadow PC tab > Manage my subscription > Reset my Shadow > Select your reset options."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account reset")
 
-    @account.command()
+    @commands.command(aliases=['security', 'password'])
     async def email(self, ctx, user: typing.Optional[discord.Member] = None):
             text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
-    @account.command()
+    @commands.command(aliases=['invoices'])
     async def billing(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can access the billing page via <https://eu.shadow.tech/account/>. > Select the Account tab."""
+        text = f"""You can access the billing page and look at your invoices via <https://eu.shadow.tech/account/>. > Select the Account tab."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account financial")
 
-    @account.command()
+    @commands.command()
     async def subscription(self, ctx, user: typing.Optional[discord.Member] = None):
         text = f"""\n{user.mention}, You can access the subscription page via <https://eu.shadow.tech/account/>. > Select the product you want to manage."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account subscription")
 
-    @account.command(aliases=['apps'])
+    @commands.command(aliases=['apps'])
     async def applications(self, ctx, user: typing.Optional[discord.Member] = None):
         text = f"""You can get the current official and beta applications from <http://shadow.tech/shadow-apps>.""" ### Need to fix once apps is back on account page (nvm lol)
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
-    @account.command()
+    @commands.command()
     async def refer(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Want to earn credit for referring your friends to Shadow? see <https://eu.shadow.tech/account/> for your referral code.""" ### Enabled
+        text = f"""Want to earn credit for referring your friends to Shadow? see <https://eu.shadow.tech/account/> in the lower left corner for your referral code. Terms and Conditions: For now it is only possible to refer someone in the same currency as you, and you are limited to 10 referrals per user""" ### Enabled
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
-    @account.command(name='support')
-    async def support(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Having an issue with your Shadow? Can't seem to solve the issue here? Ask Support: <https://eu.shadow.tech/account> > Select Support and scroll down to Contact Us.""" ### Done
+    @commands.command()
+    async def helpdesk(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = f"""Check out the Shadow Help Desk here <https://shdw.me/HC-B2C/>""" ### Done
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command(description="Status command")
@@ -375,23 +371,23 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Shadow assigns a local IP address in the country that you purchased in.
  If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://ipv4bot.whatismyipaddress.com/:
             - **Europe**
-                - If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
-                - If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
-                - If your IP begins with **85.190.[67-91]** you are on the Dunkirk (FRDUN02) datacenter
-                - If your IP begins with **185.161.[168-171]** you are on the Dunkirk (FRDUN02) datacenter
-                - If your IP begins with **185.253.[168-169]** you are on the Stratsbourg (FRSBG01) datacenter
-                - If your IP begins with **185.253.[170-171]** you are on the Dunkirk (FRDUN02) datacenter
+            - If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
+            - If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
+            - If your IP begins with **85.190.[67-91]** you are on the Dunkirk (FRDUN02) datacenter
+            - If your IP begins with **185.161.[168-171]** you are on the Dunkirk (FRDUN02) datacenter
+            - If your IP begins with **185.253.[168-169]** you are on the Stratsbourg (FRSBG01) datacenter
+            - If your IP begins with **185.253.[170-171]** you are on the Dunkirk (FRDUN02) datacenter
             - **North America**
-                - If your IP begins with **66.51.[112-115]** you are on the Washington D.C. (USWDC01) datacenter
-                - If your IP begins with **66.51.[116-119]** you are on the Portland (USPOR01) data center
-                - If your IP begins with **69.58.[92-93]** you are on the Montreal (CAMTL01) data center
-                - If your IP begins with **216.180.[128-135]** you are on the Texas (TX1) data center
-                - If your IP begins with **216.180.[136]** you are on the Montreal (CAMTL01) data center
-                - If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
+            - If your IP begins with **66.51.[112-115]** you are on the Washington D.C. (USWDC01) datacenter
+            - If your IP begins with **66.51.[116-119]** you are on the Portland (USPOR01) data center
+            - If your IP begins with **69.58.[92-93]** you are on the Montreal (CAMTL01) data center
+            - If your IP begins with **216.180.[128-135]** you are on the Texas (TX1) data center
+            - If your IP begins with **216.180.[136]** you are on the Montreal (CAMTL01) data center
+            - If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ip")
 
-    @commands.command(aliases=['sup','suppport'])
-    async def _support(self, ctx, user: typing.Optional[discord.Member] = None):
+    @commands.command(aliases=['sup'])
+    async def support(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send details for how to reach support."""
         text = """This is a community-based Discord where other members of the community may be able to assist with your issues in <#1021479747823337522>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
