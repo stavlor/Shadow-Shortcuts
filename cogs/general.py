@@ -51,16 +51,16 @@ We hope you enjoy your stay!"""
                                                                                               user=user))
             if user is not None:
                 embed = discord.Embed(color=0x3d8023)
-                embed.add_field(name="Ready to go password Update", value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)" , inline=True)
-                embed.add_field(name='Default Password', value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"", inline=True)
+                embed.add_field(name="Ready to go password Update", value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation." , inline=True)
+                embed.add_field(name='Default Password and Workaround', value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)", inline=True)
                 await ctx.send(f"\n{user.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n", embed=embed)
             else:
                 embed = discord.Embed(color=0x3d8023)
                 embed.add_field(name="Ready to go password Update",
-                                value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)",
+                                value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation.",
                                 inline=True)
-                embed.add_field(name='Default password',
-                                value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
+                embed.add_field(name='Default password and Workaround',
+                                value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)",
                                 inline=True)
                 await ctx.send(
                     f"From: {ctx.author.name}\nPlease see the following regarding Ready to Go Shadow and Password expiring:\n",
@@ -70,10 +70,10 @@ We hope you enjoy your stay!"""
                 author=ctx.message.author))
             embed = discord.Embed(color=0x3d8023)
             embed.add_field(name="Ready to go password Update",
-                            value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903)",
+                            value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation.",
                             inline=True)
-            embed.add_field(name='Default password',
-                            value="If you encounter issues the default password for your shadow is blank meaning nothing in the password field \"\"",
+            embed.add_field(name='Default password and Workaround',
+                            value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)",
                             inline=True)
             await ctx.author.send(
                 f"{ctx.author.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n",
@@ -120,8 +120,8 @@ We hope you enjoy your stay!"""
           - If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
           - Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
-          - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use Care..
-          - RTX Experience works well and can help with keeping RTX Drivers updated: <https://www.nvidia.com/en-us/design-visualization/software/rtx-experience/>"""
+          - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use Care...
+          - RTX Experience also works well and can help with keeping RTX Drivers updated: <https://www.nvidia.com/en-us/design-visualization/software/rtx-experience/>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="drivers")
 
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
@@ -172,11 +172,6 @@ Linux Alpha: https://shdw.me/linuxalpha"""
     async def myaccount(self, ctx, user: typing.Optional[discord.Member] = None):
             text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
-
-    @commands.command(aliases=['raz', 'wipe', 'clear'])
-    async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
-            text = f"""You can reset your shadow via <https://eu.shadow.tech/account/>. > Select the Shadow PC tab > Manage my subscription > Reset my Shadow > Select your reset options."""
-            await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account reset")
 
     @commands.command(aliases=['security', 'password'])
     async def email(self, ctx, user: typing.Optional[discord.Member] = None):
