@@ -173,7 +173,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
             text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account")
 
-    @commands.command(aliases=['security', 'password'])
+    @commands.command(aliases=['security'])
     async def email(self, ctx, user: typing.Optional[discord.Member] = None):
             text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password."""
             await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
