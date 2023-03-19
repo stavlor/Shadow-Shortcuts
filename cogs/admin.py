@@ -52,7 +52,7 @@ class Admin(commands.Cog):
     @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Code Approvers')
     async def unload(self, ctx, *, module):
         """Unloads a module."""
-        if not await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators']):
+        if not await self.can_run_command(ctx.author.roles, ['Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Code Approvers']):
             await ctx.send("{author} You aren't authorized to do that.".format(author=ctx.author.mention))
             return
         try:
@@ -127,7 +127,7 @@ class Admin(commands.Cog):
         await ctx.message.delete()
 
     @commands.command(aliases=['latency', 'trace', 'tr', 'tracert', 'traceroute', 'traces', 'lg', 'guru'])
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Code Approvers')
     async def _latency(self, ctx, user: typing.Optional[discord.Member] = None):
         text = '''***Running a traceroute to/from Shadow***
 
@@ -338,43 +338,10 @@ but there are comparable commands for other OSes**
             await ctx.message.delete()
             self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
 
-    @commands.command(aliases=['openth', 'startth'])
-    @commands.has_any_role('Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
-    async def begin_town_hall(self, ctx):
-        overwrite = discord.PermissionOverwrite()
-        overwrite.read_messages = True
-        overwrite.send_messages = True
-        if ctx.guild.id != 460948857304383488:
-            await ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
-            return
-        shadowers = ctx.guild.get_role(461298541978058769)
-        channel = ctx.guild.get_channel(543131120355770378)
-        everyone = ctx.guild.default_role
-        await channel.set_permissions(everyone, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
-        await channel.set_permissions(shadowers, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
-        await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
-
-    @commands.command(aliases=['endth', 'closeth'])
-    @commands.has_any_role('Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
-    async def end_town_hall(self, ctx):
-        overwrite = discord.PermissionOverwrite()
-        overwrite.read_messages = True
-        overwrite.send_messages = False
-        if ctx.guild.id != 460948857304383488:
-            await ctx.send(f"{ctx.author.mention} this isn't in the correct guild.")
-            return
-        shadowers = ctx.guild.get_role(461298541978058769)
-        channel = ctx.guild.get_channel(543131120355770378)
-        everyone = ctx.guild.default_role
-        await channel.set_permissions(everyone, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
-        await channel.set_permissions(shadowers, overwrite=overwrite, reason=f'Townhall requested by {ctx.author}')
-        await ctx.send(f"{ctx.author.mention} completed, new permissions should be in effect for {str(channel)}")
-
     @commands.command(aliases=['sayin'])
-    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Code Approvers')
     async def say_in_channel(self, ctx, channel: discord.TextChannel, *,  message: str):
-        await channel.send(message)
-        await ctx.send(f"{ctx.author.mention} Completed")
+        await channel.send(message) # This is the message that will be sent to the channel (Will no longer send COMPLETED when the task is completed)
 
     @commands.command()
     @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators')
