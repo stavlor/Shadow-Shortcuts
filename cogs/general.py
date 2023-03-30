@@ -45,7 +45,7 @@ We hope you enjoy your stay!"""
         text = f"""Please access your help menu :grey_question: then scroll down and hit ***Shutdown Shadow***, then wait {min_time_to_wait}-{max_time_to_wait} minutes and restart your client to resolve your issue http://botrexford.shdw.info/reboot.gif"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shutdown")
 
-    @commands.command(aliases=['expired', 'pass', 'pw'])
+    @commands.command(aliases=['expired', 'pass', 'pw', 'pin'])
     async def password(self, ctx, user: discord.Member = None):
         """Default Password help for Ready-to-Go Shadow Images"""
         if await self.bot.admin.can_run_command(ctx.author.roles):
@@ -54,39 +54,39 @@ We hope you enjoy your stay!"""
                                                                                               user=user))
             if user is not None:
                 embed = discord.Embed(color=0x3d8023)
-                embed.add_field(name="Ready to go password Update",
-                                value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation.",
+                embed.add_field(name="Ready to go password Expired, Default Password and Workaround",
+                                value="If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.",
                                 inline=True)
-                embed.add_field(name='Default Password and Workaround',
-                                value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)",
+                embed.add_field(name='Custom setup - PIN Code - Just a moment... screen',
+                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
                                 inline=True)
                 await ctx.send(
-                    f"\n{user.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n",
+                    f"\n{user.mention} Please see the following regarding Passwords and PINs:\n",
                     embed=embed)
             else:
                 embed = discord.Embed(color=0x3d8023)
-                embed.add_field(name="Ready to go password Update",
-                                value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation.",
+                embed.add_field(name="Ready to go password Expired, Default Password and Workaround",
+                                value="If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.",
                                 inline=True)
-                embed.add_field(name='Default password and Workaround',
-                                value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)",
+                embed.add_field(name='Custom setup - PIN Code - Just a moment... screen',
+                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
                                 inline=True)
                 await ctx.send(
-                    f"From: {ctx.author.name}\nPlease see the following regarding Ready to Go Shadow and Password expiring:\n",
+                    f"From: {ctx.author.name}\nPlease see the following regarding Passwords and PINs:\n",
                     embed=embed)
         else:
             self.bot.logger.info(
                 "Password command received from unauthorized user {author.name}, replied via PM. ".format(
                     author=ctx.message.author))
             embed = discord.Embed(color=0x3d8023)
-            embed.add_field(name="Ready to go password Update",
-                            value="If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation.",
-                            inline=True)
-            embed.add_field(name='Default password and Workaround',
-                            value="If you encounter issues the leave the \"\Old password\"\ field empty or blank \"\", you'll be able to specify a new password or you can leave it blank. (Some users have reported Windows now longer lets you leave the password blank)",
-                            inline=True)
+            embed.add_field(name="Ready to go password Expired, Default Password and Workaround",
+                                value="If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.",
+                                inline=True)
+            embed.add_field(name='Custom setup - PIN Code - Just a moment... screen',
+                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
+                                inline=True)
             await ctx.author.send(
-                f"{ctx.author.mention} please see the following regarding Ready to Go Shadow and Password expiring:\n",
+                f"{ctx.author.mention} Please see the following regarding Passwords and PINs:\n",
                 embed=embed)
         await ctx.message.delete()
 
@@ -113,25 +113,23 @@ We hope you enjoy your stay!"""
         text = """__Terms of Use__
 - See the official Terms of Use here: <https://shadow.tech/terms-of-use>
 - For a simple breakdown of what's not allowed on shadow, see here: <https://shdw.me/HC-B2C-Rules>
- **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating."""
+ **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating.
+ If you have a business plan, please contact your business account manager if you have a use case beyond the Rules and Restrictions or Terms of Use."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
 
     @commands.command(aliases=['nvidiadrivers', 'drovers'])
     async def drivers(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send current NVidia Drivers Info."""
-        text = """**Current Nvidia For Quadro Family Devices** (Shadow, Shadow Ultra and Shadow Infinite.)
-                    
-          - Stable Drivers (ODE)  (**Recommended**): <https://www.nvidia.com/Download/driverResults.aspx/184785/en-us>
-          - Beta Drivers (QNF) (**Not always current**): <https://www.nvidia.com/Download/driverResults.aspx/182231/en-us>
-          - GTX 1080 (GRD) (**For 1080 cards only**): <https://www.nvidia.com/Download/driverResults.aspx/185108/en-us>
-          - GTX 1080 (Studio) (**Only if the GRD driver does not work**): <https://www.nvidia.com/Download/driverResults.aspx/184781/en-us>
+        text = """**Current Nvidia RTX Quadro Family Devices** (Shadow PC, Shadow Ultra, and Shadow Infinite)
+          - RTX Experience is recommended to keep your drivers up to date: <https://www.nvidia.com/en-us/design-visualization/software/rtx-experience/>          
 
         **Notes:**
+          - Game Optimzation is not supported on the following Shadow plans (Shadow PC w/ Power Upgrade, Zenith, Zenith for Makers, Zenith for Enterprise)
           - If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
           - Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
           - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
-          - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use Care...
-          - RTX Experience also works well and can help with keeping RTX Drivers updated: <https://www.nvidia.com/en-us/design-visualization/software/rtx-experience/>"""
+          - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use with care...
+          """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="drivers")
 
     @commands.command(aliases=['purchaseghost', 'buyghost', 'ghostinfo', 'ghostmanual'])
@@ -178,7 +176,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 **Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="alpha")
 
-    # Removing the account subcommand and merging it into General
+    ### Removing the account subcommand and merging it into General
     @commands.command(aliases=['account'])
     async def myaccount(self, ctx, user: typing.Optional[discord.Member] = None):
         text = f"""You can access your account page via <https://eu.shadow.tech/account/>."""
@@ -206,7 +204,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @commands.command()
     async def helpdesk(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""Check out the Shadow Help Desk here <https://shdw.me/HC-B2C/>"""  ### Done
+        text = f"""Check out the Shadow Help Desk here <https://shdw.me/HC-B2C/>"""  ### This link is dynamically changing should Shadow change their helpcenters
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account apps")
 
     @commands.command(description="Status command")
@@ -239,7 +237,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @commands.command(aliases=['minimums', 'minimalreq', 'requirements', 'reqs'])
     async def minreq(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Give Shadow Minimum requirements"""  ### Add min req page
+        """Give Shadow Minimum requirements"""  
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
         For a full overview of the minumum requirements please see this help center article: <https://shdw.me/HC-B2C-Device_Reqs>
@@ -293,7 +291,7 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>
  Beta versions include: Windows 32/64 bit, macOS Intel/Silicon, Android, iOS, Linux
  Each version has a designated channel in Discord. To view these channels, you will need to select the proper role from the <#983450525292978186> channel. Feedback on the beta versions should be left in the proper channels."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text,
-                                                    command_name="apps")  ### Need to fix after applications downloads are fixed
+                                                    command_name="apps")  
 
     @commands.command(aliases=['official'])
     async def stable(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -323,9 +321,10 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
 
     @commands.command(aliases=['vralpha', 'vr'])
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Send VR Forum Links"""  ### Steal VR macro from Reina, add Hydra link with note saying type code in all caps
-        text = """Download the Shadow VR application from Sidequest at <https://shdw.me/vr_earlyaccess>.
-        Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>
+        """Send VR Forum Links"""  ### Add VR Help Center guide
+        text = """Download the Shadow VR application from SideQuest at <https://shdw.me/vr_earlyaccess>.
+        Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>, 
+        Note: If the link for login is <https://shadow.tech/connect> it is an old link and you should update your Shadow VR application from SideQuest.
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
 
@@ -370,7 +369,7 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """IP/Geoip Information"""
         self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Shadow assigns a local IP address in the country that you purchased in.
- If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://ipv4bot.whatismyipaddress.com/:
+ If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://eth0.me/:
             - **Europe**
             - If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
             - If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
@@ -428,8 +427,9 @@ You can join the iOS app beta here: <https://shdw.me/iosbeta_uk>"""
 
     @commands.command(aliases=['dct', 'datacentertour'])
     async def dctour(self, ctx, user: typing.Optional[discord.Member] = None):
-        """AMS1 Datacenter Tour"""
-        text = """Check Out a tour of one of our datacenters found here: https://youtu.be/0BQ4bXNdEQI?t=157"""
+        """SV2 Datacenter Tour"""
+        text = """ See the video where Linus visited the Santa Clara Equinix datacenter tour at: https://youtu.be/0BQ4bXNdEQI?t=157
+        See the video where Luke visited OVHCloud datacenters and factory tour at: https://youtu.be/RFzirpvTiOo?t=374"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="dctour")
 
     @commands.command(aliases=['hstats', 'statspage', 'sscp', 'scps', 'qm', 'quickmenu'])
@@ -573,16 +573,17 @@ __Known Issues with Linux Application__
 View these helpful sources if you are having issues installing Shadow on Linux
 <https://shdw.me/HC-B2C-Known_Issues>
 <https://gitlab.com/aar642/shadow-repackaged>
+<https://shadow-codex.com/shadow-linux-known-issues/>
 <https://nicolasguilloux.github.io/blade-shadow-beta/setup>
 
 __Other Resources__
-Other resources and applications to help you with your Shadow journey
+Other resources and applications to help you with your Shadow journey (Some of these projects may be unsupport or deprecated by the owner)
 Shadowcker (Run Shadow in Docker): <https://gitlab.com/aar642/shadowcker>
 Shadow liveOS (Shadow on a portable drive): <https://gitlab.com/NicolasGuilloux/shadow-live-os>
 Shadow Shades (Linux Support Server): <https://discord.gg/9HwHnHq>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="linux")
 
-    ### When I'm drunk add RaspberryPi command
+    ### When I'm drunk add RaspberryPi command ### I really need to do this ### NEEDS UPDATE
     @commands.command(aliases=['pixel'])
     async def android(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """You can download the Android app here: <https://shdw.me/android>
@@ -606,12 +607,18 @@ Contribute to Bot Rexford by submitting your ideas and bugs here! <https://githu
 
 Sincerely,
 Your friend,
-{ctx.author.mention}"""
+Shadow Bot"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="copypasta")
 
-    @commands.command(aliases=['shaduwu'])
-    async def shadowo(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """https://cdn.discordapp.com/attachments/550519535606956032/739318032022634566/shadowo_wallpaper.png"""
+    @commands.command(aliases=['gpuschedule', 'gpusched', 'gpuscheds')
+    async def gpuschedules(self, ctx, user: typing.Optional[discord.Member] = None):
+        text = """**Disable Hardware Accelerated GPU Scheduling**
+        1. Go to Settings (Windows Key + I)
+        2. Click on System
+        3. Click on Display
+        4. Click on Graphics Settings (If you do not have this setting, then your graphics card does not support hardware acceleration.)
+        5. Click on "Change Default Graphics Settings"
+        6. Toggle Off "Hardware Accelerated GPU Scheduling" (If you do not have this setting, then your graphics card does not support hardware acceleration.)"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="shadowo",
                                                     suppress_from=True)
 
@@ -621,39 +628,52 @@ Your friend,
 **GPUs:** 
 NVIDIA Quadro P5000 with 16GB GDDR5X
 NVIDIA GeForce GTX 1080 with 8GB GDDR5X
-NVIDIA Quadro RTX 4000 with 8GB GDDR6 
+NVIDIA Quadro RTX 4000 with 8GB GDDR6 (TX1/DEFRA01 only)
 
-**CPUs:** 
+**CPUs:**
 Intel Xeon E5-2678 v3 4 cores 8 threads at 2.5 GHz with 3.1 GHz Turbo Boost
 Intel Xeon E5-2667 v3 4 cores 8 threads at 3.2 GHz with 3.6 GHz Turbo Boost
 AMD EPYC 7513 4 cores 8 threads at 2.6 GHz with 3.65 GHz Max Boost Clock
 
-**RAM:** 12 GB
-**Storage:** 256 GB (expandable up to 5 TB of additional storage)
+**RAM  & Storage:**
+RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
 
-***__Shadow w/ Power Upgrade__***
-**GPUs:** 
+***__Shadow w/ Power Upgrade (Zenith)__***
+**GPUs:**
 NVIDIA RTX A4500 with 16GB GDDR6 
 AMD Radeon RX 6700 XT with 12GB GDDR6
 *Early Access Only*: NVIDIA RTX A4000 with 16GB GDDR6  (FRDUN02 only)
 
-**CPU:** AMD EPYC 7543P 4 cores 8 threads at 2.8 GHz with 3.7 GHz Max Boost Clock
-**RAM:** 16 GB
-**Storage:** 256 GB (expandable up to 5 TB of additional storage)
+**CPU:**
+AMD EPYC 7543P 4 cores 8 threads at 2.8 GHz with 3.7 GHz Max Boost Clock
 
-***___Shadow Ultra (Aurora)___***
+**RAM  & Storage:**
+RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
+
+***___Shadow Ultra (Aurora)___*** EU Only
 **GPU:** NVIDIA Quadro RTX 5000 with 16GB GDDR6 
 **VRAM:** 16 GB
-**CPU:** Intel Xeon W-3235 Processor 3.3 GHz 4 cores 8 threads at 3.3 GHz with 4 GHz Turbo Boost
-**RAM:** 16 GB
-**Storage:** 512 GB (expandable up to 5 TB of additional storage)
 
-***___Shadow Infinite (Lightning)___***
+**CPU:**
+Intel Xeon W-3235 Processor 3.3 GHz 4 cores 8 threads at 3.3 GHz with 4 GHz Turbo Boost
+
+**RAM  & Storage:**
+RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
+
+***___Shadow Infinite (Lightning)___*** EU Only
 **GPU:** NVIDIA Quadro RTX 6000 with 24GB GDDR6 
 **VRAM:** 24 GB
-**CPU:** Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost
-**RAM:** 32 GB
-**Storage:** 1024 GB (expandable up to 5 TB of additional storage)"""
+
+**CPU:** 
+Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost
+
+**RAM  & Storage:**
+RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
+
+__Plan Information__
+Shadow PC: <https://shadow.tech/en-gb/specs>
+Shadow for Makers: <https://shadow.tech/en-gb/shadow-for-makers/offers>
+Shadow for Enterprise: <https://shadow.tech/en-gb/business/offers>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
@@ -678,7 +698,7 @@ Then within the Xbox Beta app go to Settings > General > Drive Selection. If not
 """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vhdx")
 
-    @commands.command(aliases=['sendlogs', 'slogs'])
+    @commands.command(aliases=['sendlogs', 'slogs']) ### NEEDS UPDATE
     async def _sendlogs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """To Send client logs to Shadow Support please see the following: 
         https://botrexford.shdw.info/Send_Logs.png"""

@@ -149,21 +149,17 @@ class Events(commands.Cog):
                                                              trigger="shadow apples")
         elif "drive" in message.content.lower() and ("slow" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message="{ctx.author.mention} If you are currently experiencing issues with your storage post migration, please put in a support ticket from your account page. <https://sso.shadow.tech/>. Please also consult the Shadow Status Page for more information on the issue. <https://status.shadow.tech/pages/incident/5bbcb1b0b0936904c004bbeb/62602c566336fb04d61cfa4e/>",
+                                                             message="{ctx.author.mention} If you are currently experiencing issues with your storage post migration, please put in a support ticket from your account page. <https://eu.shadow.tech/account>. Please also consult the Shadow Status Page for more information on the issue. <https://status.shadow.tech/>",
                                                              trigger="drive")
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
-If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903) - 
-
-If you have any issues updating the default password is blank “” if your password is expired.""",
+If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.""",
                                                              trigger="password expired")
         elif "expired password" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
-            If you used the Ready-To-Go setting when setting up your account, any version prior to Windows 10 1903 has an expired password notice approximately 1-3 months after activation. This bug has been fixed by Windows. To fix, simply update to the latest Windows version. (1903) - 
-
-            If you have any issues updating the default password is blank “” if your password is expired.""",
+            If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.""",
                                                              trigger="password expired")
         elif "waiting for video" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
@@ -196,6 +192,7 @@ Check here for the current list of Shadow issues: <https://help.shadow.tech/hc/e
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
+            await message.add_reaction("🍰")
         elif "bad bot" in message.content.lower():
             await message.add_reaction("😢")
             await message.add_reaction("🖕🏼")
