@@ -115,6 +115,11 @@ class Events(commands.Cog):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
                 await message.channel.send(
                     f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
+        elif ("help.shadow.tech" in message.content.lower()):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""" :information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow Help Center, which is no longer in use and may have outdated articles/content. Please use <https://support.shadow.tech/> for the most up to date information.""",
+                                                             trigger="help.shadow.tech")
         elif ("roblox" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} 
