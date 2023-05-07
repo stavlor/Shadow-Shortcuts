@@ -115,10 +115,15 @@ class Events(commands.Cog):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
                 await message.channel.send(
                     f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
+        elif ("roblox" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f"{message.author.mention} 
+Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information.",
+                                                             trigger="roblox")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
-                                                             trigger="L-104")
+                                                             trigger="L:104")
         elif ("L 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
@@ -154,12 +159,12 @@ class Events(commands.Cog):
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
-If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.""",
+If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave all three fields blank.""",
                                                              trigger="password expired")
         elif "expired password" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
-            If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.""",
+            If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave all three fields blank.""",
                                                              trigger="password expired")
         elif "waiting for video" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
@@ -182,9 +187,10 @@ If you used the Ready-To-Go setting when setting up your account, you may have a
                                                              message="{ctx.author.mention} Halo Infinite is currently not playable on Shadow due to detection of virtual machines. This issue is being worked on by Shadow. For more information, see: https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow",
                                                              trigger="halo infinite crash")
         elif "valorant" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
-
-Check here for the current list of Shadow issues: <https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow>""")
+            await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention}  __Games with Issues Identified on Shadow__
+Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
+If you installed Valorant or Vanguard will need to uninstall these applications or reset your Shadow.
+Check here for the current list of Shadow issues: <https://shdw.me/HC-B2C-Known_Issues>""")
         elif "genshin" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Shadow is aware of this concern. The Shadow team has contacted Genshin Impact's developers about this issue. For now, it is considered incompatible.
 
