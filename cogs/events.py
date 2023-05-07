@@ -117,8 +117,8 @@ class Events(commands.Cog):
                     f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
         elif ("roblox" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f"{message.author.mention} 
-Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information.",
+                                                             message=f"""{message.author.mention} 
+Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information.""",
                                                              trigger="roblox")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
