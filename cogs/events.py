@@ -117,13 +117,27 @@ class Events(commands.Cog):
                     f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
         elif ("help.shadow.tech" in message.content.lower()):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f""" :information_source: Heads Up! {message.author.mention} 
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
 It looks like you've posted a link to the old Shadow Help Center, which is no longer in use and may have outdated articles/content. Please use <https://support.shadow.tech/> for the most up to date information.""",
                                                              trigger="help.shadow.tech")
+        elif ("shadow.tech/connect" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow VR Login, which is no longer in use. Please check that your ShadowVR version is above 3.16.7 and your VR headset is up to date and use the new ShadowVR login""",
+                                                             trigger="shadow.tech/connect")
+        elif ("sso.shadow.tech" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow Account Login, which is no longer in use. Please use eu.shadow.tech/account instead""",
+                                                             trigger="sso.shadow.tech")
+        elif ("account.shadow.tech" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow Account Login, which is no longer in use. Please use eu.shadow.tech/account instead""",
+                                                             trigger="account.shadow.tech")
         elif ("roblox" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f"{message.author.mention} 
-Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information.",
+                                                             message=f"{message.author.mention} Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information.",
                                                              trigger="roblox")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,

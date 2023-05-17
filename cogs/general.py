@@ -91,7 +91,7 @@ We hope you enjoy your stay!"""
         await ctx.message.delete()
 
     @commands.command(description="L203 Forum Page", aliases=['l203'])
-    async def l203forum(self, ctx, user: typing.Optional[discord.Member] = None):
+    async def queue(self, ctx, user: typing.Optional[discord.Member] = None):
         text = "For additional information on Error L:203 Please see the following forum article: https://shdw.me/HC-B2C-L203"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="l203forum")
 
@@ -104,16 +104,30 @@ We hope you enjoy your stay!"""
     @commands.command(description="Speedtest-Links")
     async def speedtest(self, ctx, user: typing.Optional[discord.Member] = None):
         """Speedtest Links"""
-        text = """For Shadows Official Speedtest please see here: <https://shadow.tech/requirements/internet-speed-test>"""
+        text = """For Shadows Official Speedtest please see here (Select your closest data center) <https://shdw.me/HC-B2C-Connection>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="speedtest")
 
     @commands.command(aliases=['terms', 'tou'])
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Terms of Service information"""
         text = """__Terms of Use__
-- See the official Terms of Use here: <https://shadow.tech/terms-of-use>
+- See the official Terms of Use based on your region and account type: 
+
+US Consumers: https://statics.shadow.tech/terms-of-use/tc-US-b2c.pdf
+US Businesses: https://statics.shadow.tech/terms-of-use/tc-US-b2b.pdf
+Canada Consumers: https://statics.shadow.tech/terms-of-use/tc-CA-b2c.pdf (English and French Versions Available)
+Canada Businesses: https://statics.shadow.tech/terms-of-use/tc-CA-b2b.pdf (English and French Versions Available)
+GB Consumers: https://statics.shadow.tech/terms-of-use/tc-GB-b2c.pdf
+GB Businesses: https://statics.shadow.tech/terms-of-use/tc-GB-b2b.pdf
+
+__Privacy Policy__
+- See Shadow's privacy policy here: https://shadow.tech/privacy-policy
+
+__Rules and Restrictions__
 - For a simple breakdown of what's not allowed on shadow, see here: <https://shdw.me/HC-B2C-Rules>
- **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating.
+ **Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating.
+
+__Additional Information__
  If you have a business plan, please contact your business account manager if you have a use case beyond the Rules and Restrictions or Terms of Use."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
 
@@ -184,7 +198,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @commands.command(aliases=['security'])
     async def email(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password."""
+        text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password. From there you'll be able to enable 2FA, and change your email or password."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
     @commands.command(aliases=['invoices'])
@@ -324,7 +338,7 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         """Send VR Forum Links"""  ### Add VR Help Center guide
         text = """Download the Shadow VR application from SideQuest at <https://shdw.me/vr_earlyaccess>.
         Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>, 
-        Note: If the link for login is <https://shadow.tech/connect> it is an old link and you should update your Shadow VR application from SideQuest.
+        Note: If the link for login is <https://shadow.tech/connect> you have an old version and you should Shadow VR application from SideQuest to at least version **s3.16.7**.
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
 
