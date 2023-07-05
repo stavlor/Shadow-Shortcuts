@@ -335,12 +335,12 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
 
     @commands.command(aliases=['vralpha', 'vr'])
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Send VR Forum Links"""  ### Add VR Help Center guide
+        """Send VR  Links"""  ### Add VR Help Center guide
         text = """Download the Shadow VR application from SideQuest at <https://shdw.me/vr_earlyaccess>.
         Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>, 
         Note: If the link for login is <https://shadow.tech/connect> you have an old version and you should Shadow VR application from SideQuest to at least version **s3.16.7**.
         """
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vrforum")
 
     @commands.command(aliases=['val', 'valorant'])
     async def _valorant(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -356,7 +356,7 @@ __Games with Issues Identified on Shadow__
 
     @commands.command(aliases=['gen', 'genshin', 'genshit'])
     async def _genshin(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Valorant Command"""
+        """Genshin Command"""
         self.bot.logger.info(f"Processed genshit command for {ctx.author.name} with parameter {user}.")
         text = """Shadow is aware of this concern. The Shadow team has contacted Genshin Impact's developers about this issue. For now, it is considered incompatible.
 
@@ -639,6 +639,7 @@ Shadow Bot"""
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """***___Shadow (Spark)___***
+***___Shadow PC Standard___***
 **GPUs:** 
 NVIDIA Quadro P5000 with 16GB GDDR5X
 NVIDIA GeForce GTX 1080 with 8GB GDDR5X
@@ -649,9 +650,6 @@ Intel Xeon E5-2678 v3 4 cores 8 threads at 2.5 GHz with 3.1 GHz Turbo Boost
 Intel Xeon E5-2667 v3 4 cores 8 threads at 3.2 GHz with 3.6 GHz Turbo Boost
 AMD EPYC 7513 4 cores 8 threads at 2.6 GHz with 3.65 GHz Max Boost Clock
 
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
 ***__Shadow w/ Power Upgrade (Zenith)__***
 **GPUs:**
 NVIDIA RTX A4500 with 16GB GDDR6 
@@ -661,33 +659,19 @@ AMD Radeon RX 6700 XT with 12GB GDDR6
 **CPU:**
 AMD EPYC 7543P 4 cores 8 threads at 2.8 GHz with 3.7 GHz Max Boost Clock
 
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
 ***___Shadow Ultra (Aurora)___*** EU Only
 **GPU:** NVIDIA Quadro RTX 5000 with 16GB GDDR6 
-**VRAM:** 16 GB
 
 **CPU:**
 Intel Xeon W-3235 Processor 3.3 GHz 4 cores 8 threads at 3.3 GHz with 4 GHz Turbo Boost
 
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
 ***___Shadow Infinite (Lightning)___*** EU Only
 **GPU:** NVIDIA Quadro RTX 6000 with 24GB GDDR6 
-**VRAM:** 24 GB
 
 **CPU:** 
 Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost
 
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
 __Plan Information__
-Shadow PC: <https://shadow.tech/en-gb/specs>
-Shadow for Makers: <https://shadow.tech/en-gb/shadow-for-makers/offers>
-Shadow for Enterprise: <https://shadow.tech/en-gb/business/offers>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
