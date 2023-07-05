@@ -72,7 +72,7 @@ We hope you enjoy your stay!"""
                                 value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
                                 inline=True)
                 await ctx.send(
-                    f"From: {ctx.author.name}\nPlease see the following regarding Passwords and PINs:\n",
+                    f"\nPlease see the following regarding Passwords and PINs:\n",
                     embed=embed)
         else:
             self.bot.logger.info(
@@ -138,11 +138,11 @@ __Additional Information__
           - RTX Experience is recommended to keep your drivers up to date: <https://www.nvidia.com/en-us/design-visualization/software/rtx-experience/>          
 
         **Notes:**
-          - Game Optimzation is not supported on the following Shadow plans (Shadow PC w/ Power Upgrade, Zenith, Zenith for Makers, Zenith for Enterprise)
-          - If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
-          - Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
-          - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
-          - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use with care...
+        Game Optimzation is not supported on the following Shadow plans (Shadow PC w/ Power Upgrade, Zenith, Zenith for Makers, Zenith for Enterprise)
+        If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
+        Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
+        If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
+        Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use with care...
           """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="drivers")
 
@@ -156,7 +156,7 @@ __Additional Information__
     @commands.command(aliases=['raz', 'wipe', 'clear'])
     async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
         """Reset Shadow Information"""
-        text = """You can reset your shadow via <https://eu.shadow.tech/account/>, on the Shadow PC tab > "Manage my subscription" *Note:* This doesn't clear additional storage and your Shadow PC should be shutdown before resetting."""
+        text = """You can reset your shadow via <https://eu.shadow.tech/account/>, on the Shadow PC tab > Click the 3 dots then "Reset Shadow PC" *Note:* This doesn't clear additional storage and your Shadow PC should be shutdown before resetting."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="reset")
 
     @commands.command()
@@ -254,29 +254,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         """Give Shadow Minimum requirements"""  
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
-        For a full overview of the minumum requirements please see this help center article: <https://shdw.me/HC-B2C-Device_Reqs>
-        **Windows**
-            - OS: Windows 10 or Windows 8.1 (Older versions are not supported)
-            - CPU: 
-                - Intel Sandy Bridge range (2011), Core™ i7 / i5 / i3, Pentium™, Celeron™, Xeon 1.60 GHz
-                - AMD AM2+ range (2008), Athlon™, Sempron™, Phenom™, Opteron™
-            - RAM: 2 GB
-            - Additional Software: DirectX 9c or higher
-
-        **Mac**
-        - OS: OS X 10.12.2 Sierra or higher
-        - CPU x86-64 (Intel Core 2 Duo processor, Intel Core i3 / i5 / i7, or Xeon) or ARM M1
-        - Firmware System EFI 64-bit
-        - RAM: 2 GB
-        - Hard Drive Space: 8GB
-
-        **Linux**
-        - Ubuntu: Bionic Beaver (18.04), Eoan Ermine (19.10)
-        - CPU: 
-            - Intel Sandy Bridge range (2011), Core™ i7 / i5 / i3, Pentium™, Celeron™, Xeon 1.60 GHz
-            - AMD AM2+ range (2008), Athlon™, Sempron™, Phenom™, Opteron™
-        RAM: 2 GB
-        Required additional software libva-glx2"""
+        For a full overview of the minumum requirements please see this help center article: <https://shdw.me/HC-B2C-Device_Reqs>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="minreq")
 
     @commands.command()
@@ -326,11 +304,12 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         """Send Keybinding information"""
         self.bot.logger.info(f"Processed keys command for {ctx.author.name} with parameter {user}.")
         text = """:keyboard: Keybinds
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode (Locked/Unlocked) (Locked is suggested for gaming)
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming"""
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode (Locked/Unlocked) (Locked is suggested for gaming)
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **I** = Open Debugger"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="keys")
 
     @commands.command(aliases=['vralpha', 'vr'])
@@ -638,8 +617,12 @@ Shadow Bot"""
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """
-**Note about RAM  & Storage:**
+        text = """__Plan Information__
+Shadow PC Gaming: <https://shadow.tech/en-gb/specs>
+Shadow PC Pro: <https://shadow.tech/en-gb/shadow-for-makers/offers>
+Shadow PC Enterprise: <https://shadow.tech/en-gb/business/offers>
+
+*Note about RAM  & Storage:*
 RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
 
 ***___Shadow PC Standard___***
@@ -653,7 +636,7 @@ Intel Xeon E5-2678 v3 4 cores 8 threads at 2.5 GHz with 3.1 GHz Turbo Boost
 Intel Xeon E5-2667 v3 4 cores 8 threads at 3.2 GHz with 3.6 GHz Turbo Boost
 AMD EPYC 7513 4 cores 8 threads at 2.6 GHz with 3.65 GHz Max Boost Clock
 
-***__Shadow w/ Power Upgrade (Zenith)__***
+***__Shadow PC Extended__***
 **GPUs:**
 NVIDIA RTX A4500 with 16GB GDDR6 
 AMD Radeon RX 6700 XT with 12GB GDDR6
@@ -662,19 +645,17 @@ AMD Radeon RX 6700 XT with 12GB GDDR6
 **CPU:**
 AMD EPYC 7543P 4 cores 8 threads at 2.8 GHz with 3.7 GHz Max Boost Clock
 
-***___Shadow Ultra (Aurora)___*** EU Only
+***___Shadow PC Advanced___*** EU Only
 **GPU:** NVIDIA Quadro RTX 5000 with 16GB GDDR6 
 
 **CPU:**
 Intel Xeon W-3235 Processor 3.3 GHz 4 cores 8 threads at 3.3 GHz with 4 GHz Turbo Boost
 
-***___Shadow Infinite (Lightning)___*** EU Only
+***___Shadow PC Expert___*** EU Only
 **GPU:** NVIDIA Quadro RTX 6000 with 24GB GDDR6 
 
 **CPU:** 
-Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost
-
-__Plan Information__
+Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
