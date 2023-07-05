@@ -46,8 +46,7 @@ class Events(commands.Cog):
         tz = get_localzone()
         curtime = datetime.now()
         await self.bot.database.update_leaver_roles(member)
-        log_chan1 = await self.bot.fetch_channel(462170485787066368)
-        log_chan2 = await self.bot.fetch_channel(464371559214219264)
+        log_chan1 = await self.bot.fetch_channel(464371559214219264)
         embed = discord.Embed(title=f"Member left: {member}")
         embed.add_field(name="Discord ID:", value=f"{member.id}")
         roles = list()
@@ -75,7 +74,6 @@ class Events(commands.Cog):
         embed.add_field(name="Roles Recorded:", value=f"{applied_roles}", inline=False)
         embed.set_footer(text=f"Processed at: {curtime.isoformat()} {tz}")
         await log_chan1.send(embed=embed)
-        await log_chan2.send(embed=embed)
 
 
 
