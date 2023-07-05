@@ -638,7 +638,10 @@ Shadow Bot"""
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """***___Shadow (Spark)___***
+        text = """
+**Note about RAM  & Storage:**
+RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
+
 ***___Shadow PC Standard___***
 **GPUs:** 
 NVIDIA Quadro P5000 with 16GB GDDR5X
