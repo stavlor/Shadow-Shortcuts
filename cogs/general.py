@@ -363,20 +363,20 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Shadow assigns a local IP address in the country that you purchased in.
  If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://eth0.me/:
-            - **Europe**
-            - If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
-            - If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
-            - If your IP begins with **85.190.[67-91]** you are on the Dunkirk (FRDUN02) datacenter
-            - If your IP begins with **185.161.[168-171]** you are on the Dunkirk (FRDUN02) datacenter
-            - If your IP begins with **185.253.[168-169]** you are on the Stratsbourg (FRSBG01) datacenter
-            - If your IP begins with **185.253.[170-171]** you are on the Dunkirk (FRDUN02) datacenter
-            - **North America**
-            - If your IP begins with **66.51.[112-115]** you are on the Washington D.C. (USWDC01) datacenter
-            - If your IP begins with **66.51.[116-119]** you are on the Portland (USPOR01) data center
-            - If your IP begins with **69.58.[92-93]** you are on the Montreal (CAMTL01) data center
-            - If your IP begins with **216.180.[128-135]** you are on the Texas (TX1) data center
-            - If your IP begins with **216.180.[136]** you are on the Montreal (CAMTL01) data center
-            - If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
+            **Europe**
+            If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
+            If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
+            If your IP begins with **85.190.[67-91]** you are on the Dunkirk (FRDUN02) datacenter
+            If your IP begins with **185.161.[168-171]** you are on the Dunkirk (FRDUN02) datacenter
+            If your IP begins with **185.253.[168-169]** you are on the Stratsbourg (FRSBG01) datacenter
+            If your IP begins with **185.253.[170-171]** you are on the Dunkirk (FRDUN02) datacenter
+            **North America**
+            If your IP begins with **66.51.[112-115]** you are on the Washington D.C. (USWDC01) datacenter
+            If your IP begins with **66.51.[116-119]** you are on the Portland (USPOR01) data center
+            If your IP begins with **69.58.[92-93]** you are on the Montreal (CAMTL01) data center
+            If your IP begins with **216.180.[128-135]** you are on the Texas (TX1) data center
+            If your IP begins with **216.180.[136]** you are on the Montreal (CAMTL01) data center
+            If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ip")
 
     @commands.command(aliases=['sup'])
@@ -384,8 +384,8 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """Send details for how to reach support."""
         text = """This is a community-based Discord where other members of the community may be able to assist with your issues in <#1021479747823337522>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
-  - From your account page, click Support: https://eu.shadow.tech/account/
-  - If you are unable to access your account page, use the Help Desk: <https://shdw.me/HC-B2C-Support_Form>"""
+  From your account page, click Support: https://eu.shadow.tech/account/
+  If you are unable to access your account page, use the Help Desk: <https://shdw.me/HC-B2C-Support_Form>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
@@ -460,8 +460,8 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         """Send USB Dev Kit Downloads/info"""
         text = """USB Development Kit Drivers are needed for proper functioning of USB over IP on Windows
         Normally the Shadow client will install these drivers however sometimes this install fails you can manually download and install them from here
-         - **Windows 32bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x86.msi
-         - **Windows 64bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x64.msi
+         **Windows 32bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x86.msi
+         **Windows 64bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x64.msi
         Once installed reboot your local system and USB over IP should function normally, ***___Note Install these on your local PC not your shadow.___***"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="usbdk")
 
