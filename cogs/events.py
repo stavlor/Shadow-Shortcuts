@@ -46,8 +46,7 @@ class Events(commands.Cog):
         tz = get_localzone()
         curtime = datetime.now()
         await self.bot.database.update_leaver_roles(member)
-        log_chan1 = await self.bot.fetch_channel(462170485787066368)
-        log_chan2 = await self.bot.fetch_channel(464371559214219264)
+        log_chan1 = await self.bot.fetch_channel(464371559214219264)
         embed = discord.Embed(title=f"Member left: {member}")
         embed.add_field(name="Discord ID:", value=f"{member.id}")
         roles = list()
@@ -75,7 +74,6 @@ class Events(commands.Cog):
         embed.add_field(name="Roles Recorded:", value=f"{applied_roles}", inline=False)
         embed.set_footer(text=f"Processed at: {curtime.isoformat()} {tz}")
         await log_chan1.send(embed=embed)
-        await log_chan2.send(embed=embed)
 
 
 
@@ -115,93 +113,140 @@ class Events(commands.Cog):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
                 await message.channel.send(
                     f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
+                
+        elif ("help.shadow.tech" in message.content.lower()):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow Help Center, which is no longer in use and may have outdated articles/content. Please use <https://support.shadow.tech/> for the most up to date information.""",
+                                                             trigger="help.shadow.tech")
+            
+        elif ("forum.shadow.tech" in message.content.lower()):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the Shadow Forums, which is no longer in use and may have outdated articles/content. Please use our new Reddit Wiki for assistance <https://reddit.com/r/ShadowPC/wiki/index/> for the most up to date information.""",
+                                                             trigger="forum.shadow.tech")
+            
+        elif ("shadow.tech/connect" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow VR Login, which is no longer in use. Please check that your ShadowVR version is above 3.16.7 and your VR headset is up to date and use the new ShadowVR login""",
+                                                             trigger="shadow.tech/connect")
+            
+        elif ("sso.shadow.tech" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow Account Login, which is no longer in use. Please use eu.shadow.tech/account instead""",
+                                                             trigger="sso.shadow.tech")
+            
+        elif ("account.shadow.tech" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
+            await self.bot.autoresponse.auto_response_message(ctx=message,
+                                                             message=f""":information_source: Heads Up! {message.author.mention} 
+It looks like you've posted a link to the old Shadow Account Login, which is no longer in use. Please use eu.shadow.tech/account instead""",
+                                                             trigger="account.shadow.tech")
+            
         elif ("roblox" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"""{message.author.mention} 
-Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information.""",
+Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information. At this time, there is no information to share, but you can help spread the word by sharing Shadow's Twitter Post.<https://twitter.com/Shadow_Official/status/1661043435376369664?s=20>.""",
                                                              trigger="roblox")
+            
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="L:104")
+            
         elif ("L 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="L 104")
+            
         elif (" 104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="104")
+            
         elif ("shadow is off" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
                                                              trigger="104")
+            
         elif "800x600" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix issues with 800x600 resolution http://botrexford.shdw.info/800x600.png",
                                                              trigger="800x600")
+            
         elif "input lag" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following tips for solving input lag issues http://botrexford.shdw.info/inputlag.png",
                                                              trigger="input lag")
+            
         elif "shadowapples" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} This is not the ShadowApples Discord. This is a Discord for Shadow, a high performance computer in the cloud. You can find the official ShadowApples Discord in the description of their channel.",
                                                              trigger="shadowapples")
+            
         elif "shadow apples" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} This is not the ShadowApples Discord. This is a Discord for Shadow, a high performance computer in the cloud. You can find the official ShadowApples Discord in the description of their channel.",
                                                              trigger="shadow apples")
-        elif "drive" in message.content.lower() and ("slow" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message="{ctx.author.mention} If you are currently experiencing issues with your storage post migration, please put in a support ticket from your account page. <https://eu.shadow.tech/account>. Please also consult the Shadow Status Page for more information on the issue. <https://status.shadow.tech/>",
-                                                             trigger="drive")
+            
         elif "password expired" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
 If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave all three fields blank.""",
                                                              trigger="password expired")
+            
         elif "expired password" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="""{ctx.author.mention} Ready-To-Go Password Update
             If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave all three fields blank.""",
                                                              trigger="password expired")
+            
         elif "waiting for video" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
+            
         elif "video error" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
+            
         elif "long to boot up" in message.content.lower() and not await self.bot.admin.can_run_command(role_names):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="waiting for video")
+            
         elif "3/3" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Please see the following to fix waiting for video http://botrexford.shdw.info/waiting_for_video.png",
                                                              trigger="3/3")
+            
         elif "halo infinite crash" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message="{ctx.author.mention} Halo Infinite is currently not playable on Shadow due to detection of virtual machines. This issue is being worked on by Shadow. For more information, see: https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow",
                                                              trigger="halo infinite crash")
+            
         elif "valorant" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention}  __Games with Issues Identified on Shadow__
 Unfortunately, Valorant is not compatible with Shadow at this time. This is due to the nature of the game's "Vanguard" anti-cheat and how it is installed. Since Riot uses a custom anti-cheat mechanism, this makes it nearly impossible to run on virtual machines, including cloud platforms. 
 If you installed Valorant or Vanguard will need to uninstall these applications or reset your Shadow.
 Check here for the current list of Shadow issues: <https://shdw.me/HC-B2C-Known_Issues>""")
+            
         elif "genshin" in message.content.lower() and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message, message="""{ctx.author.mention} Shadow is aware of this concern. The Shadow team has contacted Genshin Impact's developers about this issue. For now, it is considered incompatible.
 
 Check here for the current list of Shadow issues: <https://help.shadow.tech/hc/en-gb/articles/360011233839-Known-Issues-for-Shadow>""")
+            
         elif "good bot" in message.content.lower():
             await message.add_reaction("🍪")
             await message.add_reaction("👍")
             await message.add_reaction("🍰")
+
         elif "bad bot" in message.content.lower():
             await message.add_reaction("😢")
             await message.add_reaction("🖕🏼")
+
         elif "alpha" in message.content.lower() and ("download" in message.content.lower() or "link" in message.content.lower() or "get" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             if message.channel.id == 593516344415354880:
                 await self.bot.autoresponse.auto_response_message(ctx=message,
@@ -212,10 +257,11 @@ Mac Intel Alpha: https://shdw.me/macalpha
 Mac ARM Alpha: https://shdw.me/macarmalpha
 Linux Alpha: https://shdw.me/linuxalpha""",
                     trigger="alpha")
+                
             else:
                 await self.bot.autoresponse.auto_response_message(ctx=message,
                     message="""{ctx.author.mention}\nAccess the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
-            Note You will need to get the appropriate (Alpha) role from <#983450525292978186> to see the channel for Alpha.. 
+            Note You will need to get the appropriate (Alpha) role from the Channels and Roles section in Discord. 
 
 **Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**""",
                     trigger="alpha")

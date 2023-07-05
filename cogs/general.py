@@ -72,7 +72,7 @@ We hope you enjoy your stay!"""
                                 value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
                                 inline=True)
                 await ctx.send(
-                    f"From: {ctx.author.name}\nPlease see the following regarding Passwords and PINs:\n",
+                    f"\nPlease see the following regarding Passwords and PINs:\n",
                     embed=embed)
         else:
             self.bot.logger.info(
@@ -91,7 +91,7 @@ We hope you enjoy your stay!"""
         await ctx.message.delete()
 
     @commands.command(description="L203 Forum Page", aliases=['l203'])
-    async def l203forum(self, ctx, user: typing.Optional[discord.Member] = None):
+    async def queue(self, ctx, user: typing.Optional[discord.Member] = None):
         text = "For additional information on Error L:203 Please see the following forum article: https://shdw.me/HC-B2C-L203"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="l203forum")
 
@@ -104,16 +104,30 @@ We hope you enjoy your stay!"""
     @commands.command(description="Speedtest-Links")
     async def speedtest(self, ctx, user: typing.Optional[discord.Member] = None):
         """Speedtest Links"""
-        text = """For Shadows Official Speedtest please see here: <https://shadow.tech/requirements/internet-speed-test>"""
+        text = """For Shadows Official Speedtest please see here (Select your closest data center) <https://shdw.me/HC-B2C-Connection>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="speedtest")
 
     @commands.command(aliases=['terms', 'tou'])
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Terms of Service information"""
         text = """__Terms of Use__
-- See the official Terms of Use here: <https://shadow.tech/terms-of-use>
+- See the official Terms of Use based on your region and account type: 
+
+US Consumers: https://statics.shadow.tech/terms-of-use/tc-US-b2c.pdf
+US Businesses: https://statics.shadow.tech/terms-of-use/tc-US-b2b.pdf
+Canada Consumers: https://statics.shadow.tech/terms-of-use/tc-CA-b2c.pdf (English and French Versions Available)
+Canada Businesses: https://statics.shadow.tech/terms-of-use/tc-CA-b2b.pdf (English and French Versions Available)
+GB Consumers: https://statics.shadow.tech/terms-of-use/tc-GB-b2c.pdf
+GB Businesses: https://statics.shadow.tech/terms-of-use/tc-GB-b2b.pdf
+
+__Privacy Policy__
+- See Shadow's privacy policy here: https://shadow.tech/privacy-policy
+
+__Rules and Restrictions__
 - For a simple breakdown of what's not allowed on shadow, see here: <https://shdw.me/HC-B2C-Rules>
- **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating.
+ **Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating.
+
+__Additional Information__
  If you have a business plan, please contact your business account manager if you have a use case beyond the Rules and Restrictions or Terms of Use."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
 
@@ -124,11 +138,11 @@ We hope you enjoy your stay!"""
           - RTX Experience is recommended to keep your drivers up to date: <https://www.nvidia.com/en-us/design-visualization/software/rtx-experience/>          
 
         **Notes:**
-          - Game Optimzation is not supported on the following Shadow plans (Shadow PC w/ Power Upgrade, Zenith, Zenith for Makers, Zenith for Enterprise)
-          - If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
-          - Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
-          - If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
-          - Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use with care...
+        Game Optimzation is not supported on the following Shadow plans (Shadow PC w/ Power Upgrade, Zenith, Zenith for Makers, Zenith for Enterprise)
+        If running NVidia Drivers prior to 511.09 please ensure you update your drivers as there are critical CPU and other bugs in older drivers.
+        Driver installation can potentially glitch the streamer, so __prior to installation__ ensure you have an alternate way to access Shadow. Chrome Remote Desktop is recommended for this <https://remotedesktop.google.com/access/>
+        If the stream cuts out, your first attempt to fix the issue should be to restart streaming from the launcher.
+        Geforce/Quadro Experience and Gamestream features have the capability to brick your Shadow use with care...
           """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="drivers")
 
@@ -142,7 +156,7 @@ We hope you enjoy your stay!"""
     @commands.command(aliases=['raz', 'wipe', 'clear'])
     async def reset(self, ctx, user: typing.Optional[discord.Member] = None):
         """Reset Shadow Information"""
-        text = """You can reset your shadow via <https://eu.shadow.tech/account/>, on the Shadow PC tab > "Manage my subscription" *Note:* This doesn't clear additional storage and your Shadow PC should be shutdown before resetting."""
+        text = """You can reset your shadow via <https://eu.shadow.tech/account/>, on the Shadow PC tab > Click the 3 dots then "Reset Shadow PC" *Note:* This doesn't clear additional storage and your Shadow PC should be shutdown before resetting."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="reset")
 
     @commands.command()
@@ -184,7 +198,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
 
     @commands.command(aliases=['security'])
     async def email(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password."""
+        text = f"""You can access the security page via <https://eu.shadow.tech/account/>. > Select the Account tab > Edit my email or password. From there you'll be able to enable 2FA, and change your email or password."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="account security")
 
     @commands.command(aliases=['invoices'])
@@ -240,29 +254,7 @@ Linux Alpha: https://shdw.me/linuxalpha"""
         """Give Shadow Minimum requirements"""  
         text = """:warning:  MINIMUM REQUIREMENTS :warning: 
 
-        For a full overview of the minumum requirements please see this help center article: <https://shdw.me/HC-B2C-Device_Reqs>
-        **Windows**
-            - OS: Windows 10 or Windows 8.1 (Older versions are not supported)
-            - CPU: 
-                - Intel Sandy Bridge range (2011), Core™ i7 / i5 / i3, Pentium™, Celeron™, Xeon 1.60 GHz
-                - AMD AM2+ range (2008), Athlon™, Sempron™, Phenom™, Opteron™
-            - RAM: 2 GB
-            - Additional Software: DirectX 9c or higher
-
-        **Mac**
-        - OS: OS X 10.12.2 Sierra or higher
-        - CPU x86-64 (Intel Core 2 Duo processor, Intel Core i3 / i5 / i7, or Xeon) or ARM M1
-        - Firmware System EFI 64-bit
-        - RAM: 2 GB
-        - Hard Drive Space: 8GB
-
-        **Linux**
-        - Ubuntu: Bionic Beaver (18.04), Eoan Ermine (19.10)
-        - CPU: 
-            - Intel Sandy Bridge range (2011), Core™ i7 / i5 / i3, Pentium™, Celeron™, Xeon 1.60 GHz
-            - AMD AM2+ range (2008), Athlon™, Sempron™, Phenom™, Opteron™
-        RAM: 2 GB
-        Required additional software libva-glx2"""
+        For a full overview of the minumum requirements please see this help center article: <https://shdw.me/HC-B2C-Device_Reqs>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="minreq")
 
     @commands.command()
@@ -312,21 +304,22 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
         """Send Keybinding information"""
         self.bot.logger.info(f"Processed keys command for {ctx.author.name} with parameter {user}.")
         text = """:keyboard: Keybinds
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode (Locked/Unlocked) (Locked is suggested for gaming)
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu
-        - <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming"""
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **M** = Change mouse mode (Locked/Unlocked) (Locked is suggested for gaming)
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **Q** = Quit Application
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **F** = Toggle fullscreen
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **O** = Toggle Quick menu
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **R** = Restart Streaming
+        <:WindowsShadow:555856447691292736>/**⌘** + **Alt** + **I** = Open Debugger"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="keys")
 
     @commands.command(aliases=['vralpha', 'vr'])
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Send VR Forum Links"""  ### Add VR Help Center guide
+        """Send VR  Links"""  ### Add VR Help Center guide
         text = """Download the Shadow VR application from SideQuest at <https://shdw.me/vr_earlyaccess>.
-        Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>, 
-        Note: If the link for login is <https://shadow.tech/connect> it is an old link and you should update your Shadow VR application from SideQuest.
+        Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/oauth2/device/auth>, 
+        Note: If the link for login is <https://shadow.tech/connect> you have an old version and you should Shadow VR application from SideQuest to at least version **s3.16.7**.
         """
-        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vr")
+        await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vrforum")
 
     @commands.command(aliases=['val', 'valorant'])
     async def _valorant(self, ctx, user: typing.Optional[discord.Member] = None):
@@ -342,7 +335,7 @@ __Games with Issues Identified on Shadow__
 
     @commands.command(aliases=['gen', 'genshin', 'genshit'])
     async def _genshin(self, ctx, user: typing.Optional[discord.Member] = None):
-        """Valorant Command"""
+        """Genshin Command"""
         self.bot.logger.info(f"Processed genshit command for {ctx.author.name} with parameter {user}.")
         text = """Shadow is aware of this concern. The Shadow team has contacted Genshin Impact's developers about this issue. For now, it is considered incompatible.
 
@@ -370,20 +363,20 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         self.bot.logger.info(f"Processed ip command for {ctx.author.name} with parameter {user}.")
         text = """Trying to find the geographic location of your Shadow using websites which detect it via your IP address will likely be inaccurate, because Shadow assigns a local IP address in the country that you purchased in.
  If you suspect your Shadow is on the wrong datacenter, first find your Shadow's public IP using http://eth0.me/:
-            - **Europe**
-            - If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
-            - If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
-            - If your IP begins with **85.190.[67-91]** you are on the Dunkirk (FRDUN02) datacenter
-            - If your IP begins with **185.161.[168-171]** you are on the Dunkirk (FRDUN02) datacenter
-            - If your IP begins with **185.253.[168-169]** you are on the Stratsbourg (FRSBG01) datacenter
-            - If your IP begins with **185.253.[170-171]** you are on the Dunkirk (FRDUN02) datacenter
-            - **North America**
-            - If your IP begins with **66.51.[112-115]** you are on the Washington D.C. (USWDC01) datacenter
-            - If your IP begins with **66.51.[116-119]** you are on the Portland (USPOR01) data center
-            - If your IP begins with **69.58.[92-93]** you are on the Montreal (CAMTL01) data center
-            - If your IP begins with **216.180.[128-135]** you are on the Texas (TX1) data center
-            - If your IP begins with **216.180.[136]** you are on the Montreal (CAMTL01) data center
-            - If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
+            **Europe**
+            If your IP begins with **46.247.[136-140]** you are on the Frankfurt (DEFRA01) datacenter
+            If your IP begins with **46.247.[141]** you are on the Dunkirk (FRDUN02) datacenter
+            If your IP begins with **85.190.[67-91]** you are on the Dunkirk (FRDUN02) datacenter
+            If your IP begins with **185.161.[168-171]** you are on the Dunkirk (FRDUN02) datacenter
+            If your IP begins with **185.253.[168-169]** you are on the Stratsbourg (FRSBG01) datacenter
+            If your IP begins with **185.253.[170-171]** you are on the Dunkirk (FRDUN02) datacenter
+            **North America**
+            If your IP begins with **66.51.[112-115]** you are on the Washington D.C. (USWDC01) datacenter
+            If your IP begins with **66.51.[116-119]** you are on the Portland (USPOR01) data center
+            If your IP begins with **69.58.[92-93]** you are on the Montreal (CAMTL01) data center
+            If your IP begins with **216.180.[128-135]** you are on the Texas (TX1) data center
+            If your IP begins with **216.180.[136]** you are on the Montreal (CAMTL01) data center
+            If your IP begins with **216.180.[137]** you are on the Portland (USPOR01) data center"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="ip")
 
     @commands.command(aliases=['sup'])
@@ -391,8 +384,8 @@ Choose how much you want and follow prompts, when adding storage ensure your ***
         """Send details for how to reach support."""
         text = """This is a community-based Discord where other members of the community may be able to assist with your issues in <#1021479747823337522>, however please be aware that most folks here aren't Shadow Employees, and although Shadow employees do occasionally interact here, this isn't an official support channel.
   Therefore if the troubleshooting provided here does not resolve your issue, or to leave feedback directly to Shadow, you will need to contact Shadow Support:
-  - From your account page, click Support: https://eu.shadow.tech/account/
-  - If you are unable to access your account page, use the Help Desk: <https://shdw.me/HC-B2C-Support_Form>"""
+  From your account page, click Support: https://eu.shadow.tech/account/
+  If you are unable to access your account page, use the Help Desk: <https://shdw.me/HC-B2C-Support_Form>"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="sup")
 
     @commands.command(aliases=['appletv', 'appletvbeta'])
@@ -467,8 +460,8 @@ You can use **Hamachi** (Guide) <https://documentation.logmein.com/documentation
         """Send USB Dev Kit Downloads/info"""
         text = """USB Development Kit Drivers are needed for proper functioning of USB over IP on Windows
         Normally the Shadow client will install these drivers however sometimes this install fails you can manually download and install them from here
-         - **Windows 32bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x86.msi
-         - **Windows 64bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x64.msi
+         **Windows 32bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x86.msi
+         **Windows 64bit** - http://botrexford.shdw.info/UsbDk_1.0.21_x64.msi
         Once installed reboot your local system and USB over IP should function normally, ***___Note Install these on your local PC not your shadow.___***"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="usbdk")
 
@@ -624,7 +617,15 @@ Shadow Bot"""
 
     @commands.command(aliases=['specs', 'tiers'])
     async def _specs(self, ctx, user: typing.Optional[discord.Member] = None):
-        text = """***___Shadow (Spark)___***
+        text = """__Plan Information__
+Shadow PC Gaming: <https://shadow.tech/en-gb/specs>
+Shadow PC Pro: <https://shadow.tech/en-gb/shadow-for-makers/offers>
+Shadow PC Enterprise: <https://shadow.tech/en-gb/business/offers>
+
+*Note about RAM  & Storage:*
+RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
+
+***___Shadow PC Standard___***
 **GPUs:** 
 NVIDIA Quadro P5000 with 16GB GDDR5X
 NVIDIA GeForce GTX 1080 with 8GB GDDR5X
@@ -635,10 +636,7 @@ Intel Xeon E5-2678 v3 4 cores 8 threads at 2.5 GHz with 3.1 GHz Turbo Boost
 Intel Xeon E5-2667 v3 4 cores 8 threads at 3.2 GHz with 3.6 GHz Turbo Boost
 AMD EPYC 7513 4 cores 8 threads at 2.6 GHz with 3.65 GHz Max Boost Clock
 
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
-***__Shadow w/ Power Upgrade (Zenith)__***
+***__Shadow PC Extended__***
 **GPUs:**
 NVIDIA RTX A4500 with 16GB GDDR6 
 AMD Radeon RX 6700 XT with 12GB GDDR6
@@ -647,33 +645,17 @@ AMD Radeon RX 6700 XT with 12GB GDDR6
 **CPU:**
 AMD EPYC 7543P 4 cores 8 threads at 2.8 GHz with 3.7 GHz Max Boost Clock
 
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
-***___Shadow Ultra (Aurora)___*** EU Only
+***___Shadow PC Advanced___*** EU Only
 **GPU:** NVIDIA Quadro RTX 5000 with 16GB GDDR6 
-**VRAM:** 16 GB
 
 **CPU:**
 Intel Xeon W-3235 Processor 3.3 GHz 4 cores 8 threads at 3.3 GHz with 4 GHz Turbo Boost
 
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
-***___Shadow Infinite (Lightning)___*** EU Only
+***___Shadow PC Expert___*** EU Only
 **GPU:** NVIDIA Quadro RTX 6000 with 24GB GDDR6 
-**VRAM:** 24 GB
 
 **CPU:** 
-Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost
-
-**RAM  & Storage:**
-RAM & Storage is variable and will depend on your plan. Please check Shadow's website for more information. *(Extra storage expandable up to 5TB)*
-
-__Plan Information__
-Shadow PC: <https://shadow.tech/en-gb/specs>
-Shadow for Makers: <https://shadow.tech/en-gb/shadow-for-makers/offers>
-Shadow for Enterprise: <https://shadow.tech/en-gb/business/offers>"""
+Intel Xeon W-3235 Processor 6 cores 12 threads at 3.3 GHz Turbo with 4 GHz Turbo Boost"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="_specs")
 
     @commands.command(aliases=['ntfs', 'xbox', 'gamepass'])
