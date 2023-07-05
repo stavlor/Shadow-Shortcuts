@@ -316,7 +316,7 @@ Oculus Quest: <https://shdw.me/vr_earlyaccess>"""
     async def vrforum(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send VR  Links"""  ### Add VR Help Center guide
         text = """Download the Shadow VR application from SideQuest at <https://shdw.me/vr_earlyaccess>.
-        Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/device>, 
+        Once done, login to your headset at the following link and make sure to type the link in all caps, <https://hydra.eu.shadow.tech/oauth2/device/auth>, 
         Note: If the link for login is <https://shadow.tech/connect> you have an old version and you should Shadow VR application from SideQuest to at least version **s3.16.7**.
         """
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="vrforum")
