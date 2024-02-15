@@ -118,7 +118,9 @@ class Events(commands.Cog):
         elif ("roblox" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"""{message.author.mention} 
-Due to the implementation of a new anticheat system by ROBLOX to prevent exploitation, the ROBLOX Web Client is currently not supported on Shadow PC as the anticheat system also unintentionally blocks virtual machines such as Shadow PC. To continue using ROBLOX, we recommend installing the Microsoft Store version, which can be found at <https://www.microsoft.com/store/productId/9NBLGGGZM6WM>. Shadow has contacted ROBLOX to gather more information.""",
+
+ROBLOX has an anticheat mechanism to prevent the game from being exploited. The anticheat unintentionally blocks virtual machines such as Shadow PC. As a result, ROBLOX, including the Web Client, is currently not supported on Shadow PC. Some users have reported success using either the Microsoft Store version or upgrading to Shadow Power.
+Shadow has contacted ROBLOX to gather more information, but at this time, the situation remains unchanged.""",
                                                              trigger="roblox")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
