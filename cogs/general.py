@@ -58,7 +58,7 @@ We hope you enjoy your stay!"""
                                 value="If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.",
                                 inline=True)
                 embed.add_field(name='Custom setup - PIN Code - Just a moment... screen',
-                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
+                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. ",
                                 inline=True)
                 await ctx.send(
                     f"\n{user.mention} Please see the following regarding Passwords and PINs:\n",
@@ -69,7 +69,7 @@ We hope you enjoy your stay!"""
                                 value="If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.",
                                 inline=True)
                 embed.add_field(name='Custom setup - PIN Code - Just a moment... screen',
-                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
+                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. ",
                                 inline=True)
                 await ctx.send(
                     f"From: {ctx.author.name}\nPlease see the following regarding Passwords and PINs:\n",
@@ -83,7 +83,7 @@ We hope you enjoy your stay!"""
                                 value="If you used the Ready-To-Go setting when setting up your account, you may have an expired password notice approximately 1-3 months after activation. To resolve the issue leave the \"Password\" (first) field empty or blank, you'll be able to specify a new password or you can leave it blank.",
                                 inline=True)
             embed.add_field(name='Custom setup - PIN Code - Just a moment... screen',
-                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. "
+                                value="If you used the Custom setup and have a PIN code, you may encounter a \"Just a moment...\" screen. To resolve the issue, press ALT-TAB, select the PIN code screen from the Task Switcher and blindly type in your four digit pin, hit TAB, then confirm your four digit PIN, and hit ENTER. ",
                                 inline=True)
             await ctx.author.send(
                 f"{ctx.author.mention} Please see the following regarding Passwords and PINs:\n",
@@ -610,7 +610,7 @@ Your friend,
 Shadow Bot"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="copypasta")
 
-    @commands.command(aliases=['gpuschedule', 'gpusched', 'gpuscheds')
+    @commands.command(aliases=['gpuschedule', 'gpusched', 'gpuscheds'])
     async def gpuschedules(self, ctx, user: typing.Optional[discord.Member] = None):
         text = """**Disable Hardware Accelerated GPU Scheduling**
         1. Go to Settings (Windows Key + I)
