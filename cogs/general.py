@@ -111,10 +111,10 @@ We hope you enjoy your stay!"""
     async def tos(self, ctx, user: typing.Optional[discord.Member] = None):
         """Send Terms of Service information"""
         text = """__Terms of Use__
-- See the official Terms of Use here: <https://shadow.tech/terms-of-use>
-- For a simple breakdown of what's not allowed on shadow, see here: <https://shdw.me/HC-B2C-Rules>
+For a simple breakdown of what's not allowed on shadow, see this help center article: https://shdw.me/HC-B2C-Rules
+This article also contains links to the Terms of Use.
  **Note:** ***Whether it's in the above links or not,*** we ask that you respect others' intellectual properties while using Shadow, and that covers piracy and cheating.
- If you have a business plan, please contact your business account manager if you have a use case beyond the Rules and Restrictions or Terms of Use."""
+If you have a business plan, please contact your business account manager should you have a legitimate use case."""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="tos")
 
     @commands.command(aliases=['nvidiadrivers', 'drovers'])
