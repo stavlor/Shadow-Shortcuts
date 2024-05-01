@@ -127,7 +127,7 @@ class Admin(commands.Cog):
         await ctx.message.delete()
 
     @commands.command(aliases=['latency', 'trace', 'tr', 'tracert', 'traceroute', 'traces', 'lg', 'guru'])
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff', 'Code Approvers')
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Code Approvers', 'Experts')
     async def _latency(self, ctx, user: typing.Optional[discord.Member] = None):
         text = '''***Running a traceroute to/from Shadow***
 
@@ -249,7 +249,7 @@ but there are comparable commands for other OSes**
 
 
     @commands.command(aliases=['ui', 'uinfo'])
-    @commands.has_any_role('Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Admin', 'Shadow Staff')
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Code Approvers', 'Experts')
     async def userinfo(self, ctx, user: commands.Greedy[discord.Member] = None):
         """Look up general user info."""
         import datetime
@@ -339,7 +339,7 @@ but there are comparable commands for other OSes**
             self.bot.logger.info(f"Unauthorized log request from {ctx.author}")
 
     @commands.command(aliases=['sayin'])
-    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Code Approvers')
+    @commands.has_any_role('Admin', 'Shadow Staff', 'Shadow Experts', 'Community Manager', 'CM (Silent Role)', 'Shadow Support Lead', 'Shadow Customer Support', 'Moderators', 'Code Approvers', 'Experts')
     async def say_in_channel(self, ctx, channel: discord.TextChannel, *,  message: str):
         await channel.send(message) # This is the message that will be sent to the channel (Will no longer send COMPLETED when the task is completed)
 
