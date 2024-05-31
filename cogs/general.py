@@ -170,9 +170,8 @@ Mac Intel Alpha: https://shdw.me/macalpha
 Mac ARM Alpha: https://shdw.me/macarmalpha
 Linux Alpha: https://shdw.me/linuxalpha"""
         else:
-            text = f"""Access the alpha apps (and receive community support) in our <#593516344415354880> Discord channel.
-            Note You will need to get the appropriate (Alpha) role from <#983450525292978186> to see the channel for Alpha.. 
-
+            text = f"""All users have to do to get the Alpha or Beta is follow the instructions here: https://discord.com/channels/460948857304383488/935975894122659910/1225914223624720514
+            
 **Please note that there is no official support provided for alpha versions.  The only source of community support for alpha is the <#593516344415354880> channel.**"""
         await self.bot.general.text_command_process(ctx=ctx, user=user, text=text, command_name="alpha")
 
