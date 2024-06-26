@@ -188,6 +188,8 @@ class Database(commands.Cog):
             for role in member.roles:
                 if role.name == "Prisoner":
                     continue
+                if role.name == "No-Ticket":
+                    continue
                 if role.name == "@everyone":
                     continue
                 else:
