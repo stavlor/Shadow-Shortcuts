@@ -203,7 +203,6 @@ Check here for the current list of Shadow issues: <https://help.shadow.tech/hc/e
             await message.add_reaction("🍰")
         elif "bad bot" in message.content.lower():
             await message.add_reaction("😢")
-            await message.add_reaction("🖕🏼")
         elif "alpha" in message.content.lower() and ("download" in message.content.lower() or "link" in message.content.lower() or "get" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             if message.channel.id == 593516344415354880:
                 await self.bot.autoresponse.auto_response_message(ctx=message,
