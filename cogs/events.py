@@ -114,14 +114,7 @@ class Events(commands.Cog):
             if not await self.bot.admin.can_run_command(role_names):
                 self.bot.logger.info(f"Role mentions: {message.role_mentions}")
                 await message.channel.send(
-                    f"{message.author.mention} Please don't mass tag, unless an absolute emergency. Thanks.")
-        elif ("roblox" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
-            await self.bot.autoresponse.auto_response_message(ctx=message,
-                                                             message=f"""{message.author.mention}\n
-\n
-ROBLOX has an anticheat mechanism to prevent the game from being exploited. The anticheat unintentionally blocks virtual machines such as Shadow PC. As a result, ROBLOX, including the Web Client, is currently not supported on Shadow PC. Some users have reported success using either the Microsoft Store version (https://www.microsoft.com/store/productId/9NBLGGGZM6WM) or upgrading to Shadow Power.\n
-Shadow has contacted ROBLOX to gather more information, but at this time, the situation remains unchanged.\n""",
-                                                             trigger="roblox")
+                    f"{message.author.mention} Please don't tag the Moderation team unless you have a moderation emergency. Moderators are volunteers and do not work for Shadow. Do you still need help with something in the <#983443571078221885>?")
         elif ("L:104" in message.content.lower()) and not (await self.bot.admin.can_run_command(role_names)):
             await self.bot.autoresponse.auto_response_message(ctx=message,
                                                              message=f"{message.author.mention} hit the :grey_question:  then scroll down and hit ***Shutdown Shadow***,  wait 15-20 minutes then restart your client http://botrexford.shdw.info/reboot.gif",
